@@ -75,11 +75,11 @@ public class RotationTest extends Application
 		Shape rec = new Rectangle(70, 10);
 		Shape cir = 
 		//player = Shape.union(cir, rec);
-		player = new Rectangle(70, 10);
-		//player = new Circle(25);
+		//player = new Rectangle(70, 10);
+		player = new Circle(25);
 		
-		playerCenterX = player.getBoundsInParent().getWidth() / 2;
-		playerCenterY = player.getBoundsInParent().getHeight() / 2;
+		playerCenterX = 25;//player.getBoundsInParent().getWidth() / 2;
+		playerCenterY = 25;//player.getBoundsInParent().getHeight() / 2;
 		
 		moveArea.getChildren().add(player);
 		
