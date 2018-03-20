@@ -48,6 +48,8 @@ public class Main extends Application
 	private double playerCenterY = 0.0;
 	private Rotate playerRotate;
 	
+	
+	
 	public static void main(String[] args)
 	{
 		launch(args);

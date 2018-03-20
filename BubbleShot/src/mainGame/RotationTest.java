@@ -51,6 +51,8 @@ public class RotationTest extends Application
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
 	
+	private long currentTime = 0;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -73,13 +75,16 @@ public class RotationTest extends Application
 		
 		moveArea = new Group();
 		Shape rec = new Rectangle(70, 10);
-		Shape cir = 
-		//player = Shape.union(cir, rec);
+		Shape cir = new Circle(25);
+		player = Shape.union(cir, rec);
 		//player = new Rectangle(70, 10);
-		player = new Circle(25);
+		//player = new Circle(25);
 		
-		playerCenterX = 25;//player.getBoundsInParent().getWidth() / 2;
-		playerCenterY = 25;//player.getBoundsInParent().getHeight() / 2;
+		playerCenterX = player.getBoundsInParent().getWidth() / 2;
+		playerCenterY = player.getBoundsInParent().getHeight() / 2;
+		
+		//System.out.println(playerCenterX);
+		//System.out.println(playerCenterY);
 		
 		moveArea.getChildren().add(player);
 		
@@ -88,6 +93,8 @@ public class RotationTest extends Application
 			@Override
 			public void handle(long systime)
 			{
+				//System.out.println("FPS: " + (systime - currentTime)/1000000);
+				//currentTime = systime;
 				caculateMovement();
 				caculateMouseAngleToPlayer();
 				repositionPlayer();
@@ -141,8 +148,13 @@ public class RotationTest extends Application
 	{
 		player.getTransforms().clear();
 		player.getTransforms().add(new Translate(playerX, playerY));
-		playerRotate = new Rotate(mouseAngle, player.getBoundsInLocal().getWidth()/2, player.getBoundsInLocal().getHeight()/2);
-		player.getTransforms().add(playerRotate);
+		//playerRotate = new Rotate(mouseAngle);//player.getBoundsInLocal().getWidth()/2, player.getBoundsInLocal().getHeight()/2);
+		player.getTransforms().add(new Rotate(mouseAngle));
+		
+		//System.out.println("playerCenterX: " + playerCenterX);
+		//System.out.println("playerCenterY: " + playerCenterY);
+		//System.out.println("mosueX: " + mouseX);
+		//System.out.println("mouseY: " + mouseY);
 	}
 	
 	private void caculateMouseAngleToPlayer()

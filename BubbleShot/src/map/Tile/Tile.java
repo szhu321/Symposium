@@ -48,6 +48,7 @@ public class Tile
 	}
 	
 	public ImageView getImageView() {return imgView;}
+	public Image getImg() {return img;}
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	public void setEffects(Effects effects) {this.effects = effects;}
