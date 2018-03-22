@@ -72,7 +72,9 @@ public class Main extends Application
 		Tile[][] roomTiles = room.getTiles();
 		
 		room.addObstacle(new StoneWall(50, 1000,0,0));
-		
+		room.addObstacle(new StoneWall(50, 1000,950,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950));
 		
 		for(int i = 0; i < roomTiles.length; i++)
 			for(int j = 0; j < roomTiles[0].length; j++)
