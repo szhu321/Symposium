@@ -1,5 +1,7 @@
 package mainGame;
 
+import java.util.List;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.Event;
@@ -8,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -24,6 +27,8 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import map.Room;
 import map.Tile.Tile;
+import map.obstacle.Obstacle;
+import map.obstacle.StoneWall;
 
 public class Main extends Application
 {
@@ -42,13 +47,13 @@ public class Main extends Application
 	private double mouseAngle = 0.0;
 	
 	private Shape player;
-	private double playerX = 0.0;
-	private double playerY = 0.0;
-	private double playerCenterX = 0.0;
-	private double playerCenterY = 0.0;
-	private Rotate playerRotate;
+	private double playerX = 100;
+	private double playerY = 100;
+	private double playerCenterX = 100;
+	private double playerCenterY = 100;
 	
-	
+	private double mouseX = 0.0;
+	private double mouseY = 0.0;
 	
 	public static void main(String[] args)
 	{
@@ -66,6 +71,9 @@ public class Main extends Application
 		Room room = new Room();
 		Tile[][] roomTiles = room.getTiles();
 		
+		room.addObstacle(new StoneWall(50, 1000,0,0));
+		
+		
 		for(int i = 0; i < roomTiles.length; i++)
 			for(int j = 0; j < roomTiles[0].length; j++)
 				mapGrid.add(roomTiles[i][j].getImageView(), j, i);
@@ -73,41 +81,26 @@ public class Main extends Application
 		moveArea = new Group();
 		Shape rec = new Rectangle(70, 10);
 		Shape cir = new Circle(25);
-		player = Shape.union(cir, rec);
+		//player = Shape.union(cir, rec);
 		//player = new Rectangle(70, 10);
 		
+		player = new Circle(25);
 		moveArea.getChildren().add(player);
+		
+		List<Obstacle> obstacles = room.getObstacles();
+		for(Obstacle obs: obstacles)
+		{
+			moveArea.getChildren().add(obs.getImgView());
+		}
 		
 		AnimationTimer animation = new AnimationTimer()
 		{
 			@Override
 			public void handle(long systime)
 			{
-				Shape playerSprite = player;
-				double deltaX = 0;
-				double deltaY = 0;
-				if(left)
-					deltaX -= 1;
-				if(right)
-					deltaX += 1;
-				if(up)
-					deltaY -= 1;
-				if(down)
-					deltaY += 1;
-				if(shift)
-				{
-					deltaX *= 5;
-					deltaY *= 5;
-				}
-				playerX += deltaX;
-				playerY += deltaY;
-				player.getTransforms().clear();
-				player.getTransforms().add(new Translate(playerX, playerY));
-				playerRotate = new Rotate(mouseAngle);
-				player.getTransforms().add(playerRotate);
-				//System.out.println(playerCenterX);
-				//moveNode(playerSprite, deltaX, deltaY);
-				//rotateNode(playerSprite, mousemouseAngle, playerSprite.getBoundsInLocal().getWidth() / 2,playerSprite.getBoundsInLocal().getHeight() / 2);
+				caculateMovement();
+				caculateMouseAngleToPlayer();
+				repositionPlayer();
 			}
 		};
 		animation.start();
@@ -123,40 +116,74 @@ public class Main extends Application
 		root.getChildren().add(moveArea);
 		root.getChildren().add(headsUpDis);
 		
-		
-		
 		scene = new Scene(root);
 		applyKeyEvents(scene);
 		window.setScene(scene);
 		window.show();
 	}
 	
-	
-	
-	public void moveNode(Node node, double deltaX, double deltaY)
+	private void caculateMovement() 
 	{
-		node.setLayoutX(node.getLayoutX() + deltaX);
-		node.setLayoutY(node.getLayoutY() + deltaY);
+		double deltaX = 0;
+		double deltaY = 0;
+		if(left)
+			deltaX -= 2;
+		if(right)
+			deltaX += 2;
+		if(up)
+			deltaY -= 2;
+		if(down)
+			deltaY += 2;
+		if(shift)
+		{
+			deltaX *= 5;
+			deltaY *= 5;
+		}
+		playerX += deltaX;
+		playerY += deltaY;
 	}
 	
-	public void rotateNode(Node node, double mouseAngle, double axisX, double axisY)
+	private void repositionPlayer()
 	{
-		node.getTransforms().clear();
-		node.getTransforms().add(new Rotate(mouseAngle, axisX, axisY));
+		player.getTransforms().clear();
+		player.getTransforms().add(new Translate(playerX, playerY));
+		player.getTransforms().add(new Rotate(mouseAngle));
 	}
 	
-	public void applyKeyEvents(Scene scene)
+	private void caculateMouseAngleToPlayer()
+	{
+		double distanceX = mouseX - playerCenterX;
+		double distanceY = mouseY - playerCenterY;
+		mouseAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
+		if(distanceY <= 0 && distanceX < 0)
+			mouseAngle += 180;
+		if(distanceY > 0 && distanceX < 0)
+			mouseAngle = 90 + (90 - Math.abs(mouseAngle));
+	}
+	
+	private void applyKeyEvents(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
 		{
-			switch(event.getCode())
-			{
-				case W: up = true; break;
-				case A: left = true; break;
-				case S: down = true; break;
-				case D: right = true; break;
-				case SHIFT: shift = true; break;
-			}
+			KeyCode code = event.getCode();
+			if(code == KeyCode.W)
+				up = true;
+			if(code == KeyCode.A)
+				left = true;
+			if(code == KeyCode.S)
+				down = true;
+			if(code == KeyCode.D)
+				right = true;
+			if(code == KeyCode.SHIFT)
+				shift = true;
+			//switch(event.getCode())
+			//{
+			//	case W: up = true; break;
+			//	case A: left = true; break;
+			//	case S: down = true; break;
+			//	case D: right = true; break;
+			//	case SHIFT: shift = true; break;
+			//}
 		});
 		scene.setOnKeyReleased(event -> 
 		{
@@ -171,41 +198,31 @@ public class Main extends Application
 		});
 		scene.addEventHandler(MouseEvent.ANY, event -> 
 		{
-			player.getTransforms().clear();
-			double mouseX = event.getSceneX();
-			double mouseY = event.getSceneY();
-			
-			double recBPX = player.getBoundsInParent().getMinX();
-			double recBPY = player.getBoundsInParent().getMinY();
-			
-			//System.out.println("MinX: " + recBPX);
-			//System.out.println("MinY: " + recBPY);
-			
-			double recCenterX = playerX/*recBPX*/ + (player.getBoundsInParent().getWidth() / 2);
-			double recCenterY = playerY/*recBPY*/ + (player.getBoundsInParent().getHeight() / 2);
-			
-			playerCenterX = recCenterX;
-			playerCenterY = recCenterY;
-			
-			//System.out.println("Width: " + player.getBoundsInLocal().getWidth());
-			//System.out.println("Width: " + player.getBoundsInParent().getWidth());
-			
-			double distanceX = mouseX - recCenterX;
-			double distanceY = mouseY - recCenterY;
-			
-			//System.out.println("PivotX : " + recCenterX);
-			//System.out.println("PivotY : " + recCenterY);
-			
-			mouseAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
-			if(distanceY <= 0 && distanceX < 0)
-				mouseAngle += 180;
-			if(distanceY > 0 && distanceX < 0)
-				mouseAngle = 90 + (90 - Math.abs(mouseAngle));
-			//System.out.println(mouseAngle);
-			//player.getTransforms().add(new Rotate(mouseAngle, recCenterX, recCenterY));
+			mouseX = event.getX();
+			mouseY = event.getY();
 		});
-		
-		//testing !!!
-		//TeST @@
+	}
+	
+	public boolean canMoveRight()
+	{
+		player.getTransforms().clear();
+		player.getTransforms().add(new Translate(playerX + 5, playerY));
+		if(player.getBoundsInParent().intersects(null));
+		return false;
+	}
+	
+	public boolean canMoveLeft()
+	{
+		return false;
+	}
+	
+	public boolean canMoveUp()
+	{
+		return false;
+	}
+	
+	public boolean canMoveDown()
+	{
+		return false;
 	}
 }
