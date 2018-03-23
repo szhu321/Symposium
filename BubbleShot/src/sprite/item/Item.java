@@ -2,8 +2,10 @@ package sprite.item;
 
 import sprite.Sprite;
 
-public abstract class Item extends Sprite
+public abstract class Item extends Sprite implements Consumable
 {
+	public static final String WEAPON = "weapon";
+	public static final String POTION = "potion";
 	private String itemType;
 	//item types: potions and weapons
 	

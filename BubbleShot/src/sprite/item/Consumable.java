@@ -1,5 +1,6 @@
 package sprite.item;
 
-public class Consumable {
-
+public interface Consumable 
+{
+	public boolean useItem();
 }

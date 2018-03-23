@@ -8,5 +8,10 @@ public class HealthPot extends Potion
 	{
 		super(fileName, xLocation, yLocation, itemType, color, effect);
 	}
-	
+
+	@Override
+	public boolean useItem() 
+	{
+		return false;
+	}
 }
