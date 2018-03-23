@@ -4,24 +4,28 @@ import sprite.item.Item;
 
 public abstract class Potion extends Item
 {
-	private String effect;
-	private String color;
+	private String potionColor, potionEffect;
 	
-	Potion(String fileName, int xLocation, int yLocation, String itemType, String color, String 
-			effect) 
+	Potion(String fileName, int xLocation, int yLocation, String itemType, String color, 
+			String effect) 
 	{
 		super(fileName, xLocation, yLocation, itemType);
-		this.color = color;
-		this.effect = effect;
+		potionColor = color;
+		potionEffect = effect;
 	}
 	
 	public String getColor()
 	{
-		return color;
+		return potionColor;
 	}
 	
 	public String getEffect()
 	{
-		return effect;
+		return potionEffect;
+	}
+	
+	public boolean useItem()
+	{
+		return false;
 	}
 }
