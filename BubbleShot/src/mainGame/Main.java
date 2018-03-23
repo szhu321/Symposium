@@ -55,6 +55,8 @@ public class Main extends Application
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
 	
+	private List<Obstacle> obstacles;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -89,7 +91,7 @@ public class Main extends Application
 		player = new Circle(25);
 		moveArea.getChildren().add(player);
 		
-		List<Obstacle> obstacles = room.getObstacles();
+		obstacles = room.getObstacles();
 		for(Obstacle obs: obstacles)
 		{
 			moveArea.getChildren().add(obs.getImgView());
@@ -128,19 +130,18 @@ public class Main extends Application
 	{
 		double deltaX = 0;
 		double deltaY = 0;
-		if(left)
-			deltaX -= 2;
-		if(right)
-			deltaX += 2;
-		if(up)
-			deltaY -= 2;
-		if(down)
-			deltaY += 2;
+		double changeAmount = 2;
 		if(shift)
-		{
-			deltaX *= 5;
-			deltaY *= 5;
-		}
+			changeAmount *= 5;
+		if(left && canMoveLeft(changeAmount))
+			deltaX -= changeAmount;
+		if(right && canMoveRight(changeAmount))
+			deltaX += changeAmount;
+		if(up && canMoveUp(changeAmount))
+			deltaY -= changeAmount;
+		if(down && canMoveDown(changeAmount))
+			deltaY += changeAmount;
+		
 		playerX += deltaX;
 		playerY += deltaY;
 	}
@@ -205,26 +206,75 @@ public class Main extends Application
 		});
 	}
 	
-	public boolean canMoveRight()
+	public boolean canMoveRight(double moveAmount)
 	{
 		player.getTransforms().clear();
-		player.getTransforms().add(new Translate(playerX + 5, playerY));
-		if(player.getBoundsInParent().intersects(null));
-		return false;
+		player.getTransforms().add(new Translate(playerX + moveAmount, playerY));
+		
+		for(int i = 0; i < obstacles.size(); i++)
+		{
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			{
+				player.getTransforms().clear();
+				return false;
+			}
+				
+		}
+		player.getTransforms().clear();
+		return true;
 	}
 	
-	public boolean canMoveLeft()
+	public boolean canMoveLeft(double moveAmount)
 	{
-		return false;
+		player.getTransforms().clear();
+		player.getTransforms().add(new Translate(playerX - moveAmount, playerY));
+		
+		for(int i = 0; i < obstacles.size(); i++)
+		{
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			{
+				player.getTransforms().clear();
+				return false;
+			}
+				
+		}
+		player.getTransforms().clear();
+		return true;
 	}
 	
-	public boolean canMoveUp()
+	public boolean canMoveUp(double moveAmount)
 	{
-		return false;
+		player.getTransforms().clear();
+		player.getTransforms().add(new Translate(playerX, playerY - moveAmount));
+		
+		for(int i = 0; i < obstacles.size(); i++)
+		{
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			{
+				player.getTransforms().clear();
+				return false;
+			}
+				
+		}
+		player.getTransforms().clear();
+		return true;
 	}
 	
-	public boolean canMoveDown()
+	public boolean canMoveDown(double moveAmount)
 	{
-		return false;
+		player.getTransforms().clear();
+		player.getTransforms().add(new Translate(playerX, playerY + moveAmount));
+		
+		for(int i = 0; i < obstacles.size(); i++)
+		{
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			{
+				player.getTransforms().clear();
+				return false;
+			}
+				
+		}
+		player.getTransforms().clear();
+		return true;
 	}
 }
