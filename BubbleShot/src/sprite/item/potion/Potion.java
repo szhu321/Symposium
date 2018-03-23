@@ -23,9 +23,4 @@ public abstract class Potion extends Item
 	{
 		return potionEffect;
 	}
-	
-	public boolean useItem()
-	{
-		return false;
-	}
 }
