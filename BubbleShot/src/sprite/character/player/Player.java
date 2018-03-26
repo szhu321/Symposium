@@ -2,18 +2,24 @@ package sprite.character.player;
 
 import sprite.character.Character;
 import sprite.item.Item;
+import sprite.item.weapon.Fist;
 
 public class Player extends Character
 {
-	String spriteName, weapon;
-	int xLoaction, yLocation, health, speed;
-	Item[] inventory = new Item[6];
 	
-	protected Player(String fileName, int xLocation, int yLocation, int health, int speed, 
-			String weapon, Item[] inventory) 
+	String spriteName, weapon;
+	int xLocation, yLocation, health, speed;
+	Item[] inventory = new Item[6];
+	int currentItem;
+	
+	protected Player(String fileName, double xLocation, double yLocation, int health, int speed, 
+			 Item[] inventory) 
 	{
-		super(fileName, xLocation, yLocation, health, speed, weapon);
+		super(fileName, xLocation, yLocation, health, speed, 60.0,60.0);
 		this.inventory = inventory;
+		this.inventory[0] = new Fist();
+		currentItem=0;
+		this.setSelectedItem(inventory[currentItem]);
 	}
 	
 	public void addItem(Item newItem)
@@ -29,6 +35,13 @@ public class Player extends Character
 			
 			currentIndex++;
 		}
+	}
+
+	@Override
+	public void useSelectedItem() 
+	{
+		
+		
 	}
 	
 	
