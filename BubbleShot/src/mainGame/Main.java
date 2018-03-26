@@ -77,10 +77,12 @@ public class Main extends Application
 		room.addObstacle(new StoneWall(50, 1000,950,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,950));
-		room.addObstacle(new StoneWall(50, 500,300,250));
-		room.addObstacle(new StoneWall(50, 500,600,250));
-		room.addObstacle(new StoneWall(330, 50,200,200));
-		room.addObstacle(new StoneWall(330, 50,200,700));
+		
+		room.addObstacle(new StoneWall(200,200,200,200));
+		room.addObstacle(new StoneWall(200,200,200,600));
+		room.addObstacle(new StoneWall(200,200,600,600));
+		room.addObstacle(new StoneWall(200,200,600,200));
+		room.addObstacle(new StoneWall(100,100,450,450));
 		
 		for(int i = 0; i < roomTiles.length; i++)
 			for(int j = 0; j < roomTiles[0].length; j++)
@@ -133,7 +135,7 @@ public class Main extends Application
 	{
 		double deltaX = 0;
 		double deltaY = 0;
-		double changeAmount = 2;
+		double changeAmount = 1;
 		if(shift)
 			changeAmount *= 5;
 		if(left && canMoveLeft(changeAmount))
