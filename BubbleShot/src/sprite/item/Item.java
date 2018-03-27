@@ -22,4 +22,9 @@ public abstract class Item extends Sprite implements Consumable
 	{
 		return itemType;
 	}
+	
+	public boolean isCooledDown()
+	{
+		return isCooledDown;
+	}
 }
