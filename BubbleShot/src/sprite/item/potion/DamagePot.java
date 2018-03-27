@@ -1,14 +1,11 @@
 package sprite.item.potion;
 
-import sprite.item.Consumable;
-
-public class DamagePot extends Potion implements Consumable
+public class DamagePot extends Potion
 {
-
 	DamagePot(String fileName, int xLocation, int yLocation, String itemType, String color, 
-			String effect) 
+			String effect, boolean isCooledDown) 
 	{
-		super(fileName, xLocation, yLocation, itemType, color, effect);
+		super(fileName, xLocation, yLocation, itemType, color, effect, isCooledDown);
 	}
 
 	@Override
@@ -16,6 +13,4 @@ public class DamagePot extends Potion implements Consumable
 	{
 		return false;
 	}
-	
-	
 }

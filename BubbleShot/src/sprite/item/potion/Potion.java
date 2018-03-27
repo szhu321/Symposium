@@ -7,9 +7,9 @@ public abstract class Potion extends Item
 	private String potionColor, potionEffect;
 	
 	Potion(String fileName, int xLocation, int yLocation, String itemType, String color, 
-			String effect) 
+			String effect, boolean isCooledDown) 
 	{
-		super(fileName, xLocation, yLocation, itemType);
+		super(fileName, xLocation, yLocation, itemType, isCooledDown);
 		potionColor = color;
 		potionEffect = effect;
 	}
