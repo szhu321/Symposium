@@ -1,5 +1,6 @@
 package sprite.character.effect;
 
+import sprite.character.Character;
 public abstract class Effect
 {
 	private EffectManager thisManager;
@@ -24,5 +25,5 @@ public abstract class Effect
 		thisManager.removeEffect(this);
 	}
 	
-	public abstract boolean applyEffect();
+	public abstract boolean applyEffect(Character character);
 }

@@ -82,7 +82,7 @@ public class Main extends Application
 		room.addObstacle(new StoneWall(200,200,200,600));
 		room.addObstacle(new StoneWall(200,200,600,600));
 		room.addObstacle(new StoneWall(200,200,600,200));
-		room.addObstacle(new StoneWall(70,70,450,450));
+		room.addObstacle(new StoneWall(70,70,460,460));
 		room.addObstacle(new StoneWall(100,50, 450,50));
 		
 		for(int i = 0; i < roomTiles.length; i++)
