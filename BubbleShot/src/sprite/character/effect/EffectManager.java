@@ -28,6 +28,8 @@ public class EffectManager
 		return true;
 	}
 	
+	public Character getCharacter() {return character;}
+	
 	public void removeEffect(Effect eff)
 	{
 		effects.remove(eff);

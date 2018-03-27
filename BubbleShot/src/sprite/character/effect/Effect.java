@@ -20,6 +20,8 @@ public abstract class Effect
 		thisManager = manager;
 	}
 	
+	public EffectManager getThisManager() {return thisManager;}
+	
 	public void removeEffect()
 	{
 		thisManager.removeEffect(this);

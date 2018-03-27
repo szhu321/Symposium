@@ -12,7 +12,7 @@ public class Player extends Character
 	Item[] inventory = new Item[6];
 	int currentItem;
 	
-	protected Player(String fileName, double xLocation, double yLocation, int health, int speed, 
+	public Player(String fileName, double xLocation, double yLocation, int health, int speed, 
 			 Item[] inventory) 
 	{
 		super(fileName, xLocation, yLocation, health, speed, 60.0,60.0);

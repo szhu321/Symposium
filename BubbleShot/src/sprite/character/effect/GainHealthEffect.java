@@ -12,7 +12,7 @@ public class GainHealthEffect extends HealthEffect
 	@Override
 	public boolean applyEffect(Character character) 
 	{
-		setEffectTime = 
+		setEffectTime(getEffectTime() - 1);
 		return false;
 	}
 }
