@@ -11,7 +11,7 @@ public abstract class Item extends Sprite implements Consumable
 	
 	protected Item(String fileName, int xLocation, int yLocation, String itemType) 
 	{
-		super(fileName, xLocation, yLocation);
+		super(fileName, xLocation, yLocation, 60.0, 60.0);
 		this.itemType = itemType;
 	}
 	
