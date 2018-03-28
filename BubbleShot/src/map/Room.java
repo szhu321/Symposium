@@ -22,6 +22,7 @@ public class Room
 	
 	private List<Obstacle> obstacles;
 	
+	
 	/**
 	 * Creates a clear Room with specified tile number.
 	 * @param column - number of columns of tiles.
