@@ -12,7 +12,7 @@ abstract class Enemy extends Character
 		this.weapon=weapon;
 	}
 	@Override
-	public void useSelectedItem() 
+	public void useSelectedItem(String input) 
 	{
 		
 		

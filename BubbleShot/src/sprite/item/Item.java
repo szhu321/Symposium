@@ -10,7 +10,7 @@ public abstract class Item extends Sprite implements Consumable
 	private boolean isCooledDown;
 	//item types: potions and weapons
 	
-	protected Item(String fileName, int xLocation, int yLocation, String itemType, boolean 
+	public Item(String fileName, int xLocation, int yLocation, String itemType, boolean 
 			isCooledDown) 
 	{
 		super(fileName, xLocation, yLocation, 60.0, 60.0);

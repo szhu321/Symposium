@@ -1,24 +1,20 @@
 package sprite.character;
 
 import sprite.Sprite;
+import sprite.character.effect.EffectManager;
 import sprite.item.Item;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import map.Tile.Effects;
 
 public abstract class Character extends Sprite
 {
 	private int health;
 	private int speed;
 	private Item selectedItem;
-	private List<Effects> activeEffects;
+	private EffectManager effects;
 	
 	protected Character(String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
 	{
 		super(fileName, xLocation, yLocation,width, height);
-		activeEffects = new ArrayList<Effects>();
+		effects = new EffectManager(this);
 		this.health = health;
 		this.speed = speed;
 		selectedItem=null;
@@ -64,6 +60,16 @@ public abstract class Character extends Sprite
 		this.addXLocation(speed*time);
 	}
 	
-	public abstract void useSelectedItem();
+	public void setHealth(int health)
+	{
+		this.health=health;
+	}
+	
+	public void setSpeed(int speed)
+	{
+		this.speed=speed;
+	}
+	
+	public abstract void useSelectedItem(String input);
 	
 }

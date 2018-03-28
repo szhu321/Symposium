@@ -12,7 +12,7 @@ public class Player extends Character
 	Item[] inventory = new Item[6];
 	int currentItem;
 	
-	protected Player(String fileName, double xLocation, double yLocation, int health, int speed, 
+	public Player(String fileName, double xLocation, double yLocation, int health, int speed, 
 			 Item[] inventory) 
 	{
 		super(fileName, xLocation, yLocation, health, speed, 60.0,60.0);
@@ -38,11 +38,16 @@ public class Player extends Character
 	}
 
 	@Override
-	public void useSelectedItem() 
+	public void useSelectedItem(String input) 
 	{
-		
-		
+		if(input.equals(Item.POTION)&&inventory[currentItem].getItemType().equals(Item.POTION) || input.equals(Item.WEAPON)&&inventory[currentItem].getItemType().equals(Item.WEAPON))
+		{
+			inventory[currentItem].useItem();
+		}
 	}
 	
-	
+	public void selectItem(String input)
+	{
+		currentItem=Integer.parseInt(input);
+	}
 }
