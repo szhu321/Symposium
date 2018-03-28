@@ -11,7 +11,7 @@ public abstract class Character extends Sprite
 	private Item selectedItem;
 	private EffectManager effects;
 	
-	protected Character(String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
+	public Character(String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
 	{
 		super(fileName, xLocation, yLocation,width, height);
 		effects = new EffectManager(this);
