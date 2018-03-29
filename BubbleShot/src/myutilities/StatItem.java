@@ -13,4 +13,9 @@ public class StatItem<dataType>
 	
 	public dataType getInfo() {return info;}
 	public void setInfo(dataType info) {this.info = info;}
+	
+	public String toString()
+	{
+		return "Name: " + name + "   Infomation: " + info;
+	}
 }
