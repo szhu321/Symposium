@@ -5,8 +5,8 @@ public class Sword extends Weapon
 	Sword(String fileName, int xLocation, int yLocation, String itemType, 
 			boolean isCooledDown, int damage, double attackRate, double attackRange) 
 	{
-		super(fileName, xLocation, yLocation, itemType, isCooledDown, damage, attackRate, 
-				attackRange);
+		super("file:resource/weaponPictures/sword.png", xLocation, yLocation, itemType, 
+				isCooledDown, damage, attackRate, attackRange);
 	}
 
 	@Override

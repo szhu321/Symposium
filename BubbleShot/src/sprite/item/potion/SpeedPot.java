@@ -5,7 +5,8 @@ public class SpeedPot extends Potion
 	SpeedPot(String fileName, int xLocation, int yLocation, String itemType, String color, 
 			String effect, boolean isCooledDown) 
 	{
-		super(fileName, xLocation, yLocation, itemType, color, effect, isCooledDown);
+		super("file:resource/potionPictures/speedPotion.png", xLocation, yLocation, 
+				itemType, color, effect, isCooledDown);
 	}
 
 	@Override
