@@ -36,7 +36,14 @@ public class Player extends Character
 			currentIndex++;
 		}
 	}
-
+	
+	public Item removeItem()
+	{
+		Item remove=inventory[currentItem];
+		inventory[currentItem]=null;
+		return remove;
+	}
+	
 	@Override
 	public void useSelectedItem(String input) 
 	{

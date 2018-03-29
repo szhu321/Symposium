@@ -10,6 +10,7 @@ public abstract class Character extends Sprite
 	private int speed;
 	private Item selectedItem;
 	private EffectManager effects;
+	private double faceAngle;
 	
 	public Character(String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
 	{
@@ -17,6 +18,7 @@ public abstract class Character extends Sprite
 		effects = new EffectManager(this);
 		this.health = health;
 		this.speed = speed;
+		faceAngle=0;
 		selectedItem=null;
 	}
 	
@@ -35,9 +37,29 @@ public abstract class Character extends Sprite
 		return selectedItem;
 	}
 	
-	public void setSelectedItem(Item newSelection)
+	public double getfaceAngle()
+	{
+		return faceAngle;
+	}
+	
+	public void setHealth(int health)
+	{
+		this.health=health;
+	}
+	
+	public void setSpeed(int speed)
+	{
+		this.speed=speed;
+	}
+	
+	public void changeSelectedItem(Item newSelection)
 	{
 		selectedItem=newSelection;
+	}
+	
+	public void faceAngle(int faceAngle)
+	{
+		this.faceAngle=faceAngle;
 	}
 	
 	public void moveUp(double time)
@@ -58,16 +80,6 @@ public abstract class Character extends Sprite
 	public void moveRight(double time)
 	{
 		this.addXLocation(speed*time);
-	}
-	
-	public void setHealth(int health)
-	{
-		this.health=health;
-	}
-	
-	public void setSpeed(int speed)
-	{
-		this.speed=speed;
 	}
 	
 	public abstract void useSelectedItem(String input);
