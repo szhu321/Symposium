@@ -12,14 +12,14 @@ public class Player extends Character
 	Item[] inventory = new Item[6];
 	int currentItem;
 	
-	public Player(String fileName, double xLocation, double yLocation, int health, int speed, 
+	public Player(String spriteName, String fileName, double xLocation, double yLocation, int health, int speed, 
 			 Item[] inventory) 
 	{
-		super(fileName, xLocation, yLocation, health, speed, 60.0,60.0);
+		super(spriteName,fileName, xLocation, yLocation, health, speed, 60.0,60.0);
 		this.inventory = inventory;
 		this.inventory[0] = new Fist();
 		currentItem=0;
-		this.setSelectedItem(inventory[currentItem]);
+		this.changeSelectedItem(inventory[currentItem]);
 	}
 	
 	public void addItem(Item newItem)

@@ -12,9 +12,9 @@ public abstract class Character extends Sprite
 	private EffectManager effects;
 	private double faceAngle;
 	
-	public Character(String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
+	public Character(String spriteName, String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
 	{
-		super(fileName, xLocation, yLocation,width, height);
+		super(spriteName, fileName, xLocation, yLocation,width, height);
 		effects = new EffectManager(this);
 		this.health = health;
 		this.speed = speed;
