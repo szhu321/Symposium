@@ -2,7 +2,7 @@ package sprite.item.weapon;
 
 public class Sniper extends Weapon
 {
-	protected Sniper(String fileName, int xLocation, int yLocation, String itemType, 
+	Sniper(String fileName, int xLocation, int yLocation, String itemType, 
 			boolean isCooledDown, int damage, double attackRate, double attackRange) 
 	{
 		super(fileName, xLocation, yLocation, itemType, isCooledDown, damage, attackRate, 

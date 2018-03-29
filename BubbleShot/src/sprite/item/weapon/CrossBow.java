@@ -2,7 +2,7 @@ package sprite.item.weapon;
 
 public class CrossBow extends Weapon
 {
-	protected CrossBow(String fileName, int xLocation, int yLocation, String itemType, 
+	CrossBow(String fileName, int xLocation, int yLocation, String itemType, 
 			boolean isCooledDown, int damage, double attackRate, double attackRange) 
 	{
 		super(fileName, xLocation, yLocation, itemType, isCooledDown, damage, attackRate, 
