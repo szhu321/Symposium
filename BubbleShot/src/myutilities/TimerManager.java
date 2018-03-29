@@ -8,7 +8,7 @@ import javafx.animation.Timeline;
 
 public class TimerManager
 {
-	private List<Thread> timers;
+	private List<Timeline> timers;
 	
 	public TimerManager()
 	{
@@ -17,10 +17,17 @@ public class TimerManager
 	
 	public void pauseAll()
 	{
-		for(Thread timer: timers)
+		for(Timeline timer: timers)
 		{
-			
+			timer.pause();
 		}
-		Timeline timeline = new Timeline();
+	}
+	
+	public void resumeAll()
+	{
+		for(Timeline timer: timers)
+		{
+			timer.play();
+		}
 	}
 }
