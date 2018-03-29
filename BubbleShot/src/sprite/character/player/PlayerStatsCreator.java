@@ -15,8 +15,11 @@ public class PlayerStatsCreator
 	
 	public void addScoreInformation()
 	{
-		StatItem<Integer> scoreStat = new StatItem<Integer>("Your Score", 0);
-		playerStats.addStats(scoreStat);
+		playerStats.addStats(new StatItem<Integer>("Name: ", 0));
+		playerStats.addStats(new StatItem<Integer>("Your Score", 0));
+		playerStats.addStats(new StatItem<Integer>("Death Count: ", 0));
+		playerStats.addStats(new StatItem<Integer>("Enemies Killed: ", 0));
+		playerStats.addStats(new StatItem<Integer>("Max Health: ", 0));
 	}
 	
 	

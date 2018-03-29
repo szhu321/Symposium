@@ -5,15 +5,17 @@ import javafx.scene.image.Image;
 public abstract class Sprite 
 {
 	private String spriteName;
+	private String fileName;
 	private double xCoord;
 	private double yCoord;
 	private double width;
 	private double height;
 	private Image spriteImage;
 	
-	protected Sprite(String fileName, double xLocation, double yLocation, double width, double height)
+	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height)
 	{
-		spriteName = fileName;
+		this.spriteName=spriteName;
+		this.fileName = fileName;
 		xCoord = xLocation;
 		yCoord = yLocation;
 		this.width=width;
