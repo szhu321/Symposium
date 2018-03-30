@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.Event;
+import myutilities.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -32,7 +34,8 @@ import map.obstacle.StoneWall;
 
 public class Main extends Application
 {
-	private Stage window;
+	
+	public Stage window;
 	private Scene scene;
 	private Group moveArea;
 	private GridPane mapGrid;
@@ -52,6 +55,8 @@ public class Main extends Application
 	private double playerCenterX = 100;
 	private double playerCenterY = 100;
 	
+	private Camera camera;
+	
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
 	
@@ -68,6 +73,10 @@ public class Main extends Application
 		window = primaryStage;
 		window.setTitle("BubbleShot");
 		
+		window.setMaxHeight(1000);
+		window.setMaxWidth(1000);
+		window.setResizable(false);
+		
 		root = new Group();
 		mapGrid = new GridPane();
 		Room room = new Room();
@@ -82,9 +91,7 @@ public class Main extends Application
 		room.addObstacle(new StoneWall(200,200,200,600));
 		room.addObstacle(new StoneWall(200,200,600,600));
 		room.addObstacle(new StoneWall(200,200,600,200));
-		room.addObstacle(new StoneWall(70,70,460,460));
-		room.addObstacle(new StoneWall(100,50, 450,50));
-		room.addObstacle(new StoneWall(10,500, 450,50));
+		
 		
 		for(int i = 0; i < roomTiles.length; i++)
 			for(int j = 0; j < roomTiles[0].length; j++)
@@ -112,6 +119,7 @@ public class Main extends Application
 				caculateMovement();
 				caculateMouseAngleToPlayer();
 				repositionPlayer();
+				repositionCamera();
 			}
 		};
 		animation.start();
@@ -123,12 +131,22 @@ public class Main extends Application
 		health.setStyle("fx-background-color : #FFFFFF");
 		headsUpDis.setTop(health);
 		
+		
 		root.getChildren().add(mapGrid);
 		root.getChildren().add(moveArea);
 		root.getChildren().add(headsUpDis);
 		
+		camera = new Camera(0,0);
+		
+		
+		
+	
+		
 		scene = new Scene(root);
 		applyKeyEvents(scene);
+		
+		
+		
 		window.setScene(scene);
 		window.show();
 	}
@@ -158,6 +176,18 @@ public class Main extends Application
 		player.getTransforms().clear();
 		player.getTransforms().add(new Translate(playerX, playerY));
 		player.getTransforms().add(new Rotate(mouseAngle));
+	}
+	
+	private void repositionCamera()
+	{
+		camera.shiftCamera(playerX, playerY);
+		
+		moveArea.getTransforms().clear();
+		mapGrid.getTransforms().clear();
+		
+		
+		moveArea.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
+		mapGrid.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
 	}
 	
 	private void caculateMouseAngleToPlayer()

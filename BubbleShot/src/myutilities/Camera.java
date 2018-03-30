@@ -1,0 +1,33 @@
+package myutilities;
+
+import javafx.scene.shape.Shape;
+
+public class Camera
+{
+	private double xCoord;
+	private double yCoord;
+	
+	public Camera(double xCoord, double yCoord)
+	{
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
+	}
+	
+	public void shiftCamera(Shape player)
+	{
+		xCoord += (player.getTranslateX() - xCoord) * .5;
+		yCoord += (player.getTranslateY() - yCoord) * .5;
+	}
+	
+	public void shiftCamera(double x, double y)
+	{
+		//Tweening Algorithm.
+		xCoord += ((-x + 500) - xCoord) * .2;
+		yCoord += ((-y + 500) - yCoord) * .2;
+	}
+	
+	public double getxCoord() {return xCoord;}
+	public double getyCoord() {return yCoord;}
+	public void setxCoord(double xCoord) {this.xCoord = xCoord;}
+	public void setyCoord(double yCoord) {this.yCoord = yCoord;}
+}
