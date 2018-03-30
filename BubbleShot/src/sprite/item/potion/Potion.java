@@ -6,10 +6,10 @@ public abstract class Potion extends Item
 {
 	private String potionColor, potionEffect;
 	
-	Potion(String fileName, int xLocation, int yLocation, String itemType, String color, 
+	Potion(String spriteName,String fileName, int xLocation, int yLocation, String itemType, String color, 
 			String effect, boolean isCooledDown) 
 	{
-		super(fileName, xLocation, yLocation, itemType, isCooledDown);
+		super(spriteName,fileName, xLocation, yLocation, itemType, isCooledDown);
 		potionColor = color;
 		potionEffect = effect;
 	}

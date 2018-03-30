@@ -73,8 +73,8 @@ public class Main extends Application
 		window = primaryStage;
 		window.setTitle("BubbleShot");
 		
-		window.setMaxHeight(1000);
-		window.setMaxWidth(1000);
+		window.setMaxHeight(500);
+		window.setMaxWidth(500);
 		window.setResizable(false);
 		
 		root = new Group();
@@ -180,7 +180,7 @@ public class Main extends Application
 	
 	private void repositionCamera()
 	{
-		camera.shiftCamera(playerX, playerY);
+		camera.shiftCamera(playerX, playerY,window.getWidth(),window.getHeight());
 		
 		moveArea.getTransforms().clear();
 		mapGrid.getTransforms().clear();

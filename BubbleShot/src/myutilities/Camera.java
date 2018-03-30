@@ -19,11 +19,11 @@ public class Camera
 		yCoord += (player.getTranslateY() - yCoord) * .5;
 	}
 	
-	public void shiftCamera(double x, double y)
+	public void shiftCamera(double x, double y, double windowX,double windowY)
 	{
 		//Tweening Algorithm.
-		xCoord += ((-x + 500) - xCoord) * .2;
-		yCoord += ((-y + 500) - yCoord) * .2;
+		xCoord += ((-x + (windowX/2)) - xCoord) * .2;
+		yCoord += ((-y + (windowY/2)) - yCoord) * .2;
 	}
 	
 	public double getxCoord() {return xCoord;}

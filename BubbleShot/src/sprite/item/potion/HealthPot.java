@@ -5,7 +5,7 @@ public class HealthPot extends Potion
 	HealthPot(String fileName, int xLocation, int yLocation, String itemType, String color, 
 			String effect, boolean isCooledDown) 
 	{
-		super("file:resource/potionPictures/healthPotion.png", xLocation, yLocation, 
+		super("","file:resource/potionPictures/healthPotion.png", xLocation, yLocation, 
 				itemType, color, effect, isCooledDown);
 	}
 
