@@ -11,7 +11,7 @@ public class HealthEffect extends Effect
 	
 	public static final HealthEffect SPIKE_TRAP_EFFECT = new HealthEffect(1, -5, false);
 	
-	public HealthEffect(double effectTime, int effectAmount, boolean instantaneous)
+	public HealthEffect(double effectTime, double effectAmount, boolean instantaneous)
 	{
 		super(effectTime, effectAmount, instantaneous);
 	}

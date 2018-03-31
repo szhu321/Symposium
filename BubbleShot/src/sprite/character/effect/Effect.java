@@ -7,17 +7,16 @@ public abstract class Effect
 	private double effectTime;
 	private double effectAmount;
 
-	public Effect(EffectManager manager, double effectTime, int effectAmount, boolean instantaneous)
+	public Effect(EffectManager manager, double effectTime, double effectAmount, boolean instantaneous)
 	{
 		thisManager = manager;
 		this.effectTime = effectTime;
 		this.effectAmount = effectAmount;
 		if(instantaneous)
 			applyEffect(thisManager.getCharacter());
-			
 	}
 	
-	public Effect(double effectTime, int effectAmount, boolean instantaneous)
+	public Effect(double effectTime, double effectAmount, boolean instantaneous)
 	{
 		this.effectTime = effectTime;
 		this.effectAmount = effectAmount;

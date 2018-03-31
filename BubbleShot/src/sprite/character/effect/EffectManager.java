@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 import sprite.character.Character;
+import myutilities.TimerManager;
 
 public class EffectManager 
 {
@@ -26,6 +27,7 @@ public class EffectManager
 	public void setUpTimer()
 	{
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1), event -> runAllEffect());
+		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
 	
 	public boolean addEffect(Effect effect)
