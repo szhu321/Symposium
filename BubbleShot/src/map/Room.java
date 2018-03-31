@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import map.Tile.*;
+import map.Tile.teleporter.RoomPortManager;
 import map.obstacle.Obstacle;
+import sprite.item.Item;
+import sprite.character.Character;
 
 /**
  * A room of the
@@ -22,9 +25,11 @@ public class Room
 	private String name = "unnamed";
 	
 	private Tile[][] tiles;
-	
 	private List<Obstacle> obstacles;
+	private List<Character> characters;
+	private List<Item> items;
 	
+	private RoomPortManager teleporterManager;
 	
 	/**
 	 * Creates a clear Room with specified tile number.
@@ -59,6 +64,7 @@ public class Room
 		roomPixHeight = tiles[0].length * 100;
 	}
 	
+	//Getters and Setters
 	public double getRoomPixHeight() {return roomPixHeight;}
 	public double getRoomPixWidth() {return roomPixWidth;}
 	public Tile[][] getTiles() {return tiles;}
@@ -66,21 +72,43 @@ public class Room
 	public void setObstacles(List<Obstacle> obstacles) {this.obstacles = obstacles;}
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
+	public List<Character> getCharacters() {return characters;}
+	public void setCharacters(List<Character> characters) {this.characters = characters;}
+	public List<Item> getItems() {return items;}
+	public void setItems(List<Item> items) {this.items = items;}
+	public RoomPortManager getTeleporterManager() {return teleporterManager;}
+	public void setTeleporterManager(RoomPortManager teleporterManager) {this.teleporterManager = teleporterManager;}
+
+	
 	
 	public void addObstacle(Obstacle obs)
 	{
 		obstacles.add(obs);
 	}
-	
 	public void removeObstacle(Obstacle obs)
 	{
-		obstacles.remove(obs);
+		if(obstacles.contains(obs))
+			obstacles.remove(obs);
 	}
-	
 	public void removeObstacle(int idx)
 	{
-		obstacles.remove(idx);
+		if(idx >= 0 && idx < obstacles.size())
+			obstacles.remove(idx);
 	}
-
 	
+	public void addItem(Item item) 
+	{
+		
+		items.add(item);
+	}
+	
+	public void removeItem(int idx)
+	{
+		
+		items.remove(idx);
+	}
+	public void removeItem(Item item)
+	{
+		
+	}
 }
