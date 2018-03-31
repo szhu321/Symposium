@@ -30,4 +30,13 @@ public abstract class Weapon extends Item
 	{
 		return weaponAttackRate;
 	}
+	
+	public String toString()
+	{
+		String output = this.toString();
+		output += "Weapon Damage = " + weaponDmg + "\n";
+		output += "Weapon Attack Rate = " + weaponAttackRate + "\n";
+		output += "Weapon Attack Range = " + weaponAttackRange + "\n";
+		return output;
+	}
 }

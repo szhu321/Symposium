@@ -52,4 +52,11 @@ public abstract class Sprite
 	{
 		yCoord+=newY;
 	}
+	
+	public String toString()
+	{
+		String output = "";
+		output += "Sprite Name = " + spriteName + "\n";
+		return output;
+	}
 }
