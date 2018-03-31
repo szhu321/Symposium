@@ -6,32 +6,48 @@ import sprite.item.Item;
 
 public abstract class Character extends Sprite
 {
-	private int health;
-	private int speed;
+	private int currentHealth;
+	private int defaultHealth;
+	private double currentSpeed;
+	private double defaultSpeed; 
 	private Item selectedItem;
-	private EffectManager effects;
+	private EffectManager effectManger;
 	private double faceAngle;
 	
-	public Character(String spriteName, String fileName, double xLocation, double yLocation, int health, int speed, double width, double height) 
+	public Character(String spriteName, String fileName, double xLocation, double yLocation, int health, double speed, double width, double height) 
 	{
 		super(spriteName, fileName, xLocation, yLocation,width, height);
-		effects = new EffectManager(this);
-		this.health = health;
-		this.speed = speed;
+		effectManger = new EffectManager(this);
+		this.currentHealth = health;
+		this.defaultHealth = health;
+		this.currentSpeed = speed;
+		this.defaultSpeed = speed;
 		faceAngle=0;
 		selectedItem=null;
 	}
 	
-	public int getHealth()
+	public int getCurrentHealth(){return currentHealth;}
+	public double getCurrentSpeed(){return currentSpeed;}
+	public double getDefaultSpeed() {return defaultSpeed;}
+	public int getDefaultHealth() {return defaultHealth;}
+	
+	public void setCurrentHealth(int currentHealth) 
 	{
-		return health;
+		this.currentHealth = currentHealth;
+		if(currentHealth <= 0)
+			//DeadMethod
+		if(currentHealth > defaultHealth)
+			currentHealth = defaultHealth;
+	}
+	public void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
+	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}
+	public void setDefaultSpeed(double defaultSpeed) {this.defaultSpeed = defaultSpeed;}
+	
+	public EffectManager getEffectManager()
+	{
+		return effectManger;
 	}
 	
-	public int getSpeed()
-	{
-		return speed;
-	}
-
 	public Item getSelectedItem()
 	{
 		return selectedItem;
@@ -42,44 +58,34 @@ public abstract class Character extends Sprite
 		return faceAngle;
 	}
 	
-	public void setHealth(int health)
-	{
-		this.health=health;
-	}
-	
-	public void setSpeed(int speed)
-	{
-		this.speed=speed;
-	}
-	
 	public void changeSelectedItem(Item newSelection)
 	{
 		selectedItem=newSelection;
 	}
 	
-	public void faceAngle(int faceAngle)
+	public void setFaceAngle(int faceAngle)
 	{
-		this.faceAngle=faceAngle;
+		this.faceAngle = faceAngle;
 	}
 	
 	public void moveUp(double time)
 	{
-		this.addYLocation(-(speed*time));
+		this.addYLocation(-(currentSpeed*time));
 	}
 	
 	public void moveDown(double time)
 	{
-		this.addYLocation(-(speed*time));
+		this.addYLocation((currentSpeed*time));
 	}
 	
 	public void moveLeft(double time)
 	{
-		this.addXLocation(-(speed*time));
+		this.addXLocation(-(currentSpeed*time));
 	}
 	
 	public void moveRight(double time)
 	{
-		this.addXLocation(speed*time);
+		this.addXLocation(currentSpeed*time);
 	}
 	
 	public abstract void useSelectedItem(String input);

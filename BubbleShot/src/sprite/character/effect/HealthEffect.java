@@ -2,34 +2,30 @@ package sprite.character.effect;
 
 import sprite.character.Character;
 
-public abstract class HealthEffect extends Effect
+public class HealthEffect extends Effect
 {
-	private double effectTime;
-	private int effectAmount;
-	private Thread timer;
 	
-	public HealthEffect(double effectTime, int effectAmount)
+	public static final HealthEffect HEALTH_POTION_EFFECT = new HealthEffect(0, 30, true);
+
+	public static final HealthEffect POSION_SWAMP_EFFECT = new HealthEffect(2, -2, false);
+	
+	public static final HealthEffect SPIKE_TRAP_EFFECT = new HealthEffect(1, -5, false);
+	
+	public HealthEffect(double effectTime, int effectAmount, boolean instantaneous)
 	{
-		this.effectTime = effectTime;
-		this.setEffectAmount(effectAmount);
-		timer = new Thread()
-		{
-			public void run()
-			{
-				applyEffect(getThisManager().getCharacter());
-			}
-		};
+		super(effectTime, effectAmount, instantaneous);
+	}
+
+	@Override
+	public boolean applyEffect(Character character) 
+	{
+		character.setCurrentHealth(character.getCurrentHealth() + (int)getEffectAmount());
+		setEffectTime(getEffectTime() - 1);
+		return true;
 	}
 	
-	public void setEffectTime(double time){effectTime = time;}
-	public double getEffectTime() {return effectTime;}
-	public int getEffectAmount() {return effectAmount;}
-	public void setEffectAmount(int effectAmount) 
+	public String toString()
 	{
-		if(effectAmount <= 0)
-			removeEffect();
-		this.effectAmount = effectAmount;
+		return "Effect: HealthEffect, EffectTime: " + getEffectTime() + " sec. + EffectAmount: " + getEffectAmount() + "HP.";
 	}
-	
-	public abstract boolean applyEffect(Character character);
 }

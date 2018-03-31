@@ -1,21 +1,16 @@
 package myutilities;
 
 import java.util.List;
-import java.util.Timer;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
 
 public class TimerManager
 {
-	private List<Timeline> timers;
+	public static List<Timeline> timers;
 	
-	public TimerManager()
-	{
-		
-	}
-	
-	public void pauseAll()
+	public static void pauseAll()
 	{
 		for(Timeline timer: timers)
 		{
@@ -23,11 +18,20 @@ public class TimerManager
 		}
 	}
 	
-	public void resumeAll()
+	public static void resumeAll()
 	{
 		for(Timeline timer: timers)
 		{
 			timer.play();
 		}
+	}
+	
+	public static void addKeyFrameToNewTimeline(KeyFrame keyframe)
+	{
+		Timeline tempTimeline = new Timeline();
+		tempTimeline.getKeyFrames().add(keyframe);
+		tempTimeline.playFromStart();
+		tempTimeline.setCycleCount(Timeline.INDEFINITE);
+		timers.add(tempTimeline);
 	}
 }
