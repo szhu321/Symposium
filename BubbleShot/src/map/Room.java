@@ -18,6 +18,9 @@ public class Room
 	//For now the roomPixWidth and Height does nothing.
 	private double roomPixWidth;
 	private double roomPixHeight;
+	
+	private String name = "unnamed";
+	
 	private Tile[][] tiles;
 	
 	private List<Obstacle> obstacles;
@@ -61,6 +64,8 @@ public class Room
 	public Tile[][] getTiles() {return tiles;}
 	public List<Obstacle> getObstacles() {return obstacles;}
 	public void setObstacles(List<Obstacle> obstacles) {this.obstacles = obstacles;}
+	public String getName() {return name;}
+	public void setName(String name) {this.name = name;}
 	
 	public void addObstacle(Obstacle obs)
 	{
@@ -76,4 +81,6 @@ public class Room
 	{
 		obstacles.remove(idx);
 	}
+
+	
 }
