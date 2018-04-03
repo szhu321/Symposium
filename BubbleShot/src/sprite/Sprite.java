@@ -4,12 +4,8 @@ import javafx.scene.image.Image;
 
 public abstract class Sprite 
 {
-	private String spriteName;
-	private String fileName;
-	private double xCoord;
-	private double yCoord;
-	private double width;
-	private double height;
+	private String spriteName,fileName;
+	private double xCoord,yCoord,width,height;
 	private Image spriteImage;
 	
 	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height)
@@ -55,8 +51,14 @@ public abstract class Sprite
 	
 	public String toString()
 	{
+		//debug
 		String output = "";
-		output += "Sprite Name = " + spriteName + "\n";
+		output += "Sprite Name = " + spriteName + "\n"
+				 +"File Name = " + fileName + "\n"
+				 +"X Coords = " + xCoord + "\n"
+				 +"Y Coords = " + yCoord + "\n"
+				 +"Width = " + width + "\n"
+			     +"Height = " + height + "\n";
 		return output;
 	}
 }

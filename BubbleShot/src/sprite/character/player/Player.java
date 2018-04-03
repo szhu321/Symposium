@@ -7,10 +7,9 @@ import sprite.item.weapon.Fist;
 public class Player extends Character
 {
 	
-	String spriteName, weapon;
-	int xLocation, yLocation, health, speed;
+	String spriteName;
+	int xLocation, yLocation, health, speed, currentItem;
 	Item[] inventory = new Item[6];
-	int currentItem;
 	
 	public Player(String spriteName, String fileName, double xLocation, double yLocation, int health, int speed, 
 			 Item[] inventory) 
@@ -56,5 +55,17 @@ public class Player extends Character
 	public void selectItem(String input)
 	{
 		currentItem=Integer.parseInt(input);
+	}
+	
+	public String toString()
+	{
+		String output = "";
+		output += "Sprite Name = " + spriteName + "\n"
+				   +"X Coords = " + xLocation + "\n"
+				   +"Y Coords = " + yLocation + "\n"
+			       +"Health = " + health + "\n"
+			       +"Speed = " + speed + "\n"
+			       +"Selected Item Index = " + currentItem + "\n";
+		return output;
 	}
 }

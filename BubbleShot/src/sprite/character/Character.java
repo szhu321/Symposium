@@ -6,13 +6,10 @@ import sprite.item.Item;
 
 public abstract class Character extends Sprite
 {
-	private int currentHealth;
-	private int defaultHealth;
-	private double currentSpeed;
-	private double defaultSpeed; 
+	private int currentHealth,defaultHealth;
+	private double currentSpeed,defaultSpeed,faceAngle; 
 	private Item selectedItem;
 	private EffectManager effectManger;
-	private double faceAngle;
 	
 	public Character(String spriteName, String fileName, double xLocation, double yLocation, int health, double speed, double width, double height) 
 	{
@@ -30,6 +27,9 @@ public abstract class Character extends Sprite
 	public double getCurrentSpeed(){return currentSpeed;}
 	public double getDefaultSpeed() {return defaultSpeed;}
 	public int getDefaultHealth() {return defaultHealth;}
+	public EffectManager getEffectManager()	{return effectManger;}
+	public Item getSelectedItem(){return selectedItem;}
+	public double getfaceAngle(){return faceAngle;}
 	
 	public void setCurrentHealth(int currentHealth) 
 	{
@@ -42,32 +42,8 @@ public abstract class Character extends Sprite
 	public void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
 	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}
 	public void setDefaultSpeed(double defaultSpeed) {this.defaultSpeed = defaultSpeed;}
-	
-	public EffectManager getEffectManager()
-	{
-		return effectManger;
-	}
-	
-	public Item getSelectedItem()
-	{
-		return selectedItem;
-	}
-	
-	public double getfaceAngle()
-	{
-		return faceAngle;
-	}
-	
-	public void changeSelectedItem(Item newSelection)
-	{
-		selectedItem=newSelection;
-	}
-	
-	public void setFaceAngle(int faceAngle)
-	{
-		this.faceAngle = faceAngle;
-	}
-	
+	public void setFaceAngle(int faceAngle){this.faceAngle = faceAngle;}
+			
 	public void moveUp(double time)
 	{
 		this.addYLocation(-(currentSpeed*time));
@@ -86,6 +62,24 @@ public abstract class Character extends Sprite
 	public void moveRight(double time)
 	{
 		this.addXLocation(currentSpeed*time);
+	}
+	
+	public String toString()
+	{
+		String output = "";
+		output += "Current Health = " + currentHealth + "\n"
+				   +"Default Health = " + defaultHealth + "\n"
+				   +"Current Speed = " + currentSpeed + "\n"
+			       +"Default Speed = " + defaultSpeed + "\n"
+			       +"Selected Item = " + selectedItem.getSpriteName() + "\n"
+			       +"Effects = " + effectManger.toString() + "\n"
+			       +"Face Angle = " + faceAngle + "\n";
+		return output;
+	}
+	
+	public void changeSelectedItem(Item newSelection)
+	{
+		selectedItem=newSelection;
 	}
 	
 	public abstract void useSelectedItem(String input);
