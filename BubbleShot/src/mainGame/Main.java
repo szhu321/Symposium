@@ -49,7 +49,7 @@ public class Main extends Application
 	private Boolean shift = false;
 	private double mouseAngle = 0.0;
 	
-	private Shape player;
+	private ImageView player;
 	private double playerX = 100;
 	private double playerY = 100;
 	private double playerCenterX = 100;
@@ -102,13 +102,18 @@ public class Main extends Application
 		Shape cir = new Circle(25);
 		//player = Shape.union(cir, rec);
 		//player = new Rectangle(70, 10);
-		player = new Circle(25);
+		//player = new Circle(25);
+		player = new ImageView(new Image("file:resources/projectilePictures/bullet.png", 50,50,false,false));
 		moveArea.getChildren().add(player);
 		
 		obstacles = room.getObstacles();
 		for(Obstacle obs: obstacles)
 		{
 			moveArea.getChildren().add(obs.getImgView());
+			System.out.println(obs.getImgView().getTranslateX());
+			System.out.println(obs.getImgView().getLayoutX());
+			System.out.println(obs.getImgView().getX());
+			System.out.println(obs.getImgView().getBoundsInParent().getMinX());
 		}
 		
 		AnimationTimer animation = new AnimationTimer()
