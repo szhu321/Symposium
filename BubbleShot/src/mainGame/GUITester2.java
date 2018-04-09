@@ -1,5 +1,7 @@
 package mainGame;
 
+import java.util.List;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -8,9 +10,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
+import map.Room;
+import map.Tile.Tile;
+import map.obstacle.Obstacle;
+import map.obstacle.StoneWall;
 
 public class GUITester2 extends Application
 {
@@ -20,6 +27,7 @@ public class GUITester2 extends Application
 	private ImageView player;
 	private Group root;
 	private Group movingArea;
+	private GridPane mapGrid;
 
 	
 	private Boolean up = false;
@@ -34,6 +42,8 @@ public class GUITester2 extends Application
 	private double playerX = 0;
 	private double playerY = 0;
 	
+	private List<Obstacle> obstacles;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -47,8 +57,35 @@ public class GUITester2 extends Application
 		player = new ImageView(new Image("file:resources/player/player1.png", 70,70, false,false));
 		movingArea = new Group();
 		movingArea.getChildren().add(player);
+		
 		root = new Group();
-		root.getChildren().add(movingArea);
+		mapGrid = new GridPane();
+		Room room = new Room();
+		Tile[][] roomTiles = room.getTiles();
+		
+		room.addObstacle(new StoneWall(50, 1000,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950));
+		
+		room.addObstacle(new StoneWall(200,200,200,200));
+		room.addObstacle(new StoneWall(200,200,200,600));
+		room.addObstacle(new StoneWall(200,200,600,600));
+		room.addObstacle(new StoneWall(200,200,600,200));
+		
+		
+		for(int i = 0; i < roomTiles.length; i++)
+			for(int j = 0; j < roomTiles[0].length; j++)
+				mapGrid.add(roomTiles[i][j].getImageView(), j, i);
+		
+		obstacles = room.getObstacles();
+		for(Obstacle obs: obstacles)
+		{
+			movingArea.getChildren().add(obs.getImgView());
+		}
+		
+		root = new Group();
+		root.getChildren().addAll(mapGrid ,movingArea);
 		
 		
 		
@@ -121,6 +158,7 @@ public class GUITester2 extends Application
 		if(distanceY > 0 && distanceX < 0)
 			mouseAngle = 90 + (90 - Math.abs(mouseAngle));
 	}
+	
 	
 	private void applyKeyEvents(Scene scene)
 	{

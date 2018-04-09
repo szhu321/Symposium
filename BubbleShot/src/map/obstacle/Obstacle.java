@@ -3,6 +3,8 @@ package map.obstacle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Translate;
+import sprite.bounds.BoxCollider;
+import sprite.bounds.Collider;
 
 /**
  * Obstacles are placed on top of the map tiles. Its at same level as the 
@@ -10,7 +12,7 @@ import javafx.scene.transform.Translate;
  * @author Sheng
  *
  */
-public class Obstacle
+public class Obstacle implements Collider
 {
 	private String name;
 	private String fileName;
@@ -53,4 +55,10 @@ public class Obstacle
 	public double getxPos() {return xPos;}
 	public double getyPos() {return yPos;}
 	public void setName(String name) {this.name = name;}
+
+	@Override
+	public BoxCollider getBoundsOfObject()
+	{
+		return new BoxCollider(xPos, yPos, width, height);
+	}
 }

@@ -103,7 +103,7 @@ public class Main extends Application
 		//player = Shape.union(cir, rec);
 		//player = new Rectangle(70, 10);
 		//player = new Circle(25);
-		player = new ImageView(new Image("file:resources/projectilePictures/bullet.png", 50,50,false,false));
+		player = new ImageView(new Image("file:resources/player/player1.png", 50,50,false,false));
 		moveArea.getChildren().add(player);
 		
 		obstacles = room.getObstacles();
