@@ -1,8 +1,10 @@
 package sprite;
 
 import javafx.scene.image.Image;
+import sprite.bounds.BoxCollider;
+import sprite.bounds.Collider;
 
-public abstract class Sprite 
+public abstract class Sprite implements Collider
 {
 	private String spriteName,fileName;
 	private double xCoord,yCoord,width,height;
@@ -60,5 +62,10 @@ public abstract class Sprite
 				 +"Width = " + width + "\n"
 			     +"Height = " + height + "\n";
 		return output;
+	}
+	
+	public BoxCollider getBoundsOfObject()
+	{
+		return new BoxCollider(xCoord, yCoord, width, height);
 	}
 }

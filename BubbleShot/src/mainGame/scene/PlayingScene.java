@@ -19,10 +19,13 @@ public class PlayingScene
 	private GridPane tilesDis;
 	private BorderPane headUpDis;
 	private Group moveArea;
+	private Room currentRoom;
 	
 	public PlayingScene(Room room)
 	{
+		currentRoom = room;
 		loadRoom(room);
+		scene = new Scene(root);
 	}
 	
 	public void loadRoom(Room room)
@@ -50,11 +53,36 @@ public class PlayingScene
 		List<Item> items = room.getItems();
 		for(Obstacle obs: obstacle)
 			moveArea.getChildren().add(obs.getImgView());
-		
 	}
+	
+	public void updateCharacterLocation()
+	{
+		List<Character> characters = currentRoom.getCharacters();
+		for(int i = 0; i < characters.size(); i++)
+		{
+			Character currentChar = characters.get(i);
+			//incomplete;
+		}
+	}
+	
 	
 	public void loadHeadsUpDis()
 	{
 		headUpDis = new BorderPane();
+	}
+	
+	public Scene getScene()
+	{
+		return scene;
+	}
+	
+	public Room getCurrentRoom()
+	{
+		return currentRoom;
+	}
+	
+	public void setCurrentRoom(Room room)
+	{
+		currentRoom = room;
 	}
 }
