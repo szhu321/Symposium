@@ -1,6 +1,7 @@
 package sprite;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sprite.bounds.BoxCollider;
 import sprite.bounds.Collider;
 
@@ -9,6 +10,7 @@ public abstract class Sprite implements Collider
 	private String spriteName,fileName;
 	private double xCoord,yCoord,width,height;
 	private Image spriteImage;
+	private ImageView spriteImageView;
 	
 	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height)
 	{
@@ -19,6 +21,7 @@ public abstract class Sprite implements Collider
 		this.width=width;
 		this.height=height;
 		spriteImage=new Image(fileName);
+		spriteImageView = new ImageView(spriteImage);
 	}
 	
 	public double getXLocation()
@@ -39,6 +42,11 @@ public abstract class Sprite implements Collider
 	public Image getSpriteImage()
 	{
 		return spriteImage;
+	}
+	
+	public ImageView getSpriteImageView()
+	{
+		return spriteImageView;
 	}
 	
 	public void addXLocation(double newX)

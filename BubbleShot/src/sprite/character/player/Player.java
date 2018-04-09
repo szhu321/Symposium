@@ -11,10 +11,10 @@ public class Player extends Character
 	int xLocation, yLocation, health, speed, currentItem;
 	Item[] inventory = new Item[6];
 	
-	public Player(String spriteName, String fileName, double xLocation, double yLocation, int health, int speed, 
+	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, int health, int speed, 
 			 Item[] inventory) 
 	{
-		super(spriteName,fileName, xLocation, yLocation, health, speed, 60.0,60.0);
+		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
 		this.inventory = inventory;
 		this.inventory[0] = new Fist();
 		currentItem=0;

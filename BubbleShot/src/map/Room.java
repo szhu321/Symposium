@@ -85,6 +85,17 @@ public class Room
 	{
 		obstacles.add(obs);
 	}
+	
+	public void addCharacter(Character character)
+	{
+		characters.add(character);
+	}
+	
+	public void removeCharacter(Character character)
+	{
+		characters.remove(character);
+	}
+	
 	public void removeObstacle(Obstacle obs)
 	{
 		if(obstacles.contains(obs))

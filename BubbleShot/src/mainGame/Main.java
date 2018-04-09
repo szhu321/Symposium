@@ -49,7 +49,7 @@ public class Main extends Application
 	private Boolean shift = false;
 	private double mouseAngle = 0.0;
 	
-	private ImageView player;
+	private Shape player;
 	private double playerX = 100;
 	private double playerY = 100;
 	private double playerCenterX = 100;
@@ -73,8 +73,8 @@ public class Main extends Application
 		window = primaryStage;
 		window.setTitle("BubbleShot");
 		
-		window.setMaxHeight(500);
-		window.setMaxWidth(500);
+		window.setMaxHeight(800);
+		window.setMaxWidth(800);
 		window.setResizable(false);
 		
 		root = new Group();
@@ -102,8 +102,8 @@ public class Main extends Application
 		Shape cir = new Circle(25);
 		//player = Shape.union(cir, rec);
 		//player = new Rectangle(70, 10);
-		//player = new Circle(25);
-		player = new ImageView(new Image("file:resources/player/player1.png", 50,50,false,false));
+		player = new Circle(25);
+		//player = new ImageView(new Image("file:resources/player/player1.png", 50,50,false,false));
 		moveArea.getChildren().add(player);
 		
 		obstacles = room.getObstacles();
