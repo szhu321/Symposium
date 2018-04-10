@@ -1,5 +1,6 @@
 package myutilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.KeyFrame;
@@ -8,7 +9,7 @@ import javafx.animation.Timeline;
 
 public class TimerManager
 {
-	public static List<Timeline> timers;
+	public static List<Timeline> timers = new ArrayList<Timeline>();
 	
 	public static void pauseAll()
 	{

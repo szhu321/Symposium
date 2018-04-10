@@ -16,8 +16,8 @@ public class Player extends Character
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
 		this.inventory = inventory;
-		this.inventory[0] = new Fist();
-		currentItem=0;
+		//this.inventory[0] = new Fist();
+		currentItem = 0;
 		this.changeSelectedItem(inventory[currentItem]);
 	}
 	

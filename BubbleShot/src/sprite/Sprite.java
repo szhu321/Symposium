@@ -20,7 +20,7 @@ public abstract class Sprite implements Collider
 		yCoord = yLocation;
 		this.width=width;
 		this.height=height;
-		spriteImage=new Image(fileName);
+		spriteImage=new Image(fileName, width, height, false, false);
 		spriteImageView = new ImageView(spriteImage);
 	}
 	

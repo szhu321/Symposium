@@ -25,9 +25,9 @@ public class Room
 	private String name = "unnamed";
 	
 	private Tile[][] tiles;
-	private List<Obstacle> obstacles;
-	private List<Character> characters;
-	private List<Item> items;
+	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
+	private List<Character> characters = new ArrayList<Character>();
+	private List<Item> items = new ArrayList<Item>();
 	
 	private RoomPortManager teleporterManager;
 	
@@ -58,7 +58,6 @@ public class Room
 	
 	public Room(Tile[][] tiles)
 	{
-		obstacles = new ArrayList<Obstacle>();
 		this.tiles = tiles;
 		roomPixWidth = tiles.length * 100;
 		roomPixHeight = tiles[0].length * 100;

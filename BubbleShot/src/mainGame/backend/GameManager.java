@@ -18,4 +18,25 @@ public class GameManager
 	{
 		
 	}
+	
+	/**
+	 * Runs the next frame;
+	 * @param second - the time passed since the last frame.
+	 */
+	public void nextFrame(double second)
+	{
+		
+	}
+	
+	public void pauseGame()
+	{
+		
+	}
+	
+	public void unPauseGame()
+	{
+		
+	}
+	
+	
 }
