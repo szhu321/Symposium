@@ -52,6 +52,17 @@ public class EffectManager
 		effects.remove(eff);
 	}
 	
+	public double getSpeedMultiplier()
+	{
+		double result = 1;
+		for(Effect effect: effects)
+		{
+			if(effect instanceof SpeedEffect)
+				result *= effect.getEffectAmount();
+		}
+		return result;
+	}
+	
 	public String toString()
 	{
 		String result = "EffectManager. Character: " + character.toString() + "\n";
