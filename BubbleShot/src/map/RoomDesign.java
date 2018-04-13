@@ -19,4 +19,42 @@ public class RoomDesign
 		room.addCharacter(player);
 		return room;
 	}
+	
+	public static Room getRoomDesignTwo(Player player)
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(50, 1000,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950));
+		room.addObstacle(new StoneWall(600,100,200,450));
+		room.addObstacle(new StoneWall(100,600,450,200));
+		room.addCharacter(player);
+		return room;
+	}
+	
+	public static Room getRoomDesignThree(Player player)
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(50, 1000,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950));
+		room.addCharacter(player);
+		return room;
+	}
+	
+	public static Room getRoomDesignFour(Player player)
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(50, 1000,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950));
+		room.addObstacle(new StoneWall(100,500,450,450));
+		room.addObstacle(new StoneWall(100,500,200,50));
+		room.addObstacle(new StoneWall(100,500,700,50));
+		room.addCharacter(player);
+		return room;
+	}
 }
