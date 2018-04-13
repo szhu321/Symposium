@@ -39,8 +39,8 @@ public class GUITester2 extends Application
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
 	
-	private double playerX = 0;
-	private double playerY = 0;
+	private double playerX = 110;
+	private double playerY = 110;
 	
 	private List<Obstacle> obstacles;
 	
@@ -106,6 +106,12 @@ public class GUITester2 extends Application
 			}
 		};
 		animation.start();
+		//repositionPlayer();
+		//player.setRotate(180);
+		//player.setRotate(240);
+		//player.setRotate(-90);
+		//player.setRotate(-90);
+		//player.setRotate(.1);
 	}
 	
 	private void repositionPlayer()

@@ -1,15 +1,15 @@
 package sprite.projectile;
 
+import myutilities.LinearEquation;
+
 public class LinearProjectile extends Projectile
 {
-	private double deltaX;
-	private double deltaY;
+	private LinearEquation travelPath;
 	
-	public LinearProjectile(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double speed, double deltaX, double deltaY)
+	public LinearProjectile(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double speed, double faceAngle)
 	{
-		super(spriteName, fileName, xLocation, yLocation, width, height, speed);
-		this.deltaX = deltaX;
-		this.deltaY = deltaY;
+		super(spriteName, fileName, xLocation, yLocation, width, height, speed, faceAngle);
+		
 	}
 	
 	public void updateLocation(double timePassedMilli)
@@ -21,11 +21,11 @@ public class LinearProjectile extends Projectile
 	
 	private void updateXPos(double timePassedSec)
 	{
-		addXLocation(getSpeed() * timePassedSec * deltaX);
+		addXLocation(getSpeed() * timePassedSec * travelPath.getDeltaX());
 	}
 	
 	private void updateYPos(double timePassedSec)
 	{
-		addYLocation(getSpeed() * timePassedSec * deltaY);
+		addYLocation(getSpeed() * timePassedSec * travelPath.getDeltaY());
 	}
 }

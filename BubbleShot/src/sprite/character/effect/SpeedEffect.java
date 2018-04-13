@@ -15,8 +15,8 @@ public class SpeedEffect extends Effect
 	@Override
 	public boolean applyEffect(Character character)
 	{
-		character.setCurrentSpeed(character.getCurrentSpeed() * getEffectAmount());
-		setEffectTime(getEffectTime() - 1);
+		//character.setCurrentSpeed(character.getCurrentSpeed() * getEffectAmount());
+		//setEffectTime(getEffectTime() - 1);
 		return true;
 	}
 	
