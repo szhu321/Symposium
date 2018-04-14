@@ -19,7 +19,7 @@ public abstract class Character extends Sprite
 		this.defaultHealth = health;
 		this.currentSpeed = speed;
 		this.defaultSpeed = speed;
-		faceAngle=0;
+		faceAngle = 0;
 		selectedItem=null;
 	}
 	
@@ -42,7 +42,7 @@ public abstract class Character extends Sprite
 	public void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
 	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}
 	public void setDefaultSpeed(double defaultSpeed) {this.defaultSpeed = defaultSpeed;}
-	public void setFaceAngle(int faceAngle){this.faceAngle = faceAngle;}
+	public void setFaceAngle(double faceAngle){this.faceAngle = faceAngle;}
 			
 	public void moveUp(double time)
 	{

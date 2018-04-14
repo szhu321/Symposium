@@ -3,11 +3,16 @@ package map;
 import java.util.ArrayList;
 import java.util.List;
 
+import mainGame.backend.Constants;
 import map.Tile.*;
 import map.Tile.teleporter.RoomPortManager;
 import map.obstacle.Obstacle;
 import sprite.item.Item;
+import sprite.projectile.Projectile;
+import sprite.bounds.BoxCollider;
 import sprite.character.Character;
+import sprite.character.player.Player;
+import sprite.character.enemy.Enemy;
 
 /**
  * A room of the
@@ -28,6 +33,7 @@ public class Room
 	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
 	private List<Character> characters = new ArrayList<Character>();
 	private List<Item> items = new ArrayList<Item>();
+	private List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	private RoomPortManager teleporterManager;
 	
@@ -78,7 +84,15 @@ public class Room
 	public RoomPortManager getTeleporterManager() {return teleporterManager;}
 	public void setTeleporterManager(RoomPortManager teleporterManager) {this.teleporterManager = teleporterManager;}
 
+	public void addProjectile(Projectile projectile)
+	{
+		projectiles.add(projectile);
+	}
 	
+	public void removeProjectile(Projectile projectile)
+	{
+		projectiles.remove(projectile);
+	}
 	
 	public void addObstacle(Obstacle obs)
 	{
@@ -108,17 +122,79 @@ public class Room
 	
 	public void addItem(Item item) 
 	{
-		
 		items.add(item);
 	}
 	
 	public void removeItem(int idx)
 	{
-		
 		items.remove(idx);
 	}
 	public void removeItem(Item item)
 	{
-		
+		items.remove(item);
+	}
+	
+	public Player getPlayer()
+	{
+		Player player = null;
+		for(Character character : characters)
+			if(character instanceof Player)
+				player = (Player) character;
+		return player;
+	}
+	
+	public boolean canCharacterMove(Character character, String direction, double distance)
+	{
+		BoxCollider characterBounds = character.getBoundsOfObject();
+		if(direction.equals(Constants.MOVE_DIR_UP))
+		{
+			characterBounds.setY(characterBounds.getY() - distance);
+		}
+		if(direction.equals(Constants.MOVE_DIR_DOWN))
+		{
+			characterBounds.setY(characterBounds.getY() + distance);
+		}
+		if(direction.equals(Constants.MOVE_DIR_LEFT))
+		{
+			characterBounds.setX(characterBounds.getX() - distance);
+		}
+		if(direction.equals(Constants.MOVE_DIR_RIGHT))
+		{
+			characterBounds.setX(characterBounds.getX() + distance);
+		}
+		for(Obstacle obs : obstacles)
+		{
+			if(obs.getBoundsOfObject().intersect(characterBounds))
+				return false;
+		}
+		return true;
+	}
+	
+	public void projectileCollisionChecker()
+	{
+		//if projectileHitPlayer
+		Player player = getPlayer();
+		for(int i = projectiles.size() - 1; i >= 0; i--)
+		{
+			Projectile projectile = projectiles.get(i);
+			//if player collide with projectile and projectile isnt shot by player.
+			if(player.getBoundsOfObject().intersect(projectile.getBoundsOfObject()) && !projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
+			{
+				player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
+				projectiles.remove(projectile);
+			}
+			//if enemy collide with player projectile
+			else if(projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
+			{
+				for(Character character : characters)
+				{
+					if(character instanceof Enemy)
+					{
+						character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
+						projectiles.remove(projectile);
+					}
+				}
+			}
+		}
 	}
 }

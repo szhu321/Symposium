@@ -31,8 +31,8 @@ public class TimerManager
 	{
 		Timeline tempTimeline = new Timeline();
 		tempTimeline.getKeyFrames().add(keyframe);
-		tempTimeline.playFromStart();
 		tempTimeline.setCycleCount(Timeline.INDEFINITE);
+		tempTimeline.playFromStart();
 		timers.add(tempTimeline);
 	}
 }

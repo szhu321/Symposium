@@ -11,11 +11,11 @@ public class TimeTracker
 	
 	/**
 	 * 
-	 * @return The time passed since the last call to resetTime or getTimePassed in seconds.
+	 * @return The time passed since the last call to resetTime or getTimePassed in milliseconds.
 	 */
-	public static double getTimePassed()
+	public static long getTimePassed()
 	{
-		double timePassed = (System.currentTimeMillis() - storedTime) / 1000;
+		long timePassed = System.currentTimeMillis() - storedTime;
 		storedTime = System.currentTimeMillis();
 		return timePassed;
 	}

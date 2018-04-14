@@ -4,17 +4,19 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mainGame.backend.GameManager;
 import mainGame.scene.PlayingScene;
+import map.LevelDesign;
 import map.Room;
 import map.RoomDesign;
 import map.Tile.Tile;
 import map.obstacle.StoneWall;
+import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
 public class GameRunner extends Application
 {
 	private Stage window;
-	private PlayingScene playScene;
 	
 	public static void main(String[] args)
 	{
@@ -28,23 +30,11 @@ public class GameRunner extends Application
 		window.setTitle("Little Boy");
 		
 		
-		playScene = new PlayingScene(RoomDesign.getRoomDesignOne(PlayerDesign.getSimpleStarterPlayer("Player1")));
+		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+		GameManager gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player);
+		gameManager.startGame();
 		
-		
-		
-		
-		window.setScene(playScene.getScene());
+		window.setScene(gameManager.getPlayingScene().getScene());
 		window.show();
-		
-		
-		AnimationTimer animation = new AnimationTimer()
-		{
-			@Override
-			public void handle(long systime)
-			{
-				playScene.updateCharacterLocation();
-			}
-		};
-		animation.start();
 	}
 }

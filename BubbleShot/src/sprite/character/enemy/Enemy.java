@@ -2,7 +2,7 @@ package sprite.character.enemy;
 
 import sprite.character.Character;
 
-abstract class Enemy extends Character
+public abstract class Enemy extends Character
 {
 	private String weapon;
 	private int killPoints;

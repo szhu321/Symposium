@@ -6,10 +6,9 @@ public class LinearProjectile extends Projectile
 {
 	private LinearEquation travelPath;
 	
-	public LinearProjectile(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double speed, double faceAngle)
+	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle)
 	{
-		super(spriteName, fileName, xLocation, yLocation, width, height, speed, faceAngle);
-		
+		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle);
 	}
 	
 	public void updateLocation(double timePassedMilli)
