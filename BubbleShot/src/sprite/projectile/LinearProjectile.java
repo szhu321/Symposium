@@ -1,30 +1,41 @@
 package sprite.projectile;
 
 import myutilities.LinearEquation;
+import myutilities.LinearParaEquation;
 
 public class LinearProjectile extends Projectile
 {
-	private LinearEquation travelPath;
+	private LinearParaEquation travelPath;
 	
-	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle)
+	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, int damage)
 	{
-		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle);
+		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage);
+		//travelPath = new LinearParaEquation(faceAngle, xLocation, yLocation);
+		createTravelPath(xLocation, yLocation, faceAngle, speed);
+	}
+	
+	public void createTravelPath(double x, double y, double angle, double speed)
+	{
+		angle = angle % 360;
+		double deltaX = speed * Math.cos(Math.toRadians(angle));
+		double deltaY = speed * Math.sin(Math.toRadians(angle));
+		travelPath = new LinearParaEquation(x, y, deltaX, deltaY);
 	}
 	
 	public void updateLocation(double timePassedMilli)
 	{
-		double secPassed = timePassedMilli / 1000;
-		updateXPos(secPassed);
-		updateYPos(secPassed);
+		travelPath.addTime(timePassedMilli / 1000);
+		updateXPos();
+		updateYPos();
 	}
 	
-	private void updateXPos(double timePassedSec)
+	private void updateXPos()
 	{
-		addXLocation(getSpeed() * timePassedSec * travelPath.getDeltaX());
+		setXLocation(travelPath.getXPos());
 	}
 	
-	private void updateYPos(double timePassedSec)
+	private void updateYPos()
 	{
-		addYLocation(getSpeed() * timePassedSec * travelPath.getDeltaY());
+		setYLocation(travelPath.getYPos());
 	}
 }

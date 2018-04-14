@@ -14,12 +14,13 @@ public abstract class Projectile extends Sprite
 	
 	//private double aoeRaduis; - The area of effect radius.
 	
-	public Projectile(String spriteName, String fileName, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle)
+	public Projectile(String spriteName, String fileName, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, int damage)
 	{
 		super(spriteName ,fileName, xLocation, yLocation, width, height);
 		this.setSpeed(speed);
 		this.faceAngle = faceAngle;
 		this.bulletOwner = bulletOwner;
+		this.damage = damage;
 	}
 	
 	public int getDamage() {return damage;}

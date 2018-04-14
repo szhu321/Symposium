@@ -38,6 +38,7 @@ public class Test extends Application
 		angle = 0.0;
 		root = new Group();
 		root.getChildren().add(rec);
+		root.getChildren().add(new ImageView(new Image("file:resources/projectilePictures/bullet.png")));
 		
 		AnimationTimer animate = new AnimationTimer() 
 		{

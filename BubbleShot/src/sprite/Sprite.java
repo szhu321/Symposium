@@ -18,9 +18,9 @@ public abstract class Sprite implements Collider
 		this.fileName = fileName;
 		xCoord = xLocation;
 		yCoord = yLocation;
-		this.width=width;
-		this.height=height;
-		spriteImage=new Image(fileName, width, height, false, false);
+		this.width = width;
+		this.height = height;
+		spriteImage = new Image(fileName, width, height, false, false);
 		spriteImageView = new ImageView(spriteImage);
 	}
 	
@@ -32,6 +32,16 @@ public abstract class Sprite implements Collider
 	public double getYLocation()
 	{
 		return yCoord;
+	}
+	
+	public void setXLocation(double x)
+	{
+		xCoord = x;
+	}
+	
+	public void setYLocation(double y)
+	{
+		yCoord = y;
 	}
 	
 	public String getSpriteName()

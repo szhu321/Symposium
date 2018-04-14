@@ -9,6 +9,7 @@ import map.Tile.teleporter.RoomPortManager;
 import map.obstacle.Obstacle;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
+import sprite.Sprite;
 import sprite.bounds.BoxCollider;
 import sprite.character.Character;
 import sprite.character.player.Player;
@@ -87,11 +88,15 @@ public class Room
 	public void addProjectile(Projectile projectile)
 	{
 		projectiles.add(projectile);
+		//System.out.println("added");
 	}
+	
+	public List<Projectile> getProjectiles() {return projectiles;}
 	
 	public void removeProjectile(Projectile projectile)
 	{
 		projectiles.remove(projectile);
+		//System.out.println("removed");
 	}
 	
 	public void addObstacle(Obstacle obs)
@@ -170,31 +175,47 @@ public class Room
 		return true;
 	}
 	
-	public void projectileCollisionChecker()
+	public boolean projectileCollide(Projectile projectile)
 	{
+		if(spriteCollisionWithObstacle(projectile))
+		{
+			System.out.println("Collide With Obstacle");
+			return true; 
+		}
 		//if projectileHitPlayer
 		Player player = getPlayer();
-		for(int i = projectiles.size() - 1; i >= 0; i--)
+		//if player collide with projectile and projectile isnt shot by player.
+		if(player.getBoundsOfObject().intersect(projectile.getBoundsOfObject()) && !projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
 		{
-			Projectile projectile = projectiles.get(i);
-			//if player collide with projectile and projectile isnt shot by player.
-			if(player.getBoundsOfObject().intersect(projectile.getBoundsOfObject()) && !projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
+			System.out.println("Collide With player");
+			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
+			projectiles.remove(projectile);
+			return true;
+		}
+		//if enemy collide with player projectile
+		if(projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
+		{
+			for(Character character : characters)
 			{
-				player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
-				projectiles.remove(projectile);
-			}
-			//if enemy collide with player projectile
-			else if(projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
-			{
-				for(Character character : characters)
+				if(character instanceof Enemy)
 				{
-					if(character instanceof Enemy)
-					{
-						character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
-						projectiles.remove(projectile);
-					}
+					System.out.println("Collide With enemy");
+					character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
+					projectiles.remove(projectile);
+					return true;
 				}
 			}
 		}
+		return false;
+	}
+	
+	public boolean spriteCollisionWithObstacle(Sprite sprite)
+	{
+		for(Obstacle obstacle: obstacles)
+		{
+			if(obstacle.getBoundsOfObject().intersect(sprite.getBoundsOfObject()))
+				return true;
+		}
+		return false;
 	}
 }

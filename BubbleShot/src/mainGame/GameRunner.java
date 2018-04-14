@@ -1,16 +1,9 @@
 package mainGame;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
-import mainGame.scene.PlayingScene;
 import map.LevelDesign;
-import map.Room;
-import map.RoomDesign;
-import map.Tile.Tile;
-import map.obstacle.StoneWall;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 

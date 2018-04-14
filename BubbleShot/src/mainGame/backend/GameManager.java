@@ -1,7 +1,11 @@
 package mainGame.backend;
 
+import java.util.List;
+
 import javafx.animation.KeyFrame;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -11,6 +15,8 @@ import map.Room;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
+import sprite.projectile.Projectile;
+import sprite.projectile.ProjectileDesign;
 
 public class GameManager
 {
@@ -23,6 +29,7 @@ public class GameManager
 	private Boolean left = false;
 	private Boolean right = false;
 	private Boolean shift = false;
+	private Boolean mouseDown = false;
 	private double mouseAngle = 0.0;
 	
 	private double mouseX = 0.0;
@@ -42,7 +49,7 @@ public class GameManager
 		TimeTracker.resetTime();
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(.0166666), event -> 
 		{
-			//Runs in 30FPS
+			//Runs in 60FPS
 			nextFrame(TimeTracker.getTimePassed());
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
@@ -56,9 +63,57 @@ public class GameManager
 	{
 		//System.out.println(((double)milliSecond) / 1000);
 		movePlayer(((double)milliSecond) / 1000);
+		updateProjectileLocation((double) milliSecond);
 		caculateMouseAngleToPlayer();
+		checkProjectileCollision();
 		player.setFaceAngle(mouseAngle);
-		playingScene.updateCharacterLocation();
+		if(mouseDown)
+		{
+			addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getfaceAngle(), 10));
+			
+		}
+		playingScene.updateAllLocation();
+		if(!level.getCurrentRoom().getProjectiles().isEmpty())
+		{
+			System.out.println("player angle: " + player.getfaceAngle());
+			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
+			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
+		}
+	}
+	
+	public void checkProjectileCollision()
+	{
+		List<Projectile> projectiles = level.getCurrentRoom().getProjectiles();
+		for(int i = projectiles.size() - 1; i >= 0; i--)
+		{
+			Projectile currentProjectile = projectiles.get(i);
+			if(level.getCurrentRoom().projectileCollide(currentProjectile))
+			{
+				removeProjectile(currentProjectile);
+			}
+		}
+	}
+	
+	public void addProjectile(Projectile projectile)
+	{
+		level.getCurrentRoom().addProjectile(projectile);
+		playingScene.addChildToMoveArea(projectile.getSpriteImageView());
+	}
+	
+	public void updateProjectileLocation(double millisecond)
+	{
+		List<Projectile> projectiles = level.getCurrentRoom().getProjectiles();
+		for(int i = projectiles.size() - 1; i >= 0; i--)
+		{
+			projectiles.get(i).updateLocation(millisecond);
+	
+		}
+	}
+	
+	public void removeProjectile(Projectile projectile)
+	{
+		level.getCurrentRoom().removeProjectile(projectile);
+		playingScene.removeChildFromMoveArea(projectile.getSpriteImageView());
 	}
 	
 	public void movePlayer(double sec)
@@ -116,6 +171,8 @@ public class GameManager
 			mouseAngle += 180;
 		if(distanceY > 0 && distanceX < 0)
 			mouseAngle = 90 + (90 - Math.abs(mouseAngle));
+		if(distanceX > 0 && distanceY < 0)
+			mouseAngle += 360;
 	}
 	
 	public void setSceneControls(Scene scene)
@@ -150,5 +207,7 @@ public class GameManager
 			mouseX = event.getX();
 			mouseY = event.getY();
 		});
+		scene.setOnMousePressed(event -> mouseDown = true);
+		scene.setOnMouseReleased(event -> mouseDown = false);
 	}
 }
