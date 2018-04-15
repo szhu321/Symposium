@@ -4,11 +4,17 @@ import java.util.List;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import map.Room;
 import map.Tile.Tile;
 import map.obstacle.Obstacle;
@@ -25,6 +31,11 @@ public class PlayingScene
 	private BorderPane headUpDis;
 	private Group moveArea;
 	private Room currentRoom;
+	
+	private Text playerHealthDis;
+	private Text playerAmmoDis;
+	private Text playerScoreDis;
+	private ImageView[] playerInventoryDis;
 	
 	public PlayingScene(Room room)
 	{
@@ -65,6 +76,55 @@ public class PlayingScene
 			moveArea.getChildren().add(projectile.getSpriteImageView());
 		for(Obstacle obs: obstacles)
 			moveArea.getChildren().add(obs.getImgView());
+	}
+	
+	public void loadHeadsUpDis()
+	{
+		headUpDis = new BorderPane();
+		HBox topBox = new HBox(20);
+		HBox bottomBox = new HBox(20);
+		HBox bottomBoxBackground = new HBox(20);
+		
+		StackPane bottomBoxContainer = new StackPane();
+		bottomBoxContainer.getChildren().addAll(bottomBoxBackground, bottomBox);
+		
+		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
+		{
+			bottomBoxBackground.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 50, 50, false, false)));
+		}
+		
+		topBox.setStyle("-fx-background-color: FFFFFF");
+		bottomBoxBackground.setStyle("-fx-background-color: FFFFFF");
+		
+		playerHealthDis = new Text();
+		playerAmmoDis = new Text();
+		playerScoreDis = new Text();
+		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
+		for(ImageView imgview: playerInventoryDis)
+		{
+			imgview = new ImageView();
+			bottomBox.getChildren().add(imgview);
+		}
+			
+		topBox.getChildren().addAll(playerHealthDis, playerAmmoDis, playerScoreDis);
+		headUpDis.setTop(topBox);
+		headUpDis.setBottom(bottomBoxContainer);
+		headUpDis.setMinHeight(1000);
+		updateHeadUpDis();
+	}
+	
+	public void updateHeadUpDis()
+	{
+		Player player = currentRoom.getPlayer();
+		playerHealthDis.setText("Health: " + player.getCurrentHealth());
+		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
+		playerScoreDis.setText("Score: " + player.getScore());
+		for(int i = 0; i < player.getInventory().length; i++)
+		{
+			if(player.getInventory()[i] != null)
+				playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
+		}
+		
 	}
 	
 	public void removeChildFromMoveArea(ImageView imageView)
@@ -119,12 +179,7 @@ public class PlayingScene
 		updateProjectileLocation();
 	}
 	
-	public void loadHeadsUpDis()
-	{
-		headUpDis = new BorderPane();
-		
-		
-	}
+	
 	
 	public Scene getScene()
 	{

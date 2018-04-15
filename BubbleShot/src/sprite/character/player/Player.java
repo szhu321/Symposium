@@ -72,7 +72,8 @@ public class Player extends Character
 	public int getScore() {return score;}
 	public void setScore(int score) {this.score = score;}
 	public void setCurrentAmmo(int currentAmmo) {this.currentAmmo = currentAmmo;}
-
+	public Item[] getInventory() {return inventory;}
+	
 	public void setCurrentItem(int currentItem)
 	{
 		this.currentItem = currentItem;
