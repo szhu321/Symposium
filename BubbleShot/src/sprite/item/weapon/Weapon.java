@@ -7,7 +7,7 @@ public abstract class Weapon extends Item
 	private int weaponDmg;
 	private double weaponAttackRate, weaponAttackRange;
 	
-	Weapon(String spriteName,String fileName, int xLocation, int yLocation, String itemType, 
+	public Weapon(String spriteName,String fileName, int xLocation, int yLocation, String itemType, 
 			boolean isCooledDown, int damage, double attackRate, double attackRange) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, itemType, isCooledDown);

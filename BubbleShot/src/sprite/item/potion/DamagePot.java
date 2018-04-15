@@ -2,7 +2,7 @@ package sprite.item.potion;
 
 public class DamagePot extends Potion
 {
-	DamagePot(String fileName, int xLocation, int yLocation, String itemType, String color, 
+	public DamagePot(String fileName, int xLocation, int yLocation, String itemType, String color, 
 			String effect, boolean isCooledDown) 
 	{
 		super("","file:resource/potionPictures/damagePotion.png", xLocation, yLocation, 

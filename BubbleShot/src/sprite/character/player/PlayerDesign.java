@@ -8,7 +8,7 @@ public class PlayerDesign
 	{
 		String fileName = "file:resources/player/player1.png";
 		Item[] inventory = new Item[6];
-		Player player = new Player(name, fileName, 100, 100, 60, 60, 20, 100, inventory);
+		Player player = new Player(name, fileName, 100, 100, 60, 60, 20, 100, inventory, 100);
 		return player;
 	}
 }

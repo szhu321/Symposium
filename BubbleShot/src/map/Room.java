@@ -179,7 +179,7 @@ public class Room
 	{
 		if(spriteCollisionWithObstacle(projectile))
 		{
-			System.out.println("Collide With Obstacle");
+			//System.out.println("Collide With Obstacle");
 			return true; 
 		}
 		//if projectileHitPlayer
@@ -187,7 +187,7 @@ public class Room
 		//if player collide with projectile and projectile isnt shot by player.
 		if(player.getBoundsOfObject().intersect(projectile.getBoundsOfObject()) && !projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
 		{
-			System.out.println("Collide With player");
+			//System.out.println("Collide With player");
 			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
 			projectiles.remove(projectile);
 			return true;
@@ -199,7 +199,7 @@ public class Room
 			{
 				if(character instanceof Enemy)
 				{
-					System.out.println("Collide With enemy");
+					//System.out.println("Collide With enemy");
 					character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
 					projectiles.remove(projectile);
 					return true;

@@ -63,6 +63,17 @@ public class EffectManager
 		return result;
 	}
 	
+	public double getDamageMultiplier()
+	{
+		double result = 1;
+		for(Effect effect: effects)
+		{
+			if(effect instanceof DamageEffect)
+				result *= effect.getEffectAmount();
+		}
+		return result;
+	}
+	
 	public String toString()
 	{
 		String result = "EffectManager. Character: " + character.toString() + "\n";

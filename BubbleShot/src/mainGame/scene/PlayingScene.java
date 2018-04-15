@@ -70,13 +70,13 @@ public class PlayingScene
 	public void removeChildFromMoveArea(ImageView imageView)
 	{
 		moveArea.getChildren().remove(imageView);
-		System.out.println("removed");
+		//System.out.println("removed");
 	}
 	
 	public void addChildToMoveArea(ImageView imageView)
 	{
 		moveArea.getChildren().add(imageView);
-		System.out.println("added");
+		//System.out.println("added");
 	}
 	
 	public void updateProjectileLocation()
@@ -122,6 +122,8 @@ public class PlayingScene
 	public void loadHeadsUpDis()
 	{
 		headUpDis = new BorderPane();
+		
+		
 	}
 	
 	public Scene getScene()

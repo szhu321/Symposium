@@ -73,12 +73,12 @@ public class GameManager
 			
 		}
 		playingScene.updateAllLocation();
-		if(!level.getCurrentRoom().getProjectiles().isEmpty())
+		/*if(!level.getCurrentRoom().getProjectiles().isEmpty())
 		{
 			System.out.println("player angle: " + player.getfaceAngle());
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
-		}
+		}*/
 	}
 	
 	public void checkProjectileCollision()
@@ -120,7 +120,7 @@ public class GameManager
 	{
 		double deltaX = 0;
 		double deltaY = 0;
-		double changeAmount = player.getCurrentSpeed() * sec;
+		double changeAmount = player.getSpeed() * sec;
 		Room currentRoom = level.getCurrentRoom();
 		if(shift)
 			changeAmount *= 1.5;

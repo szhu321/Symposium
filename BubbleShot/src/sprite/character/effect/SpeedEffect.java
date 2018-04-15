@@ -23,7 +23,6 @@ public class SpeedEffect extends Effect
 	@Override
 	public void removeEffect()
 	{
-		getThisManager().getCharacter().setCurrentSpeed(getThisManager().getCharacter().getDefaultSpeed());
 		getThisManager().removeEffect(this);
 	}
 	

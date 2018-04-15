@@ -2,7 +2,7 @@ package sprite.item.potion;
 
 public class HealthPot extends Potion
 {
-	HealthPot(String fileName, int xLocation, int yLocation, String itemType, String color, 
+	public HealthPot(String fileName, int xLocation, int yLocation, String itemType, String color, 
 			String effect, boolean isCooledDown) 
 	{
 		super("","file:resource/potionPictures/healthPotion.png", xLocation, yLocation, 
