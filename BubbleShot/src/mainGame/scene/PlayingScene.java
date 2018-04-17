@@ -168,7 +168,7 @@ public class PlayingScene
 			Character currentChar = characters.get(i);
 			currentChar.getSpriteImageView().setTranslateX(currentChar.getXLocation());
 			currentChar.getSpriteImageView().setTranslateY(currentChar.getYLocation());
-			currentChar.getSpriteImageView().setRotate(currentChar.getfaceAngle());
+			currentChar.getSpriteImageView().setRotate(currentChar.getFaceAngle());
 		}
 	}
 	

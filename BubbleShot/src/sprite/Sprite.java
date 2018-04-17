@@ -8,11 +8,11 @@ import sprite.bounds.Collider;
 public abstract class Sprite implements Collider
 {
 	private String spriteName,fileName;
-	private double xCoord,yCoord,width,height;
+	private double xCoord,yCoord,width,height,faceAngle;
 	private Image spriteImage;
 	private ImageView spriteImageView;
 	
-	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height)
+	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double faceAngle)
 	{
 		this.spriteName=spriteName;
 		this.fileName = fileName;
@@ -22,6 +22,17 @@ public abstract class Sprite implements Collider
 		this.height = height;
 		spriteImage = new Image(fileName, width, height, false, false);
 		spriteImageView = new ImageView(spriteImage);
+		this.faceAngle = faceAngle;
+	}
+	
+	public double getFaceAngle()
+	{
+		return faceAngle;
+	}
+	
+	public void setFaceAngle(double faceAngle)
+	{
+		this.faceAngle = faceAngle;
 	}
 	
 	public double getXLocation()
@@ -84,6 +95,6 @@ public abstract class Sprite implements Collider
 	
 	public BoxCollider getBoundsOfObject()
 	{
-		return new BoxCollider(xCoord, yCoord, width, height);
+		return new BoxCollider(xCoord, yCoord, width, height, faceAngle);
 	}
 }

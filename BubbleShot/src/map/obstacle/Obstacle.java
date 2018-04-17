@@ -59,6 +59,6 @@ public class Obstacle implements Collider
 	@Override
 	public BoxCollider getBoundsOfObject()
 	{
-		return new BoxCollider(xPos, yPos, width, height);
+		return new BoxCollider(xPos, yPos, width, height, 0);
 	}
 }

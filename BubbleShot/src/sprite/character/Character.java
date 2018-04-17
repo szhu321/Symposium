@@ -1,5 +1,6 @@
 package sprite.character;
 
+import javafx.geometry.Point2D;
 import sprite.Sprite;
 import sprite.character.effect.EffectManager;
 import sprite.item.Item;
@@ -7,18 +8,17 @@ import sprite.item.Item;
 public abstract class Character extends Sprite
 {
 	private int currentHealth, defaultHealth;
-	private double speed, faceAngle; 
+	private double speed;
 	private Item selectedItem;
 	private EffectManager effectManager;
 	
 	public Character(String spriteName, String fileName, double xLocation, double yLocation, int health, double speed, double width, double height) 
 	{
-		super(spriteName, fileName, xLocation, yLocation,width, height);
+		super(spriteName, fileName, xLocation, yLocation,width, height, 0);
 		effectManager = new EffectManager(this);
 		this.currentHealth = health;
 		this.defaultHealth = health;
 		this.speed = speed;
-		faceAngle = 0;
 		selectedItem=null;
 	}
 	
@@ -30,7 +30,6 @@ public abstract class Character extends Sprite
 	public int getDefaultHealth() {return defaultHealth;}
 	public EffectManager getEffectManager()	{return effectManager;}
 	public Item getSelectedItem(){return selectedItem;}
-	public double getfaceAngle(){return faceAngle;}
 	
 	public void setCurrentHealth(int currentHealth) 
 	{
@@ -42,7 +41,6 @@ public abstract class Character extends Sprite
 	}
 	public void setSpeed(double speed) {this.speed = speed;}
 	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}
-	public void setFaceAngle(double faceAngle){this.faceAngle = faceAngle;}
 			
 	public void moveUp(double time)
 	{
@@ -72,7 +70,7 @@ public abstract class Character extends Sprite
 				   +"Speed = " + speed + "\n"
 			       +"Selected Item = " + selectedItem.getSpriteName() + "\n"
 			       +"Effects = " + effectManager.toString() + "\n"
-			       +"Face Angle = " + faceAngle + "\n";
+			       +"Face Angle = " + getFaceAngle() + "\n";
 		return output;
 	}
 	

@@ -7,7 +7,7 @@ public class ProjectileDesign
 		String fileName = "file:resources/projectilePictures/bullet.png";
 		double width = 10;
 		double height = 10;
-		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, 500, faceAngle, damage);
+		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, 50, faceAngle, damage);
 		return bullet;
 	}
 }

@@ -69,7 +69,7 @@ public class GameManager
 		player.setFaceAngle(mouseAngle);
 		if(mouseDown)
 		{
-			addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getfaceAngle(), 10));
+			addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
 			
 		}
 		playingScene.updateAllLocation();

@@ -7,7 +7,7 @@ public class BoxCollider
 	private double width;
 	private double height;
 	
-	public BoxCollider(double xCoords, double yCoords, double width, double height)
+	public BoxCollider(double xCoords, double yCoords, double width, double height, double faceAngle)
 	{
 		x = xCoords;
 		y = yCoords;
@@ -30,18 +30,18 @@ public class BoxCollider
 	
 	private boolean checkXBounds(double x, double xMax, double otherX, double otherXMax)
 	{
-		if(otherX >= x && otherX <= xMax)
+		if(otherX > x && otherX < xMax)
 			return true;
-		if(otherXMax >= x && otherXMax <= xMax)
+		if(otherXMax > x && otherXMax < xMax)
 			return true;
 		return false;
 	}
 	
 	private boolean checkYBounds(double y, double yMax, double otherY, double otherYMax)
 	{
-		if(otherY >= y && otherY <= yMax)
+		if(otherY > y && otherY < yMax)
 			return true;
-		if(otherYMax >= y && otherYMax <= yMax)
+		if(otherYMax > y && otherYMax < yMax)
 			return true;
 		return false;
 	}
