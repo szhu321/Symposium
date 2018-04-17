@@ -2,6 +2,8 @@ package mainGame.scene;
 
 import java.util.List;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -14,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import map.Room;
 import map.Tile.Tile;
@@ -27,7 +30,7 @@ public class PlayingScene
 {
 	private Scene scene;
 	private Group root;
-	private GridPane tilesDis;
+	private Group tilesDis;
 	private BorderPane headUpDis;
 	private Group moveArea;
 	private Room currentRoom;
@@ -36,6 +39,8 @@ public class PlayingScene
 	private Text playerAmmoDis;
 	private Text playerScoreDis;
 	private ImageView[] playerInventoryDis;
+	
+	private HBox topHealthBox;
 	
 	public PlayingScene(Room room)
 	{
@@ -55,10 +60,25 @@ public class PlayingScene
 	
 	public void loadTiles(Tile[][] tiles)
 	{
-		tilesDis = new GridPane();
+		tilesDis = new Group();
 		for(int i = 0; i < tiles.length; i++)
 			for(int j = 0; j < tiles[0].length; j++)
-				tilesDis.add(tiles[i][j].getImageView(), j, i);
+				tilesDis.getChildren().add(tiles[i][j].getSpriteImageView());
+		updateTileLocation();
+	}
+	
+	public void updateTileLocation()
+	{
+		Tile[][] tiles = currentRoom.getTiles();
+		for(Tile[] tileArr: tiles)
+		{
+			for(Tile tile : tileArr)
+			{
+				tile.getSpriteImageView().setTranslateX(tile.getXLocation());
+				tile.getSpriteImageView().setTranslateY(tile.getYLocation());
+				tile.getSpriteImageView().setRotate(tile.getFaceAngle());
+			}
+		}
 	}
 	
 	public void loadMoveArea()
@@ -75,7 +95,7 @@ public class PlayingScene
 		for(Projectile projectile: projectiles)
 			moveArea.getChildren().add(projectile.getSpriteImageView());
 		for(Obstacle obs: obstacles)
-			moveArea.getChildren().add(obs.getImgView());
+			moveArea.getChildren().add(obs.getSpriteImageView());
 	}
 	
 	public void loadHeadsUpDis()
@@ -84,6 +104,7 @@ public class PlayingScene
 		HBox topBox = new HBox(20);
 		HBox bottomBox = new HBox(20);
 		HBox bottomBoxBackground = new HBox(20);
+		topBox.setPadding(new Insets(10, 10, 10, 10));
 		
 		StackPane bottomBoxContainer = new StackPane();
 		bottomBoxContainer.getChildren().addAll(bottomBoxBackground, bottomBox);
@@ -93,7 +114,7 @@ public class PlayingScene
 			bottomBoxBackground.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 50, 50, false, false)));
 		}
 		
-		topBox.setStyle("-fx-background-color: FFFFFF");
+		//topBox.setStyle("-fx-background-color: FFFFFF");
 		bottomBoxBackground.setStyle("-fx-background-color: FFFFFF");
 		
 		playerHealthDis = new Text();
@@ -105,8 +126,17 @@ public class PlayingScene
 			imgview = new ImageView();
 			bottomBox.getChildren().add(imgview);
 		}
-			
-		topBox.getChildren().addAll(playerHealthDis, playerAmmoDis, playerScoreDis);
+		
+		topHealthBox = new HBox(5);
+		topHealthBox.setPrefWidth(200);
+		topHealthBox.setStyle("-fx-background-color: #66ff33");
+		HBox bottomHealthBox = new HBox(5);
+		bottomHealthBox.setPrefWidth(200);
+		bottomHealthBox.setStyle("-fx-background-color: #000000");
+		StackPane healthBoxContainer = new StackPane();
+		healthBoxContainer.getChildren().addAll(bottomHealthBox, topHealthBox);
+		
+		topBox.getChildren().addAll(playerHealthDis, healthBoxContainer, playerAmmoDis, playerScoreDis);
 		headUpDis.setTop(topBox);
 		headUpDis.setBottom(bottomBoxContainer);
 		headUpDis.setMinHeight(1000);
@@ -117,6 +147,7 @@ public class PlayingScene
 	{
 		Player player = currentRoom.getPlayer();
 		playerHealthDis.setText("Health: " + player.getCurrentHealth());
+		topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
 		playerScoreDis.setText("Score: " + player.getScore());
 		for(int i = 0; i < player.getInventory().length; i++)
@@ -160,6 +191,16 @@ public class PlayingScene
 		}
 	}
 	
+	public void updateObjectacleLocation()
+	{
+		List<Obstacle> obstacles = currentRoom.getObstacles();
+		for(Obstacle obs: obstacles)
+		{
+			obs.getSpriteImageView().setTranslateX(obs.getXLocation());
+			obs.getSpriteImageView().setTranslateY(obs.getYLocation());
+		}
+	}
+	
 	public void updateCharacterLocation()
 	{
 		List<Character> characters = currentRoom.getCharacters();
@@ -177,6 +218,7 @@ public class PlayingScene
 		updateCharacterLocation();
 		updateItemLocation();
 		updateProjectileLocation();
+		updateObjectacleLocation();
 	}
 	
 	

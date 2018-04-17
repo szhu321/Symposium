@@ -63,15 +63,15 @@ public class GUITester2 extends Application
 		Room room = new Room();
 		Tile[][] roomTiles = room.getTiles();
 		
-		room.addObstacle(new StoneWall(50, 1000,0,0));
-		room.addObstacle(new StoneWall(50, 1000,950,0));
-		room.addObstacle(new StoneWall(1000, 50,0,0));
-		room.addObstacle(new StoneWall(1000, 50,0,950));
+		room.addObstacle(new StoneWall(50, 1000,0,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950,0));
 		
-		room.addObstacle(new StoneWall(200,200,200,200));
-		room.addObstacle(new StoneWall(200,200,200,600));
-		room.addObstacle(new StoneWall(200,200,600,600));
-		room.addObstacle(new StoneWall(200,200,600,200));
+		room.addObstacle(new StoneWall(200,200,200,200,0));
+		room.addObstacle(new StoneWall(200,200,200,600,0));
+		room.addObstacle(new StoneWall(200,200,600,600,0));
+		room.addObstacle(new StoneWall(200,200,600,200,0));
 		
 		
 		for(int i = 0; i < roomTiles.length; i++)
@@ -81,7 +81,7 @@ public class GUITester2 extends Application
 		obstacles = room.getObstacles();
 		for(Obstacle obs: obstacles)
 		{
-			movingArea.getChildren().add(obs.getImgView());
+			movingArea.getChildren().add(obs.getSpriteImageView());
 		}
 		
 		root = new Group();

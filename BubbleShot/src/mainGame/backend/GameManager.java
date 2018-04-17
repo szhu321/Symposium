@@ -12,9 +12,11 @@ import javafx.util.Duration;
 import mainGame.scene.PlayingScene;
 import map.Level;
 import map.Room;
+import map.Tile.Tile;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
+import sprite.character.Character;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
 
@@ -62,6 +64,7 @@ public class GameManager
 	public void nextFrame(long milliSecond)
 	{
 		//System.out.println(((double)milliSecond) / 1000);
+		checkCharacterCollisionWithTile();
 		movePlayer(((double)milliSecond) / 1000);
 		updateProjectileLocation((double) milliSecond);
 		caculateMouseAngleToPlayer();
@@ -79,6 +82,18 @@ public class GameManager
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
+	}
+	
+	public void checkCharacterCollisionWithTile()
+	{
+		List<Character> characters= level.getCurrentRoom().getCharacters();
+		for(Character character: characters)
+		{
+			Tile grabbedTile = level.getCurrentRoom().characterCollisionWithTile(character);
+			System.out.println(grabbedTile);
+			if(grabbedTile != null)
+				character.getEffectManager().addEffect(grabbedTile.getEffects());
+		}
 	}
 	
 	public void checkProjectileCollision()
