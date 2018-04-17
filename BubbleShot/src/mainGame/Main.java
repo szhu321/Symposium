@@ -82,14 +82,14 @@ public class Main extends Application
 		Room room = new Room();
 		Tile[][] roomTiles = room.getTiles();
 		
-		room.addObstacle(new StoneWall(50, 1000,0,0));
-		room.addObstacle(new StoneWall(50, 1000,950,0));
-		room.addObstacle(new StoneWall(1000, 50,0,0));
-		room.addObstacle(new StoneWall(1000, 50,0,950));
+		room.addObstacle(new StoneWall(50, 1000,0,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950,0));
 		
-		room.addObstacle(new StoneWall(100,500,450,450));
-		room.addObstacle(new StoneWall(100,500,200,50));
-		room.addObstacle(new StoneWall(100,500,700,50));
+		room.addObstacle(new StoneWall(100,500,450,450,0));
+		room.addObstacle(new StoneWall(100,500,200,50,0));
+		room.addObstacle(new StoneWall(100,500,700,50,0));
 		
 		for(int i = 0; i < roomTiles.length; i++)
 			for(int j = 0; j < roomTiles[0].length; j++)
@@ -107,11 +107,11 @@ public class Main extends Application
 		obstacles = room.getObstacles();
 		for(Obstacle obs: obstacles)
 		{
-			moveArea.getChildren().add(obs.getImgView());
-			System.out.println(obs.getImgView().getTranslateX());
-			System.out.println(obs.getImgView().getLayoutX());
-			System.out.println(obs.getImgView().getX());
-			System.out.println(obs.getImgView().getBoundsInParent().getMinX());
+			moveArea.getChildren().add(obs.getSpriteImageView());
+			System.out.println(obs.getSpriteImageView().getTranslateX());
+			System.out.println(obs.getSpriteImageView().getLayoutX());
+			System.out.println(obs.getSpriteImageView().getX());
+			System.out.println(obs.getSpriteImageView().getBoundsInParent().getMinX());
 		}
 		
 		AnimationTimer animation = new AnimationTimer()
@@ -253,7 +253,7 @@ public class Main extends Application
 		
 		for(int i = 0; i < obstacles.size(); i++)
 		{
-			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getSpriteImageView().getBoundsInParent()))
 			{
 				player.getTransforms().clear();
 				return false;
@@ -271,7 +271,7 @@ public class Main extends Application
 		
 		for(int i = 0; i < obstacles.size(); i++)
 		{
-			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getSpriteImageView().getBoundsInParent()))
 			{
 				player.getTransforms().clear();
 				return false;
@@ -289,7 +289,7 @@ public class Main extends Application
 		
 		for(int i = 0; i < obstacles.size(); i++)
 		{
-			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getSpriteImageView().getBoundsInParent()))
 			{
 				player.getTransforms().clear();
 				return false;
@@ -307,7 +307,7 @@ public class Main extends Application
 		
 		for(int i = 0; i < obstacles.size(); i++)
 		{
-			if(player.getBoundsInParent().intersects(obstacles.get(i).getImgView().getBoundsInParent()))
+			if(player.getBoundsInParent().intersects(obstacles.get(i).getSpriteImageView().getBoundsInParent()))
 			{
 				player.getTransforms().clear();
 				return false;

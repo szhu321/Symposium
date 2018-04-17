@@ -2,6 +2,7 @@ package map.Tile;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import sprite.Sprite;
 import sprite.character.effect.Effect;
 import sprite.character.effect.NoEffect;
 
@@ -10,7 +11,7 @@ import sprite.character.effect.NoEffect;
  * @author Sheng
  *
  */
-public class Tile 
+public class Tile extends Sprite
 {
 	private String name;
 	private String fileName;
@@ -23,8 +24,9 @@ public class Tile
 	 * @param fileName - File path for the tile.
 	 * @param effects - Effects the tile will have on characters.
 	 */
-	public Tile(String name, String fileName, Effect effect)
+	public Tile(String name, String fileName, Effect effect, double xPos, double yPos, double width, double height, double faceAngle)
 	{
+		super(name, fileName, xPos, yPos, width, height, faceAngle);
 		this.name = name;
 		this.fileName = fileName;
 		this.effect = effect;
@@ -36,17 +38,17 @@ public class Tile
 	 * @param name - Name of the tile.
 	 * @param fileName - File path for the tile.
 	 */
-	public Tile(String name, String fileName)
+	public Tile(String name, String fileName, double xPos, double yPos, double width, double height, double faceAngle)
 	{
-		this(name, fileName, new NoEffect());
+		this(name, fileName, new NoEffect(), xPos, yPos, width, height, faceAngle);
 	}
 	
 	/**
 	 * @param fileName - File path for the tile.
 	 */
-	public Tile(String fileName)
+	public Tile(String fileName, double xPos, double yPos, double width, double height, double faceAngle)
 	{
-		this("Unnamed", fileName, new NoEffect());
+		this("Unnamed", fileName, new NoEffect(), xPos, yPos, width, height, faceAngle);
 	}
 	
 	public ImageView getImageView() {return imgView;}
