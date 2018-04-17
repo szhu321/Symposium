@@ -14,7 +14,7 @@ public class Player extends Character
 	private int currentAmmo;
 	private int defaultAmmo;
 	
-	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, int health, int speed, Item[] inventory, int ammoCount) 
+	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, int health, double speed, Item[] inventory, int ammoCount) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
 		this.inventory = inventory;
