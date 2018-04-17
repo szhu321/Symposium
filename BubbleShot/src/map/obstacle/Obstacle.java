@@ -3,6 +3,7 @@ package map.obstacle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Translate;
+import sprite.Sprite;
 import sprite.bounds.BoxCollider;
 import sprite.bounds.Collider;
 
@@ -12,19 +13,8 @@ import sprite.bounds.Collider;
  * @author Sheng
  *
  */
-public class Obstacle implements Collider
+public class Obstacle extends Sprite implements Collider
 {
-	private String name;
-	private String fileName;
-	private Image img;
-	private ImageView imgView;
-	
-	private double xPos;
-	private double yPos;
-	
-	private double width;
-	private double height;
-	
 	/**
 	 * A new obstacle to be added to the map.
 	 * @param name - name of the obstacle
@@ -34,31 +24,8 @@ public class Obstacle implements Collider
 	 * @param xPos - the x location of the obstacle
 	 * @param yPos - the y location of the obstacle
 	 */
-	public Obstacle(String name, String fileName, double width, double height, double xPos, double yPos)
+	public Obstacle(String name, String fileName, double width, double height, double xPos, double yPos, double faceAngle)
 	{
-		this.name = name;
-		this.fileName = fileName;
-		this.width = width;
-		this.height = height;
-		this.xPos = xPos;
-		this.yPos = yPos;
-		img = new Image(fileName, width,height,false,false);
-		imgView = new ImageView(img);
-		imgView.getTransforms().add(new Translate(xPos, yPos));
-	}
-	
-	public Image getImg() {return img;}
-	public ImageView getImgView() {return imgView;}
-	public String getName() {return name;}
-	public double getHeight() {return height;}
-	public double getWidth() {return width;}
-	public double getxPos() {return xPos;}
-	public double getyPos() {return yPos;}
-	public void setName(String name) {this.name = name;}
-
-	@Override
-	public BoxCollider getBoundsOfObject()
-	{
-		return new BoxCollider(xPos, yPos, width, height, 0);
+		super(name, fileName, xPos, yPos, width, height, faceAngle);
 	}
 }

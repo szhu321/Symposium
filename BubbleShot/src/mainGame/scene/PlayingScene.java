@@ -30,7 +30,7 @@ public class PlayingScene
 {
 	private Scene scene;
 	private Group root;
-	private GridPane tilesDis;
+	private Group tilesDis;
 	private BorderPane headUpDis;
 	private Group moveArea;
 	private Room currentRoom;
@@ -60,10 +60,27 @@ public class PlayingScene
 	
 	public void loadTiles(Tile[][] tiles)
 	{
-		tilesDis = new GridPane();
+		tilesDis = new Group();
 		for(int i = 0; i < tiles.length; i++)
 			for(int j = 0; j < tiles[0].length; j++)
-				tilesDis.add(tiles[i][j].getImageView(), j, i);
+				tilesDis.getChildren().add(tiles[i][j].getSpriteImageView());
+		updateTileLocation();
+	}
+	
+	public void updateTileLocation()
+	{
+		Tile[][] tiles = currentRoom.getTiles();
+		for(Tile[] tileArr: tiles)
+		{
+			for(Tile tile : tileArr)
+			{
+				tile.getSpriteImageView().setTranslateX(tile.getXLocation());
+				tile.getSpriteImageView().setTranslateY(tile.getYLocation());
+				tile.getSpriteImageView().setRotate(tile.getFaceAngle());
+				System.out.println("x" + tile.getXLocation());
+				System.out.println("y" + tile.getYLocation());
+			}
+		}
 	}
 	
 	public void loadMoveArea()
@@ -80,7 +97,7 @@ public class PlayingScene
 		for(Projectile projectile: projectiles)
 			moveArea.getChildren().add(projectile.getSpriteImageView());
 		for(Obstacle obs: obstacles)
-			moveArea.getChildren().add(obs.getImgView());
+			moveArea.getChildren().add(obs.getSpriteImageView());
 	}
 	
 	public void loadHeadsUpDis()
@@ -176,6 +193,16 @@ public class PlayingScene
 		}
 	}
 	
+	public void updateObjectacleLocation()
+	{
+		List<Obstacle> obstacles = currentRoom.getObstacles();
+		for(Obstacle obs: obstacles)
+		{
+			obs.getSpriteImageView().setTranslateX(obs.getXLocation());
+			obs.getSpriteImageView().setTranslateY(obs.getYLocation());
+		}
+	}
+	
 	public void updateCharacterLocation()
 	{
 		List<Character> characters = currentRoom.getCharacters();
@@ -193,6 +220,7 @@ public class PlayingScene
 		updateCharacterLocation();
 		updateItemLocation();
 		updateProjectileLocation();
+		updateObjectacleLocation();
 	}
 	
 	

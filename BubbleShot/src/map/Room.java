@@ -52,7 +52,7 @@ public class Room
 		tiles = new Tile[row][column];
 		for(int i = 0; i < tiles.length; i++)
 			for(int j = 0; j < tiles[0].length; j++)
-				tiles[i][j] = new GrassTile2();
+				tiles[i][j] = new GrassTile2(j * 100, i * 100, 100, 100, 0);
 	}
 	
 	/**

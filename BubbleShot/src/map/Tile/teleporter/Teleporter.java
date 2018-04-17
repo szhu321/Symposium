@@ -9,13 +9,11 @@ public class Teleporter extends Tile
 	private Teleporter connectedTeleporter;
 	private boolean activated;
 	
-	public Teleporter(String name, String fileName, Room connectedRoom)
+	public Teleporter(String name, String fileName, Room connectedRoom, double xPos, double yPos, double width, double height, double faceAngle)
 	{
-		super(name, fileName);
+		super(name, fileName, xPos, yPos, width, height, faceAngle);
 		this.setConnectedRoom(connectedRoom);  
 		activated = true;
-		connectedTeleporter = new Teleporter(fileName, fileName, connectedRoom);
-		connectedTeleporter.setConnectedTeleporter(this);
 	}
 
 	public Room getConnectedRoom()
