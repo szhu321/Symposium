@@ -45,6 +45,7 @@ public abstract class Effect
 		}	
 		effectTime = time;
 	}
+	
 	public double getEffectTime() {return effectTime;}
 	public double getEffectAmount() {return effectAmount;}
 	public void setEffectAmount(int effectAmount) {this.effectAmount = effectAmount;}

@@ -26,7 +26,7 @@ public class EffectManager
 	
 	public void setUpTimer()
 	{
-		KeyFrame keyframe = new KeyFrame(Duration.seconds(1), event -> runAllEffect());
+		KeyFrame keyframe = new KeyFrame(Duration.seconds(.1), event -> runAllEffect());
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
 	

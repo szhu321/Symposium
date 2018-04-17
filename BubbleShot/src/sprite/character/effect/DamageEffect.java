@@ -14,7 +14,7 @@ public class DamageEffect extends Effect
 	@Override
 	public boolean applyEffect(Character character) 
 	{
-		setEffectTime(getEffectTime() - 1);
+		setEffectTime(getEffectTime() - .1);
 		return true;
 	}
 	

@@ -20,7 +20,7 @@ public class HealthEffect extends Effect
 	public boolean applyEffect(Character character) 
 	{
 		character.setCurrentHealth(character.getCurrentHealth() + (int)getEffectAmount());
-		setEffectTime(getEffectTime() - 1);
+		setEffectTime(getEffectTime() - .1);
 		return true;
 	}
 	

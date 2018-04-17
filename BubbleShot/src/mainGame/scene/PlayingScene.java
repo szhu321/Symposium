@@ -72,8 +72,6 @@ public class PlayingScene
 				tile.getSpriteImageView().setTranslateX(tile.getXLocation());
 				tile.getSpriteImageView().setTranslateY(tile.getYLocation());
 				tile.getSpriteImageView().setRotate(tile.getFaceAngle());
-				System.out.println("x" + tile.getXLocation());
-				System.out.println("y" + tile.getYLocation());
 			}
 		}
 	}

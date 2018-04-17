@@ -12,6 +12,7 @@ import sprite.projectile.Projectile;
 import sprite.Sprite;
 import sprite.bounds.BoxCollider;
 import sprite.character.Character;
+import sprite.character.effect.NoEffect;
 import sprite.character.player.Player;
 import sprite.character.enemy.Enemy;
 
@@ -52,7 +53,7 @@ public class Room
 		tiles = new Tile[row][column];
 		for(int i = 0; i < tiles.length; i++)
 			for(int j = 0; j < tiles[0].length; j++)
-				tiles[i][j] = new GrassTile2(j * 100, i * 100, 100, 100, 0);
+				tiles[i][j] = TileDesign.getMudTileDesignOne(j * 100, i * 100, 100, 100, 0);
 	}
 	
 	/**
@@ -217,5 +218,18 @@ public class Room
 				return true;
 		}
 		return false;
+	}
+	
+	public Tile characterCollisionWithTile(Character character)
+	{
+		for(Tile[] tileArr: tiles)
+		{
+			for(Tile tile: tileArr)
+			{
+				if(character.getBoundsOfObject().intersect(tile.getBoundsOfObject()) && !(tile.getEffects() instanceof NoEffect))
+					return tile;
+			}
+		}
+		return null;
 	}
 }
