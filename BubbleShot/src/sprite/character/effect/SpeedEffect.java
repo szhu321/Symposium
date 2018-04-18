@@ -21,6 +21,7 @@ public class SpeedEffect extends Effect
 	{
 		//System.out.println(getEffectTime() - .1);
 		setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
+		//System.out.println(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
 		return true;
 	}
 	

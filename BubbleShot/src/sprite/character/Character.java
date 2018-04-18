@@ -25,7 +25,7 @@ public abstract class Character extends Sprite
 	public int getCurrentHealth(){return currentHealth;}
 	public double getSpeed()
 	{
-		//System.out.println(effectManager.getSpeedMultiplier());
+		System.out.println(effectManager.getSpeedMultiplier());
 		return speed * effectManager.getSpeedMultiplier();
 	}
 	public int getDefaultHealth() {return defaultHealth;}

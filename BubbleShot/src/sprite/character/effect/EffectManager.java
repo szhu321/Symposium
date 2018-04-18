@@ -10,7 +10,7 @@ import myutilities.TimerManager;
 
 public class EffectManager 
 {
-	public static final int TIMES_RUN_PER_SEC = 5;
+	public static final double TIMES_RUN_PER_SEC = 30.0;
 	private Character character;
 	private List<Effect> effects;
 	
@@ -35,8 +35,9 @@ public class EffectManager
 	{
 		if(effects.contains(effect))
 		{
-			effect.setActive(true);
 			effect.setEffectTime(effect.getDefaultEffectTime());
+			effect.setActive(true);
+			//System.out.println(effect);
 			return false;
 		}		
 		effect.setManager(this);

@@ -216,6 +216,7 @@ public class GameManager
 				case S: down = false; break;
 				case D: right = false; break;
 				case SHIFT: shift = false; break;
+				default: break;
 			}
 		});
 		scene.addEventHandler(MouseEvent.ANY, event -> 

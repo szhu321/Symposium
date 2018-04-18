@@ -32,18 +32,18 @@ public class BoxCollider
 	
 	private boolean checkXBounds(double x, double xMax, double otherX, double otherXMax)
 	{
-		if(otherX > x && otherX < xMax || x < otherX && xMax > otherXMax)
+		if(otherX >= x && otherX <= xMax || x <= otherX && xMax >= otherXMax)
 			return true;
-		if(otherXMax > x && otherXMax < xMax || otherX < x && otherXMax > xMax)
+		if(otherXMax >= x && otherXMax <= xMax || otherX <= x && otherXMax >= xMax)
 			return true;
 		return false;
 	}
 	
 	private boolean checkYBounds(double y, double yMax, double otherY, double otherYMax)
 	{
-		if(otherY > y && otherY < yMax || y < otherY && yMax > otherYMax)
+		if(otherY >= y && otherY <= yMax || y <= otherY && yMax >= otherYMax)
 			return true;
-		if(otherYMax > y && otherYMax < yMax || otherY < y && otherYMax > yMax)
+		if(otherYMax >= y && otherYMax <= yMax || otherY <= y && otherYMax >= yMax)
 			return true;
 		return false;
 	}
