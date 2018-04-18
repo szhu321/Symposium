@@ -1,6 +1,7 @@
 package sprite.character.enemy;
 
 import sprite.character.enemy.Enemy;
+import sprite.character.enemy.ai.AI;
 
 public class Regular extends Enemy
 {
