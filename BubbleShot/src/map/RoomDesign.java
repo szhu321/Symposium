@@ -1,6 +1,7 @@
 package map;
 
 import map.obstacle.StoneWall;
+import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 
 public class RoomDesign
@@ -17,6 +18,7 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(200,200,600,600,0));
 		room.addObstacle(new StoneWall(200,200,600,200,0));
 		room.addCharacter(player);
+		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500));
 		return room;
 	}
 	

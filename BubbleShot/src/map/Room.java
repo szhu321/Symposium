@@ -175,6 +175,13 @@ public class Room
 		{
 			if(obs.getBoundsOfObject().intersect(characterBounds))
 				return false;
+			for(Character chara : characters)
+			{
+				if(chara instanceof Enemy && chara.getBoundsOfObject().intersect(characterBounds))
+				{
+					return false;
+				}
+			}
 		}
 		return true;
 	}
@@ -201,7 +208,7 @@ public class Room
 		{
 			for(Character character : characters)
 			{
-				if(character instanceof Enemy)
+				if(character instanceof Enemy && projectile.getBoundsOfObject().intersect(character.getBoundsOfObject()))
 				{
 					//System.out.println("Collide With enemy");
 					character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());

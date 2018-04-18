@@ -1,6 +1,15 @@
 package sprite.character.enemy.ai;
 
-public class AI 
+import sprite.character.player.Player;
+
+public abstract class AI 
 {
-	public 
+	private Player currentPlayer;
+	public AI(Player player)
+	{
+		currentPlayer=player;
+	}
+	
+	public abstract void move();
+
 }
