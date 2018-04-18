@@ -230,6 +230,14 @@ public class Room
 		return false;
 	}
 	
+	public Item characterCollisionWithItem(Character character)
+	{
+		for(Item item : items)
+			if(item.getBoundsOfObject().intersect(character.getBoundsOfObject()))
+				return item;
+		return null;
+	}
+	
 	public Tile characterCollisionWithTile(Character character)
 	{
 		for(Tile[] tileArr: tiles)

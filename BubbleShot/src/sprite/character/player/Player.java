@@ -8,7 +8,7 @@ public class Player extends Character
 {
 	
 	private String spriteName;
-	private int currentItem;
+	private int currentItemIdx;
 	private Item[] inventory = new Item[6];
 	private int score;
 	private int currentAmmo;
@@ -19,8 +19,8 @@ public class Player extends Character
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
 		this.inventory = inventory;
 		//this.inventory[0] = new Fist();
-		currentItem = 0;
-		this.changeSelectedItem(inventory[currentItem]);
+		currentItemIdx = 0;
+		this.changeSelectedItem(inventory[currentItemIdx]);
 		score = 0;
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
@@ -36,35 +36,47 @@ public class Player extends Character
 				inventory[currentIndex] = newItem;
 				break;
 			}
-			
 			currentIndex++;
 		}
 	}
 	
 	public Item removeItem()
 	{
-		Item remove=inventory[currentItem];
-		inventory[currentItem]=null;
+		Item remove = inventory[currentItemIdx];
+		inventory[currentItemIdx] = null;
 		return remove;
+	}
+	
+	public boolean isInventoryFull()
+	{
+		for(int i = 0; i < inventory.length; i++)
+			if(inventory[i] == null)
+				return false;
+		return true;
 	}
 	
 	@Override
 	public void useSelectedItem(String input) 
 	{
-		if(input.equals(Item.POTION)&&inventory[currentItem].getItemType().equals(Item.POTION) || input.equals(Item.WEAPON)&&inventory[currentItem].getItemType().equals(Item.WEAPON))
+		if(input.equals(Item.POTION)&&inventory[currentItemIdx].getItemType().equals(Item.POTION) || input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
 		{
-			inventory[currentItem].useItem();
+			inventory[currentItemIdx].useItem();
 		}
 	}
 	
 	public void selectItem(String input)
 	{
-		currentItem=Integer.parseInt(input);
+		currentItemIdx = Integer.parseInt(input);
 	}
 	
-	public int getCurrentItem()
+	public int getCurrentItemIdx()
 	{
-		return currentItem;
+		return currentItemIdx;
+	}
+	
+	public Item getCurrentItem()
+	{
+		return inventory[currentItemIdx];
 	}
 	
 	public int getCurrentAmmo() {return currentAmmo;}
@@ -74,9 +86,9 @@ public class Player extends Character
 	public void setCurrentAmmo(int currentAmmo) {this.currentAmmo = currentAmmo;}
 	public Item[] getInventory() {return inventory;}
 	
-	public void setCurrentItem(int currentItem)
+	public void setCurrentItemIdx(int currentItemIdx)
 	{
-		this.currentItem = currentItem;
+		this.currentItemIdx = currentItemIdx;
 	}
 	
 	public String toString()
@@ -87,7 +99,7 @@ public class Player extends Character
 				   +"Y Coords = " + getYLocation() + "\n"
 			       +"Health = " + getCurrentHealth() + "\n"
 			       +"Speed = " + getSpeed() + "\n"
-			       +"Selected Item Index = " + currentItem + "\n";
+			       +"Selected Item Index = " + currentItemIdx + "\n";
 		return output;
 	}
 }

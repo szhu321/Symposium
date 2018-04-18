@@ -121,10 +121,10 @@ public class PlayingScene
 		playerAmmoDis = new Text();
 		playerScoreDis = new Text();
 		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
-		for(ImageView imgview: playerInventoryDis)
+		for(int i = 0; i < playerInventoryDis.length; i++)
 		{
-			imgview = new ImageView();
-			bottomBox.getChildren().add(imgview);
+			playerInventoryDis[i] = new ImageView();
+			bottomBox.getChildren().add(playerInventoryDis[i]);
 		}
 		
 		topHealthBox = new HBox(5);

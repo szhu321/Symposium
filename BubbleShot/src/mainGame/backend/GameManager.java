@@ -16,6 +16,7 @@ import map.Tile.Tile;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
+import sprite.item.Item;
 import sprite.character.Character;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
@@ -191,6 +192,18 @@ public class GameManager
 			mouseAngle += 360;
 	}
 	
+	public void playerPickUpItem()
+	{
+		Item item = level.getCurrentRoom().characterCollisionWithItem(player);
+		if(item != null && !player.isInventoryFull())
+		{
+			level.getCurrentRoom().removeItem(item);
+			playingScene.removeChildFromMoveArea(item.getSpriteImageView());
+			player.addItem(item);
+			playingScene.updateHeadUpDis();
+		}
+	}
+	
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
@@ -206,6 +219,8 @@ public class GameManager
 				right = true;
 			if(code == KeyCode.SHIFT)
 				shift = true;
+			if(code == KeyCode.E)
+				playerPickUpItem();
 		});
 		scene.setOnKeyReleased(event -> 
 		{

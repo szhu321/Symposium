@@ -2,11 +2,10 @@ package sprite.item.potion;
 
 public class SpeedPot extends Potion
 {
-	public SpeedPot(String fileName, int xLocation, int yLocation, String itemType, String color, 
+	public SpeedPot(String fileName, double xLocation, double yLocation, String itemType, String color, 
 			String effect, boolean isCooledDown) 
 	{
-		super("","file:resource/potionPictures/speedPotion.png", xLocation, yLocation, 
-				itemType, color, effect, isCooledDown);
+		super("","file:resources/potionPictures/speedPotion.png", xLocation, yLocation, itemType, color, effect, isCooledDown);
 	}
 
 	@Override

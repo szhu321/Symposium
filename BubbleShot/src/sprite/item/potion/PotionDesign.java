@@ -12,8 +12,9 @@ public class PotionDesign
 		return null;
 	}
 	
-	public static SpeedPot getSpeedPotDesignOne()
+	public static SpeedPot getSpeedPotDesignOne(double x, double y)
 	{
-		return null;
+		SpeedPot potion = new SpeedPot("Speed Potion", x, y, "potion", "green", "speed", false);
+		return potion;
 	}
 }

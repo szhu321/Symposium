@@ -3,6 +3,7 @@ package map;
 import map.obstacle.StoneWall;
 import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
+import sprite.item.potion.PotionDesign;
 
 public class RoomDesign
 {
@@ -19,6 +20,13 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(200,200,600,200,0));
 		room.addCharacter(player);
 		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(420, 420));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(60, 60));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(700, 60));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(900, 800));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(300, 500));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
 		return room;
 	}
 	
