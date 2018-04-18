@@ -52,7 +52,10 @@ public class Room
 		
 		tiles = new Tile[row][column];
 		for(int i = 0; i < tiles.length; i++)
-			for(int j = 0; j < tiles[0].length; j++)
+			for(int j = 0; j < tiles[0].length / 2; j++)
+				tiles[i][j] = TileDesign.getStoneTileDesignOne(j * 100, i * 100, 100, 100, 0);
+		for(int i = 0; i < tiles.length; i++)
+			for(int j = tiles[0].length / 2; j < tiles[0].length; j++)
 				tiles[i][j] = TileDesign.getMudTileDesignOne(j * 100, i * 100, 100, 100, 0);
 	}
 	
@@ -226,6 +229,8 @@ public class Room
 		{
 			for(Tile tile: tileArr)
 			{
+				//System.out.println(character.getBoundsOfObject());
+				//System.out.println(tile.getBoundsOfObject());
 				if(character.getBoundsOfObject().intersect(tile.getBoundsOfObject()) && !(tile.getEffects() instanceof NoEffect))
 					return tile;
 			}

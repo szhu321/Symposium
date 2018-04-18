@@ -13,10 +13,6 @@ import sprite.character.effect.NoEffect;
  */
 public class Tile extends Sprite
 {
-	private String name;
-	private String fileName;
-	private Image img;
-	private ImageView imgView;
 	private Effect effect;
 	
 	/**
@@ -27,11 +23,7 @@ public class Tile extends Sprite
 	public Tile(String name, String fileName, Effect effect, double xPos, double yPos, double width, double height, double faceAngle)
 	{
 		super(name, fileName, xPos, yPos, width, height, faceAngle);
-		this.name = name;
-		this.fileName = fileName;
 		this.effect = effect;
-		img = new Image(fileName, 100, 100, false, false);
-		imgView = new ImageView(img);
 	}
 	
 	/**
@@ -51,26 +43,7 @@ public class Tile extends Sprite
 		this("Unnamed", fileName, new NoEffect(), xPos, yPos, width, height, faceAngle);
 	}
 	
-	public ImageView getImageView() {return imgView;}
-	public Image getImg() {return img;}
-	public String getName() {return name;}
-	public void setName(String name) {this.name = name;}
 	public void setEffects(Effect effects) {this.effect = effects;}
 	public Effect getEffects() {return effect;}
-	public String getFileName() {return fileName;}
-	
-	public String toString()
-	{
-		return name+" At: "+ fileName;
-	}
-	
-	/**
-	 * A grass tile. This Tile has no effects.
-	 */
-	//public static final Tile GRASS_TILE_ONE = new Tile("GrassTile", "file:resources/tile/grasstile.png", new Effects());
-	
-	/**
-	 * A grass tile. This Tile has no effects.
-	 */
-	//public static final Tile GRASS_TILE_TWO = new Tile("GrassTile", "file:resources/tile/grasstile2.png", new Effects());
+
 }

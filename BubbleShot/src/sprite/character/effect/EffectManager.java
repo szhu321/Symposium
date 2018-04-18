@@ -10,6 +10,7 @@ import myutilities.TimerManager;
 
 public class EffectManager 
 {
+	public static final int TIMES_RUN_PER_SEC = 5;
 	private Character character;
 	private List<Effect> effects;
 	
@@ -26,14 +27,18 @@ public class EffectManager
 	
 	public void setUpTimer()
 	{
-		KeyFrame keyframe = new KeyFrame(Duration.seconds(.1), event -> runAllEffect());
+		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0 / TIMES_RUN_PER_SEC), event -> runAllEffect());
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
 	
 	public boolean addEffect(Effect effect)
 	{
 		if(effects.contains(effect))
+		{
+			effect.setActive(true);
+			effect.setEffectTime(effect.getDefaultEffectTime());
 			return false;
+		}		
 		effect.setManager(this);
 		effects.add(effect);
 		return true;
@@ -57,7 +62,8 @@ public class EffectManager
 		double result = 1;
 		for(Effect effect: effects)
 		{
-			if(effect instanceof SpeedEffect)
+			System.out.println(effect);
+			if((effect instanceof SpeedEffect) && effect.isActive())
 				result *= effect.getEffectAmount();
 		}
 		return result;
@@ -68,7 +74,7 @@ public class EffectManager
 		double result = 1;
 		for(Effect effect: effects)
 		{
-			if(effect instanceof DamageEffect)
+			if(effect instanceof DamageEffect && effect.isActive())
 				result *= effect.getEffectAmount();
 		}
 		return result;

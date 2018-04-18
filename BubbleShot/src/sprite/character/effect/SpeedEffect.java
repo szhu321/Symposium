@@ -7,7 +7,9 @@ public class SpeedEffect extends Effect
 	
 	public static final SpeedEffect SPEED_POTION_EFFECT = new SpeedEffect(10, 1.5, false);
 	
-	public static final SpeedEffect MUD_TILE_EFFECT = new SpeedEffect(2, .75, false);
+	public static final SpeedEffect MUD_TILE_EFFECT = new SpeedEffect(.2, .6, false);
+	
+	public static final SpeedEffect STONE_TILE_EFFECT = new SpeedEffect(.2, 1.5, false);
 	
 	public SpeedEffect(double effectTime, double effectAmount, boolean instantaneous)
 	{
@@ -17,19 +19,9 @@ public class SpeedEffect extends Effect
 	@Override
 	public boolean applyEffect(Character character)
 	{
-		//character.setCurrentSpeed(character.getCurrentSpeed() * getEffectAmount());
-		setEffectTime(getEffectTime() - .1);
+		//System.out.println(getEffectTime() - .1);
+		setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
 		return true;
 	}
 	
-	@Override
-	public void removeEffect()
-	{
-		getThisManager().removeEffect(this);
-	}
-	
-	public String toString()
-	{
-		return "Effect: SpeedEffect, EffectTime: " + getEffectTime() + " sec. + EffectAmount: " + getEffectAmount() + "(SpeedMultiplier).";
-	}
 }

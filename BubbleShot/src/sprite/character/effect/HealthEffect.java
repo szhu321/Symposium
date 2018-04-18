@@ -19,13 +19,14 @@ public class HealthEffect extends Effect
 	@Override
 	public boolean applyEffect(Character character) 
 	{
-		character.setCurrentHealth(character.getCurrentHealth() + (int)getEffectAmount());
-		setEffectTime(getEffectTime() - .1);
-		return true;
+		if(isActive())
+		{
+			character.setCurrentHealth(character.getCurrentHealth() + (int)getEffectAmount());
+			//System.out.println("IT TIME " + getEffectTime());
+			setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
+			return true;
+		}
+		return false;
 	}
 	
-	public String toString()
-	{
-		return "Effect: HealthEffect, EffectTime: " + getEffectTime() + " sec. + EffectAmount: " + getEffectAmount() + "HP.";
-	}
 }

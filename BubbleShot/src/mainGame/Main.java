@@ -93,7 +93,7 @@ public class Main extends Application
 		
 		for(int i = 0; i < roomTiles.length; i++)
 			for(int j = 0; j < roomTiles[0].length; j++)
-				mapGrid.add(roomTiles[i][j].getImageView(), j, i);
+				mapGrid.add(roomTiles[i][j].getSpriteImageView(), j, i);
 		
 		moveArea = new Group();
 		Shape rec = new Rectangle(70, 10);

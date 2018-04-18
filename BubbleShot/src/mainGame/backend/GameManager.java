@@ -25,6 +25,7 @@ public class GameManager
 	private Level level;
 	private Player player;
 	private PlayingScene playingScene;
+	private int framesPerSec = 60;
 	
 	private Boolean up = false;
 	private Boolean down = false;
@@ -49,7 +50,7 @@ public class GameManager
 	public void startGame()
 	{
 		TimeTracker.resetTime();
-		KeyFrame keyframe = new KeyFrame(Duration.seconds(.0166666), event -> 
+		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
 			nextFrame(TimeTracker.getTimePassed());
@@ -90,7 +91,7 @@ public class GameManager
 		for(Character character: characters)
 		{
 			Tile grabbedTile = level.getCurrentRoom().characterCollisionWithTile(character);
-			System.out.println(grabbedTile);
+			//System.out.println(grabbedTile);
 			if(grabbedTile != null)
 				character.getEffectManager().addEffect(grabbedTile.getEffects());
 		}

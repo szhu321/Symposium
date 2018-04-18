@@ -188,6 +188,7 @@ public class PlayingScene
 		{
 			item.getSpriteImageView().setTranslateX(item.getXLocation());
 			item.getSpriteImageView().setTranslateY(item.getYLocation());
+			item.getSpriteImageView().setRotate(item.getFaceAngle());
 		}
 	}
 	
@@ -198,6 +199,7 @@ public class PlayingScene
 		{
 			obs.getSpriteImageView().setTranslateX(obs.getXLocation());
 			obs.getSpriteImageView().setTranslateY(obs.getYLocation());
+			obs.getSpriteImageView().setRotate(obs.getFaceAngle());
 		}
 	}
 	
@@ -220,8 +222,6 @@ public class PlayingScene
 		updateProjectileLocation();
 		updateObjectacleLocation();
 	}
-	
-	
 	
 	public Scene getScene()
 	{

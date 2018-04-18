@@ -39,7 +39,7 @@ public class Teleporter extends Tile
 	
 	public String toString()
 	{
-		return "Name: " + getName() + ". Activation: " + activated + ". RoomName: " + connectedRoom.getName() + ". ConnectedTeleporter: " + connectedTeleporter.getName();
+		return "Name: " + getSpriteName() + ". Activation: " + activated + ". RoomName: " + connectedRoom.getName() + ". ConnectedTeleporter: " + connectedTeleporter.getSpriteName();
 	}
 
 	public boolean isActivated() {return activated;}
