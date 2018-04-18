@@ -62,7 +62,7 @@ public class EffectManager
 		double result = 1;
 		for(Effect effect: effects)
 		{
-			System.out.println(effect);
+			//System.out.println(effect);
 			if((effect instanceof SpeedEffect) && effect.isActive())
 				result *= effect.getEffectAmount();
 		}
