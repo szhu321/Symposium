@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
 import map.LevelDesign;
+import sprite.character.enemy.Enemy;
+import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
@@ -30,7 +32,8 @@ public class GameRunner extends Application
 		
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		GameManager gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player);
+		Enemy enemy=EnemyDesign.getRegularDesignOne(500, 500);
+		GameManager gameManager = new GameManager(LevelDesign.getLevelDesignOne(player,enemy), player,enemy);
 		gameManager.startGame();
 		
 		window.setScene(gameManager.getPlayingScene().getScene());

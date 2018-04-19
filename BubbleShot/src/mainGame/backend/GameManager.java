@@ -18,6 +18,8 @@ import myutilities.TimerManager;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.character.Character;
+import sprite.character.enemy.Enemy;
+import sprite.character.enemy.ai.AI;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
 
@@ -25,6 +27,7 @@ public class GameManager
 {
 	private Level level;
 	private Player player;
+	private Enemy enemy;
 	private PlayingScene playingScene;
 	private int framesPerSec = 60;
 	
@@ -40,10 +43,11 @@ public class GameManager
 	private double mouseY = 0.0;
 	
 	
-	public GameManager(Level level, Player player)
+	public GameManager(Level level, Player player, Enemy enemy)
 	{
 		this.level = level;
 		this.player = player;
+		this.enemy=enemy;
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 	}
@@ -68,6 +72,7 @@ public class GameManager
 		//System.out.println(((double)milliSecond) / 1000);
 		checkCharacterCollisionWithTile();
 		movePlayer(((double)milliSecond) / 1000);
+		moveEnemy(((double)milliSecond) / 1000);
 		updateProjectileLocation((double) milliSecond);
 		caculateMouseAngleToPlayer();
 		checkProjectileCollision();
@@ -157,7 +162,30 @@ public class GameManager
 		player.addXLocation(deltaX);
 		player.addYLocation(deltaY);
 	}
-	
+
+    public void moveEnemy(double sec)
+    {
+    	double deltaX = 0;
+    	double deltaY = 0;
+    	double changeAmount = enemy.getSpeed() * sec;
+    	Room currentRoom = level.getCurrentRoom();
+    	if(enemy.getXLocation()>player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
+    		deltaX -= changeAmount;
+    	if(enemy.getXLocation()<player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+    		deltaX += changeAmount;
+    	if(enemy.getYLocation()>player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
+    		deltaY -= changeAmount;
+    	if(enemy.getYLocation()<player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+    		deltaY += changeAmount;
+    	if(deltaX != 0 && deltaY != 0)
+    	{
+    		deltaX *= 1 / Math.sqrt(2);
+    		deltaY *= 1 / Math.sqrt(2);
+    	}		
+    	enemy.addXLocation(deltaX);
+    	enemy.addYLocation(deltaY);
+   	}
+    
 	public void pauseGame()
 	{
 		TimerManager.pauseAll();

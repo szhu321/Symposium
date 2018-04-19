@@ -1,15 +1,18 @@
 package sprite.character.enemy.ai;
 
+import map.Level;
+import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 
 public abstract class AI 
 {
-	private Player currentPlayer;
-	public AI(Player player)
+	
+	public AI()
 	{
-		currentPlayer=player;
+		
 	}
 	
 	public abstract void move();
 
+	
 }

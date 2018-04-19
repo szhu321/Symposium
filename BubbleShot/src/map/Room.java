@@ -185,6 +185,16 @@ public class Room
 					}
 				}
 			}
+			if(character instanceof Enemy)
+			{
+				for(Character chara : characters)
+				{
+					if(chara instanceof Player && chara.getBoundsOfObject().intersect(characterBounds))
+					{
+						return false;
+					}
+				}
+			}
 		}
 		return true;
 	}
