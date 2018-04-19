@@ -6,13 +6,16 @@ import sprite.character.player.Player;
 
 public abstract class AI 
 {
-	
-	public AI()
+	private Enemy enemy;
+	private Player player;
+	public AI(Enemy enemy, Player player)
 	{
-		
+		this.enemy=enemy;
+		this.player=player;
 	}
 	
-	public abstract void move();
+	public abstract void move(double sec, Level level);
 
-	
+	public Enemy getEnemy()	{return enemy;}
+	public Player getPlayer(){return player;}
 }

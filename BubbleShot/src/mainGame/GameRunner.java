@@ -12,7 +12,7 @@ import sprite.character.player.PlayerDesign;
 
 /**
  * Run this class to start the Program.
- * @author Sheng
+ * @author Sheng 	
  *
  */
 public class GameRunner extends Application
@@ -32,7 +32,7 @@ public class GameRunner extends Application
 		
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		Enemy enemy=EnemyDesign.getRegularDesignOne(500, 500);
+		Enemy enemy=EnemyDesign.getRegularDesignOne(500, 500,player);
 		GameManager gameManager = new GameManager(LevelDesign.getLevelDesignOne(player,enemy), player,enemy);
 		gameManager.startGame();
 		

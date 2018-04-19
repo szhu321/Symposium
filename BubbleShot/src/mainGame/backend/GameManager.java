@@ -165,25 +165,7 @@ public class GameManager
 
     public void moveEnemy(double sec)
     {
-    	double deltaX = 0;
-    	double deltaY = 0;
-    	double changeAmount = enemy.getSpeed() * sec;
-    	Room currentRoom = level.getCurrentRoom();
-    	if(enemy.getXLocation()>player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
-    		deltaX -= changeAmount;
-    	if(enemy.getXLocation()<player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
-    		deltaX += changeAmount;
-    	if(enemy.getYLocation()>player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
-    		deltaY -= changeAmount;
-    	if(enemy.getYLocation()<player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
-    		deltaY += changeAmount;
-    	if(deltaX != 0 && deltaY != 0)
-    	{
-    		deltaX *= 1 / Math.sqrt(2);
-    		deltaY *= 1 / Math.sqrt(2);
-    	}		
-    	enemy.addXLocation(deltaX);
-    	enemy.addYLocation(deltaY);
+    	enemy.getBrain().move(sec, level);
    	}
     
 	public void pauseGame()
