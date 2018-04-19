@@ -7,12 +7,12 @@ import sprite.item.Item;
 
 public abstract class Character extends Sprite
 {
-	private int currentHealth, defaultHealth;
+	private double currentHealth, defaultHealth;
 	private double speed;
 	private Item selectedItem;
 	private EffectManager effectManager;
 	
-	public Character(String spriteName, String fileName, double xLocation, double yLocation, int health, double speed, double width, double height) 
+	public Character(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height) 
 	{
 		super(spriteName, fileName, xLocation, yLocation,width, height, 0);
 		effectManager = new EffectManager(this);
@@ -22,17 +22,17 @@ public abstract class Character extends Sprite
 		selectedItem=null;
 	}
 	
-	public int getCurrentHealth(){return currentHealth;}
+	public double getCurrentHealth(){return currentHealth;}
 	public double getSpeed()
 	{
 		//System.out.println(effectManager.getSpeedMultiplier());
 		return speed * effectManager.getSpeedMultiplier();
 	}
-	public int getDefaultHealth() {return defaultHealth;}
+	public double getDefaultHealth() {return defaultHealth;}
 	public EffectManager getEffectManager()	{return effectManager;}
 	public Item getSelectedItem(){return selectedItem;}
 	
-	public void setCurrentHealth(int currentHealth) 
+	public void setCurrentHealth(double currentHealth) 
 	{
 		this.currentHealth = currentHealth;
 		if(currentHealth <= 0)

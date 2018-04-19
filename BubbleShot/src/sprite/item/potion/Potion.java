@@ -26,7 +26,7 @@ public abstract class Potion extends Item
 	
 	public String toString()
 	{
-		String output = this.toString();
+		String output = "";
 		output += "Potion effect: " + potionEffect + "\n";
 		return output;
 	}

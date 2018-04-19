@@ -204,6 +204,19 @@ public class GameManager
 		}
 	}
 	
+	public void playerDropItem()
+	{
+		Item item = player.removeItem();
+		if(item != null)
+		{
+			item.setXLocation(player.getXLocation());
+			item.setYLocation(player.getYLocation());
+			level.getCurrentRoom().addItem(item);
+			playingScene.addChildToMoveArea(item.getSpriteImageView());
+			playingScene.updateHeadUpDis();
+		}
+	}
+	
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
@@ -221,6 +234,22 @@ public class GameManager
 				shift = true;
 			if(code == KeyCode.E)
 				playerPickUpItem();
+			if(code == KeyCode.DIGIT1)
+				player.setCurrentItemIdx(0);
+			if(code == KeyCode.DIGIT2)
+				player.setCurrentItemIdx(1);
+			if(code == KeyCode.DIGIT3)
+				player.setCurrentItemIdx(2);
+			if(code == KeyCode.DIGIT4)
+				player.setCurrentItemIdx(3);
+			if(code == KeyCode.DIGIT5)
+				player.setCurrentItemIdx(4);
+			if(code == KeyCode.DIGIT6)
+				player.setCurrentItemIdx(5);
+			if(code == KeyCode.G)
+				playerDropItem();
+				
+				
 		});
 		scene.setOnKeyReleased(event -> 
 		{

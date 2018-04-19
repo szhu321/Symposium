@@ -11,7 +11,7 @@ public abstract class Enemy extends Character
 	private String weapon;
 	private int killPoints;
 	
-	public Enemy(String spriteName,String fileName, double xLocation, double yLocation, int health, double speed,
+	public Enemy(String spriteName,String fileName, double xLocation, double yLocation, double health, double speed,
 			double width, double height,String weapon) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width, height);

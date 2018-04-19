@@ -18,6 +18,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Transform;
+import javafx.scene.transform.Scale;
 import map.Room;
 import map.Tile.Tile;
 import map.obstacle.Obstacle;
@@ -39,6 +41,8 @@ public class PlayingScene
 	private Text playerAmmoDis;
 	private Text playerScoreDis;
 	private ImageView[] playerInventoryDis;
+	
+	private ImageView playerHoldItemDis;
 	
 	private HBox topHealthBox;
 	
@@ -96,13 +100,16 @@ public class PlayingScene
 			moveArea.getChildren().add(projectile.getSpriteImageView());
 		for(Obstacle obs: obstacles)
 			moveArea.getChildren().add(obs.getSpriteImageView());
+		playerHoldItemDis = new ImageView();
+		playerHoldItemDis.getTransforms().add(new Scale(.5,.5));
+		moveArea.getChildren().add(playerHoldItemDis);
 	}
 	
 	public void loadHeadsUpDis()
 	{
 		headUpDis = new BorderPane();
 		HBox topBox = new HBox(20);
-		HBox bottomBox = new HBox(20);
+		HBox bottomBox = new HBox(11);
 		HBox bottomBoxBackground = new HBox(20);
 		topBox.setPadding(new Insets(10, 10, 10, 10));
 		
@@ -124,6 +131,7 @@ public class PlayingScene
 		for(int i = 0; i < playerInventoryDis.length; i++)
 		{
 			playerInventoryDis[i] = new ImageView();
+			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
 			bottomBox.getChildren().add(playerInventoryDis[i]);
 		}
 		
@@ -154,6 +162,8 @@ public class PlayingScene
 		{
 			if(player.getInventory()[i] != null)
 				playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
+			else
+				playerInventoryDis[i].setImage(null);
 		}
 		
 	}
@@ -215,13 +225,31 @@ public class PlayingScene
 		}
 	}
 	
+	public void updatePlayerHoldItem()
+	{
+		Player player = currentRoom.getPlayer();
+		//System.out.println(player.getCurrentItemIdx());
+		//System.out.println(player.getCurrentItem());
+		if(player.getCurrentItem() == null)
+			playerHoldItemDis.setImage(null);
+		else
+		{
+			playerHoldItemDis.setImage(player.getCurrentItem().getSpriteImage());
+			playerHoldItemDis.setTranslateX(player.getXLocation() + player.getWidth() / 2);
+			playerHoldItemDis.setTranslateY(player.getYLocation() + player.getHeight() / 2);
+		}
+	}	
+	
 	public void updateAllLocation()
 	{
 		updateCharacterLocation();
 		updateItemLocation();
 		updateProjectileLocation();
 		updateObjectacleLocation();
+		updatePlayerHoldItem();
 	}
+	
+	
 	
 	public Scene getScene()
 	{
