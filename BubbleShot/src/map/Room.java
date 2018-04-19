@@ -175,11 +175,14 @@ public class Room
 		{
 			if(obs.getBoundsOfObject().intersect(characterBounds))
 				return false;
-			for(Character chara : characters)
+			if(character instanceof Player)
 			{
-				if(chara instanceof Enemy && chara.getBoundsOfObject().intersect(characterBounds))
+				for(Character chara : characters)
 				{
-					return false;
+					if(chara instanceof Enemy && chara.getBoundsOfObject().intersect(characterBounds))
+					{
+						return false;
+					}
 				}
 			}
 		}
