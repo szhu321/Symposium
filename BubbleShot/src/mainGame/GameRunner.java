@@ -1,15 +1,21 @@
 package mainGame;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
 import map.LevelDesign;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
+/**
+ * Run this class to start the Program.
+ * @author Sheng
+ *
+ */
 public class GameRunner extends Application
 {
-	private Stage window;
+	private static Stage window;
 	
 	public static void main(String[] args)
 	{
@@ -29,5 +35,15 @@ public class GameRunner extends Application
 		
 		window.setScene(gameManager.getPlayingScene().getScene());
 		window.show();
+	}
+	
+	/**
+	 * Sets the scene of the game window.
+	 * 
+	 * @param scene The scene the window will show.
+	 */
+	public static void setScene(Scene scene)
+	{
+		window.setScene(scene);
 	}
 }

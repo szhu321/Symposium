@@ -32,6 +32,12 @@ import map.Tile.Tile;
 import map.obstacle.Obstacle;
 import map.obstacle.StoneWall;
 
+/**
+ * This is currently not the Main method.
+ * Run GameRunner.java to start the Program.
+ * @author Sheng
+ *
+ */
 public class Main extends Application
 {
 	
