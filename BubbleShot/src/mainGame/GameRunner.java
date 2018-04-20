@@ -32,8 +32,8 @@ public class GameRunner extends Application
 		
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		Enemy[] enemyList= {EnemyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		GameManager gameManager = new GameManager(LevelDesign.getLevelDesignOne(player,enemyList), player,enemyList);
+		//Enemy[] enemyList= {EnemyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+		GameManager gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player);
 		gameManager.startGame();
 		
 		window.setScene(gameManager.getPlayingScene().getScene());
