@@ -8,7 +8,7 @@ import sprite.item.potion.PotionDesign;
 
 public class RoomDesign
 {
-	public static Room getRoomDesignOne(Player player, Enemy[] enemy)
+	public static Room getRoomDesignOne(Player player, Enemy enemy)
 	{
 		Room room = new Room();
 		room.addObstacle(new StoneWall(50, 1000,0,0,0));
@@ -20,8 +20,7 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(200,200,600,600,0));
 		room.addObstacle(new StoneWall(200,200,600,200,0));
 		room.addCharacter(player);
-		for(Enemy e:enemy)
-			room.addCharacter(e);
+		room.addCharacter(enemy);
 		room.addItem(PotionDesign.getSpeedPotDesignOne(420, 420));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(60, 60));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(700, 60));
