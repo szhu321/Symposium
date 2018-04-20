@@ -215,7 +215,7 @@ public class GameManager
 	
 	public void playerDropItem()
 	{
-		Item item = player.removeItem();
+		Item item = player.removeCurrentItem();
 		if(item != null)
 		{
 			item.setXLocation(player.getXLocation());
@@ -257,8 +257,12 @@ public class GameManager
 				player.setCurrentItemIdx(5);
 			if(code == KeyCode.G)
 				playerDropItem();
-				
-				
+			if(code == KeyCode.F)
+			{
+				player.useSelectedItem(Item.POTION);
+				player.removeCurrentItem();
+				playingScene.updateHeadUpDis();
+			}
 		});
 		scene.setOnKeyReleased(event -> 
 		{

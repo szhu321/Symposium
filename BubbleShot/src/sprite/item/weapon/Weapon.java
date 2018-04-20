@@ -8,9 +8,9 @@ public abstract class Weapon extends Item
 	private double weaponAttackRate, weaponAttackRange;
 	
 	public Weapon(String spriteName,String fileName, int xLocation, int yLocation, String itemType, 
-			boolean isCooledDown, int damage, double attackRate, double attackRange) 
+			boolean isCooledDown, int damage, double attackRate, double attackRange, double coolDownTime) 
 	{
-		super(spriteName,fileName, xLocation, yLocation, itemType, isCooledDown);
+		super(spriteName,fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime);
 		weaponDmg = damage;
 		weaponAttackRate = attackRate;
 		weaponAttackRange = attackRange;
@@ -38,5 +38,10 @@ public abstract class Weapon extends Item
 		output += "Weapon Attack Rate = " + weaponAttackRate + "\n";
 		output += "Weapon Attack Range = " + weaponAttackRange + "\n";
 		return output;
+	}
+	
+	public void useItem(Character character)
+	{
+		
 	}
 }

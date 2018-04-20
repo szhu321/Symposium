@@ -2,5 +2,5 @@ package sprite.item;
 
 public interface Consumable 
 {
-	public boolean useItem();
+	public void useItem(Character character);
 }

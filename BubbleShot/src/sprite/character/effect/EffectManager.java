@@ -48,7 +48,11 @@ public class EffectManager
 	public void runAllEffect()
 	{
 		for(Effect effect : effects)
+		{
 			effect.applyEffect(character);
+			System.out.println(effect);
+		}
+			
 	}
 	
 	public Character getCharacter() {return character;}

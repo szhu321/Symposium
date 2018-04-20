@@ -35,12 +35,13 @@ public abstract class Effect
 	
 	public void setEffectTime(double time)
 	{
+		effectTime = time;
 		if(effectTime <= 0)
 		{
 			active = false;
+			effectTime = 0;
 			return;
 		}	
-		effectTime = time;
 	}
 	
 	public double getEffectTime() {return effectTime;}

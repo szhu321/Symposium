@@ -2,6 +2,7 @@ package sprite.character.player;
 
 import sprite.character.Character;
 import sprite.item.Item;
+import sprite.item.potion.Potion;
 import sprite.item.weapon.Fist;
 
 public class Player extends Character
@@ -40,7 +41,7 @@ public class Player extends Character
 		}
 	}
 	
-	public Item removeItem()
+	public Item removeCurrentItem()
 	{
 		Item remove = inventory[currentItemIdx];
 		inventory[currentItemIdx] = null;
@@ -58,9 +59,15 @@ public class Player extends Character
 	@Override
 	public void useSelectedItem(String input) 
 	{
-		if(input.equals(Item.POTION)&&inventory[currentItemIdx].getItemType().equals(Item.POTION) || input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
+		if(getCurrentItem() == null)
+			return;
+		if(input.equals(Item.POTION)&&inventory[currentItemIdx].getItemType().equals(Item.POTION))
 		{
-			inventory[currentItemIdx].useItem();
+			((Potion) inventory[currentItemIdx]).useItemOnPlayer(this);
+		}
+		if(input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
+		{
+			
 		}
 	}
 	
