@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Scale;
@@ -105,32 +106,34 @@ public class PlayingScene
 		moveArea.getChildren().add(playerHoldItemDis);
 	}
 	
+	private GridPane getInventoryDisGUI()
+	{
+		GridPane bottomBox = new GridPane();
+		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
+		bottomBox.setHgap(20);
+		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
+		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
+		{
+			StackPane stack = new StackPane();
+			playerInventoryDis[i] = new ImageView();
+			Text text = new Text("" + (i + 1));
+			text.setFont(new Font(22));
+			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
+			stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
+			stack.getChildren().add(text);
+			stack.getChildren().add(playerInventoryDis[i]);
+			stack.setAlignment(Pos.BOTTOM_RIGHT);
+			bottomBox.add(stack, i, 0);
+		}
+		bottomBox.setStyle("-fx-background-color: FFFFFF");
+		return bottomBox;
+	}
+	
 	public void loadHeadsUpDis()
 	{
 		headUpDis = new BorderPane();
 		HBox topBox = new HBox(20);
-		HBox bottomBox = new HBox(11);
-		HBox bottomBoxBackground = new HBox(20);
 		topBox.setPadding(new Insets(10, 10, 10, 10));
-		
-		StackPane bottomBoxContainer = new StackPane();
-		bottomBoxContainer.getChildren().addAll(bottomBoxBackground, bottomBox);
-		
-		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
-		{
-			bottomBoxBackground.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 50, 50, false, false)));
-		}
-		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
-		for(int i = 0; i < playerInventoryDis.length; i++)
-		{
-			playerInventoryDis[i] = new ImageView();
-			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
-			bottomBox.getChildren().add(playerInventoryDis[i]);
-		}
-		
-		
-		//topBox.setStyle("-fx-background-color: FFFFFF");
-		bottomBoxBackground.setStyle("-fx-background-color: FFFFFF");
 		
 		playerHealthDis = new Text();
 		playerAmmoDis = new Text();
@@ -147,7 +150,7 @@ public class PlayingScene
 		
 		topBox.getChildren().addAll(playerHealthDis, healthBoxContainer, playerAmmoDis, playerScoreDis);
 		headUpDis.setTop(topBox);
-		headUpDis.setBottom(bottomBoxContainer);
+		headUpDis.setBottom(getInventoryDisGUI());
 		headUpDis.setMinHeight(1000);
 		updateHeadUpDis();
 	}
