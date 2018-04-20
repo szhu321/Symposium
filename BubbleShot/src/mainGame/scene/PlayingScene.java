@@ -120,13 +120,6 @@ public class PlayingScene
 		{
 			bottomBoxBackground.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 50, 50, false, false)));
 		}
-		
-		//topBox.setStyle("-fx-background-color: FFFFFF");
-		bottomBoxBackground.setStyle("-fx-background-color: FFFFFF");
-		
-		playerHealthDis = new Text();
-		playerAmmoDis = new Text();
-		playerScoreDis = new Text();
 		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
 		for(int i = 0; i < playerInventoryDis.length; i++)
 		{
@@ -134,6 +127,14 @@ public class PlayingScene
 			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
 			bottomBox.getChildren().add(playerInventoryDis[i]);
 		}
+		
+		
+		//topBox.setStyle("-fx-background-color: FFFFFF");
+		bottomBoxBackground.setStyle("-fx-background-color: FFFFFF");
+		
+		playerHealthDis = new Text();
+		playerAmmoDis = new Text();
+		playerScoreDis = new Text();
 		
 		topHealthBox = new HBox(5);
 		topHealthBox.setPrefWidth(200);
