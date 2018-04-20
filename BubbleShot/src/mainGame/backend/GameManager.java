@@ -27,7 +27,7 @@ public class GameManager
 {
 	private Level level;
 	private Player player;
-	private Enemy enemy;
+	private Enemy[] enemyList;
 	private PlayingScene playingScene;
 	private int framesPerSec = 60;
 	
@@ -43,11 +43,11 @@ public class GameManager
 	private double mouseY = 0.0;
 	
 	
-	public GameManager(Level level, Player player, Enemy enemy)
+	public GameManager(Level level, Player player, Enemy[] enemy)
 	{
 		this.level = level;
 		this.player = player;
-		this.enemy=enemy;
+		this.enemyList=enemy;
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 	}
@@ -165,7 +165,8 @@ public class GameManager
 
     public void moveEnemy(double sec)
     {
-    	enemy.getBrain().move(sec, level);
+    	for(Enemy e:enemyList)
+    		e.getBrain().move(sec, level);
    	}
     
 	public void pauseGame()
