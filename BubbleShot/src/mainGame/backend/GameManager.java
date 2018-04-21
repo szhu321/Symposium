@@ -17,6 +17,7 @@ import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
 import sprite.item.Item;
+import sprite.item.potion.Potion;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.ai.AI;
@@ -270,9 +271,12 @@ public class GameManager
 				playerDropItem();
 			if(code == KeyCode.F)
 			{
-				player.useCurrentItem(Item.POTION);
-				player.removeCurrentItem();
-				playingScene.updateHeadUpDis();
+				if(player.getCurrentItem() instanceof Potion)
+				{
+					player.useCurrentItem(Item.POTION);
+					player.removeCurrentItem();
+					playingScene.updateHeadUpDis();
+				}
 			}
 		});
 		scene.setOnKeyReleased(event -> 
@@ -294,5 +298,19 @@ public class GameManager
 		});
 		scene.setOnMousePressed(event -> mouseDown = true);
 		scene.setOnMouseReleased(event -> mouseDown = false);
+		scene.setOnScroll(event -> 
+		{
+			if(event.getDeltaY() > 0)
+			{
+				player.setCurrentItemIdx((player.getCurrentItemIdx() + 1) % 6);
+			}
+			else
+			{
+				if(player.getCurrentItemIdx() - 1 < 0)
+					player.setCurrentItemIdx(5);
+				else
+					player.setCurrentItemIdx(player.getCurrentItemIdx() - 1);
+			}
+		});
 	}
 }
