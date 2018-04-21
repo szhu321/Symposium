@@ -70,6 +70,7 @@ public class GameManager
 	{
 		//System.out.println(((double)milliSecond) / 1000);
 		checkCharacterCollisionWithTile();
+		coolDownAllWeapons(((double)milliSecond) / 1000);
 		movePlayer(((double)milliSecond) / 1000);
 		moveEnemy(((double)milliSecond) / 1000);
 		updateProjectileLocation((double) milliSecond);
@@ -78,8 +79,8 @@ public class GameManager
 		player.setFaceAngle(mouseAngle);
 		if(mouseDown)
 		{
-			addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
-			
+			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
+			player.useCurrentItem(Item.WEAPON);
 		}
 		playingScene.updateAllLocation();
 		/*if(!level.getCurrentRoom().getProjectiles().isEmpty())
@@ -88,6 +89,14 @@ public class GameManager
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
+	}
+	
+	public void coolDownAllWeapons(double sec)
+	{
+		List<Character> characters= level.getCurrentRoom().getCharacters();
+		for(Character character : characters)
+			if(character instanceof Player)
+				((Player) character).coolDownWeapons(sec);
 	}
 	
 	public void checkCharacterCollisionWithTile()

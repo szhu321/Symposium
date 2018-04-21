@@ -4,11 +4,11 @@ import sprite.projectile.Projectile;
 
 public class Sniper extends Weapon
 {
-	public Sniper(String fileName, int xLocation, int yLocation, String itemType, 
-			boolean isCooledDown, int damage, double attackRate, double attackRange, double coolDownTime, Projectile projectile) 
+	public Sniper(String fileName, double xLocation, double yLocation, String itemType, 
+			boolean isCooledDown, double damage, double attackRate, double attackRange,  Projectile projectile) 
 	{
-		super("","file:resource/weaponPictures/sniper.png", xLocation, yLocation, itemType, 
-				isCooledDown, damage, attackRate, attackRange, coolDownTime, projectile);
+		super("","file:resources/weaponPictures/sniper.png", xLocation, yLocation, itemType, 
+				isCooledDown, damage, attackRate, attackRange, projectile, 110, 60);
 	}
 
 }

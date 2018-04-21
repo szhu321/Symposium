@@ -4,6 +4,7 @@ import sprite.character.Character;
 import sprite.item.Item;
 import sprite.item.potion.Potion;
 import sprite.item.weapon.Fist;
+import sprite.item.weapon.Weapon;
 
 public class Player extends Character
 {
@@ -83,8 +84,15 @@ public class Player extends Character
 		}
 		if(input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
 		{
-			
+			((Weapon) inventory[currentItemIdx]).useItem();
 		}
+	}
+	
+	public void coolDownWeapons(double sec)
+	{
+		for(Item item : inventory)
+			if(item != null && item instanceof Weapon)
+				item.coolDownItem(sec);
 	}
 	
 	public void selectItem(String input)

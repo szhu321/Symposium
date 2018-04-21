@@ -25,6 +25,11 @@ public abstract class Sprite implements Collider
 		this.faceAngle = faceAngle;
 	}
 	
+	public String getSpriteFileName()
+	{
+		return fileName;
+	}
+	
 	public double getFaceAngle()
 	{
 		return faceAngle;

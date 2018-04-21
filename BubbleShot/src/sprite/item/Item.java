@@ -17,9 +17,9 @@ public abstract class Item extends Sprite implements Consumable
 	private Room currentRoom;
 	//item types: potions and weapons
 	
-	public Item(String spriteName, String fileName, double xLocation, double yLocation, String itemType, boolean isCooledDown, double coolDownTime) 
+	public Item(String spriteName, String fileName, double xLocation, double yLocation, String itemType, boolean isCooledDown, double coolDownTime, double width, double height) 
 	{
-		super(spriteName,fileName, xLocation, yLocation, 60.0, 60.0, 0);
+		super(spriteName,fileName, xLocation, yLocation, width,height, 0);
 		this.itemType = itemType;
 		this.isCooledDown = isCooledDown;
 		currentCoolDownTime = coolDownTime;

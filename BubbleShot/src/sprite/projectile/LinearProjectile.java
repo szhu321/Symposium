@@ -7,7 +7,7 @@ public class LinearProjectile extends Projectile
 {
 	private LinearParaEquation travelPath;
 	
-	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, int damage, double range)
+	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range)
 	{
 		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, range);
 		//travelPath = new LinearParaEquation(faceAngle, xLocation, yLocation);

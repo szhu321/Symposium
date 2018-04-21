@@ -4,11 +4,11 @@ import sprite.projectile.Projectile;
 
 public class Pistol extends Weapon
 {
-	public Pistol(String fileName, int xLocation, int yLocation, String itemType, 
-			boolean isCooledDown, int damage, double attackRate, double attackRange, double coolDownTime, Projectile projectile) 
+	public Pistol(double xLocation, double yLocation, String itemType, 
+			boolean isCooledDown, double damage, double attackRate, double attackRange,  Projectile projectile) 
 	{
-		super("","file:resource/weaponPictures/pistol.png", xLocation, yLocation, itemType, 
-				isCooledDown, damage, attackRate, attackRange, coolDownTime, projectile);
+		super("","file:resources/weaponPictures/pistol.png", xLocation, yLocation, itemType, 
+				isCooledDown, damage, attackRate, attackRange, projectile, 60, 60);
 	}
 
 

@@ -4,11 +4,11 @@ import sprite.projectile.Projectile;
 
 public class CrossBow extends Weapon
 {
-	public CrossBow(String fileName, int xLocation, int yLocation, String itemType, 
-			boolean isCooledDown, int damage, double attackRate, double attackRange, double coolDownTime, Projectile projectile) 
+	public CrossBow(String fileName, double xLocation, double yLocation, String itemType, 
+			boolean isCooledDown, double damage, double attackRate, double attackRange,  Projectile projectile) 
 	{
-		super("","file:resource/weaponPictures/crossbow.png", xLocation, yLocation, itemType, 
-				isCooledDown, damage, attackRate, attackRange, coolDownTime, projectile);
+		super("","file:resources/weaponPictures/crossbow.png", xLocation, yLocation, itemType, 
+				isCooledDown, damage, attackRate, attackRange, projectile, 70, 70);
 	}
 
 

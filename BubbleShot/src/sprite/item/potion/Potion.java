@@ -12,7 +12,7 @@ public class Potion extends Item
 	public Potion(String spriteName,String fileName, double xLocation, double yLocation, String itemType, String color, 
 			Effect effect, boolean isCooledDown, double coolDownTime) 
 	{
-		super(spriteName , fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime);
+		super(spriteName , fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime, 50, 50);
 		potionColor = color;
 		potionEffect = effect;
 	}

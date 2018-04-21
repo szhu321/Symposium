@@ -5,6 +5,7 @@ import sprite.character.enemy.Enemy;
 import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 import sprite.item.potion.PotionDesign;
+import sprite.item.weapon.WeaponDesign;
 
 public class RoomDesign
 {
@@ -28,6 +29,7 @@ public class RoomDesign
 		room.addItem(PotionDesign.getSpeedPotDesignOne(300, 500));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
+		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
 		return room;
 	}
 	
