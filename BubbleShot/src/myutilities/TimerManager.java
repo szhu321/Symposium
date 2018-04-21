@@ -38,4 +38,12 @@ public class TimerManager
 		tempTimeline.playFromStart();
 		timers.add(tempTimeline);
 	}
+	
+	public static void addKeyFrameToNewTimelineNoLoop(KeyFrame keyframe)
+	{
+		Timeline tempTimeline = new Timeline();
+		tempTimeline.getKeyFrames().add(keyframe);
+		tempTimeline.playFromStart();
+		timers.add(tempTimeline);
+	}
 }

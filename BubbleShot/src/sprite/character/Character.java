@@ -1,6 +1,7 @@
 package sprite.character;
 
 import javafx.geometry.Point2D;
+import map.Room;
 import sprite.Sprite;
 import sprite.character.effect.EffectManager;
 import sprite.item.Item;
@@ -9,8 +10,9 @@ public abstract class Character extends Sprite
 {
 	private double currentHealth, defaultHealth;
 	private double speed;
-	private Item selectedItem;
+	
 	private EffectManager effectManager;
+	private	Room currentRoom;
 	
 	public Character(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height) 
 	{
@@ -19,7 +21,16 @@ public abstract class Character extends Sprite
 		this.currentHealth = health;
 		this.defaultHealth = health;
 		this.speed = speed;
-		selectedItem=null;
+	}
+	
+	public Room getCurrentRoom() 
+	{
+		return currentRoom;
+	}
+	
+	public void setCurrentRoom(Room currentRoom) 
+	{
+		this.currentRoom = currentRoom;
 	}
 	
 	public double getCurrentHealth(){return currentHealth;}
@@ -30,7 +41,6 @@ public abstract class Character extends Sprite
 	}
 	public double getDefaultHealth() {return defaultHealth;}
 	public EffectManager getEffectManager()	{return effectManager;}
-	public Item getSelectedItem(){return selectedItem;}
 	
 	public void setCurrentHealth(double currentHealth) 
 	{
@@ -69,17 +79,10 @@ public abstract class Character extends Sprite
 		output += "Current Health = " + currentHealth + "\n"
 				   +"Default Health = " + defaultHealth + "\n"
 				   +"Speed = " + speed + "\n"
-			       +"Selected Item = " + selectedItem.getSpriteName() + "\n"
 			       +"Effects = " + effectManager.toString() + "\n"
 			       +"Face Angle = " + getFaceAngle() + "\n";
 		return output;
 	}
-	
-	public void changeSelectedItem(Item newSelection)
-	{
-		selectedItem=newSelection;
-	}
-	
-	public abstract void useSelectedItem(String input);
-	
+
+	public abstract void useCurrentItem(String input);
 }

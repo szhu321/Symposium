@@ -1,6 +1,9 @@
 package sprite.item;
 
+import map.Room;
 import sprite.Sprite;
+import sprite.character.Character;
+import sprite.character.player.Player;
 
 public abstract class Item extends Sprite implements Consumable
 {
@@ -10,6 +13,8 @@ public abstract class Item extends Sprite implements Consumable
 	private boolean isCooledDown;
 	private double currentCoolDownTime;
 	private double defaultCoolDownTime;
+	private Character possessor;
+	private Room currentRoom;
 	//item types: potions and weapons
 	
 	public Item(String spriteName, String fileName, double xLocation, double yLocation, String itemType, boolean isCooledDown, double coolDownTime) 
@@ -19,6 +24,34 @@ public abstract class Item extends Sprite implements Consumable
 		this.isCooledDown = isCooledDown;
 		currentCoolDownTime = coolDownTime;
 		defaultCoolDownTime = coolDownTime;
+	}
+	
+	public Character getPossessor()
+	{
+		return possessor;
+	}
+	
+	public void destroy()
+	{
+		if(possessor == null)
+			currentRoom.removeItem(this);
+		else
+			((Player)possessor).removeItem(this);
+	}
+	
+	public Room getCurrentRoom()
+	{
+		return currentRoom;
+	}
+	
+	public void setCurrentRoom(Room currentRoom) 
+	{
+		this.currentRoom = currentRoom;
+	}
+	
+	public void setPossessor(Character possessor)
+	{
+		this.possessor = possessor;
 	}
 	
 	public String getItemType()

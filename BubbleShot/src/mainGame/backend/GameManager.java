@@ -20,6 +20,7 @@ import sprite.item.Item;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.ai.AI;
+import sprite.projectile.LinearProjectile;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
 
@@ -126,7 +127,8 @@ public class GameManager
 		for(int i = projectiles.size() - 1; i >= 0; i--)
 		{
 			projectiles.get(i).updateLocation(millisecond);
-	
+			if(((LinearProjectile)projectiles.get(i)).getTravelPath().getDistanceTraveled() > projectiles.get(i).getRange())
+				removeProjectile(projectiles.get(i));
 		}
 	}
 	
@@ -259,7 +261,7 @@ public class GameManager
 				playerDropItem();
 			if(code == KeyCode.F)
 			{
-				player.useSelectedItem(Item.POTION);
+				player.useCurrentItem(Item.POTION);
 				player.removeCurrentItem();
 				playingScene.updateHeadUpDis();
 			}

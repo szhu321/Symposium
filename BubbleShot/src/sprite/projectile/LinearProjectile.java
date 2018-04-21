@@ -7,9 +7,9 @@ public class LinearProjectile extends Projectile
 {
 	private LinearParaEquation travelPath;
 	
-	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, int damage)
+	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, int damage, double range)
 	{
-		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage);
+		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, range);
 		//travelPath = new LinearParaEquation(faceAngle, xLocation, yLocation);
 		createTravelPath(xLocation, yLocation, faceAngle, speed);
 	}
@@ -27,6 +27,12 @@ public class LinearProjectile extends Projectile
 		travelPath.addTime(timePassedMilli / 1000);
 		updateXPos();
 		updateYPos();
+		
+	}
+	
+	public LinearParaEquation getTravelPath()
+	{
+		return travelPath;
 	}
 	
 	private void updateXPos()

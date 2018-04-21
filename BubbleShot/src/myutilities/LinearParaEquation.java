@@ -31,6 +31,11 @@ public class LinearParaEquation
 		return (deltaX * time) + initialX; 
 	}
 	
+	public double getDistanceTraveled()
+	{
+		return Math.sqrt(Math.pow((Math.abs(deltaX) * time),2) + Math.pow((Math.abs(deltaY) * time),2));
+	}
+	
 	public double getYPosAtTime(double time)
 	{
 		return (deltaY * time) + initialY;

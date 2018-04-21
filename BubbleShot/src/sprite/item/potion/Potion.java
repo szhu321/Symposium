@@ -35,7 +35,7 @@ public class Potion extends Item
 	}
 
 	@Override
-	public void useItem(Character character)
+	public void useItem()
 	{
 		setCurrentCoolDownTime(getDefaultCoolDownTime());
 		setCooledDown(false);

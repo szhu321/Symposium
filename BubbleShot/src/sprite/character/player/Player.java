@@ -19,9 +19,11 @@ public class Player extends Character
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
 		this.inventory = inventory;
+		for(Item item: this.inventory)
+			if(item != null)
+				item.setPossessor(this);
 		//this.inventory[0] = new Fist();
 		currentItemIdx = 0;
-		this.changeSelectedItem(inventory[currentItemIdx]);
 		score = 0;
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
@@ -35,6 +37,7 @@ public class Player extends Character
 			if(inventory[currentIndex] == null)
 			{
 				inventory[currentIndex] = newItem;
+				newItem.setPossessor(this);
 				break;
 			}
 			currentIndex++;
@@ -44,8 +47,21 @@ public class Player extends Character
 	public Item removeCurrentItem()
 	{
 		Item remove = inventory[currentItemIdx];
+		if(remove == null)
+			return null;
+		inventory[currentItemIdx].setPossessor(null);
 		inventory[currentItemIdx] = null;
 		return remove;
+	}
+	
+	public void removeItem(Item item)
+	{
+		for(int i = 0; i < inventory.length; i++)
+			if(inventory[i] != null && inventory[i].equals(item))
+			{
+				inventory[currentItemIdx].setPossessor(null);
+				inventory[currentItemIdx] = null;
+			}
 	}
 	
 	public boolean isInventoryFull()
@@ -57,7 +73,7 @@ public class Player extends Character
 	}
 	
 	@Override
-	public void useSelectedItem(String input) 
+	public void useCurrentItem(String input) 
 	{
 		if(getCurrentItem() == null)
 			return;

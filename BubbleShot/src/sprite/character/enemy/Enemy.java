@@ -6,19 +6,21 @@ import map.Room;
 import sprite.character.Character;
 import sprite.character.enemy.ai.AI;
 import sprite.character.player.Player;
+import sprite.item.Item;
 
 public abstract class Enemy extends Character
 {
-	private String weapon;
+	private Item weapon;
 	private int killPoints;
 	private AI brain;
 	private Player player;
 	
 	public Enemy(String spriteName,String fileName, double xLocation, double yLocation, double health, double speed,
-			double width, double height,String weapon,Player player) 
+			double width, double height,Item weapon,Player player) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width, height);
 		this.weapon=weapon;
+		this.weapon.setPossessor(this);
 		this.player=player;
 	}
 	
@@ -29,7 +31,7 @@ public abstract class Enemy extends Character
 	public void setBrain(AI brain){this.brain=brain;}
 	
 	@Override
-	public void useSelectedItem(String input) 
+	public void useCurrentItem(String input) 
 	{
 			
 	}

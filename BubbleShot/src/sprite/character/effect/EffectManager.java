@@ -50,7 +50,7 @@ public class EffectManager
 		for(Effect effect : effects)
 		{
 			effect.applyEffect(character);
-			System.out.println(effect);
+			//System.out.println(effect);
 		}
 			
 	}

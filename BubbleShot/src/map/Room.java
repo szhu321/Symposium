@@ -83,14 +83,28 @@ public class Room
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	public List<Character> getCharacters() {return characters;}
-	public void setCharacters(List<Character> characters) {this.characters = characters;}
+	
 	public List<Item> getItems() {return items;}
-	public void setItems(List<Item> items) {this.items = items;}
+	
 	public RoomPortManager getTeleporterManager() {return teleporterManager;}
 	public void setTeleporterManager(RoomPortManager teleporterManager) {this.teleporterManager = teleporterManager;}
-
+	
+	public void setCharacters(List<Character> characters) 
+	{
+		this.characters = characters;
+		for(Character character: this.characters)
+			character.setCurrentRoom(this);
+	}
+	
+	public void setItems(List<Item> items) 
+	{
+		this.items = items;
+		for(Item item: this.items)
+			item.setCurrentRoom(this);
+	}
 	public void addProjectile(Projectile projectile)
 	{
+		projectile.setCurrentRoom(this);
 		projectiles.add(projectile);
 		//System.out.println("added");
 	}
@@ -99,6 +113,7 @@ public class Room
 	
 	public void removeProjectile(Projectile projectile)
 	{
+		projectile.setCurrentRoom(null);
 		projectiles.remove(projectile);
 		//System.out.println("removed");
 	}
@@ -111,11 +126,13 @@ public class Room
 	public void addCharacter(Character character)
 	{
 		characters.add(character);
+		character.setCurrentRoom(this);
 	}
 	
 	public void removeCharacter(Character character)
 	{
 		characters.remove(character);
+		character.setCurrentRoom(null);
 	}
 	
 	public void removeObstacle(Obstacle obs)
@@ -132,14 +149,12 @@ public class Room
 	public void addItem(Item item) 
 	{
 		items.add(item);
+		item.setCurrentRoom(this);
 	}
 	
-	public void removeItem(int idx)
-	{
-		items.remove(idx);
-	}
 	public void removeItem(Item item)
 	{
+		item.setCurrentRoom(null);
 		items.remove(item);
 	}
 	
