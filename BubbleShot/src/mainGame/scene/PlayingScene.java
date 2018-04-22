@@ -20,10 +20,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Transform;
+import javafx.scene.transform.Translate;
+import mainGame.GameRunner;
 import javafx.scene.transform.Scale;
 import map.Room;
 import map.Tile.Tile;
 import map.obstacle.Obstacle;
+import myutilities.Camera;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
 import sprite.character.Character;
@@ -53,6 +56,8 @@ public class PlayingScene
 	private ImageView[] playerInventoryDis;
 	
 	private ImageView playerHoldItemDis;
+	
+	private Camera camera = new Camera(0,0);
 	
 	private HBox topHealthBox;
 	
@@ -102,10 +107,10 @@ public class PlayingScene
 		List<Character> characters = currentRoom.getCharacters();
 		List<Item> items = currentRoom.getItems();
 		List<Projectile> projectiles = currentRoom.getProjectiles();
-		for(Character character: characters)
-			moveArea.getChildren().add(character.getSpriteImageView());
 		for(Item item: items)
 			moveArea.getChildren().add(item.getSpriteImageView());
+		for(Character character: characters)
+			moveArea.getChildren().add(character.getSpriteImageView());
 		for(Projectile projectile: projectiles)
 			moveArea.getChildren().add(projectile.getSpriteImageView());
 		for(Obstacle obs: obstacles)
@@ -134,7 +139,7 @@ public class PlayingScene
 			stack.setAlignment(text, Pos.BOTTOM_RIGHT);
 			bottomBox.add(stack, i, 0);
 		}
-		bottomBox.setStyle("-fx-background-color: FFFFFF");
+		bottomBox.setStyle("-fx-background-color: #2257B4");
 		return bottomBox;
 	}
 	
@@ -158,9 +163,10 @@ public class PlayingScene
 		healthBoxContainer.getChildren().addAll(bottomHealthBox, topHealthBox);
 		
 		topBox.getChildren().addAll(playerHealthDis, healthBoxContainer, playerAmmoDis, playerScoreDis);
+		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		headUpDis.setBottom(getInventoryDisGUI());
-		headUpDis.setMinHeight(1000);
+		
 		updateHeadUpDis();
 	}
 	
@@ -189,6 +195,7 @@ public class PlayingScene
 			}
 				
 		}
+		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
 	}
 	
 	public void removeChildFromMoveArea(ImageView imageView)
@@ -225,7 +232,7 @@ public class PlayingScene
 		}
 	}
 	
-	public void updateObjectacleLocation()
+	public void updateObstacleLocation()
 	{
 		List<Obstacle> obstacles = currentRoom.getObstacles();
 		for(Obstacle obs: obstacles)
@@ -260,16 +267,28 @@ public class PlayingScene
 			playerHoldItemDis.setImage(player.getCurrentItem().getSpriteImage());
 			playerHoldItemDis.setTranslateX(player.getXLocation() + player.getWidth() / 2);
 			playerHoldItemDis.setTranslateY(player.getYLocation() + player.getHeight() / 2);
+			
 		}
 	}	
 	
+	public void updateCameraLocation()
+	{
+		Player player = currentRoom.getPlayer();
+		camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
+		moveArea.getTransforms().clear();
+		tilesDis.getTransforms().clear();
+		moveArea.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
+		tilesDis.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
+	}
+	
 	public void updateAllLocation()
 	{
-		updateCharacterLocation();
+		updateCameraLocation();
 		updateItemLocation();
 		updateProjectileLocation();
-		updateObjectacleLocation();
+		updateCharacterLocation();
 		updatePlayerHoldItem();
+		updateObstacleLocation();
 		updateHeadUpDis();
 	}
 	

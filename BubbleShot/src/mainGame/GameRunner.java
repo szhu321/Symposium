@@ -38,6 +38,8 @@ public class GameRunner extends Application
 		gameManager.startGame();
 		
 		window.setScene(gameManager.getPlayingScene().getScene());
+		window.setMinHeight(700);
+		window.setMinWidth(700);
 		window.show();
 	}
 	
@@ -51,6 +53,16 @@ public class GameRunner extends Application
 	public static void setScene(Scene scene)
 	{
 		window.setScene(scene);
+	}
+	
+	public static double getWindowHeight()
+	{
+		return window.getHeight();
+	}
+	
+	public static double getWindowWidth()
+	{
+		return window.getWidth();
 	}
 	
 	public static GameManager getGameManager()

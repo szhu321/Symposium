@@ -28,8 +28,8 @@ public class Camera
 	public void shiftCamera(double x, double y, double windowX,double windowY)
 	{
 		//Tweening Algorithm.
-		xCoord += ((-x + (windowX/2)) - xCoord) * .2;
-		yCoord += ((-y + (windowY/2)) - yCoord) * .2;
+		xCoord += ((-x + (windowX / 2)) - xCoord) * .2;
+		yCoord += ((-y + (windowY / 2)) - yCoord) * .2;
 	}
 	
 	public double getxCoord() {return xCoord;}

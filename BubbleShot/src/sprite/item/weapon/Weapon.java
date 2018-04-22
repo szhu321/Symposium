@@ -50,14 +50,16 @@ public abstract class Weapon extends Item
 		{
 			Projectile projectile = this.projectile.getCopy();
 			Character character = getPossessor();
+			double characterXCenter = character.getXLocation() + character.getWidth() / 2;
+			double characterYCenter = character.getYLocation() + character.getHeight() / 2;
 			if(character instanceof Player)
 				projectile.setBulletOwner(Projectile.SHOT_BY_PLAYER);
 			if(character instanceof Enemy)
 				projectile.setBulletOwner(Projectile.SHOT_BY_ENEMY);
-			((LinearProjectile)projectile).createTravelPath(character.getXLocation(), character.getYLocation(), character.getFaceAngle(), projectile.getSpeed());
+			((LinearProjectile)projectile).createTravelPath(characterXCenter, characterYCenter, character.getFaceAngle(), projectile.getSpeed());
 			projectile.setFaceAngle(character.getFaceAngle());
-			projectile.setXLocation(character.getXLocation());
-			projectile.setYLocation(character.getYLocation());
+			projectile.setXLocation(characterXCenter);
+			projectile.setYLocation(characterYCenter);
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
