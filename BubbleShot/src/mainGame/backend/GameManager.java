@@ -13,6 +13,7 @@ import mainGame.scene.PlayingScene;
 import map.Level;
 import map.Room;
 import map.Tile.Tile;
+import myutilities.Camera;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
@@ -296,8 +297,8 @@ public class GameManager
 		});
 		scene.addEventHandler(MouseEvent.ANY, event -> 
 		{
-			mouseX = event.getX();
-			mouseY = event.getY();
+			mouseX = event.getX() - Camera.getxCoord();
+			mouseY = event.getY() - Camera.getyCoord();
 		});
 		scene.setOnMousePressed(event -> mouseDown = true);
 		scene.setOnMouseReleased(event -> mouseDown = false);

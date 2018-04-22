@@ -10,30 +10,24 @@ import javafx.scene.shape.Shape;
  */
 public class Camera
 {
-	private double xCoord;
-	private double yCoord;
+	private static double xCoord = 0;
+	private static double yCoord = 0;
 	
-	public Camera(double xCoord, double yCoord)
-	{
-		this.xCoord = xCoord;
-		this.yCoord = yCoord;
-	}
+//	public void shiftCamera(Shape player)
+//	{
+//		xCoord += (player.getTranslateX() - xCoord) * .5;
+//		yCoord += (player.getTranslateY() - yCoord) * .5;
+//	}
 	
-	public void shiftCamera(Shape player)
-	{
-		xCoord += (player.getTranslateX() - xCoord) * .5;
-		yCoord += (player.getTranslateY() - yCoord) * .5;
-	}
-	
-	public void shiftCamera(double x, double y, double windowX,double windowY)
+	public static void shiftCamera(double x, double y, double windowX,double windowY)
 	{
 		//Tweening Algorithm.
 		xCoord += ((-x + (windowX / 2)) - xCoord) * .2;
 		yCoord += ((-y + (windowY / 2)) - yCoord) * .2;
 	}
 	
-	public double getxCoord() {return xCoord;}
-	public double getyCoord() {return yCoord;}
-	public void setxCoord(double xCoord) {this.xCoord = xCoord;}
-	public void setyCoord(double yCoord) {this.yCoord = yCoord;}
+	public static double getxCoord() {return xCoord;}
+	public static double getyCoord() {return yCoord;}
+	public static void setxCoord(double x) {xCoord = x;}
+	public static void setyCoord(double y) {yCoord = y;}
 }

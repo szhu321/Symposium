@@ -61,7 +61,6 @@ public class Main extends Application
 	private double playerCenterX = 100;
 	private double playerCenterY = 100;
 	
-	private Camera camera;
 	
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
@@ -145,7 +144,6 @@ public class Main extends Application
 		root.getChildren().add(moveArea);
 		root.getChildren().add(headsUpDis);
 		
-		camera = new Camera(0,0);
 		
 		
 		
@@ -189,14 +187,14 @@ public class Main extends Application
 	
 	private void repositionCamera()
 	{
-		camera.shiftCamera(playerX, playerY,window.getWidth(),window.getHeight());
+		Camera.shiftCamera(playerX, playerY,window.getWidth(),window.getHeight());
 		
 		moveArea.getTransforms().clear();
 		mapGrid.getTransforms().clear();
 		
 		
-		moveArea.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
-		mapGrid.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
+		moveArea.getTransforms().add(new Translate(Camera.getxCoord(),Camera.getyCoord()));
+		mapGrid.getTransforms().add(new Translate(Camera.getxCoord(),Camera.getyCoord()));
 	}
 	
 	private void caculateMouseAngleToPlayer()

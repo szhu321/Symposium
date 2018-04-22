@@ -57,8 +57,6 @@ public class PlayingScene
 	
 	private ImageView playerHoldItemDis;
 	
-	private Camera camera = new Camera(0,0);
-	
 	private HBox topHealthBox;
 	
 	public PlayingScene(Room room)
@@ -274,11 +272,11 @@ public class PlayingScene
 	public void updateCameraLocation()
 	{
 		Player player = currentRoom.getPlayer();
-		camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
+		Camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
 		moveArea.getTransforms().clear();
 		tilesDis.getTransforms().clear();
-		moveArea.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
-		tilesDis.getTransforms().add(new Translate(camera.getxCoord(),camera.getyCoord()));
+		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+		tilesDis.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
 	}
 	
 	public void updateAllLocation()
