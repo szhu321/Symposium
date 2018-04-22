@@ -28,6 +28,7 @@ import map.Room;
 import map.Tile.Tile;
 import map.obstacle.Obstacle;
 import myutilities.Camera;
+import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
@@ -167,6 +168,7 @@ public class PlayingScene
 		{
 			if(TimerManager.isPaused)
 			{
+				TimeTracker.resetTime();
 				TimerManager.resumeAll();
 				TimerManager.isPaused = false;
 			}

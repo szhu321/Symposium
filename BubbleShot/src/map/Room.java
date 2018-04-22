@@ -29,13 +29,35 @@ public class Room
 	private double roomPixWidth;
 	private double roomPixHeight;
 	
+	private boolean isExplored = false;
+	
 	private String name = "unnamed";
 	
+	/**
+	 * Tiles that the rooms floor consists of.
+	 */
 	private Tile[][] tiles;
+	
+	/**
+	 * Obstacles are barriers that characters and projectiles can't cross.
+	 */
 	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
+	
+	/**
+	 * List of characters in this room.
+	 */
 	private List<Character> characters = new ArrayList<Character>();
+	
+	/**
+	 * List of items in this room.
+	 */
 	private List<Item> items = new ArrayList<Item>();
+	
+	/**
+	 * The projectiles currently active in this room.
+	 */
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
+	
 	
 	private RoomPortManager teleporterManager;
 	
@@ -67,6 +89,10 @@ public class Room
 		this(DEFAULT_TILE_ROW, DEFUALT_TILE_COLUMN);
 	}
 	
+	/**
+	 * Creates a room with the specified tiles
+	 * @param tiles The tile configuration that the room will consists of.
+	 */
 	public Room(Tile[][] tiles)
 	{
 		this.tiles = tiles;
@@ -88,7 +114,17 @@ public class Room
 	
 	public RoomPortManager getTeleporterManager() {return teleporterManager;}
 	public void setTeleporterManager(RoomPortManager teleporterManager) {this.teleporterManager = teleporterManager;}
+	public boolean isExplored()
+	{
+		return isExplored;
+	}
 	
+	/**
+	 * Passes in a list of characters the room will start with.
+	 * This is usually used in RoomDesign.java when creating new room
+	 * designs.
+	 * @param characters
+	 */
 	public void setCharacters(List<Character> characters) 
 	{
 		this.characters = characters;
@@ -96,12 +132,23 @@ public class Room
 			character.setCurrentRoom(this);
 	}
 	
+	/**
+	 * Passes in a list of items the room will start with.
+	 * This is usually called in RoomDesign.java.
+	 * @param items
+	 */
 	public void setItems(List<Item> items) 
 	{
 		this.items = items;
 		for(Item item: this.items)
 			item.setCurrentRoom(this);
 	}
+	
+	/**
+	 * When ever a gun fires a new projectile will be added to the room
+	 * 
+	 * @param projectile The projectile that will be added to the room.
+	 */
 	public void addProjectile(Projectile projectile)
 	{
 		projectile.setCurrentRoom(this);
@@ -127,6 +174,8 @@ public class Room
 	{
 		characters.add(character);
 		character.setCurrentRoom(this);
+		if(character instanceof Player)
+			isExplored = true;
 	}
 	
 	public void removeCharacter(Character character)

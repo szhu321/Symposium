@@ -79,15 +79,15 @@ public class GameManager
 	public void nextFrame(long milliSecond)
 	{
 		//System.out.println(((double)milliSecond) / 1000);
-		checkCharacterCollisionWithTile();
 		coolDownAllWeapons(((double)milliSecond) / 1000);
-		movePlayer(((double)milliSecond) / 1000);
-		moveEnemy(((double)milliSecond) / 1000);
-		updateProjectileLocation((double) milliSecond);
 		readjustMousePosDueToCameraMovement();
 		caculateMouseAngleToPlayer();
-		checkProjectileCollision();
 		player.setFaceAngle(mouseAngle);
+		movePlayer(((double)milliSecond) / 1000);
+		moveEnemy(((double)milliSecond) / 1000);
+		checkCharacterCollisionWithTile();
+		updateProjectileLocation((double) milliSecond);
+		checkProjectileCollision();
 		if(mouseDown)
 		{
 			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
@@ -198,12 +198,14 @@ public class GameManager
 	public void pauseGame()
 	{
 		TimerManager.pauseAll();
+		TimerManager.isPaused = true;
 	}
 	
 	public void unPauseGame()
 	{
 		TimeTracker.resetTime();
 		TimerManager.resumeAll();
+		TimerManager.isPaused = false;
 	}
 	
 	public Level getLevel()
@@ -290,6 +292,13 @@ public class GameManager
 					player.useCurrentItem(Item.POTION);
 					player.removeCurrentItem();
 				}
+			}
+			if(code == KeyCode.P)
+			{
+				if(TimerManager.isPaused)
+					unPauseGame();
+				else
+					pauseGame();
 			}
 		});
 		scene.setOnKeyReleased(event -> 
