@@ -85,4 +85,5 @@ public abstract class Character extends Sprite
 	}
 
 	public abstract void useCurrentItem(String input);
+	public abstract void coolDownWeapons(double sec);
 }

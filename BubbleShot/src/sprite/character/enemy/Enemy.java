@@ -35,4 +35,9 @@ public abstract class Enemy extends Character
 	{
 			
 	}
+	
+	public void coolDownWeapons(double sec)
+	{
+		
+	}
 }

@@ -139,7 +139,7 @@ public class PlayingScene
 			stack.setAlignment(text, Pos.BOTTOM_RIGHT);
 			bottomBox.add(stack, i, 0);
 		}
-		bottomBox.setStyle("-fx-background-color: #2257B4");
+		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
 		return bottomBox;
 	}
 	
