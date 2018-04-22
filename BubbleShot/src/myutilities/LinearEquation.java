@@ -1,5 +1,6 @@
 package myutilities;
 
+
 public class LinearEquation
 {
 	private double deltaX;

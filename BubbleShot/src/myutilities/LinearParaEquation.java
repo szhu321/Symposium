@@ -1,5 +1,9 @@
 package myutilities;
 
+/**
+ * The class that keeps track of a projectile's location on the screen
+ * based on time.
+ */
 public class LinearParaEquation
 {
 	private double deltaX;

@@ -19,6 +19,10 @@ import map.Tile.Tile;
 import map.obstacle.Obstacle;
 import map.obstacle.StoneWall;
 
+/**
+ * Class for Testing
+ * 
+ */
 public class GUITester2 extends Application
 {
 	

@@ -43,6 +43,8 @@ public class GameRunner extends Application
 	
 	/**
 	 * Sets the scene of the game window.
+	 * This method is static since there will only be 
+	 * one game window. Everything should be displayed in this window.
 	 * 
 	 * @param scene The scene the window will show.
 	 */

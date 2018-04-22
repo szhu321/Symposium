@@ -2,6 +2,12 @@ package myutilities;
 
 import javafx.scene.shape.Shape;
 
+/**
+ * The camera keeps track of the players position and 
+ * updates the x and y coordinates accordingly.
+ * The camera moves with the tweening algorithm that has a smooth
+ * transition effect.
+ */
 public class Camera
 {
 	private double xCoord;

@@ -25,6 +25,10 @@ import javafx.stage.Stage;
 import map.Room;
 import map.Tile.Tile;
 
+/**
+ * Class for Testing
+ * 
+ */
 public class RotationTest extends Application
 {
 	private Stage window;

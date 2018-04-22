@@ -6,7 +6,11 @@ import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
-
+/**
+ * This class keeps track of all the timers in the game.
+ * New timers can be created and added to this list by calling the 
+ * addKeyFrameToNewTimeline() method and passing in a KeyFrame.
+ */
 public class TimerManager
 {
 	public static List<Timeline> timers = new ArrayList<Timeline>();

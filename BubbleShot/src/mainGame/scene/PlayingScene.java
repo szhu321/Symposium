@@ -29,6 +29,15 @@ import sprite.projectile.Projectile;
 import sprite.character.Character;
 import sprite.character.player.Player;
 
+/**
+ * This is the front end of the game.
+ * a new playing scene needs to be created when changing rooms.
+ * This playing scene requires an update manually whenever the 
+ * backend is updated. 
+ * For instance when a projectile is added to the room. That projectile's
+ * imageView need to be added to the playing scene by calling the 
+ * addChildToMoveArea() method. The opposite is true.
+ */
 public class PlayingScene
 {
 	private Scene scene;
@@ -252,8 +261,6 @@ public class PlayingScene
 		updateObjectacleLocation();
 		updatePlayerHoldItem();
 	}
-	
-	
 	
 	public Scene getScene()
 	{

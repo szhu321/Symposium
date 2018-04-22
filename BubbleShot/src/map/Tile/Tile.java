@@ -7,9 +7,11 @@ import sprite.character.effect.Effect;
 import sprite.character.effect.NoEffect;
 
 /**
- * A single tile that can be arranged into a map.
- * @author Sheng
- *
+ * A single tile that can be arranged onto a room.
+ * All tiles will have a effect on characters that steps over them.
+ * Ex. MudTile - slowing effect
+ * 	   StoneTile - speeding effect
+ * 	   GrassTile - no effect
  */
 public class Tile extends Sprite
 {

@@ -17,9 +17,9 @@ import sprite.character.player.Player;
 import sprite.character.enemy.Enemy;
 
 /**
- * A room of the
- * @author Sheng
- *
+ * The room is the backend information hub of the game. It stores 
+ * almost all of the objects seen on the screen. It also contains mathods
+ * for collision checks between those objects.
  */
 public class Room
 {

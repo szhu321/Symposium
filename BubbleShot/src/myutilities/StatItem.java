@@ -1,5 +1,13 @@
 package myutilities;
 
+/**
+ * A class that stores a single information. 
+ * This can be used to store player data like kill count, number of 
+ * deaths, etc.
+ *
+ * @param <dataType> The type of data type this class will store.
+ * Ex: Player name will be stored with Strings.
+ */
 public class StatItem<dataType>
 {
 	private String name;

@@ -25,6 +25,12 @@ import sprite.projectile.LinearProjectile;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
 
+/**
+ * The game manager will run a level of the game. 
+ * Creating the game manager requires a level and a player.
+ * The player can be from past levels.
+ * Calling the startGame method starts the animation loop.
+ */
 public class GameManager
 {
 	private Level level;

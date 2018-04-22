@@ -3,6 +3,13 @@ package sprite.projectile;
 import map.Room;
 import sprite.Sprite;
 
+/**
+ * Projectile objects are used by weapons.
+ * A projectile has damage. It will apply this much damage to the character it hits.
+ * A projectile has speed. This is the speed in pixels per second.
+ * A projectile has range. This is the max distance the projectile can travel.
+ * A projectile keeps track of who shot it and what room its currently in.
+ */
 public abstract class Projectile extends Sprite
 {
 	public static final String SHOT_BY_PLAYER = "player";
