@@ -227,7 +227,6 @@ public class GameManager
 			level.getCurrentRoom().removeItem(item);
 			playingScene.removeChildFromMoveArea(item.getSpriteImageView());
 			player.addItem(item);
-			playingScene.updateHeadUpDis();
 		}
 	}
 	
@@ -240,7 +239,6 @@ public class GameManager
 			item.setYLocation(player.getYLocation());
 			level.getCurrentRoom().addItem(item);
 			playingScene.addChildToMoveArea(item.getSpriteImageView());
-			playingScene.updateHeadUpDis();
 		}
 	}
 	
@@ -281,7 +279,6 @@ public class GameManager
 				{
 					player.useCurrentItem(Item.POTION);
 					player.removeCurrentItem();
-					playingScene.updateHeadUpDis();
 				}
 			}
 		});

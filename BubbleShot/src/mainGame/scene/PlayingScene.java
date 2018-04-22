@@ -131,7 +131,7 @@ public class PlayingScene
 			stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
 			stack.getChildren().add(text);
 			stack.getChildren().add(playerInventoryDis[i]);
-			stack.setAlignment(Pos.BOTTOM_RIGHT);
+			stack.setAlignment(text, Pos.BOTTOM_RIGHT);
 			bottomBox.add(stack, i, 0);
 		}
 		bottomBox.setStyle("-fx-background-color: FFFFFF");
@@ -177,8 +177,18 @@ public class PlayingScene
 				playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
 			else
 				playerInventoryDis[i].setImage(null);
+			if(player.getCurrentItemIdx() == i)
+			{
+				//playerInventoryDis[i].setScaleX(1);
+				playerInventoryDis[i].getTransforms().set(0, new Scale(1,1));
+			}
+			else
+			{
+				//playerInventoryDis[i].setScaleX(.83333);
+				playerInventoryDis[i].getTransforms().set(0, new Scale(.83333,.83333));
+			}
+				
 		}
-		
 	}
 	
 	public void removeChildFromMoveArea(ImageView imageView)
@@ -260,6 +270,7 @@ public class PlayingScene
 		updateProjectileLocation();
 		updateObjectacleLocation();
 		updatePlayerHoldItem();
+		updateHeadUpDis();
 	}
 	
 	public Scene getScene()
