@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -27,6 +28,7 @@ import map.Room;
 import map.Tile.Tile;
 import map.obstacle.Obstacle;
 import myutilities.Camera;
+import myutilities.TimerManager;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
 import sprite.character.Character;
@@ -160,7 +162,22 @@ public class PlayingScene
 		StackPane healthBoxContainer = new StackPane();
 		healthBoxContainer.getChildren().addAll(bottomHealthBox, topHealthBox);
 		
-		topBox.getChildren().addAll(playerHealthDis, healthBoxContainer, playerAmmoDis, playerScoreDis);
+		Button pauseBtn = new Button("Pause");
+		pauseBtn.setOnMousePressed(event -> 
+		{
+			if(TimerManager.isPaused)
+			{
+				TimerManager.resumeAll();
+				TimerManager.isPaused = false;
+			}
+			else
+			{
+				TimerManager.pauseAll();
+				TimerManager.isPaused = true;
+			}
+		});
+		
+		topBox.getChildren().addAll(playerHealthDis, healthBoxContainer, playerAmmoDis, playerScoreDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		headUpDis.setBottom(getInventoryDisGUI());

@@ -22,7 +22,6 @@ public class TimerManager
 		{
 			timer.pause();
 		}
-		isPaused = true;
 	}
 	
 	public static void resumeAll()
@@ -31,7 +30,6 @@ public class TimerManager
 		{
 			timer.play();
 		}
-		isPaused = false;
 	}
 	
 	public static void addKeyFrameToNewTimeline(KeyFrame keyframe)
