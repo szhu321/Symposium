@@ -49,6 +49,8 @@ public class GameManager
 	
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
+	private double mouseXUnajusted = 0.0;
+	private double mouseYUnajusted = 0.0;
 	
 	
 	public GameManager(Level level, Player player)
@@ -82,6 +84,7 @@ public class GameManager
 		movePlayer(((double)milliSecond) / 1000);
 		moveEnemy(((double)milliSecond) / 1000);
 		updateProjectileLocation((double) milliSecond);
+		readjustMousePosDueToCameraMovement();
 		caculateMouseAngleToPlayer();
 		checkProjectileCollision();
 		player.setFaceAngle(mouseAngle);
@@ -97,6 +100,12 @@ public class GameManager
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
+	}
+	
+	private void readjustMousePosDueToCameraMovement()
+	{
+		mouseX = mouseXUnajusted - Camera.getxCoord();
+		mouseY = mouseYUnajusted - Camera.getyCoord();
 	}
 	
 	public void coolDownAllWeapons(double sec)
@@ -297,8 +306,8 @@ public class GameManager
 		});
 		scene.addEventHandler(MouseEvent.ANY, event -> 
 		{
-			mouseX = event.getX() - Camera.getxCoord();
-			mouseY = event.getY() - Camera.getyCoord();
+			mouseXUnajusted = event.getX();
+			mouseYUnajusted = event.getY();
 		});
 		scene.setOnMousePressed(event -> mouseDown = true);
 		scene.setOnMouseReleased(event -> mouseDown = false);
