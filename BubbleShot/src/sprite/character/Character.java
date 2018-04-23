@@ -51,8 +51,8 @@ public abstract class Character extends Sprite
 			currentHealth = defaultHealth;
 	}
 	public void setSpeed(double speed) {this.speed = speed;}
-	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}
-			
+	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}	
+	
 	public void moveUp(double time)
 	{
 		this.addYLocation(-(speed*time));

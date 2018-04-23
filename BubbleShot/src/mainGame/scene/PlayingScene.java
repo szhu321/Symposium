@@ -33,6 +33,7 @@ import myutilities.TimerManager;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
 import sprite.character.Character;
+import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 
 /**
@@ -111,7 +112,14 @@ public class PlayingScene
 		for(Item item: items)
 			moveArea.getChildren().add(item.getSpriteImageView());
 		for(Character character: characters)
+		{
 			moveArea.getChildren().add(character.getSpriteImageView());
+			if(character instanceof Enemy)
+			{
+				moveArea.getChildren().add(((Enemy) character).getWeapon().getSpriteImageView());
+			}
+		}
+			
 		for(Projectile projectile: projectiles)
 			moveArea.getChildren().add(projectile.getSpriteImageView());
 		for(Obstacle obs: obstacles)
@@ -269,6 +277,12 @@ public class PlayingScene
 			currentChar.getSpriteImageView().setTranslateX(currentChar.getXLocation());
 			currentChar.getSpriteImageView().setTranslateY(currentChar.getYLocation());
 			currentChar.getSpriteImageView().setRotate(currentChar.getFaceAngle());
+			if(currentChar instanceof Enemy)
+			{
+				((Enemy) currentChar).getWeapon().getSpriteImageView().setImage(((Enemy)currentChar).getWeapon().getSpriteImage());
+				((Enemy) currentChar).getWeapon().getSpriteImageView().setTranslateX(currentChar.getXLocation() + currentChar.getWidth() / 2);
+				((Enemy) currentChar).getWeapon().getSpriteImageView().setTranslateY(currentChar.getYLocation() + currentChar.getHeight() / 2);
+			}
 		}
 	}
 	

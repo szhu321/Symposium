@@ -21,7 +21,7 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(200,200,600,600,0));
 		room.addObstacle(new StoneWall(200,200,600,200,0));
 		room.addCharacter(player);
-		//room.addCharacter(enemy);
+		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(420, 420));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(60, 60));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(700, 60));

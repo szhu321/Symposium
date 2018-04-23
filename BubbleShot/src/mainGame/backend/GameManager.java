@@ -81,7 +81,7 @@ public class GameManager
 		//System.out.println(((double)milliSecond) / 1000);
 		coolDownAllWeapons(((double)milliSecond) / 1000);
 		readjustMousePosDueToCameraMovement();
-		caculateMouseAngleToPlayer();
+		calculateMouseAngleToPlayer();
 		player.setFaceAngle(mouseAngle);
 		movePlayer(((double)milliSecond) / 1000);
 		moveEnemy(((double)milliSecond) / 1000);
@@ -112,8 +112,7 @@ public class GameManager
 	{
 		List<Character> characters= level.getCurrentRoom().getCharacters();
 		for(Character character : characters)
-			if(character instanceof Player)
-				((Player) character).coolDownWeapons(sec);
+			character.coolDownWeapons(sec);
 	}
 	
 	public void checkCharacterCollisionWithTile()
@@ -191,8 +190,14 @@ public class GameManager
 
     public void moveEnemy(double sec)
     {
-    	//for(Enemy e:enemyList)
-    	//	e.getBrain().move(sec, level);
+    	List<Character> enemies=level.getCurrentRoom().getCharacters();
+    	for(Character e:enemies)
+    		if(e instanceof Enemy)
+    		{
+    			((Enemy)e).getBrain().move(sec, level);
+    			calculateEnemyAngleToPlayer((Enemy)e);
+    			((Enemy)e).useCurrentItem(Item.WEAPON);
+    		}
    	}
     
 	public void pauseGame()
@@ -218,7 +223,7 @@ public class GameManager
 		return playingScene;
 	}
 	
-	private void caculateMouseAngleToPlayer()
+	private void calculateMouseAngleToPlayer()
 	{
 		double distanceX = mouseX - player.getXLocation() - player.getSpriteImageView().getBoundsInLocal().getWidth()/2;
 		double distanceY = mouseY - player.getYLocation() - player.getSpriteImageView().getBoundsInLocal().getHeight()/2;
@@ -229,6 +234,19 @@ public class GameManager
 			mouseAngle = 90 + (90 - Math.abs(mouseAngle));
 		if(distanceX > 0 && distanceY < 0)
 			mouseAngle += 360;
+	}
+	private void calculateEnemyAngleToPlayer(Enemy enemy)
+	{
+		double distanceX = player.getXLocation() - enemy.getXLocation() - enemy.getSpriteImageView().getBoundsInLocal().getWidth()/2;
+		double distanceY = player.getYLocation() - enemy.getYLocation() - enemy.getSpriteImageView().getBoundsInLocal().getHeight()/2;
+		double enemyAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
+		if(distanceY <= 0 && distanceX < 0)
+			enemyAngle += 180;
+		if(distanceY > 0 && distanceX < 0)
+			enemyAngle = 90 + (90 - Math.abs(enemyAngle));
+		if(distanceX > 0 && distanceY < 0)
+			enemyAngle += 360;
+		enemy.setFaceAngle(enemyAngle);
 	}
 	
 	public void playerPickUpItem()

@@ -29,15 +29,17 @@ public abstract class Enemy extends Character
 	public void setKillPoints(int killPoints){this.killPoints=killPoints;}
 	public AI getBrain(){return brain;}
 	public void setBrain(AI brain){this.brain=brain;}
+	public Item getWeapon()	{return weapon;}
 	
 	@Override
 	public void useCurrentItem(String input) 
 	{
-			
+		weapon.useItem();
 	}
 	
 	public void coolDownWeapons(double sec)
 	{
-		
+		weapon.coolDownItem(sec);
 	}
+	
 }
