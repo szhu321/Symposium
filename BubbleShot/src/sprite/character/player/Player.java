@@ -84,7 +84,12 @@ public class Player extends Character
 		}
 		if(input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
 		{
-			((Weapon) inventory[currentItemIdx]).useItem();
+			if(currentAmmo - ((Weapon) inventory[currentItemIdx]).getProjectile().getAmmoCount() >= 0)
+			{
+				if(((Weapon) inventory[currentItemIdx]).useItem());
+					//currentAmmo -= ((Weapon) inventory[currentItemIdx]).getProjectile().getAmmoCount();
+			}
+			
 		}
 	}
 	

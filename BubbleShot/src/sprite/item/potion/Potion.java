@@ -35,10 +35,11 @@ public class Potion extends Item
 	}
 
 	@Override
-	public void useItem()
+	public boolean useItem()
 	{
 		setCurrentCoolDownTime(getDefaultCoolDownTime());
 		setCooledDown(false);
+		return true;
 	}
 	
 	public boolean useItemOnPlayer(Player player)

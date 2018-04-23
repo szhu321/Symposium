@@ -35,6 +35,18 @@ public abstract class Weapon extends Item
 		return weaponAttackRange;
 	}
 	
+	
+	
+	public Projectile getProjectile() 
+	{
+		return projectile;
+	}
+
+	public void setProjectile(Projectile projectile) 
+	{
+		this.projectile = projectile;
+	}
+
 	public String toString()
 	{
 		String output = this.toString();
@@ -44,7 +56,7 @@ public abstract class Weapon extends Item
 		return output;
 	}
 	
-	public void useItem()
+	public boolean useItem()
 	{
 		if(isCooledDown())
 		{
@@ -63,6 +75,8 @@ public abstract class Weapon extends Item
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
+			return true;
 		}
+		return false;
 	}
 }

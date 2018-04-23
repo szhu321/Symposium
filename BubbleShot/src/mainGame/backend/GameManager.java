@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import mainGame.GameRunner;
 import mainGame.scene.PlayingScene;
 import map.Level;
 import map.Room;
@@ -88,18 +89,39 @@ public class GameManager
 		checkCharacterCollisionWithTile();
 		updateProjectileLocation((double) milliSecond);
 		checkProjectileCollision();
+		
 		if(mouseDown)
 		{
 			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
 			player.useCurrentItem(Item.WEAPON);
 		}
 		playingScene.updateAllLocation();
+		manageCharacterDeath();
 		/*if(!level.getCurrentRoom().getProjectiles().isEmpty())
 		{
 			System.out.println("player angle: " + player.getfaceAngle());
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
+	}
+	
+	public void manageCharacterDeath()
+	{
+		List<Character> characters = level.getCurrentRoom().getCharacters();
+		for(int i = characters.size() - 1; i >= 0; i--)
+			if(characters.get(i).getCurrentHealth() <= 0)
+			{
+				if(characters.get(i) instanceof Player)
+				{
+					TimerManager.pauseAll();
+				}
+				else
+				{
+					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
+					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
+					level.getCurrentRoom().removeCharacter(characters.get(i));
+				}
+			}
 	}
 	
 	private void readjustMousePosDueToCameraMovement()

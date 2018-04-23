@@ -16,9 +16,10 @@ public class Ammo extends Item
 	}
 
 	@Override
-	public void useItem() 
+	public boolean useItem() 
 	{
 		currentAmmo--;
+		return false;
 	}
 	
 }

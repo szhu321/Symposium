@@ -8,8 +8,9 @@ public class ProjectileDesign
 		double width = 22;
 		double height = 22;
 		double travelDistance = 400;
-		double speed = 300;
-		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		double speed = 500;
+		int ammoCount = 5;
+		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, ammoCount);
 		return bullet;
 	}
 	
@@ -19,8 +20,9 @@ public class ProjectileDesign
 		double width = 15;
 		double height = 15;
 		double travelDistance = 1500;
-		double speed = 900;
-		Projectile bullet = new LinearProjectile("Sniper Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		double speed = 1500;
+		int ammoCount = 20;
+		Projectile bullet = new LinearProjectile("Sniper Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, ammoCount);
 		return bullet;
 	}
 }

@@ -32,6 +32,14 @@ public class TimerManager
 		}
 	}
 	
+	public static void stopAll()
+	{
+		for(Timeline timer: timers)
+		{
+			timer.stop();
+		}
+	}
+	
 	public static void addKeyFrameToNewTimeline(KeyFrame keyframe)
 	{
 		Timeline tempTimeline = new Timeline();

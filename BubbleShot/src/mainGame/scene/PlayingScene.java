@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import mainGame.GameRunner;
+import mainGame.frontend.HealthBar;
 import javafx.scene.transform.Scale;
 import map.Room;
 import map.Tile.Tile;
@@ -55,6 +56,7 @@ public class PlayingScene
 	private Room currentRoom;
 	
 	private Text playerHealthDis;
+	private HealthBar healthbar;
 	private Text playerAmmoDis;
 	private Text playerScoreDis;
 	private ImageView[] playerInventoryDis;
@@ -162,6 +164,7 @@ public class PlayingScene
 		playerAmmoDis = new Text();
 		playerScoreDis = new Text();
 		
+		/*
 		topHealthBox = new HBox(5);
 		topHealthBox.setPrefWidth(200);
 		topHealthBox.setStyle("-fx-background-color: #66ff33");
@@ -170,7 +173,8 @@ public class PlayingScene
 		bottomHealthBox.setStyle("-fx-background-color: #000000");
 		StackPane healthBoxContainer = new StackPane();
 		healthBoxContainer.getChildren().addAll(bottomHealthBox, topHealthBox);
-		
+		*/
+	
 		Button pauseBtn = new Button("Pause");
 		pauseBtn.setOnMousePressed(event -> 
 		{
@@ -187,7 +191,9 @@ public class PlayingScene
 			}
 		});
 		
-		topBox.getChildren().addAll(playerHealthDis, healthBoxContainer, playerAmmoDis, playerScoreDis, pauseBtn);
+		healthbar = new HealthBar(400, 50, currentRoom.getPlayer().getCurrentHealth());
+		
+		topBox.getChildren().addAll(playerHealthDis, healthbar.getCanvas(), /*healthBoxContainer*/ playerAmmoDis, playerScoreDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		headUpDis.setBottom(getInventoryDisGUI());
@@ -199,7 +205,8 @@ public class PlayingScene
 	{
 		Player player = currentRoom.getPlayer();
 		playerHealthDis.setText("Health: " + player.getCurrentHealth());
-		topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
+		healthbar.updateCanvas(player.getCurrentHealth());
+		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
 		playerScoreDis.setText("Score: " + player.getScore());
 		for(int i = 0; i < player.getInventory().length; i++)
