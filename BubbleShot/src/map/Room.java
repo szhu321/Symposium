@@ -68,7 +68,6 @@ public class Room
 	 */
 	public Room(int row, int column)
 	{
-		obstacles = new ArrayList<Obstacle>();
 		roomPixWidth = column * 100;
 		roomPixHeight = row * 100;
 		
@@ -96,8 +95,8 @@ public class Room
 	public Room(Tile[][] tiles)
 	{
 		this.tiles = tiles;
-		roomPixWidth = tiles.length * 100;
-		roomPixHeight = tiles[0].length * 100;
+		roomPixWidth = tiles[0].length * 100;
+		roomPixHeight = tiles.length * 100;
 	}
 	
 	//Getters and Setters
@@ -114,6 +113,12 @@ public class Room
 	
 	public RoomPortManager getTeleporterManager() {return teleporterManager;}
 	public void setTeleporterManager(RoomPortManager teleporterManager) {this.teleporterManager = teleporterManager;}
+	
+	/**
+	 * 
+	 * @return has this room been explored yet. In other words has the player
+	 * step into this room yet.
+	 */
 	public boolean isExplored()
 	{
 		return isExplored;
@@ -123,7 +128,7 @@ public class Room
 	 * Passes in a list of characters the room will start with.
 	 * This is usually used in RoomDesign.java when creating new room
 	 * designs.
-	 * @param characters
+	 * @param characters Characters setted.
 	 */
 	public void setCharacters(List<Character> characters) 
 	{
@@ -135,7 +140,7 @@ public class Room
 	/**
 	 * Passes in a list of items the room will start with.
 	 * This is usually called in RoomDesign.java.
-	 * @param items
+	 * @param items Items setted.
 	 */
 	public void setItems(List<Item> items) 
 	{

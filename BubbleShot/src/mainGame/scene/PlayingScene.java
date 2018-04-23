@@ -300,13 +300,13 @@ public class PlayingScene
 	
 	public void updateAllLocation()
 	{
-		updateCameraLocation();
-		updateItemLocation();
-		updateProjectileLocation();
 		updateCharacterLocation();
 		updatePlayerHoldItem();
+		updateItemLocation();
+		updateProjectileLocation();
 		updateObstacleLocation();
 		updateHeadUpDis();
+		updateCameraLocation();
 	}
 	
 	public Scene getScene()
