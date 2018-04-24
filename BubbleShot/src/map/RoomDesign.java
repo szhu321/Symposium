@@ -24,9 +24,6 @@ public class RoomDesign
 		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
 		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
 		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(900, 200, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(420, 420));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(60, 60));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(700, 60));

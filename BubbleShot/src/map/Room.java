@@ -170,6 +170,11 @@ public class Room
 		//System.out.println("removed");
 	}
 	
+	public Tile getTileAt(double x, double y)
+	{
+		return tiles[(int) (y / 100)][(int) (x / 100)];
+	}
+	
 	public void addObstacle(Obstacle obs)
 	{
 		obstacles.add(obs);
@@ -322,7 +327,7 @@ public class Room
 	
 	public Tile characterCollisionWithTile(Character character)
 	{
-		for(Tile[] tileArr: tiles)
+		/*for(Tile[] tileArr: tiles)
 		{
 			for(Tile tile: tileArr)
 			{
@@ -333,5 +338,7 @@ public class Room
 			}
 		}
 		return null;
+		*/
+		return getTileAt(character.getXLocation(), character.getYLocation());
 	}
 }

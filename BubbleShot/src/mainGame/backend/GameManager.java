@@ -89,7 +89,7 @@ public class GameManager
 		checkCharacterCollisionWithTile();
 		updateProjectileLocation((double) milliSecond);
 		checkProjectileCollision();
-		
+		//System.out.println("Frame rate: " + 1/(((double)milliSecond) / 1000));
 		if(mouseDown)
 		{
 			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));

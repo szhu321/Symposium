@@ -25,7 +25,7 @@ public class BoxCollider
 		double otherYMax = other.getY() + other.getHeight();
 		double otherX = other.getX();
 		double otherY = other.getY();
-		if((checkXBounds(x, xMax, otherX, otherXMax) && checkYBounds(y, yMax, otherY, otherYMax)) || contains(other))
+		if((checkXBounds(x, xMax, otherX, otherXMax) && checkYBounds(y, yMax, otherY, otherYMax)) /*|| contains(other)*/)
 			return true;
 		return false;
 	}
