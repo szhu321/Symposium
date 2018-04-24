@@ -83,8 +83,25 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,950,0));
 		room.addObstacle(new StoneWall(500,50,160,120,0));
-		/*room.addObstacle(new StoneWall(100,500,200,50,0));
-		room.addObstacle(new StoneWall(100,500,700,50,0));*/
+		room.addObstacle(new StoneWall(500,50,160,520,0));
+		room.addObstacle(new StoneWall(50,160,478,170,0));
+		room.addObstacle(new StoneWall(50,90,478,431,0));
+		room.addCharacter(player);
+		//room.addCharacter(enemy);
+		return room;
+	}
+	
+	public static Room getRoomDesignSix(Player player)
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(50, 1000,00,0,0));
+		room.addObstacle(new StoneWall(50, 1000,950,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,0,0));
+		room.addObstacle(new StoneWall(1000, 50,0,950,0));
+		room.addObstacle(new StoneWall(500,50,160,120,0));
+		room.addObstacle(new StoneWall(500,50,160,520,0));
+		room.addObstacle(new StoneWall(50,160,478,170,0));
+		room.addObstacle(new StoneWall(50,90,478,431,0));
 		room.addCharacter(player);
 		//room.addCharacter(enemy);
 		return room;
