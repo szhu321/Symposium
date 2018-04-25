@@ -1,5 +1,6 @@
 package map;
 
+import map.Tile.teleporter.LevelPortManager;
 import sprite.character.player.Player;
 
 public class Level
@@ -7,6 +8,7 @@ public class Level
 	private Room[][] map;
 	private Room currentRoom;
 	
+	private LevelPortManager allTeleporters = new LevelPortManager();
 	/**
 	 * Creates a level with specified row(height) and col(width) of rooms.
 	 * @param width > 0
@@ -48,6 +50,22 @@ public class Level
 	public void setMap(Room[][] map) {this.map = map;}
 	public Room getCurrentRoom() {return currentRoom;}
 	public void setCurrentRoom(int row, int col) {currentRoom = map[row][col];}
+	
+	
+	public LevelPortManager getAllTeleporters() 
+	{
+		return allTeleporters;
+	}
+
+	public void setAllTeleporters(LevelPortManager allTeleporters) 
+	{
+		this.allTeleporters = allTeleporters;
+	}
+
+	public static void placeTeleportersInLevel()
+	{
+		
+	}
 	
 	public void placePlayerInCurrentRoom(Player player)
 	{

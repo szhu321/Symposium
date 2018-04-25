@@ -22,14 +22,14 @@ public class EffectManager
 	{
 		this.character = character;
 		effects = new ArrayList<Effect>();
-		setUpTimer();
+		//setUpTimer();
 	}
 	
-	public void setUpTimer()
-	{
-		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0 / TIMES_RUN_PER_SEC), event -> runAllEffect());
-		TimerManager.addKeyFrameToNewTimeline(keyframe);
-	}
+//	public void setUpTimer()
+//	{
+//		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0 / TIMES_RUN_PER_SEC), event -> runAllEffect());
+//		TimerManager.addKeyFrameToNewTimeline(keyframe);
+//	}
 	
 	public boolean addEffect(Effect effect)
 	{

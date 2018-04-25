@@ -73,6 +73,14 @@ public class GameManager
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
 	
+	public void changeRoom()
+	{
+		TimerManager.pauseAll();
+		
+		playingScene = new PlayingScene(this.level.getCurrentRoom());
+		GameRunner.setScene(playingScene.getScene());
+	}
+	
 	/**
 	 * Runs the next frame;
 	 * @param second - the time passed since the last frame.
@@ -81,8 +89,8 @@ public class GameManager
 	{
 		//System.out.println(((double)milliSecond) / 1000);
 		coolDownAllWeapons(((double)milliSecond) / 1000);
-		readjustMousePosDueToCameraMovement();
 		calculateMouseAngleToPlayer();
+		readjustMousePosDueToCameraMovement();
 		player.setFaceAngle(mouseAngle);
 		movePlayer(((double)milliSecond) / 1000);
 		moveEnemy(((double)milliSecond) / 1000);
@@ -95,14 +103,22 @@ public class GameManager
 			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
 			player.useCurrentItem(Item.WEAPON);
 		}
-		playingScene.updateAllLocation();
 		manageCharacterDeath();
+		runAllCharacterEffects();
+		playingScene.updateAllLocation();
+		
 		/*if(!level.getCurrentRoom().getProjectiles().isEmpty())
 		{
 			System.out.println("player angle: " + player.getfaceAngle());
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
+	}
+	
+	public void runAllCharacterEffects()
+	{
+		for(Character c: level.getCurrentRoom().getCharacters())
+			c.getEffectManager().runAllEffect();
 	}
 	
 	public void manageCharacterDeath()
@@ -119,6 +135,7 @@ public class GameManager
 				{
 					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
 					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
+					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
 			}

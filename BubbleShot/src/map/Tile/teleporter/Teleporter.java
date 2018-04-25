@@ -10,9 +10,10 @@ public class Teleporter extends Tile
 	private boolean activated;
 	private int id;
 	
-	public Teleporter(String name, String fileName, double xPos, double yPos, double width, double height, double faceAngle, int id)
+	public Teleporter(double xPos, double yPos, int id)
 	{
-		super(name, fileName, xPos, yPos, width, height, faceAngle);
+		
+		super("Teleporter", "file:resources/tile/teleporttile.png", xPos, yPos, 100, 100, 0);
 		activated = true;
 	}
 

@@ -5,13 +5,22 @@ import java.util.List;
 
 public class LevelPortManager
 {
-	private List<RoomPortManager> levelPorters;
+	private List<TeleporterPair> teleporterPair;
 	
 	public LevelPortManager()
 	{
-		setLevelPorters(new ArrayList<RoomPortManager>());
+		teleporterPair = new ArrayList<TeleporterPair>();
 	}
 
-	public List<RoomPortManager> getLevelPorters() {return levelPorters;}
-	public void setLevelPorters(List<RoomPortManager> levelPorters) {this.levelPorters = levelPorters;}
+	public List<TeleporterPair> getTeleporterPair()
+	{
+		return teleporterPair;
+	}
+
+	public void setTeleporterPair(List<TeleporterPair> teleporterPair)
+	{
+		this.teleporterPair = teleporterPair;
+	}
+
+	
 }

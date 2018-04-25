@@ -6,6 +6,7 @@ import java.util.List;
 import mainGame.backend.Constants;
 import map.Tile.*;
 import map.Tile.teleporter.RoomPortManager;
+import map.Tile.teleporter.Teleporter;
 import map.obstacle.Obstacle;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
@@ -59,7 +60,7 @@ public class Room
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	
-	private RoomPortManager teleporterManager;
+	private RoomPortManager roomTeleporterManager;
 	
 	/**
 	 * Creates a clear Room with specified tile number.
@@ -99,6 +100,19 @@ public class Room
 		roomPixHeight = tiles.length * 100;
 	}
 	
+	public void setTileAt(int row, int col, Tile tile)
+	{
+		if(!(tiles[row][col] instanceof Teleporter) && tile instanceof Teleporter)
+		{
+			tiles[row][col] = tile;
+			roomTeleporterManager.getRoomPorters().add((Teleporter) tile);
+		}
+		else
+		{
+			tiles[row][col] = tile;
+		}
+	}
+	
 	//Getters and Setters
 	public double getRoomPixHeight() {return roomPixHeight;}
 	public double getRoomPixWidth() {return roomPixWidth;}
@@ -111,8 +125,8 @@ public class Room
 	
 	public List<Item> getItems() {return items;}
 	
-	public RoomPortManager getTeleporterManager() {return teleporterManager;}
-	public void setTeleporterManager(RoomPortManager teleporterManager) {this.teleporterManager = teleporterManager;}
+	public RoomPortManager getRoomTeleporterManager() {return roomTeleporterManager;}
+	public void setTeleporterManager(RoomPortManager teleporterManager) {this.roomTeleporterManager = teleporterManager;}
 	
 	/**
 	 * 
@@ -287,7 +301,7 @@ public class Room
 		{
 			//System.out.println("Collide With player");
 			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
-			projectiles.remove(projectile);
+			//projectiles.remove(projectile);
 			return true;
 		}
 		//if enemy collide with player projectile
@@ -299,7 +313,7 @@ public class Room
 				{
 					//System.out.println("Collide With enemy");
 					character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
-					projectiles.remove(projectile);
+					//projectiles.remove(projectile);
 					return true;
 				}
 			}

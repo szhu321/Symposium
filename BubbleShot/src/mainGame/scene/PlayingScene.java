@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -129,6 +130,20 @@ public class PlayingScene
 		playerHoldItemDis = new ImageView();
 		playerHoldItemDis.getTransforms().add(new Scale(.5,.5));
 		moveArea.getChildren().add(playerHoldItemDis);
+		loadEnemyHealthBar();
+	}
+	
+	private void loadEnemyHealthBar()
+	{
+		List<Character> characters = currentRoom.getCharacters();
+		for(int i = 0; i < characters.size(); i++)
+		{
+			Character currentChar = characters.get(i);
+			if(currentChar instanceof Enemy)
+			{
+				moveArea.getChildren().add(((Enemy) currentChar).getHealthbar().getCanvas());
+			}
+		}
 	}
 	
 	private GridPane getInventoryDisGUI()
@@ -197,7 +212,6 @@ public class PlayingScene
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		headUpDis.setBottom(getInventoryDisGUI());
-		
 		updateHeadUpDis();
 	}
 	
@@ -230,15 +244,15 @@ public class PlayingScene
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
 	}
 	
-	public void removeChildFromMoveArea(ImageView imageView)
+	public void removeChildFromMoveArea(Node node)
 	{
-		moveArea.getChildren().remove(imageView);
+		moveArea.getChildren().remove(node);
 		//System.out.println("removed");
 	}
 	
-	public void addChildToMoveArea(ImageView imageView)
+	public void addChildToMoveArea(Node node)
 	{
-		moveArea.getChildren().add(imageView);
+		moveArea.getChildren().add(node);
 		//System.out.println("added");
 	}
 	
@@ -289,6 +303,8 @@ public class PlayingScene
 				((Enemy) currentChar).getWeapon().getSpriteImageView().setImage(((Enemy)currentChar).getWeapon().getSpriteImage());
 				((Enemy) currentChar).getWeapon().getSpriteImageView().setTranslateX(currentChar.getXLocation() + currentChar.getWidth() / 2);
 				((Enemy) currentChar).getWeapon().getSpriteImageView().setTranslateY(currentChar.getYLocation() + currentChar.getHeight() / 2);
+				((Enemy) currentChar).getHealthbar().getCanvas().setTranslateX(currentChar.getXLocation() - 5);
+				((Enemy) currentChar).getHealthbar().getCanvas().setTranslateY(currentChar.getYLocation() - 10);
 			}
 		}
 	}
