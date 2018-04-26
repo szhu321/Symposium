@@ -16,8 +16,8 @@ public abstract class Effect
 		defaultEffectTime = effectTime;
 		if(instantaneous)
 		{
-			applyEffect(thisManager.getCharacter());
 			active = false;
+			applyEffect(thisManager.getCharacter());
 		}
 		else
 		{

@@ -1,18 +1,24 @@
 package sprite.item.potion;
 
+import sprite.character.effect.DamageEffect;
 import sprite.character.effect.Effect;
+import sprite.character.effect.HealthEffect;
 import sprite.character.effect.SpeedEffect;
 
 public class PotionDesign
 {
-	public static DamagePot getDamagePotDesignOne()
+	public static DamagePot getDamagePotDesignOne(double x, double y)
 	{
-		return null;
+		Effect effect = DamageEffect.DAMAGE_POTION_EFFECT;
+		DamagePot potion = new DamagePot("Damage Potion",x,y,"potion","pink",effect,true,0);
+		return potion;
 	}
 	
-	public static HealthPot getHealthPotDesignOne()
+	public static HealthPot getHealthPotDesignOne(double x, double y)
 	{
-		return null;
+		Effect effect = HealthEffect.HEALTH_POTION_EFFECT;
+		HealthPot potion = new HealthPot("Health Potion",x,y,"potion","red",effect,true,0);
+		return potion;
 	}
 	
 	public static SpeedPot getSpeedPotDesignOne(double x, double y)

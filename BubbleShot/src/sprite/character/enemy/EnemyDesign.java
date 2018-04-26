@@ -11,7 +11,7 @@ public class EnemyDesign
 	{
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getPistolDesignOne(x, y);
-		Enemy enemy=new Regular("Brian",fileName, x, y,100, 50, 60, 60, pistol,player);
+		Enemy enemy=new Regular("Brian",fileName, x, y,6, 50, 60, 60, pistol,player);
 		return enemy;
 	}
 	

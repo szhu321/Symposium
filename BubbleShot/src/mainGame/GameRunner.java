@@ -31,7 +31,6 @@ public class GameRunner extends Application
 		window = primaryStage;
 		window.setTitle("Little Boy");
 		
-		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
 		//Enemy[] enemyList= {EnemyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
 		gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player);
@@ -39,7 +38,7 @@ public class GameRunner extends Application
 		
 		window.setScene(gameManager.getPlayingScene().getScene());
 		window.setMinHeight(700);
-		window.setMinWidth(700);
+		window.setMinWidth(900);
 		window.show();
 	}
 	

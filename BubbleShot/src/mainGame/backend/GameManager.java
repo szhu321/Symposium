@@ -147,13 +147,6 @@ public class GameManager
 		mouseY = mouseYUnajusted - Camera.getyCoord();
 	}
 	
-	public void coolDownAllWeapons(double sec)
-	{
-		List<Character> characters= level.getCurrentRoom().getCharacters();
-		for(Character character : characters)
-			character.coolDownWeapons(sec);
-	}
-	
 	public void checkCharacterCollisionWithTile()
 	{
 		List<Character> characters= level.getCurrentRoom().getCharacters();
@@ -166,6 +159,13 @@ public class GameManager
 		}
 	}
 	
+	public void coolDownAllWeapons(double sec)
+	{
+		List<Character> characters= level.getCurrentRoom().getCharacters();
+		for(Character character : characters)
+			character.coolDownWeapons(sec);
+	}
+
 	public void checkProjectileCollision()
 	{
 		List<Projectile> projectiles = level.getCurrentRoom().getProjectiles();

@@ -24,14 +24,14 @@ public class RoomDesign
 		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
 		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
 		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(420, 420));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(60, 60));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(700, 60));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(900, 800));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(300, 500));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
-		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
+		room.addItem(PotionDesign.getHealthPotDesignOne(60, 60));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(120, 60));
+		room.addItem(PotionDesign.getDamagePotDesignOne(180, 60));
+		//room.addItem(PotionDesign.getSpeedPotDesignOne(900, 800));
+		//room.addItem(PotionDesign.getSpeedPotDesignOne(300, 500));
+		//room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
+		//room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
+		//room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
 		return room;
 	}
 	
