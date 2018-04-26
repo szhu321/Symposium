@@ -60,7 +60,8 @@ public class Room
 	private List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	
-	private RoomPortManager roomTeleporterManager;
+	
+	private RoomPortManager roomTeleporterManager=new RoomPortManager();
 	
 	/**
 	 * Creates a clear Room with specified tile number.

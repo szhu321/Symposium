@@ -21,6 +21,5 @@ public class LevelPortManager
 	{
 		this.teleporterPair = teleporterPair;
 	}
-
 	
 }

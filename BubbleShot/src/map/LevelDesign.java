@@ -12,6 +12,7 @@ public class LevelDesign
 		level1.addRoomTo(RoomDesign.getRoomDesignThree(player), 1, 0);
 		level1.addRoomTo(RoomDesign.getRoomDesignFour(player), 1, 1);
 		level1.setCurrentRoom(0, 0);
+		level1.placeTeleportersInLevel();
 		return level1;
 	}
 	

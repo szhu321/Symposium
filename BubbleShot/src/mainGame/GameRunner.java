@@ -32,17 +32,17 @@ public class GameRunner extends Application
 		window.setTitle("Little Boy");
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		//Enemy[] enemyList= {EnemyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+		//Enemy[] enemyList= {EneddsmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
 		gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player);
 		gameManager.startGame();
 		
 		window.setScene(gameManager.getPlayingScene().getScene());
-		window.setMinHeight(700);
-		window.setMinWidth(900);
+		window.setMaxHeight(700);
+		window.setMaxWidth(900);
 		window.show();
 	}
 	
-	/**
+	/**dSs
 	 * Sets the scene of the game window.
 	 * This method is static since there will only be 
 	 * one game window. Everything should be displayed in this window.

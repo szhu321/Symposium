@@ -1,6 +1,8 @@
 package map;
 
 import map.Tile.teleporter.LevelPortManager;
+import map.Tile.teleporter.Teleporter;
+import map.Tile.teleporter.TeleporterPair;
 import sprite.character.player.Player;
 
 public class Level
@@ -62,9 +64,28 @@ public class Level
 		this.allTeleporters = allTeleporters;
 	}
 
-	public static void placeTeleportersInLevel()
+	public /*static*/ void placeTeleportersInLevel()
 	{
-		
+		//for(int i=0;i<map.length-1;i++)
+		//{
+		//	for(int s=0;i<map[0].length-1;s++)
+		//	{
+		//		if(map[i][s+1]!=null)
+		//		{
+					TeleporterPair currentPair=new TeleporterPair();
+					Teleporter tele1=new Teleporter(800,400, 0);
+					Teleporter tele2=new Teleporter(100,400, 0);
+					currentPair.setId(tele1.getId());
+					currentPair.setTeleporter1(tele1);
+					currentPair.setTeleporter1(tele2);
+					
+					allTeleporters.getTeleporterPair().add(currentPair);
+										
+					map[0][0].setTileAt((int)(tele1.getYLocation()/100), (int)(tele1.getXLocation()/100), tele1);
+					map[0][1].setTileAt((int)(tele2.getYLocation()/100), (int)(tele2.getXLocation()/100), tele2);
+		//		}
+		//	}
+		//}
 	}
 	
 	public void placePlayerInCurrentRoom(Player player)

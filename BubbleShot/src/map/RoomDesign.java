@@ -1,5 +1,6 @@
 package map;
 
+import map.Tile.teleporter.Teleporter;
 import map.obstacle.StoneWall;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.EnemyDesign;
@@ -24,6 +25,8 @@ public class RoomDesign
 		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
 		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
 		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		room.addItem(PotionDesign.getHealthPotDesignOne(60, 120));
+		room.addItem(PotionDesign.getHealthPotDesignOne(60, 180));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 60));
 		room.addItem(PotionDesign.getSpeedPotDesignOne(120, 60));
 		room.addItem(PotionDesign.getDamagePotDesignOne(180, 60));
@@ -31,7 +34,7 @@ public class RoomDesign
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(300, 500));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
-		//room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
+		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
 		return room;
 	}
 	
