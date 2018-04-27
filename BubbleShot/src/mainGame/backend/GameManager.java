@@ -395,8 +395,8 @@ public class GameManager
 								if(t.getXLocation()/100==s && t.getYLocation()/100==i)
 								{
 									Teleporter currentTele=t;
-									System.out.println(currentTele.getConnectedTeleporter().getId());
-									System.out.println(currentTele.getId());
+									//System.out.println(currentTele.getConnectedTeleporter().getId());
+									//System.out.println(currentTele.getId());
 									int row=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelRow();
 									int col=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelCol();
 									//System.out.println(row);
@@ -409,8 +409,10 @@ public class GameManager
 										changeRoom();
 										break;
 									}
+									break;
 								}							
 							}
+							break;
 						}
 					}
 				}
