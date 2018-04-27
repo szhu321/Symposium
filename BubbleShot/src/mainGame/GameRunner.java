@@ -32,7 +32,7 @@ public class GameRunner extends Application
 		window.setTitle("Little Boy");
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		//Enemy[] enemyList= {EneddsmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
 		gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player);
 		gameManager.startGame();
 		
@@ -44,7 +44,7 @@ public class GameRunner extends Application
 	
 	/**dSs
 	 * Sets the scene of the game window.
-	 * This method is static since there will only be 
+	 * This method is static since there will onlySS be 
 	 * one game window. Everything should be displayed in this window.
 	 * 
 	 * @param scene The scene the window will show.

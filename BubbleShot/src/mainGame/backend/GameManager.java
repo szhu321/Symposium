@@ -14,6 +14,9 @@ import mainGame.scene.PlayingScene;
 import map.Level;
 import map.Room;
 import map.Tile.Tile;
+import map.Tile.teleporter.RoomPortManager;
+import map.Tile.teleporter.Teleporter;
+import map.Tile.teleporter.TeleporterPair;
 import myutilities.Camera;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
@@ -76,9 +79,20 @@ public class GameManager
 	public void changeRoom()
 	{
 		TimerManager.pauseAll();
-		
+		resetKeys();
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
+		setSceneControls(playingScene.getScene());
 		GameRunner.setScene(playingScene.getScene());
+		TimerManager.resumeAll();
+	}
+	
+	public void resetKeys()
+	{
+		up=false;
+		down=false;
+		left=false;
+		right=false;
+		shift=false;
 	}
 	
 	/**
@@ -113,6 +127,7 @@ public class GameManager
 			System.out.println("x: " + level.getCurrentRoom().getProjectiles().get(0).getXLocation());
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
+		
 	}
 	
 	public void runAllCharacterEffects()
@@ -356,6 +371,49 @@ public class GameManager
 					unPauseGame();
 				else
 					pauseGame();
+			}
+			if(code==KeyCode.T)
+			{
+				boolean enemiesAlive=false;
+				Tile[][] teleChecker=level.getCurrentRoom().getTiles();
+				for(Character c: level.getCurrentRoom().getCharacters())
+					if(c instanceof Enemy)
+					{
+						enemiesAlive=true;
+						break;
+					}
+				
+				for(int i=0; i<teleChecker.length;i++)
+				{
+					for(int s=0;s<teleChecker[0].length;s++)
+					{
+						if(teleChecker[i][s] instanceof Teleporter && teleChecker[i][s].getBoundsOfObject().contains(player.getBoundsOfObject()))
+						{	
+							List<Teleporter> allTele=this.getLevel().getCurrentRoom().getPortManager().getRoomPorters();
+							for(Teleporter t:allTele)
+							{
+								if(t.getXLocation()/100==s && t.getYLocation()/100==i)
+								{
+									Teleporter currentTele=t;
+									System.out.println(currentTele.getConnectedTeleporter().getId());
+									System.out.println(currentTele.getId());
+									int row=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelRow();
+									int col=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelCol();
+									//System.out.println(row);
+									//System.out.println(col);
+									if(!enemiesAlive)
+									{
+										this.level.setCurrentRoom(row, col);
+										player.setXLocation(currentTele.getConnectedTeleporter().getXLocation());
+										player.setYLocation(currentTele.getConnectedTeleporter().getYLocation());
+										changeRoom();
+										break;
+									}
+								}							
+							}
+						}
+					}
+				}
 			}
 		});
 		scene.setOnKeyReleased(event -> 

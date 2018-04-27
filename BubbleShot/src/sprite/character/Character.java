@@ -44,11 +44,14 @@ public abstract class Character extends Sprite
 	
 	public void setCurrentHealth(double currentHealth) 
 	{
-		this.currentHealth = currentHealth;
-		if(currentHealth <= 0)
-			//DeadMethod
 		if(currentHealth > defaultHealth)
-			currentHealth = defaultHealth;
+			this.currentHealth = defaultHealth;
+		else
+		{
+			this.currentHealth = currentHealth;
+		}
+		//if(currentHealth <= 0)
+			//DeadMethod
 	}
 	public void setSpeed(double speed) {this.speed = speed;}
 	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}	

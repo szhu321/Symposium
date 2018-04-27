@@ -58,7 +58,6 @@ public class Level
 	{
 		return allTeleporters;
 	}
-
 	public void setAllTeleporters(LevelPortManager allTeleporters) 
 	{
 		this.allTeleporters = allTeleporters;
@@ -66,26 +65,52 @@ public class Level
 
 	public /*static*/ void placeTeleportersInLevel()
 	{
-		//for(int i=0;i<map.length-1;i++)
-		//{
-		//	for(int s=0;i<map[0].length-1;s++)
-		//	{
-		//		if(map[i][s+1]!=null)
-		//		{
+		int pairCounter=0;
+		for(int i=0;i<map.length;i++)
+		{
+			for(int s=0;s<map[0].length;s++)
+			{
+				if(!(s+1>=map[0].length)&&map[i][s]!=null&&map[i][s+1]!=null)
+				{
 					TeleporterPair currentPair=new TeleporterPair();
-					Teleporter tele1=new Teleporter(800,400, 0);
-					Teleporter tele2=new Teleporter(100,400, 0);
+					Teleporter tele1=new Teleporter(800,400,pairCounter);
+					tele1.setConnectedRoom(map[i][s]);
+					Teleporter tele2=new Teleporter(100,400,pairCounter);
+					tele2.setConnectedRoom(map[i][s+1]);
+					tele1.setConnectedTeleporter(tele2);
+					tele2.setConnectedTeleporter(tele1);
 					currentPair.setId(tele1.getId());
 					currentPair.setTeleporter1(tele1);
 					currentPair.setTeleporter1(tele2);
 					
 					allTeleporters.getTeleporterPair().add(currentPair);
 										
-					map[0][0].setTileAt((int)(tele1.getYLocation()/100), (int)(tele1.getXLocation()/100), tele1);
-					map[0][1].setTileAt((int)(tele2.getYLocation()/100), (int)(tele2.getXLocation()/100), tele2);
-		//		}
-		//	}
-		//}
+					map[i][s].setTileAt((int)(tele1.getYLocation()/100), (int)(tele1.getXLocation()/100), tele1);
+					map[i][s+1].setTileAt((int)(tele2.getYLocation()/100), (int)(tele2.getXLocation()/100), tele2);
+					
+					pairCounter++;
+				}
+				if(!(i+1>=map.length)&&map[i][s]!=null&&map[i+1][s]!=null)
+				{
+					TeleporterPair currentPair=new TeleporterPair();
+					Teleporter tele1=new Teleporter(400,800, pairCounter);
+					tele1.setConnectedRoom(map[i][s]);
+					Teleporter tele2=new Teleporter(400,100, pairCounter);
+					tele2.setConnectedRoom(map[i+1][s]);
+					tele1.setConnectedTeleporter(tele2);
+					tele2.setConnectedTeleporter(tele1);
+					currentPair.setId(tele1.getId());
+					currentPair.setTeleporter1(tele1);
+					currentPair.setTeleporter1(tele2);
+					
+					allTeleporters.getTeleporterPair().add(currentPair);
+										
+					map[i][s].setTileAt((int)(tele1.getYLocation()/100), (int)(tele1.getXLocation()/100), tele1);
+					map[i+1][s].setTileAt((int)(tele2.getYLocation()/100), (int)(tele2.getXLocation()/100), tele2);
+					pairCounter++;
+				}
+			}
+		}
 	}
 	
 	public void placePlayerInCurrentRoom(Player player)

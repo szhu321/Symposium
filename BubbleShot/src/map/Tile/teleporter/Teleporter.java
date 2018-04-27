@@ -14,6 +14,7 @@ public class Teleporter extends Tile
 	{
 		
 		super("Teleporter", "file:resources/tile/teleporttile.png", xPos, yPos, 100, 100, 0);
+		this.id=id;
 		activated = true;
 	}
 
@@ -45,7 +46,6 @@ public class Teleporter extends Tile
 	public void setConnectedTeleporter(Teleporter connectedTeleporter)
 	{
 		this.connectedTeleporter = connectedTeleporter;
-		this.connectedTeleporter.setConnectedTeleporter(this);
 	}
 	
 	public String toString()

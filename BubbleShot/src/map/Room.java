@@ -30,6 +30,9 @@ public class Room
 	private double roomPixWidth;
 	private double roomPixHeight;
 	
+	private int currentRow;
+	private int currentCol;
+	
 	private boolean isExplored = false;
 	
 	private String name = "unnamed";
@@ -75,11 +78,11 @@ public class Room
 		
 		tiles = new Tile[row][column];
 		for(int i = 0; i < tiles.length; i++)
-			for(int j = 0; j < tiles[0].length / 2; j++)
+			for(int j = 0; j < tiles[0].length; j++)
 				tiles[i][j] = TileDesign.getStoneTileDesignOne(j * 100, i * 100, 100, 100, 0);
-		for(int i = 0; i < tiles.length; i++)
-			for(int j = tiles[0].length / 2; j < tiles[0].length; j++)
-				tiles[i][j] = TileDesign.getMudTileDesignOne(j * 100, i * 100, 100, 100, 0);
+		//for(int i = 0; i < tiles.length; i++)
+		//	for(int j = tiles[0].length / 2; j < tiles[0].length; j++)
+		//		tiles[i][j] = TileDesign.getMudTileDesignOne(j * 100, i * 100, 100, 100, 0);
 	}
 	
 	/**
@@ -101,12 +104,12 @@ public class Room
 		roomPixHeight = tiles.length * 100;
 	}
 	
-	public void setTileAt(int row, int col, Tile tile)
+	public void setTileAt(int row, int col, Teleporter tile)
 	{
 		if(!(tiles[row][col] instanceof Teleporter) && tile instanceof Teleporter)
 		{
 			tiles[row][col] = tile;
-			roomTeleporterManager.getRoomPorters().add((Teleporter) tile);
+			roomTeleporterManager.getRoomPorters().add(tile);
 		}
 		else
 		{
@@ -115,6 +118,10 @@ public class Room
 	}
 	
 	//Getters and Setters
+	public void setLevelRow(int row) {currentRow=row;}
+	public void setLevelCol(int col) {currentCol=col;}
+	public int getLevelRow() {return currentRow;}
+	public int getLevelCol() {return currentCol;}
 	public double getRoomPixHeight() {return roomPixHeight;}
 	public double getRoomPixWidth() {return roomPixWidth;}
 	public Tile[][] getTiles() {return tiles;}
@@ -123,6 +130,7 @@ public class Room
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	public List<Character> getCharacters() {return characters;}
+	public RoomPortManager getPortManager() {return roomTeleporterManager;}
 	
 	public List<Item> getItems() {return items;}
 	

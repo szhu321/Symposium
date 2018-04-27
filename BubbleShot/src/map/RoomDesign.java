@@ -10,9 +10,11 @@ import sprite.item.weapon.WeaponDesign;
 
 public class RoomDesign
 {
-	public static Room getRoomDesignOne(Player player)
+	public static Room getRoomDesignOne(Player player,int row, int col)
 	{
 		Room room = new Room();
+		room.setLevelRow(row);
+		room.setLevelCol(col);
 		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -22,9 +24,9 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(200,200,600,600,0));
 		room.addObstacle(new StoneWall(200,200,600,200,0));
 		room.addCharacter(player);
-		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 120));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 180));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 60));
@@ -38,9 +40,11 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignTwo(Player player)
+	public static Room getRoomDesignTwo(Player player,int row, int col)
 	{
 		Room room = new Room();
+		room.setLevelRow(row);
+		room.setLevelCol(col);
 		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -52,9 +56,11 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignThree(Player player)
+	public static Room getRoomDesignThree(Player player,int row, int col)
 	{
 		Room room = new Room();
+		room.setLevelRow(row);
+		room.setLevelCol(col);
 		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -64,9 +70,11 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFour(Player player)
+	public static Room getRoomDesignFour(Player player,int row, int col)
 	{
 		Room room = new Room();
+		room.setLevelRow(row);
+		room.setLevelCol(col);
 		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -78,9 +86,11 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFive(Player player)
+	public static Room getRoomDesignFive(Player player,int row, int col)
 	{
 		Room room = new Room();
+		room.setLevelRow(row);
+		room.setLevelCol(col);
 		room.addObstacle(new StoneWall(50, 1000,00,0,0));
 		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -94,9 +104,11 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignSix(Player player)
+	public static Room getRoomDesignSix(Player player,int row, int col)
 	{
 		Room room = new Room();
+		room.setLevelRow(row);
+		room.setLevelCol(col);
 		room.addObstacle(new StoneWall(50, 1000,00,0,0));
 		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		room.addObstacle(new StoneWall(1000, 50,0,0,0));
