@@ -206,7 +206,7 @@ public class PlayingScene
 			}
 		});
 		
-		healthbar = new HealthBar(400, 50, currentRoom.getPlayer().getCurrentHealth());
+		healthbar = new HealthBar(400, 50, currentRoom.getPlayer().getDefaultHealth());
 		
 		topBox.getChildren().addAll(playerHealthDis, healthbar.getCanvas(), /*healthBoxContainer*/ playerAmmoDis, playerScoreDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
