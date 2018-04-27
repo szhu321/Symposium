@@ -37,8 +37,8 @@ public class GameRunner extends Application
 		gameManager.startGame();
 		
 		window.setScene(gameManager.getPlayingScene().getScene());
-		window.setMaxHeight(700);
-		window.setMaxWidth(900);
+		window.setMinHeight(700);
+		window.setMinWidth(700);
 		window.show();
 	}
 	
