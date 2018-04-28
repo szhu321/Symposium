@@ -42,7 +42,7 @@ public class GameRunner extends Application
 		window.show();
 	}
 	
-	/**dSs
+	/**
 	 * Sets the scene of the game window.
 	 * This method is static since there will onlySS be 
 	 * one game window. Everything should be displayed in this window.
