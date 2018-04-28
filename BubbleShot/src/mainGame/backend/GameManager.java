@@ -291,8 +291,8 @@ public class GameManager
 	}
 	private void calculateEnemyAngleToPlayer(Enemy enemy)
 	{
-		double distanceX = player.getXLocation() - enemy.getXLocation() - enemy.getSpriteImageView().getBoundsInLocal().getWidth()/2;
-		double distanceY = player.getYLocation() - enemy.getYLocation() - enemy.getSpriteImageView().getBoundsInLocal().getHeight()/2;
+		double distanceX = (player.getXLocation()+(player.getWidth()/2)) - enemy.getXLocation() - enemy.getSpriteImageView().getBoundsInLocal().getWidth()/2;
+		double distanceY = (player.getYLocation()+(player.getHeight()/2)) - enemy.getYLocation() - enemy.getSpriteImageView().getBoundsInLocal().getHeight()/2;
 		double enemyAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
 		if(distanceY <= 0 && distanceX < 0)
 			enemyAngle += 180;
