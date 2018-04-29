@@ -327,8 +327,7 @@ public class PlayingScene
 	
 	public void updateCameraLocation()
 	{
-		Player player = currentRoom.getPlayer();
-		Camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
+		
 		moveArea.getTransforms().clear();
 		tilesDis.getTransforms().clear();
 		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));

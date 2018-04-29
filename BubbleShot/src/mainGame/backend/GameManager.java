@@ -103,8 +103,10 @@ public class GameManager
 	{
 		//System.out.println(((double)milliSecond) / 1000);
 		coolDownAllWeapons(((double)milliSecond) / 1000);
+		updateCameraLocation();
 		calculateMouseAngleToPlayer();
 		readjustMousePosDueToCameraMovement();
+		//updateCameraLocation();
 		player.setFaceAngle(mouseAngle);
 		movePlayer(((double)milliSecond) / 1000);
 		moveEnemy(((double)milliSecond) / 1000);
@@ -128,6 +130,12 @@ public class GameManager
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
 		
+	}
+	
+	public void updateCameraLocation()
+	{
+		Player player = level.getCurrentRoom().getPlayer();
+		Camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
 	}
 	
 	public void runAllCharacterEffects()
