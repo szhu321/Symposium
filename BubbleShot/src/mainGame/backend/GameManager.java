@@ -56,6 +56,10 @@ public class GameManager
 	private double mouseXUnajusted = 0.0;
 	private double mouseYUnajusted = 0.0;
 	
+	long pasttime = System.currentTimeMillis();
+	long timepassed = 0;
+	int ticks = 0;
+	long nanosec = 1000000000;
 	
 	public GameManager(Level level, Player player)
 	{
@@ -71,7 +75,21 @@ public class GameManager
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
-			nextFrame(TimeTracker.getTimePassed());
+//			long now = System.nanoTime();
+//			ticks++;
+//			timepassed += now - pasttime;
+//			pasttime = now;
+//			if((double)timepassed / nanosec >= 1.0 / 60)
+//			{
+//				System.out.println((double)timepassed/ 1000);
+//				System.out.println(ticks);
+				nextFrame(TimeTracker.getTimePassed());
+				playingScene.updateAllLocation();
+//				ticks = 0;
+//				timepassed = 0;
+//			}
+			
+			
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
@@ -101,6 +119,7 @@ public class GameManager
 	 */
 	public void nextFrame(long milliSecond)
 	{
+		
 		//System.out.println(((double)milliSecond) / 1000);
 		coolDownAllWeapons(((double)milliSecond) / 1000);
 		calculateMouseAngleToPlayer();
@@ -119,7 +138,9 @@ public class GameManager
 		}
 		manageCharacterDeath();
 		runAllCharacterEffects();
-		playingScene.updateAllLocation();
+		updateCameraLocation();
+		//playingScene.updateAllLocation();
+		
 		
 		/*if(!level.getCurrentRoom().getProjectiles().isEmpty())
 		{
@@ -128,6 +149,13 @@ public class GameManager
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
 		
+		
+	}
+	
+	public void updateCameraLocation()
+	{
+		Player player = level.getCurrentRoom().getPlayer();
+		Camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
 	}
 	
 	public void runAllCharacterEffects()

@@ -327,8 +327,6 @@ public class PlayingScene
 	
 	public void updateCameraLocation()
 	{
-		Player player = currentRoom.getPlayer();
-		Camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
 		moveArea.getTransforms().clear();
 		tilesDis.getTransforms().clear();
 		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
@@ -337,13 +335,20 @@ public class PlayingScene
 	
 	public void updateAllLocation()
 	{
+//		try {
+//			GameRunner.window.wait();
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		updateCameraLocation();
 		updateCharacterLocation();
 		updatePlayerHoldItem();
 		updateItemLocation();
 		updateProjectileLocation();
 		updateObstacleLocation();
 		updateHeadUpDis();
-		updateCameraLocation();
+		//GameRunner.window.notify();
 	}
 	
 	public Scene getScene()

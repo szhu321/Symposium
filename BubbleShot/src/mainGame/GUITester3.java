@@ -56,6 +56,12 @@ public class GUITester3 extends Application
 
 	private long time;
 	
+	
+	long pasttime = System.nanoTime();
+	long timepassed = 0;
+	int ticks = 0;
+	long nanosec = 1000000000;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -84,16 +90,49 @@ public class GUITester3 extends Application
 		GraphicsContext gc = mapDis.getGraphicsContext2D();
 		Tile[][] tiles = LevelDesign.getLevelDesignOne(PlayerDesign.getSimpleStarterPlayer("BoR")).getCurrentRoom().getTiles();
 		
-		time = System.nanoTime();
+		mapDis.heightProperty().bind(window.heightProperty());
+		mapDis.widthProperty().bind(window.widthProperty());
+		
+		AnimationTimer timer = new AnimationTimer()
+		{
+
+			@Override
+			public void handle(long now) 
+			{
+				timepassed += now - pasttime;
+				pasttime = now;
+				ticks ++;
+				for(int row = 0; row < tiles.length; row++)
+				{
+					for(int col = 0; col < tiles[0].length; col++)
+					{
+						Tile tile = tiles[row][col];
+						gc.drawImage(tile.getSpriteImage(), tile.getXLocation(), tile.getYLocation());
+					}
+				}
+				if(timepassed - nanosec >= 1)
+				{
+					timepassed = 0;
+					System.out.println(ticks);
+					ticks = 0;
+					System.out.println(mapDis.getHeight());
+				}
+					
+			}
+	
+		};
+		timer.start();
+		
 		for(int row = 0; row < tiles.length; row++)
 		{
 			for(int col = 0; col < tiles[0].length; col++)
 			{
 				Tile tile = tiles[row][col];
 				gc.drawImage(tile.getSpriteImage(), tile.getXLocation(), tile.getYLocation());
+				//System.out.println(mapDis.getHeight());
 			}
 		}
-		System.out.println(System.nanoTime() - time);
+		
 		
 		
 		

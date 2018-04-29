@@ -17,7 +17,7 @@ import sprite.character.player.PlayerDesign;
  */
 public class GameRunner extends Application
 {
-	private static Stage window;
+	public static Stage window;
 	private static GameManager gameManager;
 	
 	public static void main(String[] args)
