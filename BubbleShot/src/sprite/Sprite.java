@@ -3,6 +3,7 @@ package sprite;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sprite.bounds.BoxCollider;
+import sprite.bounds.CircleCollider;
 import sprite.bounds.Collider;
 
 public abstract class Sprite implements Collider
@@ -111,5 +112,15 @@ public abstract class Sprite implements Collider
 	public BoxCollider getBoundsOfObject()
 	{
 		return new BoxCollider(xCoord, yCoord, width, height, faceAngle);
+	}
+	
+	public CircleCollider getCircleBoundsOfObject()
+	{
+		double radius;
+		if(height >= width)
+			radius = width / 2;
+		else
+			radius = height / 2;
+		return new CircleCollider(xCoord + (width / 2), yCoord + (height / 2), radius);
 	}
 }

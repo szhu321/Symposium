@@ -101,27 +101,107 @@ public class GameManager
 	 */
 	public void nextFrame(long milliSecond)
 	{
-		//System.out.println(((double)milliSecond) / 1000);
+		movePlayer(((double)milliSecond) / 1000);
+		moveEnemy(((double)milliSecond) / 1000);
 		coolDownAllWeapons(((double)milliSecond) / 1000);
 		updateCameraLocation();
 		calculateMouseAngleToPlayer();
 		readjustMousePosDueToCameraMovement();
-		//updateCameraLocation();
 		player.setFaceAngle(mouseAngle);
-		movePlayer(((double)milliSecond) / 1000);
-		moveEnemy(((double)milliSecond) / 1000);
 		checkCharacterCollisionWithTile();
 		updateProjectileLocation((double) milliSecond);
 		checkProjectileCollision();
+		if(mouseDown)
+		{
+			player.useCurrentItem(Item.WEAPON);
+		}
+		manageCharacterDeath();
+		runAllCharacterEffects();
+		playingScene.updateAllLocation();
+	}
+	
+	public void nextFrame2(long milliSecond)
+	{
+		long pasttime = System.nanoTime();
+		//System.out.println(((double)milliSecond) / 1000);
+		movePlayer(((double)milliSecond) / 1000);
+		long now = System.nanoTime();
+		System.out.println("Time Passed After Moving Player: " + (now - pasttime));
+		pasttime = now;
+		
+		moveEnemy(((double)milliSecond) / 1000);
+		now = System.nanoTime();
+		System.out.println("Time Passed After Moving Enemy: " + (now - pasttime));
+		pasttime = now;
+		
+		coolDownAllWeapons(((double)milliSecond) / 1000);
+		now = System.nanoTime();
+		System.out.println("Time Passed After Cool Weapon: " + (now - pasttime));
+		pasttime = now;
+		
+		updateCameraLocation();
+		now = System.nanoTime();
+		System.out.println("Time Passed After UpdateCamera: " + (now - pasttime));
+		pasttime = now;
+		
+		calculateMouseAngleToPlayer();
+		now = System.nanoTime();
+		System.out.println("Time Passed After Mouse to Player angle: " + (now - pasttime));
+		pasttime = now;
+		
+		readjustMousePosDueToCameraMovement();
+		now = System.nanoTime();
+		System.out.println("Time Passed After Mouse to Player angle fix: " + (now - pasttime));
+		pasttime = now;
+		
+		player.setFaceAngle(mouseAngle);
+		now = System.nanoTime();
+		System.out.println("Time Passed After setting player faceAngle: " + (now - pasttime));
+		pasttime = now;
+		
+		checkCharacterCollisionWithTile();
+		now = System.nanoTime();
+		System.out.println("Time Passed After character collision with tile: " + (now - pasttime));
+		pasttime = now;
+		
+		updateProjectileLocation((double) milliSecond);
+		now = System.nanoTime();
+		System.out.println("Time Passed After update projectile location: " + (now - pasttime));
+		pasttime = now;
+		
+		checkProjectileCollision();
+		now = System.nanoTime();
+		System.out.println("Time Passed After check projectile collision: " + (now - pasttime));
+		pasttime = now;
+		
 		//System.out.println("Frame rate: " + 1/(((double)milliSecond) / 1000));
 		if(mouseDown)
 		{
 			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
 			player.useCurrentItem(Item.WEAPON);
 		}
+		now = System.nanoTime();
+		System.out.println("Time Passed After useing player item: " + (now - pasttime));
+		pasttime = now;
+		
 		manageCharacterDeath();
+		now = System.nanoTime();
+		System.out.println("Time Passed After managing character death: " + (now - pasttime));
+		pasttime = now;
+		
 		runAllCharacterEffects();
+		now = System.nanoTime();
+		System.out.println("Time Passed After character effect run: " + (now - pasttime));
+		pasttime = now;
+		
 		playingScene.updateAllLocation();
+		now = System.nanoTime();
+		System.out.println("Time Passed After update front end: " + (now - pasttime));
+		pasttime = now;
+		
+		System.out.println("\n\n\n");
+		
+		
 		
 		/*if(!level.getCurrentRoom().getProjectiles().isEmpty())
 		{
@@ -287,26 +367,26 @@ public class GameManager
 	
 	private void calculateMouseAngleToPlayer()
 	{
-		double distanceX = mouseX - player.getXLocation() - player.getSpriteImageView().getBoundsInLocal().getWidth()/2;
-		double distanceY = mouseY - player.getYLocation() - player.getSpriteImageView().getBoundsInLocal().getHeight()/2;
+		double distanceX = mouseX - (player.getXLocation() + player.getWidth()/2);
+		double distanceY = mouseY - (player.getYLocation() + player.getHeight()/2);
 		mouseAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
 		if(distanceY <= 0 && distanceX < 0)
 			mouseAngle += 180;
-		if(distanceY > 0 && distanceX < 0)
+		else if(distanceY > 0 && distanceX < 0)
 			mouseAngle = 90 + (90 - Math.abs(mouseAngle));
-		if(distanceX > 0 && distanceY < 0)
+		else if(distanceX > 0 && distanceY < 0)
 			mouseAngle += 360;
 	}
 	private void calculateEnemyAngleToPlayer(Enemy enemy)
 	{
-		double distanceX = (player.getXLocation()+(player.getWidth()/2)) - enemy.getXLocation() - enemy.getSpriteImageView().getBoundsInLocal().getWidth()/2;
-		double distanceY = (player.getYLocation()+(player.getHeight()/2)) - enemy.getYLocation() - enemy.getSpriteImageView().getBoundsInLocal().getHeight()/2;
+		double distanceX = (player.getXLocation()+(player.getWidth()/2)) - enemy.getXLocation() - enemy.getWidth()/2;
+		double distanceY = (player.getYLocation()+(player.getHeight()/2)) - enemy.getYLocation() - enemy.getHeight()/2;
 		double enemyAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
 		if(distanceY <= 0 && distanceX < 0)
 			enemyAngle += 180;
-		if(distanceY > 0 && distanceX < 0)
+		else if(distanceY > 0 && distanceX < 0)
 			enemyAngle = 90 + (90 - Math.abs(enemyAngle));
-		if(distanceX > 0 && distanceY < 0)
+		else if(distanceX > 0 && distanceY < 0)
 			enemyAngle += 360;
 		enemy.setFaceAngle(enemyAngle);
 	}
