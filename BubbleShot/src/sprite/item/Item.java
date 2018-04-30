@@ -71,11 +71,20 @@ public abstract class Item extends Sprite implements Consumable
 		return defaultCoolDownTime;
 	}
 	
+	public void setDefaultCoolDownTime(double time)
+	{
+		defaultCoolDownTime = time;
+	}
+	
 	public void setCurrentCoolDownTime(double currentCoolDownTime)
 	{
 		this.currentCoolDownTime = currentCoolDownTime;
 	}
 	
+	/**
+	 * 
+	 * @param isCooledDown attack rate for weapons.
+	 */
 	public void setCooledDown(boolean isCooledDown)
 	{
 		this.isCooledDown = isCooledDown;
