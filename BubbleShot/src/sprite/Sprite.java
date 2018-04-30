@@ -26,6 +26,19 @@ public abstract class Sprite implements Collider
 		this.faceAngle = faceAngle;
 	}
 	
+	protected Sprite(String spriteName, Image image, double xLocation, double yLocation, double width, double height, double faceAngle)
+	{
+		this.spriteName=spriteName;
+		this.fileName = "";
+		xCoord = xLocation;
+		yCoord = yLocation;
+		this.width = width;
+		this.height = height;
+		spriteImage = image;
+		spriteImageView = new ImageView(spriteImage);
+		this.faceAngle = faceAngle;
+	}
+	
 	public String getSpriteFileName()
 	{
 		return fileName;

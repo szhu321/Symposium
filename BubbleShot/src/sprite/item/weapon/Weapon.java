@@ -60,6 +60,7 @@ public abstract class Weapon extends Item
 	{
 		if(isCooledDown())
 		{
+			//long pasttime = System.nanoTime();
 			Projectile projectile = this.projectile.getCopy();
 			Character character = getPossessor();
 			double characterXCenter = character.getXLocation() + character.getWidth() / 2;
@@ -75,6 +76,7 @@ public abstract class Weapon extends Item
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
+			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;
 		}
 		return false;

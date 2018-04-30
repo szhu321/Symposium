@@ -1,5 +1,6 @@
 package sprite.projectile;
 
+import javafx.scene.image.Image;
 import map.Room;
 import sprite.Sprite;
 
@@ -34,6 +35,16 @@ public abstract class Projectile extends Sprite
 		this.ammoCount = ammoCount;
 	}
 	
+	public Projectile(String spriteName, Image image, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range, int ammoCount)
+	{
+		super(spriteName ,image, xLocation, yLocation, width, height, faceAngle);
+		this.setSpeed(speed);
+		this.bulletOwner = bulletOwner;
+		this.damage = damage;
+		this.range = range;
+		this.ammoCount = ammoCount;
+	}
+	
 	public double getDamage() {return damage;}
 	public double getSpeed() {return speed;}
 	public void setSpeed(double speed) {this.speed = speed;}
@@ -53,7 +64,7 @@ public abstract class Projectile extends Sprite
 	
 	public Projectile getCopy()
 	{
-		Projectile projectile = new LinearProjectile(getSpriteName(), getSpriteFileName(), bulletOwner, getXLocation(), getYLocation(), getWidth(), getHeight(), speed, getFaceAngle(), damage, range, ammoCount);
+		Projectile projectile = new LinearProjectile(getSpriteName(), getSpriteImage(), bulletOwner, getXLocation(), getYLocation(), getWidth(), getHeight(), speed, getFaceAngle(), damage, range, ammoCount);
 		return projectile;
 	}
 	

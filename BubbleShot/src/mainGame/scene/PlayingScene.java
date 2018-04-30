@@ -267,9 +267,9 @@ public class PlayingScene
 	
 	public void addProjectileToArea(Node node)
 	{
-		long pasttime = System.nanoTime();
+		//long pasttime = System.nanoTime();
 		projectileArea.getChildren().add(0,node);
-		System.out.println("Time passed adding to projectileArea: " + (System.nanoTime() - pasttime) );
+		//System.out.println("Time passed adding to projectileArea: " + (System.nanoTime() - pasttime) );
 	}
 	
 	public void removeProjectileFromArea(Node node)
