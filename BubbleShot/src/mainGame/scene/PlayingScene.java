@@ -54,6 +54,7 @@ public class PlayingScene
 	private Group tilesDis;
 	private BorderPane headUpDis;
 	private Group moveArea;
+	private Group projectileArea;
 	private Room currentRoom;
 	
 	private Text playerHealthDis;
@@ -78,8 +79,17 @@ public class PlayingScene
 		root = new Group();
 		loadTiles(currentRoom.getTiles());
 		loadMoveArea();
+		loadProjectileArea();
 		loadHeadsUpDis();
-		root.getChildren().addAll(tilesDis, moveArea, headUpDis);
+		root.getChildren().addAll(tilesDis, moveArea, projectileArea , headUpDis);
+	}
+	
+	public void loadProjectileArea()
+	{
+		projectileArea = new Group();
+		List<Projectile> projectiles = currentRoom.getProjectiles();
+		for(Projectile pro: projectiles)
+			projectileArea.getChildren().add(pro.getSpriteImageView());
 	}
 	
 	public void loadTiles(Tile[][] tiles)
@@ -111,7 +121,7 @@ public class PlayingScene
 		List<Obstacle> obstacles = currentRoom.getObstacles();
 		List<Character> characters = currentRoom.getCharacters();
 		List<Item> items = currentRoom.getItems();
-		List<Projectile> projectiles = currentRoom.getProjectiles();
+		
 		for(Item item: items)
 			moveArea.getChildren().add(item.getSpriteImageView());
 		for(Character character: characters)
@@ -123,8 +133,7 @@ public class PlayingScene
 			}
 		}
 			
-		for(Projectile projectile: projectiles)
-			moveArea.getChildren().add(projectile.getSpriteImageView());
+		
 		for(Obstacle obs: obstacles)
 			moveArea.getChildren().add(obs.getSpriteImageView());
 		playerHoldItemDis = new ImageView();
@@ -256,6 +265,18 @@ public class PlayingScene
 		//System.out.println("added");
 	}
 	
+	public void addProjectileToArea(Node node)
+	{
+		long pasttime = System.nanoTime();
+		projectileArea.getChildren().add(0,node);
+		System.out.println("Time passed adding to projectileArea: " + (System.nanoTime() - pasttime) );
+	}
+	
+	public void removeProjectileFromArea(Node node)
+	{
+		projectileArea.getChildren().remove(node);
+	}
+	
 	public void updateProjectileLocation()
 	{
 		List<Projectile> projectiles = currentRoom.getProjectiles();
@@ -330,8 +351,10 @@ public class PlayingScene
 		
 		moveArea.getTransforms().clear();
 		tilesDis.getTransforms().clear();
+		projectileArea.getTransforms().clear();
 		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
 		tilesDis.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+		projectileArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
 	}
 	
 	public void updateAllLocation()

@@ -180,7 +180,7 @@ public class Room
 	public void addProjectile(Projectile projectile)
 	{
 		projectile.setCurrentRoom(this);
-		projectiles.add(projectile);
+		projectiles.add(0,projectile);
 		//System.out.println("added");
 	}
 	
@@ -188,8 +188,11 @@ public class Room
 	
 	public void removeProjectile(Projectile projectile)
 	{
+		//long pasttime = System.nanoTime();
 		projectile.setCurrentRoom(null);
 		projectiles.remove(projectile);
+		//long now = System.nanoTime();
+		//System.out.println("TimePassed removing from room: " + (now - pasttime));
 		//System.out.println("removed");
 	}
 	

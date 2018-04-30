@@ -71,7 +71,12 @@ public class GameManager
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
-			nextFrame(TimeTracker.getTimePassed());
+			long pasttime = System.nanoTime();
+			nextFrame2(TimeTracker.getTimePassed());
+			long now = System.nanoTime();
+			System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
+			pasttime = now;
+			System.out.println("\n\n\n");
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
@@ -199,7 +204,6 @@ public class GameManager
 		System.out.println("Time Passed After update front end: " + (now - pasttime));
 		pasttime = now;
 		
-		System.out.println("\n\n\n");
 		
 		
 		
@@ -285,7 +289,7 @@ public class GameManager
 	public void addProjectile(Projectile projectile)
 	{
 		level.getCurrentRoom().addProjectile(projectile);
-		playingScene.addChildToMoveArea(projectile.getSpriteImageView());
+		playingScene.addProjectileToArea(projectile.getSpriteImageView());
 	}
 	
 	public void updateProjectileLocation(double millisecond)
@@ -302,7 +306,7 @@ public class GameManager
 	public void removeProjectile(Projectile projectile)
 	{
 		level.getCurrentRoom().removeProjectile(projectile);
-		playingScene.removeChildFromMoveArea(projectile.getSpriteImageView());
+		playingScene.removeProjectileFromArea(projectile.getSpriteImageView());
 	}
 	
 	public void movePlayer(double sec)
