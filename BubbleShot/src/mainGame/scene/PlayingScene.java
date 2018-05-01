@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,7 @@ import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import mainGame.GameRunner;
 import mainGame.frontend.HealthBar;
+import mainGame.frontend.MiniLevelMap;
 import javafx.scene.transform.Scale;
 import map.Room;
 import map.Tile.Tile;
@@ -66,6 +68,7 @@ public class PlayingScene
 	private ImageView playerHoldItemDis;
 	
 	private HBox topHealthBox;
+	private Canvas miniMap;
 	
 	public PlayingScene(Room room)
 	{
@@ -81,7 +84,13 @@ public class PlayingScene
 		loadMoveArea();
 		loadProjectileArea();
 		loadHeadsUpDis();
-		root.getChildren().addAll(tilesDis, moveArea, projectileArea , headUpDis);
+		loadMiniMap();
+		root.getChildren().addAll(tilesDis, moveArea, projectileArea , headUpDis, miniMap);
+	}
+	
+	public void loadMiniMap()
+	{
+		miniMap = new Canvas(150, 150);
 	}
 	
 	public void loadProjectileArea()
@@ -357,6 +366,13 @@ public class PlayingScene
 		projectileArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
 	}
 	
+	public void updateMiniMap()
+	{
+		MiniLevelMap.drawMiniMap(miniMap.getGraphicsContext2D(), GameRunner.getGameManager().getLevel());
+		miniMap.setLayoutX(GameRunner.getWindowWidth() - 160);
+		miniMap.setLayoutY(70);
+	}
+	
 	public void updateAllLocation()
 	{
 		updateCharacterLocation();
@@ -366,6 +382,7 @@ public class PlayingScene
 		updateObstacleLocation();
 		updateHeadUpDis();
 		updateCameraLocation();
+		updateMiniMap();
 	}
 	
 	public Scene getScene()
