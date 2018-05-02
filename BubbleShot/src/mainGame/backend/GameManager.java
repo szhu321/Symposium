@@ -71,12 +71,12 @@ public class GameManager
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
-			//long pasttime = System.nanoTime();
+			long pasttime = System.nanoTime();
 			nextFrame(TimeTracker.getTimePassed());
 			long now = System.nanoTime();
-			//System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
-			//pasttime = now;
-			//System.out.println("\n\n\n");
+			System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
+			pasttime = now;
+			System.out.println("\n\n\n");
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}
@@ -240,9 +240,9 @@ public class GameManager
 				}
 				else
 				{
-					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
-					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
-					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
+/////					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
+/////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
+/////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
 			}
@@ -289,7 +289,7 @@ public class GameManager
 	public void addProjectile(Projectile projectile)
 	{
 		level.getCurrentRoom().addProjectile(projectile);
-		playingScene.addProjectileToArea(projectile.getSpriteImageView());
+/////		playingScene.addProjectileToArea(projectile.getSpriteImageView());
 	}
 	
 	public void updateProjectileLocation(double millisecond)
@@ -306,7 +306,7 @@ public class GameManager
 	public void removeProjectile(Projectile projectile)
 	{
 		level.getCurrentRoom().removeProjectile(projectile);
-		playingScene.removeProjectileFromArea(projectile.getSpriteImageView());
+/////		playingScene.removeProjectileFromArea(projectile.getSpriteImageView());
 	}
 	
 	public void movePlayer(double sec)
@@ -401,7 +401,7 @@ public class GameManager
 		if(item != null && !player.isInventoryFull())
 		{
 			level.getCurrentRoom().removeItem(item);
-			playingScene.removeChildFromMoveArea(item.getSpriteImageView());
+/////			playingScene.removeChildFromMoveArea(item.getSpriteImageView());
 			player.addItem(item);
 		}
 	}
@@ -414,7 +414,7 @@ public class GameManager
 			item.setXLocation(player.getXLocation());
 			item.setYLocation(player.getYLocation());
 			level.getCurrentRoom().addItem(item);
-			playingScene.addChildToMoveArea(item.getSpriteImageView());
+/////			playingScene.addChildToMoveArea(item.getSpriteImageView());
 		}
 	}
 	

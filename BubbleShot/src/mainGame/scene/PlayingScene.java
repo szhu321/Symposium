@@ -28,6 +28,7 @@ import javafx.scene.transform.Translate;
 import mainGame.GameRunner;
 import mainGame.frontend.HealthBar;
 import mainGame.frontend.MiniLevelMap;
+import mainGame.frontend.RoomView;
 import javafx.scene.transform.Scale;
 import map.Room;
 import map.Tile.Tile;
@@ -71,6 +72,8 @@ public class PlayingScene
 	private HBox topHealthBox;
 	private Canvas miniMap;
 	
+	private RoomView roomView;
+	
 	public PlayingScene(Room room)
 	{
 		currentRoom = room;
@@ -78,15 +81,29 @@ public class PlayingScene
 		scene = new Scene(root);
 	}
 	
+	public void updateAllLocation()
+	{
+//		updateCharacterLocation();
+//		updatePlayerHoldItem();
+//		updateItemLocation();
+//		updateProjectileLocation();
+//		updateObstacleLocation();
+		updateHeadUpDis();
+		updateCameraLocation();
+//		updateMiniMap();
+		roomView.updateRoom();
+	}
+	
 	public void loadRoom()
 	{
 		root = new Group();
-		loadTiles(currentRoom.getTiles());
-		loadMoveArea();
-		loadProjectileArea();
+//		loadTiles(currentRoom.getTiles());
+//		loadMoveArea();
+//		loadProjectileArea();
+		roomView = new RoomView(currentRoom);
 		loadHeadsUpDis();
 		loadMiniMap();
-		root.getChildren().addAll(tilesDis, moveArea, projectileArea , headUpDis, miniMap);
+		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap);
 	}
 	
 	public void loadMiniMap()
@@ -360,12 +377,14 @@ public class PlayingScene
 	public void updateCameraLocation()
 	{
 		
-		moveArea.getTransforms().clear();
-		tilesDis.getTransforms().clear();
-		projectileArea.getTransforms().clear();
-		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
-		tilesDis.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
-		projectileArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+//		moveArea.getTransforms().clear();
+//		tilesDis.getTransforms().clear();
+//		projectileArea.getTransforms().clear();
+//		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+//		tilesDis.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+//		projectileArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+		roomView.getCanvas().getTransforms().clear();
+		roomView.getCanvas().getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
 	}
 	
 	public void updateMiniMap()
@@ -375,17 +394,7 @@ public class PlayingScene
 		miniMap.setLayoutY(70);
 	}
 	
-	public void updateAllLocation()
-	{
-		updateCharacterLocation();
-		updatePlayerHoldItem();
-		updateItemLocation();
-		updateProjectileLocation();
-		updateObstacleLocation();
-		updateHeadUpDis();
-		updateCameraLocation();
-		updateMiniMap();
-	}
+	
 	
 	public Scene getScene()
 	{

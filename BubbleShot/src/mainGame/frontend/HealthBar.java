@@ -58,6 +58,31 @@ public class HealthBar
 		gc.fillRect(0, 0, width, height);
 	}
 	
+	public static void drawHealthBar(GraphicsContext gc, double x, double y, HealthBar hbar)
+	{
+		double width = hbar.getWidth();
+		double height = hbar.getHeight();
+		double currentHealth = hbar.getCurrentHealth();
+		double maxHealth = hbar.getMaxHealth();
+		//Clear Canvas
+		gc.setFill(Color.WHITE);
+		gc.fillRect(x, y, width, height);
+		
+		//Paint Middle
+		double healthRatio = (currentHealth / maxHealth);
+		if(healthRatio > .5)
+			gc.setFill(Color.GREEN);
+		else if(healthRatio > .2)
+			gc.setFill(Color.YELLOW);
+		else if(healthRatio > 0)
+			gc.setFill(Color.RED);
+		gc.fillRect(x, y, width * healthRatio, height);
+		
+		//Paint Border
+		gc.setStroke(Color.BLACK);
+		gc.strokeRect(x, y, width, height);
+	}
+	
 	public Canvas getCanvas()
 	{
 		return canvas;
@@ -70,4 +95,25 @@ public class HealthBar
 		paintMiddle();
 		paintBorder();
 	}
+
+	public double getWidth() 
+	{
+		return width;
+	}
+
+	public double getHeight() 
+	{
+		return height;
+	}
+
+	public double getMaxHealth()
+	{
+		return maxHealth;
+	}
+
+	public double getCurrentHealth()
+	{
+		return currentHealth;
+	}
+	
 }
