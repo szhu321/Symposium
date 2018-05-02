@@ -10,7 +10,7 @@ public class MiniLevelMap
 	
 	private static void fillBackground(GraphicsContext gc)
 	{
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.rgb(0, 0, 0, 0.5));
 		gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 	
