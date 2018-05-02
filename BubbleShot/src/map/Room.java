@@ -210,8 +210,13 @@ public class Room
 	{
 		characters.add(character);
 		character.setCurrentRoom(this);
-		if(character instanceof Player)
-			isExplored = true;
+		//if(character instanceof Player)
+			//isExplored = true;
+	}
+	
+	public void setIsExplored(boolean t)
+	{
+		isExplored = t;
 	}
 	
 	public void removeCharacter(Character character)

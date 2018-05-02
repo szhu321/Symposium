@@ -39,7 +39,7 @@ public class MiniLevelMap
 						gc.setFill(Color.WHITE);
 						gc.fillRect(x, y, 20, 20);	
 					}
-					if(rooms[i][j] == level.getCurrentRoom())
+					if(rooms[i][j] == level.getCurrentRoom() && (System.currentTimeMillis() % 2000) > 1000)
 					{
 						gc.setFill(Color.YELLOW);
 						gc.fillRect(x, y, 20, 20);

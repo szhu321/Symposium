@@ -51,7 +51,11 @@ public class Level
 	public Room[][] getMap() {return map;}
 	public void setMap(Room[][] map) {this.map = map;}
 	public Room getCurrentRoom() {return currentRoom;}
-	public void setCurrentRoom(int row, int col) {currentRoom = map[row][col];}
+	public void setCurrentRoom(int row, int col) 
+	{
+		currentRoom = map[row][col];
+		currentRoom.setIsExplored(true);
+	}
 	
 	
 	public LevelPortManager getAllTeleporters() 
