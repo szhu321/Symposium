@@ -90,7 +90,7 @@ public class PlayingScene
 //		updateObstacleLocation();
 		updateHeadUpDis();
 		updateCameraLocation();
-//		updateMiniMap();
+		updateMiniMap();
 		roomView.updateRoom();
 	}
 	
