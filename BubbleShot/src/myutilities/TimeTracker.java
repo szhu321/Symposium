@@ -2,21 +2,21 @@ package myutilities;
 
 public class TimeTracker
 {
-	private static long storedTime = System.currentTimeMillis();
+	private static long storedTime = System.nanoTime();
 	
 	public static void resetTime()
 	{
-		storedTime = System.currentTimeMillis();
+		storedTime = System.nanoTime();
 	}
 	
 	/**
 	 * 
 	 * @return The time passed since the last call to resetTime or getTimePassed in milliseconds.
 	 */
-	public static long getTimePassed()
+	public static double getTimePassed()
 	{
-		long timePassed = System.currentTimeMillis() - storedTime;
-		storedTime = System.currentTimeMillis();
-		return timePassed;
+		long timePassed = System.nanoTime() - storedTime;
+		storedTime = System.nanoTime();
+		return timePassed / 1000000.0;
 	}
 }

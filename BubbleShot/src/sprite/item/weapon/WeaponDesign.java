@@ -31,7 +31,7 @@ public class WeaponDesign
 	public static Sniper getSniperDesignOne(double x, double y)
 	{
 		double damage = 15;
-		double attackRate = .5;
+		double attackRate = .002;
 		double attackRange = 1500;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
 		Sniper sniper = new Sniper("Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);

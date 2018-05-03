@@ -104,7 +104,7 @@ public class GameManager
 	 * Runs the next frame;
 	 * @param second - the time passed since the last frame.
 	 */
-	public void nextFrame(long milliSecond)
+	public void nextFrame(double milliSecond)
 	{
 		movePlayer(((double)milliSecond) / 1000);
 		moveEnemy(((double)milliSecond) / 1000);
