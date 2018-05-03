@@ -2,6 +2,8 @@ package mainGame.frontend;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Rotate;
 import map.Room;
@@ -15,6 +17,9 @@ import sprite.projectile.Projectile;
 
 public class RoomView
 {
+	private static boolean displayCharacterNames = true;
+	private static boolean displayItemNames = true;
+	
 	private Canvas canvas;
 	private Room room;
 	
@@ -39,10 +44,10 @@ public class RoomView
 	public static void drawRoom(GraphicsContext gc, Room room)
 	{
 		drawTiles(gc, room);
-		drawObstacles(gc, room);
-		drawCharacters(gc, room);
 		drawItems(gc, room);
+		drawCharacters(gc, room);
 		drawProjectiles(gc, room);
+		drawObstacles(gc, room);
 	}
 	
 	public static void drawTiles(GraphicsContext gc, Room room)
@@ -79,6 +84,17 @@ public class RoomView
 		for(Character character : room.getCharacters())
 			if(character instanceof Enemy)
 				drawEnemyHealthBar(gc, (Enemy)character);
+		if(displayCharacterNames)
+		{
+			gc.save();
+			gc.setFont(new Font("comic sans ms", 20));
+			gc.setFill(Color.BLACK);
+			for(Character character : room.getCharacters())
+			{
+				gc.fillText(character.getSpriteName(), character.getXLocation(), character.getYLocation() - 12, character.getWidth());
+			}
+			gc.restore();
+		}
 	}
 	
 	private static void drawEnemyHealthBar(GraphicsContext gc, Enemy enemy)
@@ -104,6 +120,17 @@ public class RoomView
 		for(Item item : room.getItems())
 		{
 			gc.drawImage(item.getSpriteImage(), item.getXLocation(), item.getYLocation());
+		}
+		if(displayItemNames)
+		{
+			gc.save();
+			gc.setFont(new Font("comic sans ms", 20));
+			gc.setFill(Color.BLACK);
+			for(Item item : room.getItems())
+			{
+				gc.fillText(item.getSpriteName(), item.getXLocation(), item.getYLocation() - 5, item.getWidth());
+			}
+			gc.restore();
 		}
 	}
 	

@@ -71,12 +71,12 @@ public class GameManager
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
-			//long pasttime = System.nanoTime();
+			long pasttime = System.nanoTime();
 			nextFrame(TimeTracker.getTimePassed());
-			//long now = System.nanoTime();
-			//System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
-			//pasttime = now;
-			//System.out.println("\n\n\n");
+			long now = System.nanoTime();
+			System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
+			pasttime = now;
+			System.out.println("\n\n\n");
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 	}

@@ -7,7 +7,7 @@ public class DamagePot extends Potion
 	public DamagePot(String fileName, double xLocation, double yLocation, String itemType, String color, 
 			Effect effect, boolean isCooledDown, double coolDownTime) 
 	{
-		super("","file:resources/potionPictures/damagePotion.png", xLocation, yLocation, 
+		super("AttackPot","file:resources/potionPictures/damagePotion.png", xLocation, yLocation, 
 				itemType, color, effect, isCooledDown, coolDownTime);
 	}
 
