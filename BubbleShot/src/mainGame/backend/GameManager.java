@@ -72,7 +72,7 @@ public class GameManager
 		{
 			//Runs in 60FPS
 			long pasttime = System.nanoTime();
-			nextFrame(TimeTracker.getTimePassed());
+			nextFrame(1000.0/framesPerSec);
 			long now = System.nanoTime();
 			System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
 			pasttime = now;
