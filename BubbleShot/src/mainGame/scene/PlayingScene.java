@@ -112,98 +112,24 @@ public class PlayingScene
 		//miniMap.setBlendMode(BlendMode.EXCLUSION);
 	}
 	
-	public void loadProjectileArea()
+	public void updateMiniMap()
 	{
-		projectileArea = new Group();
-		List<Projectile> projectiles = currentRoom.getProjectiles();
-		for(Projectile pro: projectiles)
-			projectileArea.getChildren().add(pro.getSpriteImageView());
+		MiniLevelMap.drawMiniMap(miniMap.getGraphicsContext2D(), GameRunner.getGameManager().getLevel());
+		miniMap.setLayoutX(GameRunner.getWindowWidth() - 160);
+		miniMap.setLayoutY(70);
 	}
 	
-	public void loadTiles(Tile[][] tiles)
+	public void updateCameraLocation()
 	{
-		tilesDis = new Group();
-		for(int i = 0; i < tiles.length; i++)
-			for(int j = 0; j < tiles[0].length; j++)
-				tilesDis.getChildren().add(tiles[i][j].getSpriteImageView());
-		updateTileLocation();
-	}
-	
-	public void updateTileLocation()
-	{
-		Tile[][] tiles = currentRoom.getTiles();
-		for(Tile[] tileArr: tiles)
-		{
-			for(Tile tile : tileArr)
-			{
-				tile.getSpriteImageView().setTranslateX(tile.getXLocation());
-				tile.getSpriteImageView().setTranslateY(tile.getYLocation());
-				tile.getSpriteImageView().setRotate(tile.getFaceAngle());
-			}
-		}
-	}
-	
-	public void loadMoveArea()
-	{
-		moveArea = new Group();
-		List<Obstacle> obstacles = currentRoom.getObstacles();
-		List<Character> characters = currentRoom.getCharacters();
-		List<Item> items = currentRoom.getItems();
 		
-		for(Item item: items)
-			moveArea.getChildren().add(item.getSpriteImageView());
-		for(Character character: characters)
-		{
-			moveArea.getChildren().add(character.getSpriteImageView());
-			if(character instanceof Enemy)
-			{
-				moveArea.getChildren().add(((Enemy) character).getWeapon().getSpriteImageView());
-			}
-		}
-			
-		
-		for(Obstacle obs: obstacles)
-			moveArea.getChildren().add(obs.getSpriteImageView());
-		playerHoldItemDis = new ImageView();
-		playerHoldItemDis.getTransforms().add(new Scale(.5,.5));
-		moveArea.getChildren().add(playerHoldItemDis);
-		loadEnemyHealthBar();
-	}
-	
-	private void loadEnemyHealthBar()
-	{
-		List<Character> characters = currentRoom.getCharacters();
-		for(int i = 0; i < characters.size(); i++)
-		{
-			Character currentChar = characters.get(i);
-			if(currentChar instanceof Enemy)
-			{
-				moveArea.getChildren().add(((Enemy) currentChar).getHealthbar().getCanvas());
-			}
-		}
-	}
-	
-	private GridPane getInventoryDisGUI()
-	{
-		GridPane bottomBox = new GridPane();
-		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
-		bottomBox.setHgap(20);
-		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
-		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
-		{
-			StackPane stack = new StackPane();
-			playerInventoryDis[i] = new ImageView();
-			Text text = new Text("" + (i + 1));
-			text.setFont(new Font(22));
-			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
-			stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
-			stack.getChildren().add(text);
-			stack.getChildren().add(playerInventoryDis[i]);
-			stack.setAlignment(text, Pos.BOTTOM_RIGHT);
-			bottomBox.add(stack, i, 0);
-		}
-		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
-		return bottomBox;
+//		moveArea.getTransforms().clear();
+//		tilesDis.getTransforms().clear();
+//		projectileArea.getTransforms().clear();
+//		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+//		tilesDis.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+//		projectileArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
+		roomView.getCanvas().getTransforms().clear();
+		roomView.getCanvas().getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
 	}
 	
 	public void loadHeadsUpDis()
@@ -279,6 +205,117 @@ public class PlayingScene
 				
 		}
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
+	}
+	
+	private GridPane getInventoryDisGUI()
+	{
+		GridPane bottomBox = new GridPane();
+		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
+		bottomBox.setHgap(20);
+		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
+		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
+		{
+			StackPane stack = new StackPane();
+			playerInventoryDis[i] = new ImageView();
+			Text text = new Text("" + (i + 1));
+			text.setFont(new Font(22));
+			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
+			stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
+			stack.getChildren().add(text);
+			stack.getChildren().add(playerInventoryDis[i]);
+			stack.setAlignment(text, Pos.BOTTOM_RIGHT);
+			bottomBox.add(stack, i, 0);
+		}
+		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
+		return bottomBox;
+	}
+	
+	public Scene getScene()
+	{
+		return scene;
+	}
+	
+	public Room getCurrentRoom()
+	{
+		return currentRoom;
+	}
+	
+	public void setCurrentRoom(Room room)
+	{
+		currentRoom = room;
+	}
+	
+	/* Node GUI approach. No longer in use.
+	
+	public void loadProjectileArea()
+	{
+		projectileArea = new Group();
+		List<Projectile> projectiles = currentRoom.getProjectiles();
+		for(Projectile pro: projectiles)
+			projectileArea.getChildren().add(pro.getSpriteImageView());
+	}
+	
+	public void loadTiles(Tile[][] tiles)
+	{
+		tilesDis = new Group();
+		for(int i = 0; i < tiles.length; i++)
+			for(int j = 0; j < tiles[0].length; j++)
+				tilesDis.getChildren().add(tiles[i][j].getSpriteImageView());
+		updateTileLocation();
+	}
+	
+	public void updateTileLocation()
+	{
+		Tile[][] tiles = currentRoom.getTiles();
+		for(Tile[] tileArr: tiles)
+		{
+			for(Tile tile : tileArr)
+			{
+				tile.getSpriteImageView().setTranslateX(tile.getXLocation());
+				tile.getSpriteImageView().setTranslateY(tile.getYLocation());
+				tile.getSpriteImageView().setRotate(tile.getFaceAngle());
+			}
+		}
+	}
+	
+	public void loadMoveArea()
+	{
+		moveArea = new Group();
+		List<Obstacle> obstacles = currentRoom.getObstacles();
+		List<Character> characters = currentRoom.getCharacters();
+		List<Item> items = currentRoom.getItems();
+		
+		for(Item item: items)
+			moveArea.getChildren().add(item.getSpriteImageView());
+		for(Character character: characters)
+		{
+			moveArea.getChildren().add(character.getSpriteImageView());
+			if(character instanceof Enemy)
+			{
+				moveArea.getChildren().add(((Enemy) character).getWeapon().getSpriteImageView());
+			}
+		}
+			
+		
+		for(Obstacle obs: obstacles)
+			moveArea.getChildren().add(obs.getSpriteImageView());
+		playerHoldItemDis = new ImageView();
+		playerHoldItemDis.getTransforms().add(new Scale(.5,.5));
+		moveArea.getChildren().add(playerHoldItemDis);
+		loadEnemyHealthBar();
+	}
+	
+	private void loadEnemyHealthBar()
+	{
+		List<Character> characters = currentRoom.getCharacters();
+		for(int i = 0; i < characters.size(); i++)
+		{
+			Character currentChar = characters.get(i);
+			if(currentChar instanceof Enemy)
+			{
+				moveArea.getChildren().add(((Enemy) currentChar).getHealthbar().getCanvas());
+			}
+		}
 	}
 	
 	public void removeChildFromMoveArea(Node node)
@@ -374,40 +411,5 @@ public class PlayingScene
 		}
 	}	
 	
-	public void updateCameraLocation()
-	{
-		
-//		moveArea.getTransforms().clear();
-//		tilesDis.getTransforms().clear();
-//		projectileArea.getTransforms().clear();
-//		moveArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
-//		tilesDis.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
-//		projectileArea.getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
-		roomView.getCanvas().getTransforms().clear();
-		roomView.getCanvas().getTransforms().add(new Translate(Camera.getxCoord(), Camera.getyCoord()));
-	}
-	
-	public void updateMiniMap()
-	{
-		MiniLevelMap.drawMiniMap(miniMap.getGraphicsContext2D(), GameRunner.getGameManager().getLevel());
-		miniMap.setLayoutX(GameRunner.getWindowWidth() - 160);
-		miniMap.setLayoutY(70);
-	}
-	
-	
-	
-	public Scene getScene()
-	{
-		return scene;
-	}
-	
-	public Room getCurrentRoom()
-	{
-		return currentRoom;
-	}
-	
-	public void setCurrentRoom(Room room)
-	{
-		currentRoom = room;
-	}
+	*/
 }

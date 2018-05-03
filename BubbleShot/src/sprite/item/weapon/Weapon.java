@@ -73,6 +73,7 @@ public abstract class Weapon extends Item
 			projectile.setFaceAngle(character.getFaceAngle());
 			projectile.setXLocation(characterXCenter);
 			projectile.setYLocation(characterYCenter);
+			projectile.setDamage(projectile.getDamage() * character.getEffectManager().getDamageMultiplier());
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
