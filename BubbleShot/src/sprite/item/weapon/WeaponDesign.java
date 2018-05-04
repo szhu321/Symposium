@@ -31,13 +31,22 @@ public class WeaponDesign
 	public static Sniper getSniperDesignOne(double x, double y)
 	{
 		double damage = 15;
-		double attackRate = .002;
+		double attackRate = .5;
 		double attackRange = 1500;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
 		Sniper sniper = new Sniper("Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);
 		return sniper;
 	}
 	
+	public static Shotgun getShotgunDesignOne(double x, double y)
+	{
+		double damage = 20;
+		double attackRate = .6;
+		double attackRange = 500;
+		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
+		Shotgun shotgun = new Shotgun("Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);
+		return shotgun;
+	}
 	public static Sword getSwordDesignOne()
 	{
 		return null;

@@ -37,6 +37,7 @@ public class RoomDesign
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
 		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
+		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500));
 		return room;
 	}
 	

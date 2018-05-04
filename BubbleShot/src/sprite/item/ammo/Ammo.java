@@ -1,7 +1,8 @@
 package sprite.item.ammo;
 
 import sprite.item.Item;
-
+import sprite.character.Character;
+import sprite.character.player.Player;
 public class Ammo extends Item
 {
 	int currentAmmo;
@@ -18,7 +19,8 @@ public class Ammo extends Item
 	@Override
 	public boolean useItem() 
 	{
-		currentAmmo--;
+		Character character = this.getPossessor();
+		((Player)character).setCurrentAmmo(((Player)character).getCurrentAmmo() + currentAmmo);
 		return false;
 	}
 	
