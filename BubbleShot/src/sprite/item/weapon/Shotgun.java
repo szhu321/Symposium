@@ -10,12 +10,16 @@ import sprite.projectile.Projectile;
 public class Shotgun extends Weapon
 {
 
+	private int offsetAngle;
+	private int bulletPerShot;
+	
 	public Shotgun(String spriteName, double xLocation, double yLocation, String itemType,
-			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile) 
+			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot) 
 	{
 		super(spriteName,"file:resources/weaponPictures/sniper.png", xLocation, yLocation, itemType, isCooledDown, damage, attackRate, attackRange, projectile,
 				110, 60);
-		
+		this.offsetAngle = offsetAngle;
+		this.bulletPerShot = bulletPerShot;
 	}
 	
 	public boolean useItem()
@@ -24,7 +28,7 @@ public class Shotgun extends Weapon
 		{
 			//long pasttime = System.nanoTime();
 			//Creating a copy of the weapon's projectile;
-			int numOfBullets = 5;
+			int numOfBullets = bulletPerShot;
 			
 			while(numOfBullets > 0)
 			{
@@ -38,7 +42,7 @@ public class Shotgun extends Weapon
 				double projectileStartY = (characterCenterY - projectile.getHeight() / 2) + (Math.sin(Math.toRadians(character.getFaceAngle())) * character.getHeight());
 				
 				int flip = (int)(Math.random() * 2);
-				int angleOffset = (int)(Math.random() * 10);
+				int angleOffset = (int)(Math.random() * offsetAngle);
 				double faceAngle;
 				if(flip == 0)
 					faceAngle = character.getFaceAngle() + angleOffset;
