@@ -64,7 +64,7 @@ public class Room
 	
 	
 	
-	private RoomPortManager roomTeleporterManager=new RoomPortManager();
+	private RoomPortManager roomTeleporterManager = new RoomPortManager();
 	
 	/**
 	 * Creates a clear Room with specified tile number.

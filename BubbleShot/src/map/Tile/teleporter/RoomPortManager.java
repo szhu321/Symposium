@@ -14,4 +14,30 @@ public class RoomPortManager
 
 	public List<Teleporter> getRoomPorters() {return roomPorters;}
 	public void setRoomPorters(List<Teleporter> roomPorters) {this.roomPorters = roomPorters;}
+	
+	public void addTeleporter(Teleporter tele)
+	{
+		roomPorters.add(tele);
+	}
+	
+	public void removeTeleporter(Teleporter tele)
+	{
+		roomPorters.remove(tele);
+	}
+	
+	public void activateAllTeleporters()
+	{
+		for(Teleporter tele : roomPorters)
+		{
+			tele.setActivated(true);
+		}
+	}
+	
+	public void deactivateAllTelePorters()
+	{
+		for(Teleporter tele : roomPorters)
+		{
+			tele.setActivated(false);
+		}
+	}
 }

@@ -246,6 +246,18 @@ public class GameManager
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
 			}
+		//Checks to see if any enemy are still alive
+		boolean isEnemyAlive = false;
+		for(Character character : characters)
+		{
+			if(character instanceof Enemy)
+			{
+				isEnemyAlive = true;
+				break;
+			}
+		}
+		if(!isEnemyAlive)
+			level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
 	}
 	
 	private void readjustMousePosDueToCameraMovement()

@@ -15,7 +15,7 @@ public class Teleporter extends Tile
 		
 		super("Teleporter", "file:resources/tile/teleporttile.png", xPos, yPos, 100, 100, 0);
 		this.id=id;
-		activated = true;
+		activated = false;
 	}
 
 	public int getId()
