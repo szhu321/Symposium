@@ -508,8 +508,8 @@ public class GameManager
 									if(!enemiesAlive)
 									{
 										this.level.setCurrentRoom(row, col);
-										player.setXLocation(currentTele.getConnectedTeleporter().getXLocation());
-										player.setYLocation(currentTele.getConnectedTeleporter().getYLocation());
+										player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
+										player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
 										changeRoom();
 										break;
 									}

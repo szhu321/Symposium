@@ -95,7 +95,7 @@ public class RoomView
 		if(displayCharacterNames)
 		{
 			gc.save();
-			gc.setFont(new Font("comic sans ms", 20));
+			gc.setFont(new Font("arial", 16));
 			gc.setFill(Color.BLACK);
 			for(Character character : room.getCharacters())
 			{
@@ -132,11 +132,11 @@ public class RoomView
 		if(displayItemNames)
 		{
 			gc.save();
-			gc.setFont(new Font("comic sans ms", 20));
+			gc.setFont(new Font("arial", 16));
 			gc.setFill(Color.BLACK);
 			for(Item item : room.getItems())
 			{
-				gc.fillText(item.getSpriteName(), item.getXLocation(), item.getYLocation() - 5, item.getWidth());
+				gc.fillText(item.getSpriteName(), item.getXLocation() - 3, item.getYLocation() - 5, item.getWidth() + 6);
 			}
 			gc.restore();
 		}
