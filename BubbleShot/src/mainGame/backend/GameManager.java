@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import mainGame.GameRunner;
 import mainGame.scene.PlayingScene;
@@ -41,6 +42,7 @@ public class GameManager
 	private Level level;
 	private Player player;
 	private PlayingScene playingScene;
+	private static Stage window;
 	private int framesPerSec = 60;
 	
 	private Boolean up = false;
@@ -65,7 +67,7 @@ public class GameManager
 		setSceneControls(playingScene.getScene());
 	}
 	
-	public void startGame()
+	public void startGame(Stage window)
 	{
 		TimeTracker.resetTime();
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
@@ -79,6 +81,13 @@ public class GameManager
 			//System.out.println("\n\n\n");
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
+		this.window = window;
+		setScene(playingScene.getScene());
+	}
+	
+	public static void setScene(Scene scene)
+	{
+		window.setScene(scene);
 	}
 	
 	public void changeRoom()

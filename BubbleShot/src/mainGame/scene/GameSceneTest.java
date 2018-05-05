@@ -20,9 +20,8 @@ public class GameSceneTest extends Application
 		window = primaryStage;
 		window.setTitle("BubbleSHOT");
 		
-		MenuScene menuScene = new MenuScene();
+		MenuScene menuScene = new MenuScene(window);
 		
-		window.setScene(menuScene.getScene());
 		window.show();
 		
 	}

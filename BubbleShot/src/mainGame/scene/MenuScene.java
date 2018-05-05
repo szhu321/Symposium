@@ -5,26 +5,32 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MenuScene
 {
-	private Scene scene;
-	private BorderPane layout;
+	private Scene menuScene;
+	private BorderPane menuScenelayout;
+	
+	private Stage window;
+	
 	
 	private Button playBtn;
 	private Button mapEditorBtn;
 	private Button settingsBtn;
 	private Button QuitBtn;
 	
-	public MenuScene()
+	public MenuScene(Stage window)
 	{
 		loadMenu();
-		scene = new Scene(layout, 700, 700);
+		menuScene = new Scene(menuScenelayout, 700, 700);
+		this.window = window;
+		window.setScene(menuScene);
 	}
 	
 	public void loadMenu()
 	{
-		layout = new BorderPane();
+		menuScenelayout = new BorderPane();
 		loadButtons();
 	}
 	
@@ -39,7 +45,7 @@ public class MenuScene
 		btnContainer.setAlignment(Pos.CENTER);
 		
 		btnContainer.getChildren().addAll(playBtn, mapEditorBtn, settingsBtn, QuitBtn);
-		layout.setCenter(btnContainer);
+		menuScenelayout.setCenter(btnContainer);
 		
 		playBtn.setOnAction(event -> 
 		{
@@ -62,8 +68,8 @@ public class MenuScene
 		});
 	}
 
-	public Scene getScene()
+	public Scene getMenuScene()
 	{
-		return scene;
+		return menuScene;
 	}
 }
