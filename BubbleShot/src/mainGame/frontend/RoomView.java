@@ -90,8 +90,15 @@ public class RoomView
 		}
 		gc.restore();
 		for(Character character : room.getCharacters())
+		{
+			//drawCharacterActiveEffects(gc, character);
 			if(character instanceof Enemy)
+			{
 				drawEnemyHealthBar(gc, (Enemy)character);
+			}
+		}
+			
+				
 		if(displayCharacterNames)
 		{
 			gc.save();
@@ -103,6 +110,32 @@ public class RoomView
 			}
 			gc.restore();
 		}
+	}
+	
+	private static void drawCharacterActiveEffects(GraphicsContext gc, Character character)
+	{
+		gc.save();
+		if(character.getEffectManager().getDamageMultiplier() > 1)
+		{
+			gc.setFill(Color.RED);
+			gc.fillOval(character.getXLocation(), character.getYLocation() - 16, 5, 5);
+		}
+		else if(character.getEffectManager().getDamageMultiplier() < 1)
+		{
+			gc.setFill(Color.DARKRED);
+			gc.fillOval(character.getXLocation(), character.getYLocation() - 16, 5, 5);
+		}	
+		if(character.getEffectManager().getSpeedMultiplier() > 1)
+		{
+			gc.setFill(Color.BLUE);
+			gc.fillOval(character.getXLocation() + 6, character.getYLocation() - 16, 5, 5);
+		}
+		else if(character.getEffectManager().getSpeedMultiplier() < 1)
+		{
+			gc.setFill(Color.DARKBLUE);
+			gc.fillOval(character.getXLocation() + 6, character.getYLocation() - 16, 5, 5);
+		}
+		gc.restore();
 	}
 	
 	private static void drawEnemyHealthBar(GraphicsContext gc, Enemy enemy)
