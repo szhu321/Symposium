@@ -14,6 +14,18 @@ public class ProjectileDesign
 		return bullet;
 	}
 	
+	public static Projectile getEBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/projectilePictures/ebullet.png";
+		double width = 18;
+		double height = 18;
+		double travelDistance = 400;
+		double speed = 500;
+		int ammoCount = 5;
+		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, ammoCount);
+		return bullet;
+	}
+	
 	public static Projectile getSniperBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
 	{
 		String fileName = "file:resources/projectilePictures/bullet.png";

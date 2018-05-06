@@ -28,6 +28,13 @@ public class WeaponDesign
 		return pistol;
 	}
 	
+	public static Pistol getEPistolDesignOne(double x, double y)
+	{
+		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
+		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, 5, .2, 400, projectile);
+		return pistol;
+	}
+	
 	public static Sniper getSniperDesignOne(double x, double y)
 	{
 		double damage = 15;
