@@ -96,9 +96,7 @@ public class RoomView
 			{
 				drawEnemyHealthBar(gc, (Enemy)character);
 			}
-		}
-			
-				
+		}	
 		if(displayCharacterNames)
 		{
 			gc.save();

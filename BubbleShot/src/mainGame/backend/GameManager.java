@@ -337,7 +337,7 @@ public class GameManager
 		double changeAmount = player.getSpeed() * sec;
 		Room currentRoom = level.getCurrentRoom();
 		if(shift)
-			changeAmount *= 1.5;
+			changeAmount *= 1.2;
 		if(left && currentRoom.canCharacterMove(player, Constants.MOVE_DIR_LEFT, changeAmount))
 			deltaX -= changeAmount;
 		if(right && currentRoom.canCharacterMove(player, Constants.MOVE_DIR_RIGHT, changeAmount))

@@ -9,8 +9,13 @@ public class PlayerDesign
 	{
 		String fileName = "file:resources/player/player1.png";
 		Item[] inventory = new Item[6];
-		double health = 50;
-		Player player = new Player(name, fileName, 100, 100, 60, 60, health, 100, inventory, 100);
+		//The health the player starts with.
+		double health = 70;
+		//Players speed in pixels per second.
+		double speed = 130;
+		//The ammo the player starts with.
+		int ammoCount = 200;
+		Player player = new Player(name, fileName, 100, 100, 60, 60, health, speed, inventory, ammoCount);
 		player.addItem(WeaponDesign.getPistolDesignOne(100, 100));
 		return player;
 	}
