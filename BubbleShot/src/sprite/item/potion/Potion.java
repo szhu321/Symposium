@@ -2,9 +2,10 @@ package sprite.item.potion;
 
 import sprite.character.effect.Effect;
 import sprite.character.player.Player;
+import sprite.item.Consumable;
 import sprite.item.Item;
 
-public class Potion extends Item
+public class Potion extends Item implements Consumable
 {
 	private String potionColor;
 	private Effect potionEffect;

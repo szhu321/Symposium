@@ -8,6 +8,7 @@ import sprite.character.Character;
 import sprite.character.enemy.ai.AI;
 import sprite.character.player.Player;
 import sprite.item.Item;
+import sprite.item.weapon.Weapon;
 
 public abstract class Enemy extends Character
 {
@@ -45,7 +46,7 @@ public abstract class Enemy extends Character
 	@Override
 	public void useCurrentItem(String input) 
 	{
-		weapon.useItem();
+		((Weapon) weapon).useItem();
 	}
 	
 	public void coolDownWeapons(double sec)

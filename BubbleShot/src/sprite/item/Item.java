@@ -5,7 +5,7 @@ import sprite.Sprite;
 import sprite.character.Character;
 import sprite.character.player.Player;
 
-public abstract class Item extends Sprite implements Consumable
+public abstract class Item extends Sprite
 {
 	public static final String WEAPON = "weapon";
 	public static final String POTION = "potion";

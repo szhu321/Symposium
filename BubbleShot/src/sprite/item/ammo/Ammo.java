@@ -1,9 +1,10 @@
 package sprite.item.ammo;
 
+import sprite.item.Consumable;
 import sprite.item.Item;
 import sprite.character.Character;
 import sprite.character.player.Player;
-public class Ammo extends Item
+public class Ammo extends Item implements Consumable
 {
 	int currentAmmo;
 	
