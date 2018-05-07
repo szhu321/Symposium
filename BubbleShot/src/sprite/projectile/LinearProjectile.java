@@ -8,16 +8,16 @@ public class LinearProjectile extends Projectile
 {
 	private LinearParaEquation travelPath;
 	
-	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range, int ammoCount)
+	public LinearProjectile(String spriteName, String fileName,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range)
 	{
-		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, range, ammoCount);
+		super(spriteName, fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, range);
 		//travelPath = new LinearParaEquation(faceAngle, xLocation, yLocation);
 		createTravelPath(xLocation, yLocation, faceAngle, speed);
 	}
 	
-	public LinearProjectile(String spriteName, Image image,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range, int ammoCount)
+	public LinearProjectile(String spriteName, Image image,String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range)
 	{
-		super(spriteName, image, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, range, ammoCount);
+		super(spriteName, image, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, range);
 		//travelPath = new LinearParaEquation(faceAngle, xLocation, yLocation);
 		createTravelPath(xLocation, yLocation, faceAngle, speed);
 	}

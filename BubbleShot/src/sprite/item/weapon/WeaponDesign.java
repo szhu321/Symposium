@@ -23,15 +23,23 @@ public class WeaponDesign
 	
 	public static Pistol getPistolDesignOne(double x, double y)
 	{
+		int ammoUsedPerShot = 1;
+		double damage = 5;
+		double shootingSpeed = .2;
+		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, 5, .2, 400, projectile);
+		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot);
 		return pistol;
 	}
 	
 	public static Pistol getEPistolDesignOne(double x, double y)
 	{
+		int ammoUsedPerShot = 1;
+		double damage = 5;
+		double shootingSpeed = .2;
+		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
-		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, 5, .2, 400, projectile);
+		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot);
 		return pistol;
 	}
 	
@@ -40,8 +48,9 @@ public class WeaponDesign
 		double damage = 15;
 		double attackRate = .5;
 		double attackRange = 1500;
+		int ammoUsedPerShot = 3;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
-		Sniper sniper = new Sniper("Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);
+		Sniper sniper = new Sniper("Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, ammoUsedPerShot);
 		return sniper;
 	}
 	
@@ -50,8 +59,9 @@ public class WeaponDesign
 		double damage = 50;
 		double attackRate = .01;
 		double attackRange = 5000;
+		int ammoUsedPerShot = 0;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
-		Sniper sniper = new Sniper("Legendary Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);
+		Sniper sniper = new Sniper("Legendary Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, ammoUsedPerShot);
 		return sniper;
 	}
 	
@@ -63,7 +73,8 @@ public class WeaponDesign
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
 		int offsetAngle = 10;
 		int bulletPerShot = 5;
-		Shotgun shotgun = new Shotgun("Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot);
+		int ammoUsedPerShot = 5;
+		Shotgun shotgun = new Shotgun("Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot);
 		return shotgun;
 	}
 	
@@ -74,8 +85,9 @@ public class WeaponDesign
 		double attackRange = 500;
 		int offsetAngle = 360;
 		int bulletPerShot = 450;
+		int ammoUsedPerShot = 0;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		Shotgun shotgun = new Shotgun("Legendary Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot);
+		Shotgun shotgun = new Shotgun("Legendary Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot);
 		return shotgun;
 	}
 	

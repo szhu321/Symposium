@@ -13,6 +13,6 @@ public class Armor extends Item
 			boolean isCooledDown, double coolDownTime, double width, double height) 
 	{
 		super(spriteName, fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime, width, height);
-		// TODO Auto-generated constructor stub
+		
 	}
 }

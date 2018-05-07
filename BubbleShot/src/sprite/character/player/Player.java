@@ -84,12 +84,11 @@ public class Player extends Character
 		}
 		if(input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
 		{
-			if(currentAmmo - ((Weapon) inventory[currentItemIdx]).getProjectile().getAmmoCount() >= 0)
+			if(currentAmmo - ((Weapon) inventory[currentItemIdx]).getAmmoUsed() >= 0)
 			{
 				if(((Weapon) inventory[currentItemIdx]).useItem());
-					//currentAmmo -= ((Weapon) inventory[currentItemIdx]).getProjectile().getAmmoCount();
+					currentAmmo -= ((Weapon) inventory[currentItemIdx]).getAmmoUsed();
 			}
-			
 		}
 	}
 	
@@ -121,6 +120,8 @@ public class Player extends Character
 	public void setScore(int score) {this.score = score;}
 	public void setCurrentAmmo(int currentAmmo) {this.currentAmmo = currentAmmo;}
 	public Item[] getInventory() {return inventory;}
+	
+	
 	
 	public void setCurrentItemIdx(int currentItemIdx)
 	{

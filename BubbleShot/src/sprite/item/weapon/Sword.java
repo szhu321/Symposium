@@ -8,7 +8,8 @@ public class Sword extends Weapon
 			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile) 
 	{
 		super("","file:resources/weaponPictures/sword.png", xLocation, yLocation, itemType, 
-				isCooledDown, damage, attackRate, attackRange, projectile, 60, 60);
+				isCooledDown, damage, attackRate, attackRange, projectile, 60, 60, 0);
+		setAmmoUsed(0);
 	}
 
 }

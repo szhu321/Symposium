@@ -8,7 +8,7 @@ public class Fist extends Weapon
 			boolean isCooledDown, double damage, double attackRate, double attackRange,  Projectile projectile) 
 	{
 		super("",fileName, xLocation, yLocation, itemType, isCooledDown, damage, attackRate, 
-				attackRange, projectile, 30, 30);
+				attackRange, projectile, 30, 30, 0);
 	}
 	
 }

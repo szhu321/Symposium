@@ -14,7 +14,7 @@ public class PlayerDesign
 		//Players speed in pixels per second.
 		double speed = 130;
 		//The ammo the player starts with.
-		int ammoCount = 200;
+		int ammoCount = 2000;
 		Player player = new Player(name, fileName, 100, 100, 60, 60, health, speed, inventory, ammoCount);
 		player.addItem(WeaponDesign.getPistolDesignOne(100, 100));
 		return player;

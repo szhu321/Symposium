@@ -10,7 +10,7 @@ public class EnemyDesign
 	public static Enemy getRegularDesignOne(double x, double y, Player player)
 	{
 		String fileName = "file:resources/enemy/enemy.png";
-		Weapon pistol=WeaponDesign.getShotgunDesignEPIC(x, y);
+		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
 		Enemy enemy=new Regular("Brian",fileName, x, y,50, 50, 60, 60, pistol,player);
 		return enemy;

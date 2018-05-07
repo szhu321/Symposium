@@ -13,9 +13,10 @@ public abstract class Weapon extends Item
 	private double weaponDmg;
 	private double weaponAttackRange;
 	private Projectile projectile;
+	private int ammoUsed;
 	
 	public Weapon(String spriteName,String fileName, double xLocation, double yLocation, String itemType, 
-			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, double width, double height) 
+			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, itemType, isCooledDown, attackRate, width, height);
 		weaponDmg = damage;
@@ -23,11 +24,22 @@ public abstract class Weapon extends Item
 		this.projectile = projectile;
 		this.projectile.setRange(weaponAttackRange);
 		this.projectile.setDamage(weaponDmg);
+		this.ammoUsed = ammoUsed;
 	}
 	
 	public double getDamage()
 	{
 		return weaponDmg;
+	}
+	
+	public int getAmmoUsed() 
+	{
+		return ammoUsed;
+	}
+
+	public void setAmmoUsed(int ammoUsed) 
+	{
+		this.ammoUsed = ammoUsed;
 	}
 	
 	public double getAttackRange()

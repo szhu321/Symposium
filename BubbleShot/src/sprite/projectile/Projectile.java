@@ -21,28 +21,25 @@ public abstract class Projectile extends Sprite
 	private String bulletOwner;
 	private double range;
 	private Room currentRoom;
-	private int ammoCount;
 	
 	//private double aoeRaduis; - The area of effect radius.
 	
-	public Projectile(String spriteName, String fileName, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range, int ammoCount)
+	public Projectile(String spriteName, String fileName, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range)
 	{
 		super(spriteName ,fileName, xLocation, yLocation, width, height, faceAngle);
 		this.setSpeed(speed);
 		this.bulletOwner = bulletOwner;
 		this.damage = damage;
 		this.range = range;
-		this.ammoCount = ammoCount;
 	}
 	
-	public Projectile(String spriteName, Image image, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range, int ammoCount)
+	public Projectile(String spriteName, Image image, String bulletOwner, double xLocation, double yLocation, double width, double height, double speed, double faceAngle, double damage, double range)
 	{
 		super(spriteName ,image, xLocation, yLocation, width, height, faceAngle);
 		this.setSpeed(speed);
 		this.bulletOwner = bulletOwner;
 		this.damage = damage;
 		this.range = range;
-		this.ammoCount = ammoCount;
 	}
 	
 	public double getDamage() {return damage;}
@@ -64,21 +61,10 @@ public abstract class Projectile extends Sprite
 	
 	public Projectile getCopy()
 	{
-		Projectile projectile = new LinearProjectile(getSpriteName(), getSpriteImage(), bulletOwner, getXLocation(), getYLocation(), getWidth(), getHeight(), speed, getFaceAngle(), damage, range, ammoCount);
+		Projectile projectile = new LinearProjectile(getSpriteName(), getSpriteImage(), bulletOwner, getXLocation(), getYLocation(), getWidth(), getHeight(), speed, getFaceAngle(), damage, range);
 		return projectile;
 	}
 	
-	
-	
-	public int getAmmoCount()
-	{
-		return ammoCount;
-	}
-
-	public void setAmmoCount(int ammoCount)
-	{
-		this.ammoCount = ammoCount;
-	}
 
 	/**
 	 * 
