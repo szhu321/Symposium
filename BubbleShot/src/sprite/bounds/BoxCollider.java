@@ -4,17 +4,17 @@ import javax.print.attribute.standard.MediaSize.Other;
 
 public class BoxCollider
 {
-	private double x;
-	private double y;
-	private double width;
-	private double height;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 	
 	public BoxCollider(double xCoords, double yCoords, double width, double height, double faceAngle)
 	{
-		x = xCoords;
-		y = yCoords;
-		this.width = width;
-		this.height = height;
+		x = (int)xCoords;
+		y = (int)yCoords;
+		this.width = (int)width;
+		this.height = (int)height;
 	}
 	
 	public boolean intersect(BoxCollider other)
@@ -62,20 +62,20 @@ public class BoxCollider
 		double otherYMax = other.getY() + other.getHeight();
 		double otherX = other.getX();
 		double otherY = other.getY();
-		if(x <= otherX && xMax >= otherXMax && y <= otherY && yMax >= otherYMax)
+		if(x < otherX && xMax > otherXMax && y < otherY && yMax > otherYMax)
 			return true;
-		if(otherX <= x && otherXMax >= xMax && otherY <= y && otherYMax >= yMax)
+		if(otherX < x && otherXMax > xMax && otherY < y && otherYMax > yMax)
 			return true;
 		return false;
 	}
 
 	
-	public double getHeight() {return height;}
-	public double getWidth() {return width;}
-	public double getX() {return x;}
-	public double getY() {return y;}
-	public void setX(double x) {this.x = x;}
-	public void setY(double y) {this.y = y;}
+	public int getHeight() {return height;}
+	public int getWidth() {return width;}
+	public int getX() {return x;}
+	public int getY() {return y;}
+	public void setX(double x) {this.x = (int)x;}
+	public void setY(double y) {this.y = (int)y;}
 	
 	public String toString()
 	{

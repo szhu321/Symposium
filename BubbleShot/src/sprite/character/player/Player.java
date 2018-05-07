@@ -13,6 +13,7 @@ public class Player extends Character
 	private int currentItemIdx;
 	private Item[] inventory = new Item[6];
 	private int score;
+	private int coins;
 	private int currentAmmo;
 	private int defaultAmmo;
 	
@@ -28,6 +29,7 @@ public class Player extends Character
 		score = 0;
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
+		coins = 0;
 	}
 	
 	public void addItem(Item newItem)
@@ -86,7 +88,7 @@ public class Player extends Character
 		{
 			if(currentAmmo - ((Weapon) inventory[currentItemIdx]).getAmmoUsed() >= 0)
 			{
-				if(((Weapon) inventory[currentItemIdx]).useItem());
+				if(((Weapon) inventory[currentItemIdx]).useItem())
 					currentAmmo -= ((Weapon) inventory[currentItemIdx]).getAmmoUsed();
 			}
 		}
@@ -121,8 +123,16 @@ public class Player extends Character
 	public void setCurrentAmmo(int currentAmmo) {this.currentAmmo = currentAmmo;}
 	public Item[] getInventory() {return inventory;}
 	
-	
-	
+	public int getCoins() 
+	{
+		return coins;
+	}
+
+	public void setCoins(int coins) 
+	{
+		this.coins = coins;
+	}
+
 	public void setCurrentItemIdx(int currentItemIdx)
 	{
 		this.currentItemIdx = currentItemIdx;
