@@ -16,6 +16,10 @@ import sprite.character.effect.NoEffect;
 public class Tile extends Sprite
 {
 	private Effect effect;
+	private int fScore;
+	private int hScore;
+	private int gScore;
+	private Tile cameFrom;
 	
 	/**
 	 * @param name - Name of the tile.
@@ -47,5 +51,13 @@ public class Tile extends Sprite
 	
 	public void setEffects(Effect effects) {this.effect = effects;}
 	public Effect getEffects() {return effect;}
+	public void setfScore(int fScore) {this.fScore=fScore;}
+	public int getfScore(){return fScore;}
+	public void setgScore(int gScore) {this.gScore=gScore;}
+	public int getgScore(){return gScore;}
+	public void sethScore(int hScore) {this.hScore=hScore;}
+	public int gethScore(){return hScore;}
+	public void setCame(Tile cameFrom) {this.cameFrom=cameFrom;}
+	public Tile getCame() {return cameFrom;}
 
 }
