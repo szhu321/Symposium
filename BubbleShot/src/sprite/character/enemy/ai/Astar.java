@@ -41,6 +41,17 @@ public class Astar extends AI
 		
 		Tile previous=null;
 		
+		for(Tile[] tilearr: allTiles)
+		{
+			for(Tile tile: tilearr)
+			{
+				tile.setfScore(0);
+				tile.sethScore(0);
+				tile.setgScore(0);
+				tile.setCame(null);
+			}
+		}
+		
 		//Set H Values to each Tiles
 		for(int i=0;i<allTiles.length;i++)
 		{
@@ -126,6 +137,7 @@ public class Astar extends AI
 				}
 				//System.out.println(itWorked);
 				//System.out.println("worked");
+				pathCoords.remove(0);
 				return pathCoords;
 			}
 			
@@ -313,56 +325,59 @@ public class Astar extends AI
 	{
 		if(timePass>1)
 		{
-			timePass=-1000000;
+			timePass=-1;
 			
-			List<Coord> coords=new ArrayList<Coord>();
-			coords.add(new Coord(850,150));
-			coords.add(new Coord(750,150));
-			coords.add(new Coord(650,150));
-			coords.add(new Coord(550,150));
-			MovementPath hardPath=new MovementPath(coords,false);
+			//List<Coord> coords=new ArrayList<Coord>();
+			//coords.add(new Coord(850,150));
+			//coords.add(new Coord(750,150));
+			//coords.add(new Coord(650,150));
+			//coords.add(new Coord(550,150));
+			MovementPath hardPath=new MovementPath(aStar(),false);
 			this.getEnemy().getMovement().updateMovementPath(hardPath);
 		}
 		
 			timePass+=sec;	
 			double[] moveTo=this.getEnemy().getMovement().runDrive(sec);
-			double deltaX=moveTo[0];
-			double deltaY=moveTo[1];
-			if(deltaX<0)
+			if(moveTo!=null)
 			{
-				if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_LEFT, Math.abs(deltaX))))
+				double deltaX=moveTo[0];
+				double deltaY=moveTo[1];
+				if(deltaX<0)
 				{
-					deltaX=0;
+					if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_LEFT, Math.abs(deltaX))))
+					{
+						deltaX=0;
+					}
 				}
-			}
-			if(deltaX>0)
-			{
-				if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_RIGHT, Math.abs(deltaX))))
+				if(deltaX>0)
 				{
-					deltaX=0;
+					if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_RIGHT, Math.abs(deltaX))))
+					{
+						deltaX=0;
+					}
 				}
-			}
-			if(deltaY<0)
-			{
-				if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_UP, Math.abs(deltaY))))
+				if(deltaY<0)
 				{
-					deltaY=0;
+					if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_UP, Math.abs(deltaY))))
+					{
+						deltaY=0;
+					}
 				}
-			}
-			if(deltaY>0)
-			{
-				if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_DOWN, Math.abs(deltaY))))
+				if(deltaY>0)
 				{
-					deltaY=0;
+					if(!(GameRunner.getGameManager().getLevel().getCurrentRoom().canCharacterMove(this.getEnemy(), Constants.MOVE_DIR_DOWN, Math.abs(deltaY))))
+					{
+						deltaY=0;
+					}
 				}
-			}
-			if(deltaX != 0 && deltaY != 0)
-			{
-				deltaX *= 1 / Math.sqrt(2);
-				deltaY *= 1 / Math.sqrt(2);
-			}		
+				if(deltaX != 0 && deltaY != 0)
+				{
+					deltaX *= 1 / Math.sqrt(2);
+					deltaY *= 1 / Math.sqrt(2);
+				}		
     	
-			this.getEnemy().addXLocation(deltaX);
-			this.getEnemy().addXLocation(deltaY);
+				this.getEnemy().addXLocation(deltaX);
+				this.getEnemy().addYLocation(deltaY);
+			}
 	}
 }
