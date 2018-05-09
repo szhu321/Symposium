@@ -61,14 +61,18 @@ public class MovementDrive
 	{
 		double[] deltas = new double[2];
 		double characterMovedistance = character.getSpeed() * sec;
-		if(character.getXCenter() > currentCoord.getX())
+		if(inRange((int)character.getXCenter(), currentCoord.getX(), 3))
+			deltas[0] = 0;
+		else if(character.getXCenter() > currentCoord.getX())
 			deltas[0] = -(characterMovedistance);
-		if(character.getXCenter() < currentCoord.getX())
+		else if(character.getXCenter() < currentCoord.getX())
 			deltas[0] = (characterMovedistance);
-		if(character.getYCenter() > currentCoord.getY())
+		if(inRange((int)character.getYCenter(), currentCoord.getY(), 3))
+			deltas[1] = 0;
+		else if(character.getYCenter() > currentCoord.getY())
 			deltas[1] = -(characterMovedistance);
-		if(character.getYCenter() < currentCoord.getY())
-			deltas[1] = (characterMovedistance);
+		else if(character.getYCenter() < currentCoord.getY())
+			deltas[1] = (characterMovedistance);	
 		return deltas;
 	}
 	
@@ -76,7 +80,7 @@ public class MovementDrive
 	{
 		if(currentCoord!=null)
 		{
-			if(inRange(currentCoord.getX(), (int)character.getXCenter(), 3) && inRange(currentCoord.getY(), (int)character.getYCenter(), 3))
+			if(inRange(currentCoord.getX(), (int)character.getXCenter(), 15) && inRange(currentCoord.getY(), (int)character.getYCenter(), 15))
 			{
 				currentCoord = null;
 				while(currentCoord == null && paths.size() > 0)

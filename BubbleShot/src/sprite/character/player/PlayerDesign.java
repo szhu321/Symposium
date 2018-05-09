@@ -15,7 +15,7 @@ public class PlayerDesign
 		double speed = 130;
 		//The ammo the player starts with.
 		int ammoCount = 2000;
-		Player player = new Player(name, fileName, 100, 100, 60, 60, health, speed, inventory, ammoCount);
+		Player player = new Player(name, fileName, 100, 100, 50, 50, health, speed, inventory, ammoCount);
 		player.addItem(WeaponDesign.getPistolDesignOne(100, 100));
 		return player;
 	}
