@@ -21,7 +21,7 @@ public class MovementPath
 	 */
 	public MovementPath(List<Coord> coords, boolean loop)
 	{
-		coords = new ArrayList<Coord>();
+		this.coords = coords;
 		this.loop = loop;
 		currentIdx = 0;
 	}
@@ -49,12 +49,21 @@ public class MovementPath
 	 */
 	public Coord getNextCoord()
 	{
-		if(currentIdx >= coords.size())
-			if(loop)
-				currentIdx = 0;
-			else
-				return null;
-		currentIdx++;
-		return coords.get(currentIdx - 1); 
+		if(coords!=null)
+		{
+			if(currentIdx >= coords.size())
+				if(loop)
+					currentIdx = 0;
+				else
+					return null;
+			currentIdx++;
+			return coords.get(currentIdx - 1); 
+		}
+		return null;
+	}
+
+	public void setCoords(List<Coord> coords) {
+		this.coords = coords;
+		currentIdx=0;
 	}
 }

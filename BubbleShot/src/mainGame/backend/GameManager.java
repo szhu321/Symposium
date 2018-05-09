@@ -73,12 +73,12 @@ public class GameManager
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
-			//long pasttime = System.nanoTime();
+			long pasttime = System.nanoTime();
 			nextFrame(1000.0/framesPerSec);
-			//long now = System.nanoTime();
-			//System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
-			//pasttime = now;
-			//System.out.println("\n\n\n");
+			long now = System.nanoTime();
+			System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
+			pasttime = now;
+			System.out.println("\n\n\n");
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 		this.window = window;
@@ -361,7 +361,7 @@ public class GameManager
     	for(Character e:enemies)
     		if(e instanceof Enemy)
     		{
-    			((Enemy)e).getBrain().move(sec, level);
+    			((Enemy)e).getBrain().move(sec);
     			calculateEnemyAngleToPlayer((Enemy)e);
     			((Enemy)e).useCurrentItem(Item.WEAPON);
     		}

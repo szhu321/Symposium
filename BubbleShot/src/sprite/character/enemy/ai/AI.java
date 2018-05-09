@@ -14,7 +14,7 @@ public abstract class AI
 		this.player=player;
 	}
 	
-	public abstract void move(double sec, Level level);
+	public abstract void move(double sec);
 
 	public Enemy getEnemy()	{return enemy;}
 	public Player getPlayer(){return player;}

@@ -24,9 +24,9 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(200,200,600,600,0));
 		room.addObstacle(new StoneWall(200,200,600,200,0));
 		room.addCharacter(player);
-		room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
+		room.addCharacter(EnemyDesign.getRegularDesignOne(810, 200, player));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 120));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 180));
 		room.addItem(PotionDesign.getHealthPotDesignOne(60, 60));

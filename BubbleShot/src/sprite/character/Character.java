@@ -4,12 +4,14 @@ import javafx.geometry.Point2D;
 import map.Room;
 import sprite.Sprite;
 import sprite.character.effect.EffectManager;
+import sprite.character.movement.MovementDrive;
 import sprite.item.Item;
 
 public abstract class Character extends Sprite
 {
 	private double currentHealth, defaultHealth;
 	private double speed;
+	private MovementDrive movement;
 	
 	private EffectManager effectManager;
 	private	Room currentRoom;
@@ -21,6 +23,7 @@ public abstract class Character extends Sprite
 		this.currentHealth = health;
 		this.defaultHealth = health;
 		this.speed = speed;
+		movement=new MovementDrive(this);
 	}
 	
 	public Room getCurrentRoom() 
@@ -53,28 +56,16 @@ public abstract class Character extends Sprite
 		//if(currentHealth <= 0)
 			//DeadMethod
 	}
+	public MovementDrive getMovement() {
+		return movement;
+	}
+
+	public void setMovement(MovementDrive movement) {
+		this.movement = movement;
+	}
+
 	public void setSpeed(double speed) {this.speed = speed;}
 	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}	
-	
-	public void moveUp(double time)
-	{
-		this.addYLocation(-(speed*time));
-	}
-	
-	public void moveDown(double time)
-	{
-		this.addYLocation((speed*time));
-	}
-	
-	public void moveLeft(double time)
-	{
-		this.addXLocation(-(speed*time));
-	}
-	
-	public void moveRight(double time)
-	{
-		this.addXLocation(speed*time);
-	}
 	
 	public String toString()
 	{

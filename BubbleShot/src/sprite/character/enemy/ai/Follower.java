@@ -13,11 +13,11 @@ public class Follower extends AI
 		super(enemy,player);
 	}
 	
-	public void move(double sec, Level level)
+	public void move(double sec)
 	{
 		double deltaX = 0;
     	double deltaY = 0;
-    	Enemy enemy=this.getEnemy();
+    /*	Enemy enemy=this.getEnemy();
     	Player player=this.getPlayer();
     	double changeAmount = enemy.getSpeed() * sec;
     	Room currentRoom = level.getCurrentRoom();
@@ -28,13 +28,13 @@ public class Follower extends AI
     	if(enemy.getYLocation()>player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
     		deltaY -= changeAmount;
     	if(enemy.getYLocation()<player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
-    		deltaY += changeAmount;
+    		deltaY += changeAmount;*/
     	if(deltaX != 0 && deltaY != 0)
     	{
     		deltaX *= 1 / Math.sqrt(2);
     		deltaY *= 1 / Math.sqrt(2);
     	}		
-    	enemy.addXLocation(deltaX);
-    	enemy.addYLocation(deltaY);
+    	//enemy.addXLocation(deltaX);
+    	//enemy.addYLocation(deltaY);
 	}
 }

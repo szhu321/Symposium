@@ -20,7 +20,6 @@ public class MovementDrive
 	{
 		paths = new ArrayList<MovementPath>();
 		this.character = character;
-		currentCoord = paths.get(0).getNextCoord();
 	}
 	
 	/**
@@ -64,26 +63,29 @@ public class MovementDrive
 		double characterMovedistance = character.getSpeed() * sec;
 		if(character.getXCenter() > currentCoord.getX())
 			deltas[0] = -(characterMovedistance);
-		else
+		if(character.getXCenter() < currentCoord.getX())
 			deltas[0] = (characterMovedistance);
 		if(character.getYCenter() > currentCoord.getY())
 			deltas[1] = -(characterMovedistance);
-		else
+		if(character.getYCenter() < currentCoord.getY())
 			deltas[1] = (characterMovedistance);
 		return deltas;
 	}
 	
 	private void updateCurrentCoord()
 	{
-		if(currentCoord.getX() == (int)character.getXCenter() && currentCoord.getY() == (int)character.getYCenter())
+		if(currentCoord!=null)
 		{
-			currentCoord = null;
-			while(currentCoord == null && paths.size() > 0)
+			if(currentCoord.getX() == (int)character.getXCenter() && currentCoord.getY() == (int)character.getYCenter())
 			{
-				currentCoord = paths.get(0).getNextCoord();
-				if(currentCoord == null)
-					paths.remove(0);
+				currentCoord = null;
+				while(currentCoord == null && paths.size() > 0)
+				{
+					currentCoord = paths.get(0).getNextCoord();
+					if(currentCoord == null)
+						paths.remove(0);
+				}
 			}
 		}
-	}
+	}	
 }
