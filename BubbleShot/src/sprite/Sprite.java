@@ -84,6 +84,16 @@ public abstract class Sprite implements Collider
 		return height;
 	}
 	
+	public void setWidth(double width)
+	{
+		this.width = width;
+	}
+
+	public void setHeight(double height)
+	{
+		this.height = height;
+	}
+
 	public void setXLocation(double x)
 	{
 		xCoord = x;

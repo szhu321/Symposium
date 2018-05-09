@@ -8,6 +8,8 @@ import map.Tile.*;
 import map.Tile.teleporter.RoomPortManager;
 import map.Tile.teleporter.Teleporter;
 import map.obstacle.Obstacle;
+import map.obstacle.StoneWall;
+import myutilities.MyMath;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
 import sprite.Sprite;
@@ -83,6 +85,7 @@ public class Room
 		//for(int i = 0; i < tiles.length; i++)
 		//	for(int j = tiles[0].length / 2; j < tiles[0].length; j++)
 		//		tiles[i][j] = TileDesign.getMudTileDesignOne(j * 100, i * 100, 100, 100, 0);
+		addBorderToRoom();
 	}
 	
 	/**
@@ -102,6 +105,7 @@ public class Room
 		this.tiles = tiles;
 		roomPixWidth = tiles[0].length * 100;
 		roomPixHeight = tiles.length * 100;
+		addBorderToRoom();
 	}
 	
 	public void setTileAt(int row, int col, Teleporter tile)
@@ -115,6 +119,18 @@ public class Room
 		{
 			tiles[row][col] = tile;
 		}
+	}
+	
+	public void addBorderToRoom()
+	{
+		//Top
+		addObstacle(new StoneWall(roomPixWidth, 100, 0, 0, 0));
+		//Bottom
+		addObstacle(new StoneWall(roomPixWidth, 100, 0, roomPixHeight - 100, 0));
+		//left
+		addObstacle(new StoneWall(100, roomPixHeight - 200, 0 , 100, 0));
+		//right
+		addObstacle(new StoneWall(100, roomPixHeight - 200, roomPixWidth - 100, 100, 0));
 	}
 	
 	//Getters and Setters
@@ -203,6 +219,10 @@ public class Room
 	
 	public void addObstacle(Obstacle obs)
 	{
+		obs.setXLocation(MyMath.round(obs.getXLocation(), 2));
+		obs.setYLocation(MyMath.round(obs.getYLocation(), 2));
+		obs.setWidth(MyMath.round(obs.getWidth(), 2));
+		obs.setHeight(MyMath.round(obs.getHeight(), 2));
 		obstacles.add(obs);
 	}
 	
@@ -370,6 +390,6 @@ public class Room
 		}
 		return null;
 		*/
-		return getTileAt(character.getXLocation(), character.getYLocation());
+		return getTileAt(character.getXCenter(), character.getYCenter());
 	}
 }

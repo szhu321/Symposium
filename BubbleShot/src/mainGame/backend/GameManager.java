@@ -19,6 +19,7 @@ import map.Tile.teleporter.RoomPortManager;
 import map.Tile.teleporter.Teleporter;
 import map.Tile.teleporter.TeleporterPair;
 import myutilities.Camera;
+import myutilities.MyMath;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
@@ -75,6 +76,7 @@ public class GameManager
 			//Runs in 60FPS
 			long pasttime = System.nanoTime();
 			nextFrame(1000.0/framesPerSec);
+			System.out.println(MyMath.getRandomInteger(10, 15));
 			long now = System.nanoTime();
 			System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
 			pasttime = now;

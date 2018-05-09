@@ -76,7 +76,7 @@ public class MovementDrive
 	{
 		if(currentCoord!=null)
 		{
-			if(currentCoord.getX() == (int)character.getXCenter() && currentCoord.getY() == (int)character.getYCenter())
+			if(inRange(currentCoord.getX(), (int)character.getXCenter(), 3) && inRange(currentCoord.getY(), (int)character.getYCenter(), 3))
 			{
 				currentCoord = null;
 				while(currentCoord == null && paths.size() > 0)
@@ -88,4 +88,11 @@ public class MovementDrive
 			}
 		}
 	}	
+	
+	private boolean inRange(int num1, int num2, int range)
+	{
+		if(Math.abs(num1 - num2) < range)
+			return true;
+		return false;
+	}
 }

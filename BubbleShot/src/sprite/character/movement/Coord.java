@@ -30,4 +30,9 @@ public class Coord
 	{
 		this.y = y;
 	}
+	
+	public String toString()
+	{
+		return "( " + x + ", " + y + " )";
+	}
 }

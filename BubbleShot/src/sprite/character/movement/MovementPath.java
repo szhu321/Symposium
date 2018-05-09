@@ -66,4 +66,14 @@ public class MovementPath
 		this.coords = coords;
 		currentIdx=0;
 	}
+	
+	public String toString()
+	{
+		String result = "";
+		for(Coord coord: coords)
+		{
+			result += coord.toString() + "\n";
+		}
+		return result;
+	}
 }
