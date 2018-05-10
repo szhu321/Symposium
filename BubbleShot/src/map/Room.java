@@ -437,9 +437,11 @@ public class Room
 			}
 			else
 			{
-				enemyType=(int)((Math.random()*1)+1);
+				enemyType=(int)((Math.random()*2)+1);
 				if(enemyType==1)
 					this.addCharacter(EnemyDesign.getRegularDesignOne(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer()));
+				if(enemyType==2)
+					this.addCharacter(EnemyDesign.getSmartDesignOne(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer()));
 				spawnTile[randomY][randomX]=0;
 				randomX=(int)(Math.random()*spawnTile[0].length);
 				randomY=(int)(Math.random()*spawnTile.length);
@@ -447,7 +449,7 @@ public class Room
 			}
 		}
 		//debugger
-		for(int i=0;i<spawnTile.length;i++)
+		/*for(int i=0;i<spawnTile.length;i++)
 		{
 			String name="";
 			for(int s=0;s<spawnTile[0].length;s++)
@@ -457,5 +459,6 @@ public class Room
 			System.out.println(name);
 		}
 		System.out.println();
+		*/
 	}
 }

@@ -8,12 +8,22 @@ public abstract class AI
 {
 	private Enemy enemy;
 	private Player player;
-	public AI(Enemy enemy, Player player)
+	private String name;
+	public AI(Enemy enemy, Player player,String name)
 	{
 		this.enemy=enemy;
 		this.player=player;
+		this.name=name;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public abstract void move(double sec);
 
 	public Enemy getEnemy()	{return enemy;}
