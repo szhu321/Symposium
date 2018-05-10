@@ -574,7 +574,7 @@ public class GameManager
 		scene.setOnMouseReleased(event -> mouseDown = false);
 		scene.setOnScroll(event -> 
 		{
-			if(event.getDeltaY() > 0)
+			if(event.getDeltaY() < 0)
 			{
 				player.setCurrentItemIdx((player.getCurrentItemIdx() + 1) % 6);
 			}
