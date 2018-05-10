@@ -46,15 +46,7 @@ public abstract class Enemy extends Character
 	@Override
 	public void useCurrentItem(String input) 
 	{
-		if(!(this.brain.getName().equals("Astar")))
-		{
-			if(this.getCircleBoundsOfObject(300).contains(this.getPlayer().getCircleBoundsOfObject()))
-				((Weapon) weapon).useItem();
-		}
-		else
-		{
-			((Weapon) weapon).useItem();
-		}
+		((Weapon) weapon).useItem();
 	}
 	
 	public void coolDownWeapons(double sec)

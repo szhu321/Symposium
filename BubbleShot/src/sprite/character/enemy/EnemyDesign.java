@@ -8,13 +8,21 @@ import sprite.item.weapon.WeaponDesign;
 
 public class EnemyDesign
 {
-	public static final String NORMAL="normal";
+	public static final String FOLLOWER="follower";
+	public static final String SMART="smart";
 	public static final String GHOST="ghost";
 	public static final String MELEE="melee";
 	public static final String MACHINEGUN="machinegun";
 	public static final String TOWER="tower";
 	
-	//public static getRandomDesign(double x, double y, Player player, int type)
+	public static Enemy getRandomDesign(double x, double y, Player player, String type)
+	{
+		if(type.equals(EnemyDesign.FOLLOWER))
+			return EnemyDesign.getRegularDesignOne(x, y, player);
+		if(type.equals(EnemyDesign.SMART))
+			return EnemyDesign.getSmartDesignOne(x, y, player);
+		return null;
+	}
 	
 	
 	public static Enemy getRegularDesignOne(double x, double y, Player player)

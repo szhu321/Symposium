@@ -361,12 +361,27 @@ public class GameManager
     public void moveEnemy(double sec)
     {
     	List<Character> enemies=level.getCurrentRoom().getCharacters();
+    	double circleRadius=300;
+    	if(shift==true)
+    		circleRadius=500;
     	for(Character e:enemies)
     		if(e instanceof Enemy)
     		{
-    			((Enemy)e).getBrain().move(sec);
-    			calculateEnemyAngleToPlayer((Enemy)e);
-    			((Enemy)e).useCurrentItem(Item.WEAPON);
+    			if(!((Enemy)e).getBrain().getName().equals("Astar"))
+    			{
+    				if(((Enemy)e).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
+    				{
+    					((Enemy)e).getBrain().move(sec);
+    					calculateEnemyAngleToPlayer((Enemy)e);
+    					((Enemy)e).useCurrentItem(Item.WEAPON);
+    				}
+    			}
+    			else
+    			{
+    				((Enemy)e).getBrain().move(sec);
+					calculateEnemyAngleToPlayer((Enemy)e);
+					((Enemy)e).useCurrentItem(Item.WEAPON);
+    			}
     		}
    	}
     

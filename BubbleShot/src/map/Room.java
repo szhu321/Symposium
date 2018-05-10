@@ -438,10 +438,12 @@ public class Room
 			else
 			{
 				enemyType=(int)((Math.random()*2)+1);
+				String type="";
 				if(enemyType==1)
-					this.addCharacter(EnemyDesign.getRegularDesignOne(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer()));
+					type=EnemyDesign.FOLLOWER;
 				if(enemyType==2)
-					this.addCharacter(EnemyDesign.getSmartDesignOne(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer()));
+					type=EnemyDesign.SMART;
+				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),type));
 				spawnTile[randomY][randomX]=0;
 				randomX=(int)(Math.random()*spawnTile[0].length);
 				randomY=(int)(Math.random()*spawnTile.length);
