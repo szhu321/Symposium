@@ -323,7 +323,7 @@ public class Astar extends AI
 	
 	public void move(double sec)
 	{
-		if(timePass > .3)
+		if(timePass > 1)
 		{
 			//timePass=0;
 			
