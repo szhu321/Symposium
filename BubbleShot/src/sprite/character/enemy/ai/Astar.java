@@ -23,7 +23,8 @@ public class Astar extends AI
 	public Astar(Enemy enemy, Player player)
 	{
 		super(enemy,player,"Astar");
-		timePass = -.4;
+		timePass=Math.random();
+		//timePass = -.4;
 	}
 	
 	public List<Coord> aStar() 
@@ -34,10 +35,10 @@ public class Astar extends AI
 		List<Obstacle> allOb=GameRunner.getGameManager().getLevel().getCurrentRoom().getObstacles();
 		
 		//Enemy and player position
-		int playerX=(int)this.getPlayer().getXLocation()/100;
-		int playerY=(int)this.getPlayer().getYLocation()/100;
-		int enemyX=(int)this.getEnemy().getXLocation()/100;
-		int enemyY=(int)this.getEnemy().getYLocation()/100;
+		int playerX=(int)this.getPlayer().getXCenter()/100;
+		int playerY=(int)this.getPlayer().getYCenter()/100;
+		int enemyX=(int)this.getEnemy().getXCenter()/100;
+		int enemyY=(int)this.getEnemy().getYCenter()/100;
 		
 		Tile previous=null;
 		
@@ -76,7 +77,7 @@ public class Astar extends AI
 			}
 		}
 		
-		for(int i=0;i<allTiles.length;i++)
+	/*for(int i=0;i<allTiles.length;i++)
 		{
 			String name="";
 			for(int s=0;s<allTiles[0].length;s++)
@@ -85,7 +86,7 @@ public class Astar extends AI
 			}
 			////System.out.println(name);
 		}
-		
+		*/
 		
 		List<Tile> closedSet=new ArrayList<Tile>();
 		List<Tile> openSet=new ArrayList<Tile>();
@@ -130,11 +131,11 @@ public class Astar extends AI
 				{
 					pathCoords.add(0, new Coord((int)t.getXCenter(),(int)t.getYCenter()));
 				}
-				String itWorked="PATH LOCATION INDEX: ";
-				for(Tile t:path)
-				{
-					itWorked+="("+t.getXLocation()/100+","+t.getYLocation()/100+")"+" ";
-				}
+				//String itWorked="PATH LOCATION INDEX: ";
+				//for(Tile t:path)
+				//{
+				//	itWorked+="("+t.getXLocation()/100+","+t.getYLocation()/100+")"+" ";
+				//}
 				//System.out.println(itWorked);
 				//System.out.println("worked");
 				pathCoords.remove(0);
@@ -148,18 +149,18 @@ public class Astar extends AI
 			//System.out.println("CLOSED SET SIZE: "+closedSet.size());
 			
 			List<Tile> allNeighbors=Astar.getNeighbors(allTiles,current);
-			for(Tile t:allNeighbors)
-			{
-				int gScore=t.getgScore();
-				int hScore=t.gethScore();
-				t.setfScore(gScore+hScore);
-			}
+			//for(Tile t:allNeighbors)
+			//{
+			//	int gScore=t.getgScore();
+			//	int hScore=t.gethScore();
+			//	t.setfScore(gScore+hScore);
+			//}
 			
 			//System.out.println("NEIGHBOOOORS SIZE: "+allNeighbors.size());
 			
 			for(int i=0;i<allNeighbors.size();i++)
 			{
-				Boolean isInClosed=false;
+				/*Boolean isInClosed=false;
 				for(int s=0;s<closedSet.size();s++)
 				{
 					if(allNeighbors.get(i).equals(closedSet.get(s)))
@@ -172,12 +173,15 @@ public class Astar extends AI
 				
 				if(isInClosed)
 					continue;
+				*/
+				if(closedSet.contains(allNeighbors.get(i)))
+					continue;
 				
 				int tentGScore=current.getgScore()+allNeighbors.get(i).getgScore();
 				//System.out.println("TENTG SCORE: "+tentGScore);
 				//System.out.println("CURRENT NEIGHBOR G SCORE: "+allNeighbors.get(i).getgScore());
 				
-				if(openSet.size()!=0)
+			/*	if(openSet.size()!=0)
 				{
 					for(int q=0;q<openSet.size();q++)
 					{
@@ -199,13 +203,19 @@ public class Astar extends AI
 					openSet.add(allNeighbors.get(i));
 					//System.out.println("NEIGHBOR ADD TO OPEN: "+openSet.size());
 				}
+				*/
+				if(!openSet.contains(allNeighbors.get(i)))
+					openSet.add(allNeighbors.get(i));
+				else if(tentGScore>=allNeighbors.get(i).getgScore())
+					continue;
+				
 				allNeighbors.get(i).setCame(current);
 				//System.out.println("CAME FROM: ("+allNeighbors.get(i).getCame().getXLocation()/100+","+allNeighbors.get(i).getCame().getYLocation()/100+")");
 				allNeighbors.get(i).setgScore(tentGScore);
 				allNeighbors.get(i).setfScore(allNeighbors.get(i).getgScore()+allNeighbors.get(i).gethScore());
 			}
 			
-			String lul="ALL F SCORE: ";
+		/*	String lul="ALL F SCORE: ";
 			String OwO="ALL G SCORE: ";
 			String UwU="ALL H SCORE: ";
 			String Position="Index: ";
@@ -220,7 +230,7 @@ public class Astar extends AI
 			//System.out.println(lul);
 			//System.out.println(OwO);
 			//System.out.println(UwU);
-			//System.out.println(Position);
+			//System.out.println(Position); */
 		}
 		return null;
 	}
@@ -323,9 +333,9 @@ public class Astar extends AI
 	
 	public void move(double sec)
 	{
-		if(timePass > 1)
+		if(timePass > 1.5)
 		{
-			//timePass=0;
+			timePass=1;
 			
 			//List<Coord> coords=new ArrayList<Coord>();
 			//coords.add(new Coord(850,150));
