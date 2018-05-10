@@ -66,6 +66,7 @@ public class PlayingScene
 	private Text playerAmmoDis;
 	private Text playerScoreDis;
 	private ImageView[] playerInventoryDis;
+	private Canvas[] playerInventoryDisCanvs;
 	
 	private ImageView playerHoldItemDis;
 	
@@ -188,21 +189,32 @@ public class PlayingScene
 		playerScoreDis.setText("Score: " + player.getScore());
 		for(int i = 0; i < player.getInventory().length; i++)
 		{
-			if(player.getInventory()[i] != null)
-				playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
-			else
-				playerInventoryDis[i].setImage(null);
+			playerInventoryDisCanvs[i].setWidth(55);
+			playerInventoryDisCanvs[i].setHeight(55);
+			playerInventoryDisCanvs[i].getGraphicsContext2D().clearRect(0, 0, playerInventoryDisCanvs[i].getWidth(), playerInventoryDisCanvs[i].getHeight());
+			
+				
 			if(player.getCurrentItemIdx() == i)
 			{
 				//playerInventoryDis[i].setScaleX(1);
-				playerInventoryDis[i].getTransforms().set(0, new Scale(1,1));
+				//playerInventoryDis[i].getTransforms().set(0, new Scale(1,1));
+				//playerInventoryDis[i].setStyle("-fx-color: rgba(0,0,0,.2)");
+				playerInventoryDisCanvs[i].setWidth(60);
+				playerInventoryDisCanvs[i].setHeight(60);
+				playerInventoryDisCanvs[i].getGraphicsContext2D().setLineWidth(10);
+				playerInventoryDisCanvs[i].getGraphicsContext2D().strokeRect(0,0 , playerInventoryDisCanvs[i].getWidth(), playerInventoryDisCanvs[i].getHeight());
 			}
 			else
 			{
 				//playerInventoryDis[i].setScaleX(.83333);
-				playerInventoryDis[i].getTransforms().set(0, new Scale(.83333,.83333));
+				//playerInventoryDis[i].getTransforms().set(0, new Scale(.83333,.83333));
+				//playerInventoryDis[i].setStyle("");
 			}
-				
+			if(player.getInventory()[i] != null)
+			{
+				//playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
+				playerInventoryDisCanvs[i].getGraphicsContext2D().drawImage(player.getInventory()[i].getSpriteImage(), 0, 0);
+			}
 		}
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
 	}
@@ -212,18 +224,21 @@ public class PlayingScene
 		GridPane bottomBox = new GridPane();
 		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
 		bottomBox.setHgap(20);
-		playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
+		//playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
+		playerInventoryDisCanvs = new Canvas[currentRoom.getPlayer().getInventory().length];
 		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
 		{
 			StackPane stack = new StackPane();
-			playerInventoryDis[i] = new ImageView();
-			Text text = new Text("" + (i + 1));
-			text.setFont(new Font(22));
-			playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
+			//playerInventoryDis[i] = new ImageView();
+			playerInventoryDisCanvs[i] = new Canvas(50, 50);
+			//Text text = new Text("" + (i + 1));
+			//text.setFont(new Font(22));
+			//playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
 			stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
-			stack.getChildren().add(text);
-			stack.getChildren().add(playerInventoryDis[i]);
-			stack.setAlignment(text, Pos.BOTTOM_RIGHT);
+			//stack.getChildren().add(text);
+			//stack.getChildren().add(playerInventoryDis[i]);
+			stack.getChildren().add(playerInventoryDisCanvs[i]);
+			//stack.setAlignment(text, Pos.BOTTOM_RIGHT);
 			bottomBox.add(stack, i, 0);
 		}
 		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
