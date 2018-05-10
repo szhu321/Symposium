@@ -325,7 +325,7 @@ public class Astar extends AI
 	{
 		if(timePass>1)
 		{
-			timePass=-1;
+			timePass=0;
 			
 			//List<Coord> coords=new ArrayList<Coord>();
 			//coords.add(new Coord(850,150));

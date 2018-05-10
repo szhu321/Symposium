@@ -282,19 +282,19 @@ public class Room
 		BoxCollider characterBounds = character.getBoundsOfObject();
 		if(direction.equals(Constants.MOVE_DIR_UP))
 		{
-			characterBounds.setY(characterBounds.getY() - distance);
+			characterBounds.setY(characterBounds.getY() - (distance * 1.2));
 		}
 		if(direction.equals(Constants.MOVE_DIR_DOWN))
 		{
-			characterBounds.setY(characterBounds.getY() + distance);
+			characterBounds.setY(characterBounds.getY() + (distance * 1.2));
 		}
 		if(direction.equals(Constants.MOVE_DIR_LEFT))
 		{
-			characterBounds.setX(characterBounds.getX() - distance);
+			characterBounds.setX(characterBounds.getX() - (distance * 1.2));
 		}
 		if(direction.equals(Constants.MOVE_DIR_RIGHT))
 		{
-			characterBounds.setX(characterBounds.getX() + distance);
+			characterBounds.setX(characterBounds.getX() + (distance * 1.2));
 		}
 		for(Obstacle obs : obstacles)
 		{
