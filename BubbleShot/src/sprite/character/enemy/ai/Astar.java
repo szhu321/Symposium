@@ -23,7 +23,7 @@ public class Astar extends AI
 	public Astar(Enemy enemy, Player player)
 	{
 		super(enemy,player);
-		timePass=1.1;
+		timePass = 0;
 	}
 	
 	public List<Coord> aStar() 
@@ -323,9 +323,9 @@ public class Astar extends AI
 	
 	public void move(double sec)
 	{
-		if(timePass>1)
+		if(timePass > .3)
 		{
-			timePass=0;
+			//timePass=0;
 			
 			//List<Coord> coords=new ArrayList<Coord>();
 			//coords.add(new Coord(850,150));

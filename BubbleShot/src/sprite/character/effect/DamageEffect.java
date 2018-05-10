@@ -4,7 +4,7 @@ import sprite.character.Character;
 
 public class DamageEffect extends Effect
 {
-	public static final DamageEffect DAMAGE_POTION_EFFECT = new DamageEffect(10, 1.5, false);
+	public static final DamageEffect DAMAGE_POTION_EFFECT = new DamageEffect(20, 1.5, false);
 	
 	public DamageEffect(double effectTime, double effectAmount, boolean instantaneous)
 	{

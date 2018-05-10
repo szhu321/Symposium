@@ -12,7 +12,7 @@ public class EnemyDesign
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
-		Enemy enemy=new Regular("Brian",fileName, x, y,50, 200, 50, 50, pistol,player);
+		Enemy enemy=new Regular("Brian",fileName, x, y,50, 160, 50, 50, pistol,player);
 		return enemy;
 	}
 	
