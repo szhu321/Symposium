@@ -8,12 +8,12 @@ public class Teleporter extends Tile
 	private Room connectedRoom;
 	private Teleporter connectedTeleporter;
 	private boolean activated;
+	private boolean bossTele=false;
 	private int id;
 	
-	public Teleporter(double xPos, double yPos, int id)
-	{
-		
-		super("Teleporter", "file:resources/tile/teleporttile.png", xPos, yPos, 100, 100, 0);
+	public Teleporter(double xPos, double yPos, int id,String filename)
+	{	
+		super("Teleporter", filename, xPos, yPos, 100, 100, 0);
 		this.id=id;
 		activated = false;
 	}
@@ -55,4 +55,19 @@ public class Teleporter extends Tile
 
 	public boolean isActivated() {return activated;}
 	public void setActivated(boolean activated) {this.activated = activated;}
+
+	/**
+	 * @return the bossTele
+	 */
+	public boolean isBossTele() {
+		return bossTele;
+	}
+
+	/**
+	 * @param bossTele the bossTele to set
+	 */
+	public void setBossTele(boolean bossTele) 
+	{
+		this.bossTele = bossTele;
+	}
 }

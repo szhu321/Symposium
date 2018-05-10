@@ -38,6 +38,7 @@ public class Room
 	
 	private boolean isExplored = false;
 	private boolean enemySpawned=false;
+	private boolean isBossRoom=false;
 
 	private String name = "unnamed";
 	
@@ -465,5 +466,12 @@ public class Room
 		}
 		System.out.println();
 		*/
+	}
+
+	public boolean isBossRoom() {
+		return isBossRoom;
+	}
+	public void setBossRoom(boolean isBossRoom) {
+		this.isBossRoom = isBossRoom;
 	}
 }

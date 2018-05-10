@@ -2,6 +2,7 @@ package map;
 
 import map.Tile.teleporter.LevelPortManager;
 import map.Tile.teleporter.Teleporter;
+import map.Tile.teleporter.TeleporterDesign;
 import map.Tile.teleporter.TeleporterPair;
 import sprite.character.player.Player;
 
@@ -77,9 +78,19 @@ public class Level
 				if(!(s+1>=map[0].length)&&map[i][s]!=null&&map[i][s+1]!=null)
 				{
 					TeleporterPair currentPair=new TeleporterPair();
-					Teleporter tele1=new Teleporter(800,400,pairCounter);
-					tele1.setConnectedRoom(map[i][s]);
-					Teleporter tele2=new Teleporter(100,400,pairCounter);
+					Teleporter tele1=null;
+					Teleporter tele2=null;
+					if(map[i][s].isBossRoom()||map[i][s+1].isBossRoom())
+					{
+						tele1=TeleporterDesign.getBossTeleporter(800,400,pairCounter);
+						tele2=TeleporterDesign.getBossTeleporter(100,400,pairCounter);
+					}
+					else
+					{
+						tele1=TeleporterDesign.getRegularTeleporter(800,400,pairCounter);
+						tele2=TeleporterDesign.getRegularTeleporter(100,400,pairCounter);
+					}
+					tele1.setConnectedRoom(map[i][s]);					
 					tele2.setConnectedRoom(map[i][s+1]);
 					tele1.setConnectedTeleporter(tele2);
 					tele2.setConnectedTeleporter(tele1);
@@ -97,9 +108,19 @@ public class Level
 				if(!(i+1>=map.length)&&map[i][s]!=null&&map[i+1][s]!=null)
 				{
 					TeleporterPair currentPair=new TeleporterPair();
-					Teleporter tele1=new Teleporter(400,800, pairCounter);
+					Teleporter tele1=null;
+					Teleporter tele2=null;
+					if(map[i][s].isBossRoom()||map[i+1][s].isBossRoom())
+					{
+						tele1=TeleporterDesign.getBossTeleporter(400,800, pairCounter);
+						tele2=TeleporterDesign.getBossTeleporter(400,100, pairCounter);
+					}
+					else
+					{
+						tele1=TeleporterDesign.getRegularTeleporter(400,800, pairCounter);
+						tele2=TeleporterDesign.getRegularTeleporter(400,100, pairCounter);
+					}
 					tele1.setConnectedRoom(map[i][s]);
-					Teleporter tele2=new Teleporter(400,100, pairCounter);
 					tele2.setConnectedRoom(map[i+1][s]);
 					tele1.setConnectedTeleporter(tele2);
 					tele2.setConnectedTeleporter(tele1);

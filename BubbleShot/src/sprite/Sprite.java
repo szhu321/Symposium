@@ -43,6 +43,10 @@ public abstract class Sprite implements Collider
 	{
 		return fileName;
 	}
+	public void setSpriteFileName(String fileName)
+	{
+		this.fileName=fileName;
+	}
 	
 	public double getFaceAngle()
 	{
