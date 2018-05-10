@@ -96,6 +96,7 @@ public class GameManager
 	{
 		TimerManager.pauseAll();
 		resetKeys();
+		this.level.getCurrentRoom().spawnEnemies();
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		GameRunner.setScene(playingScene.getScene());

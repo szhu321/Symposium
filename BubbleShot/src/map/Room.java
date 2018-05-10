@@ -18,6 +18,7 @@ import sprite.character.Character;
 import sprite.character.effect.NoEffect;
 import sprite.character.player.Player;
 import sprite.character.enemy.Enemy;
+import sprite.character.enemy.EnemyDesign;
 
 /**
  * The room is the backend information hub of the game. It stores 
@@ -391,5 +392,84 @@ public class Room
 		return null;
 		*/
 		return getTileAt(character.getXCenter(), character.getYCenter());
+	}
+	
+	public void spawnEnemies()
+	{
+		int[][] spawnTile=new int[tiles.length][tiles[0].length];
+		int amountEnemies=(int)((Math.random()*4)+1);	
+		//System.out.println(amountEnemies);
+		int enemyType=0;
+		int randomX=0;
+		int randomY=0;
+		for(int i=0;i<tiles.length;i++)
+		{
+			for(int s=0;s<tiles[0].length;s++)
+			{
+				spawnTile[i][s]=1;
+			}
+		}	
+		//Checks for obstacles
+		for(int i=0;i<tiles.length;i++)
+		{
+			for(int s=0;s<tiles[0].length;s++)
+			{
+				for(int q=0;q<obstacles.size();q++)
+				{
+					if(tiles[i][s].getBoundsOfObject().intersect(obstacles.get(q).getBoundsOfObject()))
+					{	
+						spawnTile[i][s]=0;				
+					}
+				}
+			}
+		}	
+		//Checks for player	
+		for(int i=0;i<tiles.length;i++)
+		{
+			for(int s=0;s<tiles[0].length;s++)
+			{
+				if(tiles[i][s].getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
+				{	
+					spawnTile[i][s]=2;			
+					spawnTile[i-1][s-1]=0;
+					spawnTile[i-1][s]=0;
+					spawnTile[i-1][s+1]=0;
+					spawnTile[i][s-1]=0;
+					spawnTile[i][s+1]=0;
+					spawnTile[i+1][s-1]=0;
+					spawnTile[i+1][s]=0;
+					spawnTile[i+1][s+1]=0;
+				}
+			}
+		}
+		
+		while(amountEnemies>0)
+		{
+			if(spawnTile[randomY][randomX]==0||spawnTile[randomY][randomX]==2)
+			{
+				randomX=(int)(Math.random()*spawnTile[0].length);
+				randomY=(int)(Math.random()*spawnTile.length);
+			}
+			else
+			{
+				enemyType=(int)((Math.random()*1)+1);
+				if(enemyType==1)
+					this.addCharacter(EnemyDesign.getRegularDesignOne(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer()));
+				randomX=(int)(Math.random()*spawnTile[0].length);
+				randomY=(int)(Math.random()*spawnTile.length);
+				amountEnemies--;
+			}
+		}
+		//debugger
+		/*for(int i=0;i<spawnTile.length;i++)
+		{
+			String name="";
+			for(int s=0;s<spawnTile[0].length;s++)
+			{
+				name+=" "+spawnTile[i][s];
+			}
+			System.out.println(name);
+		}
+		System.out.println();*/
 	}
 }

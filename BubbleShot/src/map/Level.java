@@ -67,7 +67,7 @@ public class Level
 		this.allTeleporters = allTeleporters;
 	}
 
-	public /*static*/ void placeTeleportersInLevel()
+	public void placeTeleportersInLevel()
 	{
 		int pairCounter=0;
 		for(int i=0;i<map.length;i++)

@@ -24,7 +24,7 @@ public class RoomDesign
 		room.addCharacter(player);
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(810, 200, player));
+	//	room.addCharacter(EnemyDesign.getRegularDesignOne(810, 200, player));
 		room.addItem(PotionDesign.getHealthPotDesignOne(160, 120));
 		room.addItem(PotionDesign.getHealthPotDesignOne(160, 180));
 		room.addItem(PotionDesign.getHealthPotDesignOne(160, 160));
@@ -53,8 +53,8 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(600,100,200,450,0));
 		room.addObstacle(new StoneWall(100,600,450,200,0));
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		room.addCharacter(player);
 		//room.addCharacter(enemy);
 		return room;
@@ -70,8 +70,8 @@ public class RoomDesign
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,950,0));
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		room.addCharacter(player);
 		//room.addCharacter(enemy);
 		return room;
@@ -90,8 +90,8 @@ public class RoomDesign
 		room.addObstacle(new StoneWall(100,500,200,50,0));
 		room.addObstacle(new StoneWall(100,500,700,50,0));
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
-		room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		room.addCharacter(player);
 		return room;
 	}
