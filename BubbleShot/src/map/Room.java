@@ -37,7 +37,8 @@ public class Room
 	private int currentCol;
 	
 	private boolean isExplored = false;
-	
+	private boolean enemySpawned=false;
+
 	private String name = "unnamed";
 	
 	/**
@@ -148,6 +149,8 @@ public class Room
 	public void setName(String name) {this.name = name;}
 	public List<Character> getCharacters() {return characters;}
 	public RoomPortManager getPortManager() {return roomTeleporterManager;}
+	public boolean isEnemySpawned() {return enemySpawned;}
+	public void setEnemySpawned(boolean enemySpawned) {	this.enemySpawned = enemySpawned;}
 	
 	public List<Item> getItems() {return items;}
 	
