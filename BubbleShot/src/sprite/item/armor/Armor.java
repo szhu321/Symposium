@@ -46,6 +46,4 @@ public class Armor extends Item
 	{
 		this.maxDamageBoost = maxDamageBoost;
 	}
-	
-	
 }
