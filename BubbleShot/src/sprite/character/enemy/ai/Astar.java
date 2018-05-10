@@ -23,7 +23,7 @@ public class Astar extends AI
 	public Astar(Enemy enemy, Player player)
 	{
 		super(enemy,player);
-		timePass = 0;
+		timePass = -.4;
 	}
 	
 	public List<Coord> aStar() 
