@@ -397,7 +397,9 @@ public class Room
 	public void spawnEnemies()
 	{
 		int[][] spawnTile=new int[tiles.length][tiles[0].length];
-		int amountEnemies=(int)((Math.random()*4)+1);	
+		int amountEnemies=(int)((Math.random()*4)+1);
+		int playerTileX=(int) ((this.characterCollisionWithTile(this.getPlayer()).getXLocation())/100);
+		int playerTileY=(int) ((this.characterCollisionWithTile(this.getPlayer()).getYLocation())/100);
 		//System.out.println(amountEnemies);
 		int enemyType=0;
 		int randomX=0;
@@ -405,43 +407,26 @@ public class Room
 		for(int i=0;i<tiles.length;i++)
 		{
 			for(int s=0;s<tiles[0].length;s++)
-			{
+			{			
 				spawnTile[i][s]=1;
-			}
-		}	
-		//Checks for obstacles
-		for(int i=0;i<tiles.length;i++)
-		{
-			for(int s=0;s<tiles[0].length;s++)
-			{
 				for(int q=0;q<obstacles.size();q++)
 				{
 					if(tiles[i][s].getBoundsOfObject().intersect(obstacles.get(q).getBoundsOfObject()))
 					{	
 						spawnTile[i][s]=0;				
-					}
-				}
+					}			
+				}			
 			}
-		}	
-		//Checks for player	
-		for(int i=0;i<tiles.length;i++)
-		{
-			for(int s=0;s<tiles[0].length;s++)
-			{
-				if(tiles[i][s].getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
-				{	
-					spawnTile[i][s]=2;			
-					spawnTile[i-1][s-1]=0;
-					spawnTile[i-1][s]=0;
-					spawnTile[i-1][s+1]=0;
-					spawnTile[i][s-1]=0;
-					spawnTile[i][s+1]=0;
-					spawnTile[i+1][s-1]=0;
-					spawnTile[i+1][s]=0;
-					spawnTile[i+1][s+1]=0;
-				}
-			}
-		}
+		}		
+		spawnTile[playerTileY][playerTileX]=2;			
+		spawnTile[playerTileY-1][playerTileX-1]=0;
+		spawnTile[playerTileY-1][playerTileX]=0;
+		spawnTile[playerTileY-1][playerTileX+1]=0;
+		spawnTile[playerTileY][playerTileX-1]=0;
+		spawnTile[playerTileY][playerTileX+1]=0;
+		spawnTile[playerTileY+1][playerTileX-1]=0;
+		spawnTile[playerTileY+1][playerTileX]=0;
+		spawnTile[playerTileY+1][playerTileX+1]=0;
 		
 		while(amountEnemies>0)
 		{
@@ -455,13 +440,14 @@ public class Room
 				enemyType=(int)((Math.random()*1)+1);
 				if(enemyType==1)
 					this.addCharacter(EnemyDesign.getRegularDesignOne(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer()));
+				spawnTile[randomY][randomX]=0;
 				randomX=(int)(Math.random()*spawnTile[0].length);
 				randomY=(int)(Math.random()*spawnTile.length);
 				amountEnemies--;
 			}
 		}
 		//debugger
-		/*for(int i=0;i<spawnTile.length;i++)
+		for(int i=0;i<spawnTile.length;i++)
 		{
 			String name="";
 			for(int s=0;s<spawnTile[0].length;s++)
@@ -470,6 +456,6 @@ public class Room
 			}
 			System.out.println(name);
 		}
-		System.out.println();*/
+		System.out.println();
 	}
 }
