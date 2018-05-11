@@ -37,7 +37,12 @@ public class MiniLevelMap
 					else
 					{
 						gc.setFill(Color.WHITE);
-						gc.fillRect(x, y, 20, 20);	
+						gc.fillRect(x, y, 20, 20);
+						if(rooms[i][j].isBossRoom())
+						{
+							gc.setFill(Color.RED);
+							gc.fillRect(x, y, 20, 20);
+						}
 					}
 					if(rooms[i][j] == level.getCurrentRoom() && (System.currentTimeMillis() % 2000) > 1000)
 					{

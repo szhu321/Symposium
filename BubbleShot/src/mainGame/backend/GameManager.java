@@ -366,7 +366,7 @@ public class GameManager
     {
     	List<Character> enemies=level.getCurrentRoom().getCharacters();
     	double circleRadius=300;
-    	if(shift==true)
+    	if((shift)&&(left||right||up||down))
     		circleRadius=500;
     	for(Character e:enemies)
     		if(e instanceof Enemy)
