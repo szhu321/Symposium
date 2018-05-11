@@ -379,6 +379,10 @@ public class GameManager
     					calculateEnemyAngleToPlayer((Enemy)e);
     					((Enemy)e).useCurrentItem(Item.WEAPON);
     				}
+    				else
+    				{
+    					((Enemy)e).getBrain().wander(sec);
+    				}
     			}
     			else
     			{

@@ -7,30 +7,33 @@ import sprite.item.weapon.Weapon;
 import sprite.item.weapon.WeaponDesign;
 
 public class EnemyDesign
-{
-	public static final String FOLLOWER="follower";
-	public static final String SMART="smart";
-	public static final String GHOST="ghost";
-	public static final String MELEE="melee";
-	public static final String MACHINEGUN="machinegun";
-	public static final String TOWER="tower";
-	
+{	
 	public static Enemy getRandomDesign(double x, double y, Player player, String type)
 	{
-		if(type.equals(EnemyDesign.FOLLOWER))
+		if(type.equals(Enemy.FOLLOWER))
 			return EnemyDesign.getRegularDesignOne(x, y, player);
-		if(type.equals(EnemyDesign.SMART))
+		if(type.equals(Enemy.SMART))
 			return EnemyDesign.getSmartDesignOne(x, y, player);
+		if(type.equals(Enemy.GHOST))
+			return EnemyDesign.getRegularDesignTwo(x, y, player);
 		return null;
 	}
-	
 	
 	public static Enemy getRegularDesignOne(double x, double y, Player player)
 	{
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
-		Enemy enemy=new Regular("Brian",fileName, x, y,50, 80, 50, 50, pistol,player);
+		Enemy enemy=new Regular("Brian",fileName, x, y,50, 80, 50, 50, pistol,player,Enemy.FOLLOWER);
+		return enemy;
+	}
+	
+	public static Enemy getRegularDesignTwo(double x, double y, Player player)
+	{
+		String fileName = "file:resources/enemy/ghost.png";
+		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
+		pistol.setDefaultCoolDownTime(.3);
+		Enemy enemy=new Ghost("Ghost Brian",fileName, x, y,50, 100, 50, 50, pistol,player,Enemy.GHOST);
 		return enemy;
 	}
 	
@@ -39,7 +42,7 @@ public class EnemyDesign
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
-		Enemy enemy=new Smart("Smart Brian",fileName, x, y,50, 130, 50, 50, pistol,player);
+		Enemy enemy=new Smart("Smart Brian",fileName, x, y,50, 130, 50, 50, pistol,player,Enemy.SMART);
 		return enemy;
 	}
 	

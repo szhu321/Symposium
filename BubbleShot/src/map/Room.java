@@ -441,12 +441,14 @@ public class Room
 			}
 			else
 			{
-				enemyType=(int)((Math.random()*2)+1);
+				enemyType=(int)((Math.random()*3)+1);
 				String type="";
 				if(enemyType==1)
-					type=EnemyDesign.FOLLOWER;
+					type=Enemy.FOLLOWER;
 				if(enemyType==2)
-					type=EnemyDesign.SMART;
+					type=Enemy.SMART;
+				if(enemyType==3)
+					type=Enemy.GHOST;
 				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),type));
 				spawnTile[randomY][randomX]=0;
 				randomX=(int)(Math.random()*spawnTile[0].length);

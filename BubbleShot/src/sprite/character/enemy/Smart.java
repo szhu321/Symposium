@@ -7,9 +7,9 @@ import sprite.item.Item;
 
 public class Smart extends Enemy
 {
-	public Smart(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height, Item weapon,Player player)
+	public Smart(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height, Item weapon,Player player,String enemyType)
 	{
-		super(spriteName,fileName, xLocation, yLocation, health, speed, width, height, weapon,player);		
+		super(spriteName,fileName, xLocation, yLocation, health, speed, width, height, weapon,player,enemyType);			
 		this.setBrain(new Astar(this,this.getPlayer()));
 	}
 }
