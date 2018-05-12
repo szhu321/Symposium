@@ -13,7 +13,7 @@ public class EffectSound implements Sound
 	//in seconds
 	private double effectSoundLength;
 	
-	public void EffectSound(String soundFile, double eSLength)
+	public EffectSound(String soundFile, double eSLength)
 	{
 		effectSound = new Media(new File(soundFile).toURI().toString());
 		effectSoundLength = eSLength;

@@ -10,19 +10,21 @@ public class BackgroundSound implements Sound
 {
 	private Media bkgrdSound;
 	private MediaPlayer mediaPlayer;
+	private double effectSoundLength;
 	
-	public void BackgroundSound(String soundFile)
+	public BackgroundSound(String soundFile, double length)
 	{
 		bkgrdSound = new Media(new File(soundFile).toURI().toString());
+		effectSoundLength = length;
 	}
 
 	@Override
-	public void playSound(double volume) 
+	public void playSound(double volume)
 	{
 		mediaPlayer = new MediaPlayer(bkgrdSound);
 		mediaPlayer.setVolume(volume);
 		mediaPlayer.setStartTime(Duration.seconds(0));
-		mediaPlayer.setStopTime(Duration.seconds(5)); //replace 5 with actual length of audio
+		mediaPlayer.setStopTime(Duration.seconds(effectSoundLength)); //replace 5 with actual length of audio
 		mediaPlayer.setAutoPlay(true);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		mediaPlayer.play();
@@ -34,4 +36,9 @@ public class BackgroundSound implements Sound
 		mediaPlayer.stop();
 	}
 
+	public MediaPlayer getMediaPlayer() 
+	{
+		return mediaPlayer;
+	}
+	
 }

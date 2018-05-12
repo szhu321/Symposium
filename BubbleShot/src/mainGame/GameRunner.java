@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
 import map.LevelDesign;
+import sound.BackgroundSound;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
@@ -36,6 +37,9 @@ public class GameRunner extends Application
 		gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player, window);
 		gameManager.startGame();
 		
+		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
+		bs.playSound(.4);
+				
 		window.setMinHeight(700);
 		window.setMinWidth(700);
 		window.show();

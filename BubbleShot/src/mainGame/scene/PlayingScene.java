@@ -68,7 +68,7 @@ public class PlayingScene
 	private Text playerAmmoDis;
 	private Text playerScoreDis;
 	//private ImageView[] playerInventoryDis;
-	private Canvas[] playerInventoryDisCanvs;
+	private Canvas[] playerHotbarDisCanvas;
 	
 	//private ImageView playerHoldItemDis;
 	
@@ -178,6 +178,7 @@ public class PlayingScene
 		topBox.getChildren().addAll(healthbar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerScoreDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
+		topBox.setOnMousePressed(event -> event.consume());
 		headUpDis.setBottom(getInventoryDisGUI());
 		updateHeadUpDis();
 	}
@@ -193,20 +194,20 @@ public class PlayingScene
 		playerScoreDis.setText("Score: " + player.getScore());
 		for(int i = 0; i < player.getInventory().length; i++)
 		{
-			playerInventoryDisCanvs[i].setWidth(55);
-			playerInventoryDisCanvs[i].setHeight(55);
-			playerInventoryDisCanvs[i].getGraphicsContext2D().clearRect(0, 0, playerInventoryDisCanvs[i].getWidth(), playerInventoryDisCanvs[i].getHeight());
-			
+			playerHotbarDisCanvas[i].getGraphicsContext2D().setFill(Color.GRAY);
+			playerHotbarDisCanvas[i].getGraphicsContext2D().fillRect(0, 0, playerHotbarDisCanvas[i].getWidth(), playerHotbarDisCanvas[i].getHeight());
+			playerHotbarDisCanvas[i].setWidth(55);
+			playerHotbarDisCanvas[i].setHeight(55);
 				
 			if(player.getCurrentItemIdx() == i)
 			{
 				//playerInventoryDis[i].setScaleX(1);
 				//playerInventoryDis[i].getTransforms().set(0, new Scale(1,1));
 				//playerInventoryDis[i].setStyle("-fx-color: rgba(0,0,0,.2)");
-				playerInventoryDisCanvs[i].setWidth(60);
-				playerInventoryDisCanvs[i].setHeight(60);
-				playerInventoryDisCanvs[i].getGraphicsContext2D().setLineWidth(10);
-				playerInventoryDisCanvs[i].getGraphicsContext2D().strokeRect(0,0 , playerInventoryDisCanvs[i].getWidth(), playerInventoryDisCanvs[i].getHeight());
+				playerHotbarDisCanvas[i].setWidth(60);
+				playerHotbarDisCanvas[i].setHeight(60);
+				playerHotbarDisCanvas[i].getGraphicsContext2D().setLineWidth(10);
+				playerHotbarDisCanvas[i].getGraphicsContext2D().strokeRect(0,0 , playerHotbarDisCanvas[i].getWidth(), playerHotbarDisCanvas[i].getHeight());
 			}
 			else
 			{
@@ -217,7 +218,7 @@ public class PlayingScene
 			if(player.getInventory()[i] != null)
 			{
 				//playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
-				playerInventoryDisCanvs[i].getGraphicsContext2D().drawImage(player.getInventory()[i].getSpriteImage(), 0, 0);
+				playerHotbarDisCanvas[i].getGraphicsContext2D().drawImage(player.getInventory()[i].getSpriteImage(), 0, 0);
 			}
 		}
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
@@ -229,23 +230,24 @@ public class PlayingScene
 		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
 		bottomBox.setHgap(20);
 		//playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
-		playerInventoryDisCanvs = new Canvas[currentRoom.getPlayer().getInventory().length];
+		playerHotbarDisCanvas = new Canvas[currentRoom.getPlayer().getInventory().length];
 		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
 		{
-			StackPane stack = new StackPane();
+			//StackPane stack = new StackPane();
 			//playerInventoryDis[i] = new ImageView();
-			playerInventoryDisCanvs[i] = new Canvas(50, 50);
+			playerHotbarDisCanvas[i] = new Canvas(50, 50);
 			//Text text = new Text("" + (i + 1));
 			//text.setFont(new Font(22));
 			//playerInventoryDis[i].getTransforms().add(new Scale(.83333,.83333));
-			stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
+			//stack.getChildren().add(new ImageView(new Image("file:resources/other/blankInventorySlot.png", 60, 60, false, false)));
 			//stack.getChildren().add(text);
 			//stack.getChildren().add(playerInventoryDis[i]);
-			stack.getChildren().add(playerInventoryDisCanvs[i]);
+			//stack.getChildren().add(playerInventoryDisCanvs[i]);
 			//stack.setAlignment(text, Pos.BOTTOM_RIGHT);
-			bottomBox.add(stack, i, 0);
+			bottomBox.add(playerHotbarDisCanvas[i], i, 0);
 		}
 		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
+		bottomBox.setOnMousePressed(event -> event.consume());
 		return bottomBox;
 	}
 	
