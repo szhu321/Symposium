@@ -24,6 +24,7 @@ import myutilities.TimeTracker;
 import myutilities.TimerManager;
 import sprite.character.player.Player;
 import sprite.item.Item;
+import sprite.item.ammo.Ammo;
 import sprite.item.potion.Potion;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
@@ -498,7 +499,7 @@ public class GameManager
 				playerDropItem();
 			if(code == KeyCode.F)
 			{
-				if(player.getCurrentItem() instanceof Potion)
+				if(player.getCurrentItem() instanceof Potion || player.getCurrentItem() instanceof Ammo)
 				{
 					player.useCurrentItem(Item.POTION);
 					player.removeCurrentItem();

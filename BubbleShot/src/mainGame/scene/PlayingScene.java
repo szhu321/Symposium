@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import mainGame.GameRunner;
+import mainGame.frontend.AmmoBar;
 import mainGame.frontend.HealthBar;
 import mainGame.frontend.MiniLevelMap;
 import mainGame.frontend.RoomView;
@@ -55,22 +56,23 @@ public class PlayingScene
 {
 	private Scene scene;
 	private Group root;
-	private Group tilesDis;
+	//private Group tilesDis;
 	private BorderPane headUpDis;
-	private Group moveArea;
-	private Group projectileArea;
+	//private Group moveArea;
+	//private Group projectileArea;
 	private Room currentRoom;
 	
 	private Text playerHealthDis;
 	private HealthBar healthbar;
+	private AmmoBar ammobar;
 	private Text playerAmmoDis;
 	private Text playerScoreDis;
-	private ImageView[] playerInventoryDis;
+	//private ImageView[] playerInventoryDis;
 	private Canvas[] playerInventoryDisCanvs;
 	
-	private ImageView playerHoldItemDis;
+	//private ImageView playerHoldItemDis;
 	
-	private HBox topHealthBox;
+	//private HBox topHealthBox;
 	private Canvas miniMap;
 	
 	private RoomView roomView;
@@ -170,9 +172,10 @@ public class PlayingScene
 			}
 		});
 		
-		healthbar = new HealthBar(400, 50, currentRoom.getPlayer().getDefaultHealth());
+		healthbar = new HealthBar(350, 50, currentRoom.getPlayer().getDefaultHealth());
+		ammobar = new AmmoBar(350, 50, currentRoom.getPlayer().getDefaultAmmo());
 		
-		topBox.getChildren().addAll(playerHealthDis, healthbar.getCanvas(), /*healthBoxContainer*/ playerAmmoDis, playerScoreDis, pauseBtn);
+		topBox.getChildren().addAll(healthbar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerScoreDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		headUpDis.setBottom(getInventoryDisGUI());
@@ -184,6 +187,7 @@ public class PlayingScene
 		Player player = currentRoom.getPlayer();
 		playerHealthDis.setText("Health: " + player.getCurrentHealth());
 		healthbar.updateCanvas(player.getCurrentHealth());
+		ammobar.updateCanvas(player.getCurrentAmmo());
 		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
 		playerScoreDis.setText("Score: " + player.getScore());

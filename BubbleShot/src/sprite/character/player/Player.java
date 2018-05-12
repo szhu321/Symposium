@@ -2,9 +2,11 @@ package sprite.character.player;
 
 import sprite.character.Character;
 import sprite.item.Item;
+import sprite.item.ammo.Ammo;
 import sprite.item.potion.Potion;
 import sprite.item.weapon.Fist;
 import sprite.item.weapon.Weapon;
+import sprite.item.weapon.WeaponDesign;
 
 public class Player extends Character
 {
@@ -16,6 +18,7 @@ public class Player extends Character
 	private int coins;
 	private int currentAmmo;
 	private int defaultAmmo;
+	private Fist fist = WeaponDesign.getFistDesignOne(this);
 	
 	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double health, double speed, Item[] inventory, int ammoCount) 
 	{
@@ -78,11 +81,21 @@ public class Player extends Character
 	@Override
 	public void useCurrentItem(String input) 
 	{
-		if(getCurrentItem() == null)
+		if(getCurrentItem() == null && input.equals(Item.WEAPON))
+		{
+			fist.useItem();
 			return;
+		}
 		if(input.equals(Item.POTION)&&inventory[currentItemIdx].getItemType().equals(Item.POTION))
 		{
-			((Potion) inventory[currentItemIdx]).useItemOnPlayer(this);
+			if(inventory[currentItemIdx] instanceof Ammo)
+			{
+				((Ammo) inventory[currentItemIdx]).useItemOnPlayer(this);
+			}
+			else
+			{
+				((Potion) inventory[currentItemIdx]).useItemOnPlayer(this);
+			}
 		}
 		if(input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
 		{
@@ -99,6 +112,7 @@ public class Player extends Character
 		for(Item item : inventory)
 			if(item != null && item instanceof Weapon)
 				item.coolDownItem(sec);
+		fist.coolDownItem(sec);
 	}
 	
 	public void selectItem(String input)
@@ -120,7 +134,15 @@ public class Player extends Character
 	public int getDefaultAmmo() {return defaultAmmo;}
 	public int getScore() {return score;}
 	public void setScore(int score) {this.score = score;}
-	public void setCurrentAmmo(int currentAmmo) {this.currentAmmo = currentAmmo;}
+	public void setCurrentAmmo(int currentAmmo)
+	{
+		if(currentAmmo > defaultAmmo)
+			this.currentAmmo = defaultAmmo;
+		else
+		{
+			this.currentAmmo = currentAmmo;
+		}
+	}
 	public Item[] getInventory() {return inventory;}
 	
 	public int getCoins() 

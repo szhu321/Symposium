@@ -45,4 +45,15 @@ public class ProjectileDesign
 		Slash bullet = new Slash("Slash", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
 		return bullet;
 	}
+	
+	public static Projectile getFistDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/weaponPictures/fist.png";
+		double width = 30;
+		double height = 30;
+		double travelDistance = .2;
+		double speed = 1;
+		Slash bullet = new Slash("Fist", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		return bullet;
+	}
 }

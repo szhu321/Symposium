@@ -1,5 +1,6 @@
 package sprite.item.weapon;
 
+import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
@@ -16,9 +17,15 @@ public class WeaponDesign
 		return null;
 	}
 	
-	public static Fist getFistDesignOne()
+	public static Fist getFistDesignOne(Player player)
 	{
-		return null;
+		double damage = 5;
+		double shootingSpeed = .2;
+		double bulletTravelRange = .2;
+		Projectile projectile = ProjectileDesign.getFistDesignOne(null, 0, 0, 0, 5);
+		Fist fist = new Fist("Fist", "file:resources/weaponPictures/fist.png", 0, 0, Item.WEAPON, true, damage, shootingSpeed, bulletTravelRange, projectile);
+		fist.setPossessor(player);
+		return fist;
 	}
 	
 	public static Pistol getPistolDesignOne(double x, double y)

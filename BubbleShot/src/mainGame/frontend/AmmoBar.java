@@ -3,6 +3,7 @@ package mainGame.frontend;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class AmmoBar 
 {
@@ -46,6 +47,14 @@ public class AmmoBar
 		gc.fillRect(0, 0, width * AmmoRatio, height);
 	}
 	
+	private void paintText()
+	{
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.setFont(new Font(30));
+		gc.setFill(Color.BLACK);
+		gc.fillText((int)currentAmmo + "/ " +(int)maxAmmo, (canvas.getWidth() / 2) - 100, (canvas.getHeight() / 2) + 10);
+	}
+	
 	private void clearCanvas()
 	{
 		GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -64,5 +73,6 @@ public class AmmoBar
 		clearCanvas();
 		paintMiddle();
 		paintBorder();
+		paintText();
 	}
 }
