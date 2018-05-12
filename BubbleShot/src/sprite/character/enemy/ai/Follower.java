@@ -22,28 +22,16 @@ public class Follower extends AI
 		Player player=this.getPlayer();
 		double changeAmount = enemy.getSpeed() * sec;
 		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
-		if(this.getEnemy().getEnemyType()!=Enemy.GHOST)
-		{
-			if(enemy.getXLocation()>player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
-				deltaX -= changeAmount;
-			if(enemy.getXLocation()<player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
-				deltaX += changeAmount;
-			if(enemy.getYLocation()>player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
-				deltaY -= changeAmount;
-			if(enemy.getYLocation()<player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
-				deltaY += changeAmount;
-		}
-		else
-		{
-			if(enemy.getXLocation()>player.getXLocation())
-				deltaX -= changeAmount;
-			if(enemy.getXLocation()<player.getXLocation())
-				deltaX += changeAmount;
-			if(enemy.getYLocation()>player.getYLocation())
-				deltaY -= changeAmount;
-			if(enemy.getYLocation()<player.getYLocation())
-				deltaY += changeAmount;
-		}
+		
+		if(enemy.getXLocation()>player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
+			deltaX -= changeAmount;
+		if(enemy.getXLocation()<player.getXLocation()&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+			deltaX += changeAmount;
+		if(enemy.getYLocation()>player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
+			deltaY -= changeAmount;
+		if(enemy.getYLocation()<player.getYLocation() && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+			deltaY += changeAmount;
+		
 		if(deltaX != 0 && deltaY != 0)
 		{
 			deltaX *= 1 / Math.sqrt(2);
