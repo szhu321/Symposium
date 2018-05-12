@@ -1,5 +1,6 @@
 package mainGame.backend;
 
+import java.awt.Event;
 import java.util.List;
 
 import javafx.animation.KeyFrame;
@@ -61,15 +62,16 @@ public class GameManager
 	private double mouseYUnajusted = 0.0;
 	
 	
-	public GameManager(Level level, Player player)
+	public GameManager(Level level, Player player, Stage window)
 	{
 		this.level = level;
 		this.player = player;
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
+		this.window = window;
 	}
 	
-	public void startGame(Stage window)
+	public void startGame()
 	{
 		TimeTracker.resetTime();
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
@@ -84,13 +86,14 @@ public class GameManager
 			//System.out.println("\n\n\n");
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
-		this.window = window;
 		setScene(playingScene.getScene());
 	}
 	
 	public static void setScene(Scene scene)
 	{
 		window.setScene(scene);
+		window.setHeight(800);
+		window.setWidth(800);
 	}
 	
 	public void changeRoom()
@@ -104,7 +107,16 @@ public class GameManager
 		}
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
-		GameRunner.setScene(playingScene.getScene());
+		if(window.isFullScreen())
+		{
+			GameRunner.setScene(playingScene.getScene());
+			window.setFullScreenExitHint("");
+			window.setFullScreen(true);
+		}
+		else
+		{
+			GameRunner.setScene(playingScene.getScene());
+		}
 		TimerManager.resumeAll();
 	}
 	
@@ -466,6 +478,14 @@ public class GameManager
 		}
 	}
 	
+	public void toggleFullScreen()
+	{
+		if(window.isFullScreen())
+			window.setFullScreen(false);
+		else
+			window.setFullScreen(true);
+	}
+	
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
@@ -497,6 +517,11 @@ public class GameManager
 				player.setCurrentItemIdx(5);
 			if(code == KeyCode.G)
 				playerDropItem();
+			if(code == KeyCode.F11)
+			{
+				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
+				toggleFullScreen();
+			}
 			if(code == KeyCode.F)
 			{
 				if(player.getCurrentItem() instanceof Potion || player.getCurrentItem() instanceof Ammo)
