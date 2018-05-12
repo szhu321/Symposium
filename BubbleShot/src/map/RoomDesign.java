@@ -38,6 +38,7 @@ public class RoomDesign
 		room.addItem(WeaponDesign.getSniperDesignEPIC(400, 100));
 		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500));
 		room.addItem(WeaponDesign.getShotgunDesignEPIC(300, 100));
+		room.addItem(WeaponDesign.getSwordDesignOne(500, 100));
 		return room;
 	}
 	

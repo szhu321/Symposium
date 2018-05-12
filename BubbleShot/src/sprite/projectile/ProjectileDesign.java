@@ -34,4 +34,15 @@ public class ProjectileDesign
 		Projectile bullet = new LinearProjectile("Sniper Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
 		return bullet;
 	}
+	
+	public static Projectile getSlashDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/slash/slash.png";
+		double width = 20;
+		double height = 100;
+		double travelDistance = .2;
+		double speed = 1;
+		Slash bullet = new Slash("Slash", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		return bullet;
+	}
 }

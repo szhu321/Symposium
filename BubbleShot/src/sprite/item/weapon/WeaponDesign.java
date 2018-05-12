@@ -91,8 +91,13 @@ public class WeaponDesign
 		return shotgun;
 	}
 	
-	public static Sword getSwordDesignOne()
+	public static Sword getSwordDesignOne(double x, double y)
 	{
-		return null;
+		double damage = 20;
+		double attackRate = .2;
+		double attackRange = .2;
+		Projectile projectile = ProjectileDesign.getSlashDesignOne(null, x, y, 0, 15);
+		Sword sword = new Sword("Sword", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);
+		return sword;
 	}
 }
