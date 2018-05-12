@@ -16,8 +16,8 @@ public class Shotgun extends Weapon
 	public Shotgun(String spriteName, double xLocation, double yLocation, String itemType,
 			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed) 
 	{
-		super(spriteName,"file:resources/weaponPictures/sniper.png", xLocation, yLocation, itemType, isCooledDown, damage, attackRate, attackRange, projectile,
-				110, 60, ammoUsed);
+		super(spriteName,"file:resources/weaponPictures/shotgun.png", xLocation, yLocation, itemType, isCooledDown, damage, attackRate, attackRange, projectile,
+				100, 27, ammoUsed);
 		this.offsetAngle = offsetAngle;
 		this.bulletPerShot = bulletPerShot;
 	}
