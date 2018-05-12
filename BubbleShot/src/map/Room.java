@@ -303,8 +303,11 @@ public class Room
 		}
 		for(Obstacle obs : obstacles)
 		{
-			if(obs.getBoundsOfObject().intersect(characterBounds))
-				return false;
+			if(!(character.getSpriteName().equals("Ghost Brian")))
+			{
+				if(obs.getBoundsOfObject().intersect(characterBounds))
+					return false;
+			}
 			if(character instanceof Player)
 			{
 				for(Character chara : characters)
