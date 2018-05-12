@@ -47,8 +47,8 @@ public abstract class AI
 			directionSecs=0;
 		}
 		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
-	//	if(this.getEnemy().getEnemyType()!=Enemy.GHOST)
-		//{
+		if(this.getEnemy().getEnemyType()!=Enemy.GHOST)
+		{
 			if(direction==1&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
 				deltaX -= changeAmount;
 			if(direction==2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
@@ -57,11 +57,7 @@ public abstract class AI
 				deltaY -= changeAmount;
 			if(direction==4&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
 				deltaY += changeAmount;
-	//	}
-	//	else
-	//	{
-	//	
-	//	}
+		}
 		if(deltaX != 0 && deltaY != 0)
 		{
 			deltaX *= 1 / Math.sqrt(2);

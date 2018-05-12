@@ -371,7 +371,7 @@ public class GameManager
     	for(Character e:enemies)
     		if(e instanceof Enemy)
     		{
-    			if(!((Enemy)e).getBrain().getName().equals("Astar"))
+    			if(!((Enemy)e).getBrain().getName().equals("Astar")||((Enemy)e).getEnemyType()!=Enemy.GHOST)
     			{
     				if(((Enemy)e).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
     				{
