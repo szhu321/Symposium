@@ -10,7 +10,7 @@ public class PlayerDesign
 		String fileName = "file:resources/player/player1.png";
 		Item[] inventory = new Item[6];
 		//The health the player starts with.
-		double health = 70;
+		double health = 7000;
 		//Players speed in pixels per second.
 		double speed = 130;
 		//The ammo the player starts with.

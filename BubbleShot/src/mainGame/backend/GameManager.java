@@ -84,6 +84,7 @@ public class GameManager
 			//System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
 			//pasttime = now;
 			//System.out.println("\n\n\n");
+			//System.out.println(level.allDead());
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
 		setScene(playingScene.getScene());
@@ -286,7 +287,16 @@ public class GameManager
 			}
 		}
 		if(!isEnemyAlive)
+		{	
+			List<Teleporter> roomPorters = level.getCurrentRoom().getRoomTeleporterManager().getRoomPorters();
 			level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
+			for(Teleporter tele : roomPorters)
+				if(tele.isBossTele())
+					if(level.allDead())
+						level.getCurrentRoom().getRoomTeleporterManager().activateTeleporter(tele);
+					else
+						level.getCurrentRoom().getRoomTeleporterManager().deactivateTeleporter(tele);
+		}
 	}
 	
 	private void readjustMousePosDueToCameraMovement()
@@ -549,7 +559,7 @@ public class GameManager
 					else
 					{
 						level.getCurrentRoom().setAllEnemyDead(true);
-						level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
+						//level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
 					}
 						
 				for(int i=0; i<teleChecker.length;i++)
@@ -563,7 +573,7 @@ public class GameManager
 							{
 								if(t.isBossTele()&&!(level.allDead()))
 								{
-									t.setActivated(false);
+									//t.setActivated(false);
 									continue;
 								}
 								else
