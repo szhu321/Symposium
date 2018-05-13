@@ -16,6 +16,8 @@ public class LevelDesign
 		level1.addRoomTo(RoomDesign.getRoomDesignFour(player,1,1), 1, 1);
 		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,1,2), 1, 2);
 		level1.setCurrentRoom(0, 0);
+		level1.getCurrentRoom().setEnemySpawned(true);
+		level1.getCurrentRoom().setAllEnemyDead(true);;
 		level1.placeTeleportersInLevel();
 		return level1;
 	}

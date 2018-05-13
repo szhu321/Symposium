@@ -33,11 +33,29 @@ public class RoomPortManager
 		}
 	}
 	
+	public void activateTeleporters(int id)
+	{
+		for(Teleporter tele : roomPorters)
+		{
+			if(tele.getId()==id)
+				tele.setActivated(true);
+		}
+	}
+	
 	public void deactivateAllTelePorters()
 	{
 		for(Teleporter tele : roomPorters)
 		{
 			tele.setActivated(false);
+		}
+	}
+	
+	public void deactivateTelePorters(int id)
+	{
+		for(Teleporter tele : roomPorters)
+		{
+			if(tele.getId()==id)
+				tele.setActivated(false);
 		}
 	}
 }

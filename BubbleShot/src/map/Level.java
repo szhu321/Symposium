@@ -84,6 +84,8 @@ public class Level
 					{
 						tele1=TeleporterDesign.getBossTeleporter(800,400,pairCounter);
 						tele2=TeleporterDesign.getBossTeleporter(100,400,pairCounter);
+						tele1.setBossTele(true);
+						tele2.setBossTele(true);
 					}
 					else
 					{
@@ -114,6 +116,8 @@ public class Level
 					{
 						tele1=TeleporterDesign.getBossTeleporter(400,800, pairCounter);
 						tele2=TeleporterDesign.getBossTeleporter(400,100, pairCounter);
+						tele1.setBossTele(true);
+						tele2.setBossTele(true);
 					}
 					else
 					{
@@ -149,5 +153,26 @@ public class Level
 	public void removePlayerFromCurrentRoom(Player player)
 	{
 		currentRoom.getCharacters().remove(player);
+	}
+	
+	public boolean allDead()
+	{
+		int counter=map.length*map[0].length;
+		for(Room[] r:map)
+		{
+			for(Room rs:r)
+			{
+				if(!(rs==null))
+				{	
+					if(rs.isEnemySpawned()==false)
+						return false;
+					if(rs.isAllEnemyDead())
+						counter--;
+				}
+			}
+		}
+		if(counter==0)
+			return true;
+		return false;
 	}
 }

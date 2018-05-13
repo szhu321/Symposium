@@ -37,6 +37,7 @@ public class Room
 	private int currentCol;
 	
 	private boolean isExplored = false;
+	private boolean allEnemyDead=false;
 	private boolean enemySpawned=false;
 	private boolean isBossRoom=false;
 
@@ -444,15 +445,8 @@ public class Room
 			}
 			else
 			{
-				enemyType=(int)((Math.random()*3)+1);
-				String type="";
-				if(enemyType==1)
-					type=Enemy.FOLLOWER;
-				if(enemyType==2)
-					type=Enemy.SMART;
-				if(enemyType==3)
-					type=Enemy.GHOST;
-				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),type));
+				enemyType=(int)((Math.random()*4)+1);
+				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),enemyType));
 				spawnTile[randomY][randomX]=0;
 				randomX=(int)(Math.random()*spawnTile[0].length);
 				randomY=(int)(Math.random()*spawnTile.length);
@@ -478,5 +472,13 @@ public class Room
 	}
 	public void setBossRoom(boolean isBossRoom) {
 		this.isBossRoom = isBossRoom;
+	}
+
+	public boolean isAllEnemyDead() {
+		return allEnemyDead;
+	}
+
+	public void setAllEnemyDead(boolean allEnemyDead) {
+		this.allEnemyDead = allEnemyDead;
 	}
 }

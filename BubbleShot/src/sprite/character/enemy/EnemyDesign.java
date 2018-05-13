@@ -8,14 +8,16 @@ import sprite.item.weapon.WeaponDesign;
 
 public class EnemyDesign
 {	
-	public static Enemy getRandomDesign(double x, double y, Player player, String type)
+	public static Enemy getRandomDesign(double x, double y, Player player, int num)
 	{
-		if(type.equals(Enemy.FOLLOWER))
+		if(num==1)
 			return EnemyDesign.getRegularDesignOne(x, y, player);
-		if(type.equals(Enemy.SMART))
+		if(num==2)
 			return EnemyDesign.getSmartDesignOne(x, y, player);
-		if(type.equals(Enemy.GHOST))
+		if(num==3)
 			return EnemyDesign.getRegularDesignTwo(x, y, player);
+		if(num==4)
+			return EnemyDesign.getSwordDesignOne(x, y, player);
 		return null;
 	}
 	
@@ -43,6 +45,15 @@ public class EnemyDesign
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
 		Enemy enemy=new Smart("Smart Brian",fileName, x, y,50, 130, 50, 50, pistol,player,Enemy.SMART);
+		return enemy;
+	}
+	
+	public static Enemy getSwordDesignOne(double x, double y, Player player)
+	{
+		String fileName = "file:resources/enemy/enemy.png";
+		Weapon sword=WeaponDesign.getSwordDesignOne(x, y);
+		sword.setDefaultCoolDownTime(.8);
+		Enemy enemy=new Swordsman("Sword Brian",fileName, x, y,50, 130, 50, 50, sword,player,Enemy.SMART);
 		return enemy;
 	}
 	

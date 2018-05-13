@@ -38,7 +38,7 @@ public class GameRunner extends Application
 		gameManager.startGame();
 		
 		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
-		bs.playSound(.4);
+		bs.playSound(.05);
 				
 		window.setMinHeight(700);
 		window.setMinWidth(700);

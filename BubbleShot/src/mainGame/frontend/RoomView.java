@@ -62,10 +62,10 @@ public class RoomView
 				gc.drawImage(tile.getSpriteImage(), tile.getXLocation(), tile.getYLocation(), tile.getWidth(), tile.getHeight());
 				if(tile instanceof Teleporter && !((Teleporter) tile).isActivated())
 				{
-					gc.save();
-					gc.setFill(Color.rgb(0, 0, 0, .8));
-					gc.fillRect(tile.getXLocation(), tile.getYLocation(), tile.getWidth(), tile.getHeight());
-					gc.restore();
+						gc.save();
+						gc.setFill(Color.rgb(0, 0, 0, .8));
+						gc.fillRect(tile.getXLocation(), tile.getYLocation(), tile.getWidth(), tile.getHeight());
+						gc.restore();
 				}
 			}
 		}
