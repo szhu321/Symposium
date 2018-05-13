@@ -194,7 +194,7 @@ public class PlayingScene
 		playerScoreDis.setText("Score: " + player.getScore());
 		for(int i = 0; i < player.getInventory().length; i++)
 		{
-			playerHotbarDisCanvas[i].getGraphicsContext2D().setFill(Color.GRAY);
+			playerHotbarDisCanvas[i].getGraphicsContext2D().setFill(Color.LIGHTGRAY);
 			playerHotbarDisCanvas[i].getGraphicsContext2D().fillRect(0, 0, playerHotbarDisCanvas[i].getWidth(), playerHotbarDisCanvas[i].getHeight());
 			playerHotbarDisCanvas[i].setWidth(55);
 			playerHotbarDisCanvas[i].setHeight(55);

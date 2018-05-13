@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Rotate;
+import mainGame.GameRunner;
 import map.Room;
 import map.Tile.Tile;
 import map.Tile.teleporter.Teleporter;
@@ -62,11 +63,23 @@ public class RoomView
 				gc.drawImage(tile.getSpriteImage(), tile.getXLocation(), tile.getYLocation(), tile.getWidth(), tile.getHeight());
 				if(tile instanceof Teleporter && !((Teleporter) tile).isActivated())
 				{
+						
 						gc.save();
 						gc.setFill(Color.rgb(0, 0, 0, .8));
 						gc.fillRect(tile.getXLocation(), tile.getYLocation(), tile.getWidth(), tile.getHeight());
 						gc.restore();
 				}
+//				if(tile instanceof Teleporter)
+//				{
+//					System.out.println(((Teleporter) tile).isActivated());
+//				}
+//				if(tile instanceof Teleporter && ((Teleporter) tile).isBossTele() && !GameRunner.getGameManager().getLevel().allDead())
+//				{
+//						gc.save();
+//						gc.setFill(Color.rgb(0, 0, 0, .8));
+//						gc.fillRect(tile.getXLocation(), tile.getYLocation(), tile.getWidth(), tile.getHeight());
+//						gc.restore();
+//				}
 			}
 		}
 	}
