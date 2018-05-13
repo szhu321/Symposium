@@ -288,6 +288,7 @@ public class GameManager
 		}
 		if(!isEnemyAlive)
 		{	
+			level.getCurrentRoom().setAllEnemyDead(true);
 			List<Teleporter> roomPorters = level.getCurrentRoom().getRoomTeleporterManager().getRoomPorters();
 			level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
 			for(Teleporter tele : roomPorters)
@@ -571,10 +572,9 @@ public class GameManager
 							List<Teleporter> allTele=this.getLevel().getCurrentRoom().getPortManager().getRoomPorters();
 							for(Teleporter t:allTele)
 							{
-								if(t.isBossTele()&&!(level.allDead()))
-								{
-									//t.setActivated(false);
-									continue;
+								if(t.isBossTele()&&!level.allDead())
+								{				
+										continue;
 								}
 								else
 								{

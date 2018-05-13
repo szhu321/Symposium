@@ -162,10 +162,10 @@ public class Level
 		{
 			for(Room rs:r)
 			{
-				if(rs.isBossRoom())
+				if(rs==null||rs.isBossRoom())
                 {
-                     counter--;
-                     continue;
+						counter--;
+						continue;
                 }
 				if(!rs.isEnemySpawned())
 					return false;
@@ -173,7 +173,7 @@ public class Level
 					counter--;
 			}
 		}
-		//System.out.println(counter);
+	//	System.out.println(counter);
 		if(counter==0)
 			return true;
 		return false;
