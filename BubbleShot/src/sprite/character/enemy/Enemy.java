@@ -66,9 +66,9 @@ public abstract class Enemy extends Character
 		((Weapon) weapon).useItem();
 	}
 	
+	@Override
 	public void coolDownWeapons(double sec)
 	{
-		weapon.coolDownItem(sec);
+		((Weapon)weapon).coolDownItem(sec);
 	}
-	
 }

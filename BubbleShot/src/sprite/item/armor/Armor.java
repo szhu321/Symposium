@@ -8,10 +8,10 @@ public class Armor extends Item
 	private double maxSpeedBoost;
 	private double maxDamageBoost;
 	
-	public Armor(String spriteName, String fileName, double xLocation, double yLocation, String itemType,
-			boolean isCooledDown, double coolDownTime, double width, double height, double maxHealthBoost, double maxSpeedBoost, double maxDamageBoost) 
+	public Armor(String spriteName, String fileName, double xLocation, double yLocation, 
+			double width, double height, String itemType, double maxHealthBoost, double maxSpeedBoost, double maxDamageBoost) 
 	{
-		super(spriteName, fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime, width, height);
+		super(spriteName, fileName, xLocation, yLocation, width, height, Item.ARMOR);
 		this.maxHealthBoost = maxHealthBoost;
 		this.maxDamageBoost = maxDamageBoost;
 		this.maxSpeedBoost = maxSpeedBoost;

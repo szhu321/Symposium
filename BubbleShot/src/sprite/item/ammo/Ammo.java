@@ -10,12 +10,9 @@ public class Ammo extends Item implements Consumable
 {
 	private Effect ammoEffect;
 	
-	public Ammo(String spriteName, String fileName, double xLocation, double yLocation, 
-			String itemType, boolean isCooledDown, double coolDownTime, double width, 
-			double height, Effect ammoEffect) 
+	public Ammo(String spriteName, String fileName, double xLocation, double yLocation,  double width, double height, String itemType, Effect ammoEffect) 
 	{
-		super(spriteName, fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime, 
-				width, height);
+		super(spriteName, fileName, xLocation, yLocation, width, height,itemType);
 		this.ammoEffect = ammoEffect;
 	}
 
@@ -25,18 +22,9 @@ public class Ammo extends Item implements Consumable
 	}
 	
 	@Override
-	public boolean useItem() 
-	{
-		Character character = this.getPossessor();
-		return false;
-	}
-	
 	public boolean useItemOnPlayer(Player player)
 	{
-		setCurrentCoolDownTime(getDefaultCoolDownTime());
-		setCooledDown(false);
 		player.getEffectManager().addEffect(this.getEffect());
 		return true;
 	}
-	
 }

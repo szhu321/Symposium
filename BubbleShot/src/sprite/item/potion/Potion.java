@@ -11,9 +11,9 @@ public class Potion extends Item implements Consumable
 	private Effect potionEffect;
 	
 	public Potion(String spriteName,String fileName, double xLocation, double yLocation, String itemType, String color, 
-			Effect effect, boolean isCooledDown, double coolDownTime) 
+			Effect effect) 
 	{
-		super(spriteName , fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime, 50, 50);
+		super(spriteName, fileName, xLocation, yLocation, 50, 50, itemType);
 		potionColor = color;
 		potionEffect = effect;
 	}
@@ -34,19 +34,10 @@ public class Potion extends Item implements Consumable
 		output += "Potion effect: " + potionEffect + "\n";
 		return output;
 	}
-
-	@Override
-	public boolean useItem()
-	{
-		setCurrentCoolDownTime(getDefaultCoolDownTime());
-		setCooledDown(false);
-		return true;
-	}
 	
+	@Override
 	public boolean useItemOnPlayer(Player player)
 	{
-		setCurrentCoolDownTime(getDefaultCoolDownTime());
-		setCooledDown(false);
 		player.getEffectManager().addEffect(this.getEffect());
 		return true;
 	}

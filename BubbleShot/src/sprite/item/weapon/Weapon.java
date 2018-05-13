@@ -14,19 +14,57 @@ public abstract class Weapon extends Item
 	private double weaponAttackRange;
 	private Projectile projectile;
 	private int ammoUsed;
+	private boolean isCooledDown;
+	private double currentCoolDownTime;
+	private double defaultCoolDownTime;
 	
-	public Weapon(String spriteName,String fileName, double xLocation, double yLocation, String itemType, 
-			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed) 
+	public Weapon(String spriteName,String fileName, double xLocation, double yLocation, 
+			 double damage, double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed) 
 	{
-		super(spriteName,fileName, xLocation, yLocation, itemType, isCooledDown, attackRate, width, height);
+		super(spriteName ,fileName, xLocation, yLocation, width, height, Item.WEAPON);
 		weaponDmg = damage;
 		weaponAttackRange = attackRange;
 		this.projectile = projectile;
 		this.projectile.setRange(weaponAttackRange);
 		this.projectile.setDamage(weaponDmg);
 		this.ammoUsed = ammoUsed;
+		this.currentCoolDownTime = attackRate;
+		this.defaultCoolDownTime = attackRate;
+		this.isCooledDown = true;
 	}
 	
+	public boolean isCooledDown()
+	{
+		return isCooledDown;
+	}
+
+	public double getCurrentCoolDownTime() 
+	{
+		return currentCoolDownTime;
+	}
+
+	public double getDefaultCoolDownTime()
+	{
+		return defaultCoolDownTime;
+	}
+
+	public void setCooledDown(boolean isCooledDown) 
+	{
+		if(!isCooledDown)
+			currentCoolDownTime = defaultCoolDownTime;
+		this.isCooledDown = isCooledDown;
+	}
+
+	public void setCurrentCoolDownTime(double currentCoolDownTime) 
+	{
+		this.currentCoolDownTime = currentCoolDownTime;
+	}
+
+	public void setDefaultCoolDownTime(double defaultCoolDownTime) 
+	{
+		this.defaultCoolDownTime = defaultCoolDownTime;
+	}
+
 	public double getDamage()
 	{
 		return weaponDmg;
@@ -47,8 +85,6 @@ public abstract class Weapon extends Item
 		return weaponAttackRange;
 	}
 	
-	
-	
 	public Projectile getProjectile() 
 	{
 		return projectile;
@@ -59,6 +95,13 @@ public abstract class Weapon extends Item
 		this.projectile = projectile;
 	}
 
+	public void coolDownItem(double sec)
+	{
+		currentCoolDownTime -= sec;
+		if(currentCoolDownTime <= 0)
+			isCooledDown = true;
+	}
+	
 	public String toString()
 	{
 		String output = this.toString();
@@ -92,7 +135,6 @@ public abstract class Weapon extends Item
 			
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);
-			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;

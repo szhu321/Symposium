@@ -3,13 +3,12 @@ package sprite.item.armor;
 public class Helmet extends Armor
 {
 
-	public Helmet(String spriteName, String fileName, double xLocation, double yLocation, String itemType,
-			boolean isCooledDown, double coolDownTime, double width, double height, double maxHealthBoost,
-			double maxSpeedBoost, double maxDamageBoost)
+	public Helmet(String spriteName, String fileName, double xLocation, double yLocation, 
+			double width, double height, String itemType,double maxHealthBoost,
+			double maxSpeedBoost, double maxDamageBoost) 
 	{
-		super(spriteName, fileName, xLocation, yLocation, itemType, isCooledDown, coolDownTime, width, height, maxHealthBoost,
+		super(spriteName, fileName, xLocation, yLocation,width, height, itemType, maxHealthBoost,
 				maxSpeedBoost, maxDamageBoost);
-		
 	}
 	
 }

@@ -9,21 +9,16 @@ public abstract class Item extends Sprite
 {
 	public static final String WEAPON = "weapon";
 	public static final String POTION = "potion";
+	public static final String ARMOR = "armor";
 	private String itemType;
-	private boolean isCooledDown;
-	private double currentCoolDownTime;
-	private double defaultCoolDownTime;
 	private Character possessor;
 	private Room currentRoom;
 	//item types: potions and weapons
 	
-	public Item(String spriteName, String fileName, double xLocation, double yLocation, String itemType, boolean isCooledDown, double coolDownTime, double width, double height) 
+	public Item(String spriteName, String fileName, double xLocation, double yLocation,  double width, double height, String itemType) 
 	{
-		super(spriteName,fileName, xLocation, yLocation, width,height, 0);
+		super(spriteName, fileName, xLocation, yLocation, width, height, 0);
 		this.itemType = itemType;
-		this.isCooledDown = isCooledDown;
-		currentCoolDownTime = coolDownTime;
-		defaultCoolDownTime = coolDownTime;
 	}
 	
 	public Character getPossessor()
@@ -59,39 +54,39 @@ public abstract class Item extends Sprite
 		return itemType;
 	}
 	
-	public void coolDownItem(double sec)
-	{
-		currentCoolDownTime -= sec;
-		if(currentCoolDownTime <= 0)
-			isCooledDown = true;
-	}
-	
-	public double getDefaultCoolDownTime()
-	{
-		return defaultCoolDownTime;
-	}
-	
-	public void setDefaultCoolDownTime(double time)
-	{
-		defaultCoolDownTime = time;
-	}
-	
-	public void setCurrentCoolDownTime(double currentCoolDownTime)
-	{
-		this.currentCoolDownTime = currentCoolDownTime;
-	}
-	
-	/**
-	 * 
-	 * @param isCooledDown attack rate for weapons.
-	 */
-	public void setCooledDown(boolean isCooledDown)
-	{
-		this.isCooledDown = isCooledDown;
-	}
-	
-	public boolean isCooledDown()
-	{
-		return isCooledDown;
-	}
+//	public void coolDownItem(double sec)
+//	{
+//		currentCoolDownTime -= sec;
+//		if(currentCoolDownTime <= 0)
+//			isCooledDown = true;
+//	}
+//	
+//	public double getDefaultCoolDownTime()
+//	{
+//		return defaultCoolDownTime;
+//	}
+//	
+//	public void setDefaultCoolDownTime(double time)
+//	{
+//		defaultCoolDownTime = time;
+//	}
+//	
+//	public void setCurrentCoolDownTime(double currentCoolDownTime)
+//	{
+//		this.currentCoolDownTime = currentCoolDownTime;
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param isCooledDown attack rate for weapons.
+//	 */
+//	public void setCooledDown(boolean isCooledDown)
+//	{
+//		this.isCooledDown = isCooledDown;
+//	}
+//	
+//	public boolean isCooledDown()
+//	{
+//		return isCooledDown;
+//	}
 }

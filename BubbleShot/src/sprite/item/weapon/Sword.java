@@ -9,11 +9,11 @@ import sprite.projectile.Projectile;
 
 public class Sword extends Weapon
 {
-	public Sword(String spriteName, double xLocation, double yLocation, String itemType, 
-			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile) 
+	public Sword(String spriteName, double xLocation, double yLocation, 
+			 double damage, double attackRate, double attackRange, Projectile projectile) 
 	{
-		super(spriteName,"file:resources/weaponPictures/sword.png", xLocation, yLocation, itemType, 
-				isCooledDown, damage, attackRate, attackRange, projectile, 60, 60, 0);
+		super(spriteName,"file:resources/weaponPictures/sword.png", xLocation, yLocation,  
+				 damage, attackRate, attackRange, projectile, 60, 60, 0);
 		setAmmoUsed(0);
 	}
 	
@@ -41,7 +41,6 @@ public class Sword extends Weapon
 			
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);
-			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;

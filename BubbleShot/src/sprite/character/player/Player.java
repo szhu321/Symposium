@@ -141,8 +141,8 @@ public class Player extends Character
 	{
 		for(Item item : inventory)
 			if(item != null && item instanceof Weapon)
-				item.coolDownItem(sec);
-		fist.coolDownItem(sec);
+				((Weapon)item).coolDownItem(sec);
+		((Weapon)fist).coolDownItem(sec);
 	}
 	
 	public void selectItem(String input)

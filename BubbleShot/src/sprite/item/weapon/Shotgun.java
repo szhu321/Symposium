@@ -13,10 +13,10 @@ public class Shotgun extends Weapon
 	private int offsetAngle;
 	private int bulletPerShot;
 	
-	public Shotgun(String spriteName, double xLocation, double yLocation, String itemType,
-			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed) 
+	public Shotgun(String spriteName, double xLocation, double yLocation, 
+			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed) 
 	{
-		super(spriteName,"file:resources/weaponPictures/shotgun.png", xLocation, yLocation, itemType, isCooledDown, damage, attackRate, attackRange, projectile,
+		super(spriteName,"file:resources/weaponPictures/shotgun.png", xLocation, yLocation, damage, attackRate, attackRange, projectile,
 				100, 27, ammoUsed);
 		this.offsetAngle = offsetAngle;
 		this.bulletPerShot = bulletPerShot;
@@ -67,7 +67,6 @@ public class Shotgun extends Weapon
 				//Adding the newly created projectile.
 				GameRunner.getGameManager().addProjectile(projectile);
 			}
-			setCurrentCoolDownTime(getDefaultCoolDownTime());
 			setCooledDown(false);
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;

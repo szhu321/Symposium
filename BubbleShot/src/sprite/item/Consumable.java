@@ -1,6 +1,8 @@
 package sprite.item;
 
+import sprite.character.player.Player;
+
 public interface Consumable 
 {
-	public boolean useItem();
+	public boolean useItemOnPlayer(Player player);
 }

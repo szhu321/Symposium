@@ -23,7 +23,7 @@ public class WeaponDesign
 		double shootingSpeed = .2;
 		double bulletTravelRange = .2;
 		Projectile projectile = ProjectileDesign.getFistDesignOne(null, 0, 0, 0, 5);
-		Fist fist = new Fist("Fist", "file:resources/weaponPictures/fist.png", 0, 0, Item.WEAPON, true, damage, shootingSpeed, bulletTravelRange, projectile);
+		Fist fist = new Fist("Fist", "file:resources/weaponPictures/fist.png", 0, 0, damage, shootingSpeed, bulletTravelRange, projectile);
 		fist.setPossessor(player);
 		return fist;
 	}
@@ -35,7 +35,7 @@ public class WeaponDesign
 		double shootingSpeed = .2;
 		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot);
+		Pistol pistol = new Pistol(x, y, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot);
 		return pistol;
 	}
 	
@@ -46,7 +46,7 @@ public class WeaponDesign
 		double shootingSpeed = .2;
 		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
-		Pistol pistol = new Pistol(x, y, Item.WEAPON, true, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot);
+		Pistol pistol = new Pistol(x, y, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot);
 		return pistol;
 	}
 	
@@ -57,7 +57,7 @@ public class WeaponDesign
 		double attackRange = 1500;
 		int ammoUsedPerShot = 3;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
-		Sniper sniper = new Sniper("Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, ammoUsedPerShot);
+		Sniper sniper = new Sniper("Sniper", x, y, damage, attackRate, attackRange, projectile, ammoUsedPerShot);
 		return sniper;
 	}
 	
@@ -68,7 +68,7 @@ public class WeaponDesign
 		double attackRange = 5000;
 		int ammoUsedPerShot = 0;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
-		Sniper sniper = new Sniper("Legendary Sniper", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, ammoUsedPerShot);
+		Sniper sniper = new Sniper("Legendary Sniper", x, y, damage, attackRate, attackRange, projectile, ammoUsedPerShot);
 		return sniper;
 	}
 	
@@ -81,7 +81,7 @@ public class WeaponDesign
 		int offsetAngle = 10;
 		int bulletPerShot = 5;
 		int ammoUsedPerShot = 5;
-		Shotgun shotgun = new Shotgun("Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot);
+		Shotgun shotgun = new Shotgun("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot);
 		return shotgun;
 	}
 	
@@ -94,7 +94,7 @@ public class WeaponDesign
 		int bulletPerShot = 450;
 		int ammoUsedPerShot = 0;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		Shotgun shotgun = new Shotgun("Legendary Shotgun", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot);
+		Shotgun shotgun = new Shotgun("Legendary Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot);
 		return shotgun;
 	}
 	
@@ -106,7 +106,7 @@ public class WeaponDesign
 		int offsetAngle = 7;
 		int ammoUsedPerShot = 1;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		AssaultRifle shotgun = new AssaultRifle("Assault Rifle", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, ammoUsedPerShot);
+		AssaultRifle shotgun = new AssaultRifle("Assault Rifle", x, y, damage, attackRate, attackRange, projectile, offsetAngle, ammoUsedPerShot);
 		return shotgun;
 	}
 	
@@ -116,7 +116,7 @@ public class WeaponDesign
 		double attackRate = .2;
 		double attackRange = .2;
 		Projectile projectile = ProjectileDesign.getSlashDesignOne(null, x, y, 0, 15);
-		Sword sword = new Sword("Sword", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile);
+		Sword sword = new Sword("Sword", x, y, damage, attackRate, attackRange, projectile);
 		return sword;
 	}
 }

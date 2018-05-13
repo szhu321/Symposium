@@ -4,10 +4,10 @@ import sprite.projectile.Projectile;
 
 public class Fist extends Weapon
 {
-	public Fist(String spriteName, String fileName, double xLocation, double yLocation, String itemType,
-			boolean isCooledDown, double damage, double attackRate, double attackRange,  Projectile projectile) 
+	public Fist(String spriteName, String fileName, double xLocation, double yLocation,
+			 double damage, double attackRate, double attackRange,  Projectile projectile) 
 	{
-		super(spriteName ,fileName, xLocation, yLocation, itemType, isCooledDown, damage, attackRate, 
+		super(spriteName ,fileName, xLocation, yLocation, damage, attackRate, 
 				attackRange, projectile, 30, 30, 0);
 	}
 	

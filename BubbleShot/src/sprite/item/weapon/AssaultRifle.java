@@ -11,10 +11,10 @@ public class AssaultRifle extends Weapon
 {
 	private int offsetAngle;
 	
-	public AssaultRifle(String spriteName, double xLocation, double yLocation, String itemType,
-			boolean isCooledDown, double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int ammoUsed) 
+	public AssaultRifle(String spriteName, double xLocation, double yLocation,
+			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int ammoUsed) 
 	{
-		super(spriteName,"file:resources/weaponPictures/assaultrifle.png", xLocation, yLocation, itemType, isCooledDown, damage, attackRate, attackRange, projectile,
+		super(spriteName,"file:resources/weaponPictures/assaultrifle.png", xLocation, yLocation, damage, attackRate, attackRange, projectile,
 				100, 27, ammoUsed);
 		this.offsetAngle = offsetAngle;
 	}
@@ -55,8 +55,7 @@ public class AssaultRifle extends Weapon
 			
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);
-		
-			setCurrentCoolDownTime(getDefaultCoolDownTime());
+
 			setCooledDown(false);
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;
