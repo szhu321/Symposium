@@ -56,6 +56,7 @@ public abstract class Character extends Sprite
 		//if(currentHealth <= 0)
 			//DeadMethod
 	}
+	
 	public MovementDrive getMovement() {
 		return movement;
 	}

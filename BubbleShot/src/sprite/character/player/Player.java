@@ -3,7 +3,12 @@ package sprite.character.player;
 import sprite.character.Character;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
+import sprite.item.armor.Boots;
+import sprite.item.armor.BreastPlate;
+import sprite.item.armor.Helmet;
+import sprite.item.armor.Legging;
 import sprite.item.potion.Potion;
+import sprite.item.shield.Shield;
 import sprite.item.weapon.Fist;
 import sprite.item.weapon.Weapon;
 import sprite.item.weapon.WeaponDesign;
@@ -19,6 +24,12 @@ public class Player extends Character
 	private int currentAmmo;
 	private int defaultAmmo;
 	private Fist fist = WeaponDesign.getFistDesignOne(this);
+	private Helmet helmet;
+	private BreastPlate breastPlate;
+	private Legging legging;
+	private Boots boots;
+	private Shield shield;
+	
 	
 	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double health, double speed, Item[] inventory, int ammoCount) 
 	{
@@ -27,7 +38,6 @@ public class Player extends Character
 		for(Item item: this.inventory)
 			if(item != null)
 				item.setPossessor(this);
-		//this.inventory[0] = new Fist();
 		currentItemIdx = 0;
 		score = 0;
 		currentAmmo = ammoCount;
@@ -68,6 +78,26 @@ public class Player extends Character
 				inventory[currentItemIdx].setPossessor(null);
 				inventory[currentItemIdx] = null;
 			}
+	}
+	
+	public void setCurrentHealth(double health)
+	{
+		//If the player has no shield or if the player gained health.
+		if(shield == null || getCurrentHealth() < health)
+		{
+			super.setCurrentHealth(health);
+			return;
+		}
+		//if the player has shield and lost health.
+		if(shield.isShieldDown())
+		{
+			super.setCurrentHealth(health);
+			return;
+		}
+		else
+		{
+			shield.setCurrentShieldAmount(shield.getCurrentShieldAmount() - (getCurrentHealth() - health));
+		}
 	}
 	
 	public boolean isInventoryFull()
@@ -160,6 +190,56 @@ public class Player extends Character
 		this.currentItemIdx = currentItemIdx;
 	}
 	
+	public Helmet getHelmet() 
+	{
+		return helmet;
+	}
+
+	public BreastPlate getBreastPlate() 
+	{
+		return breastPlate;
+	}
+
+	public Legging getLegging() 
+	{
+		return legging;
+	}
+
+	public Boots getBoots() 
+	{
+		return boots;
+	}
+
+	public Shield getShield() 
+	{
+		return shield;
+	}
+
+	public void setHelmet(Helmet helmet) 
+	{
+		this.helmet = helmet;
+	}
+
+	public void setBreastPlate(BreastPlate breastPlate) 
+	{
+		this.breastPlate = breastPlate;
+	}
+
+	public void setLegging(Legging legging) 
+	{
+		this.legging = legging;
+	}
+
+	public void setBoots(Boots boots) 
+	{
+		this.boots = boots;
+	}
+
+	public void setShield(Shield shield) 
+	{
+		this.shield = shield;
+	}
+
 	public String toString()
 	{
 		String output = "";
