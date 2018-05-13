@@ -98,6 +98,18 @@ public class WeaponDesign
 		return shotgun;
 	}
 	
+	public static AssaultRifle getAssaultRifleDesignOne(double x, double y)
+	{
+		double damage = 5;
+		double attackRate = .1;
+		double attackRange = 500;
+		int offsetAngle = 7;
+		int ammoUsedPerShot = 1;
+		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
+		AssaultRifle shotgun = new AssaultRifle("Assault Rifle", x, y, Item.WEAPON, true, damage, attackRate, attackRange, projectile, offsetAngle, ammoUsedPerShot);
+		return shotgun;
+	}
+	
 	public static Sword getSwordDesignOne(double x, double y)
 	{
 		double damage = 20;
