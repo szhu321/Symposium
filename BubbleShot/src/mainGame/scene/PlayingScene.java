@@ -70,7 +70,8 @@ public class PlayingScene
 	//private ImageView[] playerInventoryDis;
 	private Canvas[] playerHotbarDisCanvas;
 	
-	//private ImageView playerHoldItemDis;
+	private GridPane inventoryDis;
+	private boolean showInventory;
 	
 	//private HBox topHealthBox;
 	private Canvas miniMap;
@@ -192,7 +193,7 @@ public class PlayingScene
 		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
 		playerScoreDis.setText("Score: " + player.getScore());
-		for(int i = 0; i < player.getInventory().length; i++)
+		for(int i = 0; i < player.getHotBar().length; i++)
 		{
 			playerHotbarDisCanvas[i].getGraphicsContext2D().setFill(Color.LIGHTGRAY);
 			playerHotbarDisCanvas[i].getGraphicsContext2D().fillRect(0, 0, playerHotbarDisCanvas[i].getWidth(), playerHotbarDisCanvas[i].getHeight());
@@ -215,10 +216,10 @@ public class PlayingScene
 				//playerInventoryDis[i].getTransforms().set(0, new Scale(.83333,.83333));
 				//playerInventoryDis[i].setStyle("");
 			}
-			if(player.getInventory()[i] != null)
+			if(player.getHotBar()[i] != null)
 			{
 				//playerInventoryDis[i].setImage(player.getInventory()[i].getSpriteImage());
-				playerHotbarDisCanvas[i].getGraphicsContext2D().drawImage(player.getInventory()[i].getSpriteImage(), 0, 0);
+				playerHotbarDisCanvas[i].getGraphicsContext2D().drawImage(player.getHotBar()[i].getSpriteImage(), 0, 0);
 			}
 		}
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
@@ -230,8 +231,8 @@ public class PlayingScene
 		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
 		bottomBox.setHgap(20);
 		//playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
-		playerHotbarDisCanvas = new Canvas[currentRoom.getPlayer().getInventory().length];
-		for(int i = 0; i < currentRoom.getPlayer().getInventory().length; i++)
+		playerHotbarDisCanvas = new Canvas[currentRoom.getPlayer().getHotBar().length];
+		for(int i = 0; i < currentRoom.getPlayer().getHotBar().length; i++)
 		{
 			//StackPane stack = new StackPane();
 			//playerInventoryDis[i] = new ImageView();
@@ -249,6 +250,21 @@ public class PlayingScene
 		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
 		bottomBox.setOnMousePressed(event -> event.consume());
 		return bottomBox;
+	}
+	
+	public void loadInventoryDis()
+	{
+		inventoryDis = new GridPane();
+		inventoryDis.setVgap(10);
+		inventoryDis.setHgap(10);
+		//Canvas[]
+	}
+	
+	public void updateInventoryDis()
+	{
+		if(!showInventory)
+			return;
+		
 	}
 	
 	public Scene getScene()

@@ -17,27 +17,21 @@ public class Player extends Character
 {
 	
 	private String spriteName;
+	private Inventory inventory;
+	
 	private int currentItemIdx;
-	private Item[] inventory = new Item[6];
+	//private Item[] inventory = new Item[6];
 	private int score;
 	private int coins;
 	private int currentAmmo;
 	private int defaultAmmo;
 	private Fist fist = WeaponDesign.getFistDesignOne(this);
-	private Helmet helmet;
-	private BreastPlate breastPlate;
-	private Legging legging;
-	private Boots boots;
-	private Shield shield;
 	
 	
-	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double health, double speed, Item[] inventory, int ammoCount) 
+	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double health, double speed, int ammoCount) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
-		this.inventory = inventory;
-		for(Item item: this.inventory)
-			if(item != null)
-				item.setPossessor(this);
+		inventory = new Inventory(10, 6);
 		currentItemIdx = 0;
 		score = 0;
 		currentAmmo = ammoCount;
@@ -47,65 +41,48 @@ public class Player extends Character
 	
 	public void addItem(Item newItem)
 	{
-		int currentIndex = 0;
-		while(currentIndex < inventory.length)
-		{
-			if(inventory[currentIndex] == null)
-			{
-				inventory[currentIndex] = newItem;
-				newItem.setPossessor(this);
-				break;
-			}
-			currentIndex++;
-		}
+		if(inventory.addItem(newItem))
+			newItem.setPossessor(this);
 	}
 	
 	public Item removeCurrentItem()
 	{
-		Item remove = inventory[currentItemIdx];
+		Item remove = inventory.removeCurrentItem();
 		if(remove == null)
 			return null;
-		inventory[currentItemIdx].setPossessor(null);
-		inventory[currentItemIdx] = null;
+		remove.setPossessor(null);
 		return remove;
 	}
 	
 	public void removeItem(Item item)
 	{
-		for(int i = 0; i < inventory.length; i++)
-			if(inventory[i] != null && inventory[i].equals(item))
-			{
-				inventory[currentItemIdx].setPossessor(null);
-				inventory[currentItemIdx] = null;
-			}
+		if(inventory.removeItem(item))
+			item.setPossessor(null);
 	}
 	
 	public void setCurrentHealth(double health)
 	{
 		//If the player has no shield or if the player gained health.
-		if(shield == null || getCurrentHealth() < health)
+		if(inventory.getShield() == null || getCurrentHealth() < health)
 		{
 			super.setCurrentHealth(health);
 			return;
 		}
 		//if the player has shield and lost health.
-		if(shield.isShieldDown())
+		if(inventory.getShield().isShieldDown())
 		{
 			super.setCurrentHealth(health);
 			return;
 		}
 		else
 		{
-			shield.setCurrentShieldAmount(shield.getCurrentShieldAmount() - (getCurrentHealth() - health));
+			inventory.getShield().setCurrentShieldAmount(inventory.getShield().getCurrentShieldAmount() - (getCurrentHealth() - health));
 		}
 	}
 	
 	public boolean isInventoryFull()
 	{
-		for(int i = 0; i < inventory.length; i++)
-			if(inventory[i] == null)
-				return false;
-		return true;
+		return inventory.isInventoryFull();
 	}
 	
 	@Override
@@ -116,30 +93,30 @@ public class Player extends Character
 			fist.useItem();
 			return;
 		}
-		if(input.equals(Item.POTION)&&inventory[currentItemIdx].getItemType().equals(Item.POTION))
+		if(input.equals(Item.POTION)&&inventory.getCurrentItem().getItemType().equals(Item.POTION))
 		{
-			if(inventory[currentItemIdx] instanceof Ammo)
+			if(inventory.getCurrentItem() instanceof Ammo)
 			{
-				((Ammo) inventory[currentItemIdx]).useItemOnPlayer(this);
+				((Ammo) inventory.getCurrentItem()).useItemOnPlayer(this);
 			}
 			else
 			{
-				((Potion) inventory[currentItemIdx]).useItemOnPlayer(this);
+				((Potion) inventory.getCurrentItem()).useItemOnPlayer(this);
 			}
 		}
-		if(input.equals(Item.WEAPON)&&inventory[currentItemIdx].getItemType().equals(Item.WEAPON))
+		if(input.equals(Item.WEAPON)&&inventory.getCurrentItem().getItemType().equals(Item.WEAPON))
 		{
-			if(currentAmmo - ((Weapon) inventory[currentItemIdx]).getAmmoUsed() >= 0)
+			if(currentAmmo - ((Weapon) inventory.getCurrentItem()).getAmmoUsed() >= 0)
 			{
-				if(((Weapon) inventory[currentItemIdx]).useItem())
-					currentAmmo -= ((Weapon) inventory[currentItemIdx]).getAmmoUsed();
+				if(((Weapon) inventory.getCurrentItem()).useItem())
+					currentAmmo -= ((Weapon) inventory.getCurrentItem()).getAmmoUsed();
 			}
 		}
 	}
 	
 	public void coolDownWeapons(double sec)
 	{
-		for(Item item : inventory)
+		for(Item item : inventory.getInventory())
 			if(item != null && item instanceof Weapon)
 				((Weapon)item).coolDownItem(sec);
 		((Weapon)fist).coolDownItem(sec);
@@ -152,12 +129,12 @@ public class Player extends Character
 	
 	public int getCurrentItemIdx()
 	{
-		return currentItemIdx;
+		return inventory.getCurrentItemIdx();
 	}
 	
 	public Item getCurrentItem()
 	{
-		return inventory[currentItemIdx];
+		return inventory.getCurrentItem();
 	}
 	
 	public int getCurrentAmmo() {return currentAmmo;}
@@ -173,7 +150,12 @@ public class Player extends Character
 			this.currentAmmo = currentAmmo;
 		}
 	}
-	public Item[] getInventory() {return inventory;}
+	public Item[] getHotBar() {return inventory.getHotBar();}
+	
+	public Inventory getInventory() 
+	{
+		return inventory;
+	}
 	
 	public int getCoins() 
 	{
@@ -187,58 +169,10 @@ public class Player extends Character
 
 	public void setCurrentItemIdx(int currentItemIdx)
 	{
-		this.currentItemIdx = currentItemIdx;
+		inventory.setCurrentItemIdx(currentItemIdx);
 	}
 	
-	public Helmet getHelmet() 
-	{
-		return helmet;
-	}
-
-	public BreastPlate getBreastPlate() 
-	{
-		return breastPlate;
-	}
-
-	public Legging getLegging() 
-	{
-		return legging;
-	}
-
-	public Boots getBoots() 
-	{
-		return boots;
-	}
-
-	public Shield getShield() 
-	{
-		return shield;
-	}
-
-	public void setHelmet(Helmet helmet) 
-	{
-		this.helmet = helmet;
-	}
-
-	public void setBreastPlate(BreastPlate breastPlate) 
-	{
-		this.breastPlate = breastPlate;
-	}
-
-	public void setLegging(Legging legging) 
-	{
-		this.legging = legging;
-	}
-
-	public void setBoots(Boots boots) 
-	{
-		this.boots = boots;
-	}
-
-	public void setShield(Shield shield) 
-	{
-		this.shield = shield;
-	}
+	
 
 	public String toString()
 	{
