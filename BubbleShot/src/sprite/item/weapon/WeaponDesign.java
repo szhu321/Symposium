@@ -87,7 +87,7 @@ public class WeaponDesign
 	
 	public static Shotgun getShotgunDesignEPIC(double x, double y)
 	{
-		double damage = 10;
+		double damage = .05;
 		double attackRate = .06;
 		double attackRange = 500;
 		int offsetAngle = 360;
