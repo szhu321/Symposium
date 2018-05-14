@@ -156,15 +156,18 @@ public class RoomView
 	
 	private static void drawCharacterHoldItem(GraphicsContext gc, Character character)
 	{
-		gc.save();
-		Item item;
-		if(character instanceof Player)
-			item = ((Player)character).getCurrentItem();
-		else
-			item = ((Enemy)character).getWeapon();
-		if(item != null)
-			gc.drawImage(item.getSpriteImage(), character.getXLocation() + character.getWidth() / 2 + 10, character.getYLocation() + character.getHeight() / 2 - 10, item.getWidth() / 2, item.getHeight() / 2);
-		gc.restore();
+		if(character.isGunVisibility())
+		{
+			gc.save();
+			Item item;
+			if(character instanceof Player)
+				item = ((Player)character).getCurrentItem();
+			else
+				item = ((Enemy)character).getWeapon();
+			if(item != null)
+				gc.drawImage(item.getSpriteImage(), character.getXLocation() + character.getWidth() / 2 + 10, character.getYLocation() + character.getHeight() / 2 - 10, item.getWidth() / 2, item.getHeight() / 2);
+			gc.restore();
+		}
 	}
 	
 	public static void drawItems(GraphicsContext gc, Room room)
