@@ -67,6 +67,11 @@ public class GameRunner extends Application
 		return window.getWidth();
 	}
 	
+	public static Stage getWindow()
+	{
+		return window;
+	}
+	
 	public static GameManager getGameManager()
 	{
 		return gameManager;

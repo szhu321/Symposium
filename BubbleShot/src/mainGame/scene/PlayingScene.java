@@ -14,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,6 +30,7 @@ import javafx.scene.transform.Translate;
 import mainGame.GameRunner;
 import mainGame.frontend.AmmoBar;
 import mainGame.frontend.HealthBar;
+import mainGame.frontend.InventoryView;
 import mainGame.frontend.MiniLevelMap;
 import mainGame.frontend.RoomView;
 import javafx.scene.transform.Scale;
@@ -70,8 +73,7 @@ public class PlayingScene
 	//private ImageView[] playerInventoryDis;
 	private Canvas[] playerHotbarDisCanvas;
 	
-	private GridPane inventoryDis;
-	private boolean showInventory;
+	private InventoryView inventoryDis;
 	
 	//private HBox topHealthBox;
 	private Canvas miniMap;
@@ -96,6 +98,7 @@ public class PlayingScene
 		updateCameraLocation();
 		updateMiniMap();
 		roomView.updateRoom();
+		updateInventoryDis();
 	}
 	
 	public void loadRoom()
@@ -107,7 +110,8 @@ public class PlayingScene
 		roomView = new RoomView(currentRoom);
 		loadHeadsUpDis();
 		loadMiniMap();
-		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap);
+		loadInventoryDis();
+		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis());
 	}
 	
 	public void loadMiniMap()
@@ -254,17 +258,20 @@ public class PlayingScene
 	
 	public void loadInventoryDis()
 	{
-		inventoryDis = new GridPane();
-		inventoryDis.setVgap(10);
-		inventoryDis.setHgap(10);
-		//Canvas[]
+		inventoryDis = new InventoryView(currentRoom.getPlayer().getInventory());
+		inventoryDis.getInventoryDis().layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-650/2));
+		inventoryDis.getInventoryDis().layoutYProperty().bind(GameRunner.getWindow().heightProperty().add(-600));
+//		inventoryDis.getInventoryDis().setBackground(new Background(new BackgroundImage(new Image("file:resources/obstacle/wallobstacle.png", 600, 650, false, false), null, null,null,null)));
 	}
 	
 	public void updateInventoryDis()
 	{
-		if(!showInventory)
+		if(!GameRunner.getGameManager().displayInventory())
+		{
+			inventoryDis.getInventoryDis().setVisible(false);
 			return;
-		
+		}
+		inventoryDis.getInventoryDis().setVisible(true);
 	}
 	
 	public Scene getScene()

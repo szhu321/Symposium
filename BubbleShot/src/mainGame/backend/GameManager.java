@@ -56,6 +56,8 @@ public class GameManager
 	private Boolean mouseDown = false;
 	private double mouseAngle = 0.0;
 	
+	private boolean displayInventory = false;
+	
 	private double mouseX = 0.0;
 	private double mouseY = 0.0;
 	private double mouseXUnajusted = 0.0;
@@ -497,6 +499,19 @@ public class GameManager
 			window.setFullScreen(true);
 	}
 	
+	public void toggleDisInventory()
+	{
+		if(displayInventory)
+			displayInventory = false;
+		else
+			displayInventory = true;
+	}
+	
+	public boolean displayInventory()
+	{
+		return displayInventory;
+	}
+	
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
@@ -528,6 +543,8 @@ public class GameManager
 				player.setCurrentItemIdx(5);
 			if(code == KeyCode.G)
 				playerDropItem();
+			if(code == KeyCode.I)
+				toggleDisInventory();
 			if(code == KeyCode.F11)
 			{
 				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
