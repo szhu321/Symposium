@@ -11,6 +11,8 @@ public abstract class Character extends Sprite
 {
 	private double currentHealth, defaultHealth;
 	private double speed;
+	private boolean gunVisibility;
+	
 	private MovementDrive movement;
 	
 	private EffectManager effectManager;
@@ -24,6 +26,7 @@ public abstract class Character extends Sprite
 		this.defaultHealth = health;
 		this.speed = speed;
 		movement=new MovementDrive(this);
+		setGunVisibility(true);
 	}
 	
 	public Room getCurrentRoom() 
@@ -68,6 +71,14 @@ public abstract class Character extends Sprite
 	public void setSpeed(double speed) {this.speed = speed;}
 	public void setDefaultHealth(int defaultHealth) {this.defaultHealth = defaultHealth;}	
 	
+	public boolean isGunVisibility() {
+		return gunVisibility;
+	}
+
+	public void setGunVisibility(boolean gunVisibility) {
+		this.gunVisibility = gunVisibility;
+	}
+
 	public String toString()
 	{
 		String output = "";

@@ -18,6 +18,8 @@ public class EnemyDesign
 			return EnemyDesign.getRegularDesignTwo(x, y, player);
 		if(num==4)
 			return EnemyDesign.getSwordDesignOne(x, y, player);
+		if(num==5)
+			return EnemyDesign.getTurrentDesignOne(x, y, player);
 		return null;
 	}
 	
@@ -54,6 +56,15 @@ public class EnemyDesign
 		Weapon sword=WeaponDesign.getSwordDesignOne(x, y);
 		sword.setDefaultCoolDownTime(.8);
 		Enemy enemy=new Swordsman("Sword Brian",fileName, x, y,50, 130, 50, 50, sword,player,Enemy.SMART);
+		return enemy;
+	}
+	
+	public static Enemy getTurrentDesignOne(double x, double y, Player player)
+	{
+		String fileName = "file:resources/enemy/turret.png";
+		Weapon rifle=WeaponDesign.getAssaultRifleDesignOne(x, y);
+		rifle.setDefaultCoolDownTime(.8);
+		Enemy enemy=new Turrent("Turrent Brian",fileName, x, y,50, 130, 50, 50, rifle,player,Enemy.SMART);
 		return enemy;
 	}
 	
