@@ -14,7 +14,7 @@ public class TileDesign
 	public static Tile getStoneTileDesignOne(double x, double y, double width, double height, double faceAngle)
 	{
 		Effect effect = SpeedEffect.STONE_TILE_EFFECT;
-		Tile result = new Tile("StoneTile", "file:resources/tile/stonetile.png", effect, x, y, width, height, faceAngle);
+		Tile result = new Tile("StoneTile", "file:resources/tile/icecreamtile.png", effect, x, y, width, height, faceAngle);
 		return result;
 	}
 	
