@@ -35,6 +35,16 @@ public class Inventory
 		return hotBar;
 	}
 
+	public Item[] getNonHotBarItems()
+	{
+		Item[] nonHotBar = new Item[inventory.length - hotBarSize];
+		for(int inv = hotBarSize, bar = 0; inv < inventory.length; inv++, bar++)
+		{
+			nonHotBar[bar] = inventory[inv];
+		}
+		return nonHotBar;
+	}
+	
 	public boolean addItem(Item newItem)
 	{
 		int currentIndex = 0;

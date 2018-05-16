@@ -260,7 +260,8 @@ public class PlayingScene
 	{
 		inventoryDis = new InventoryView(currentRoom.getPlayer().getInventory());
 		inventoryDis.getInventoryDis().layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-650/2));
-		inventoryDis.getInventoryDis().layoutYProperty().bind(GameRunner.getWindow().heightProperty().add(-600));
+		inventoryDis.getInventoryDis().layoutYProperty().bind(GameRunner.getWindow().heightProperty().divide(2).add(-500/2));
+		inventoryDis.getInventoryDis().setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
 //		inventoryDis.getInventoryDis().setBackground(new Background(new BackgroundImage(new Image("file:resources/obstacle/wallobstacle.png", 600, 650, false, false), null, null,null,null)));
 	}
 	
@@ -272,6 +273,7 @@ public class PlayingScene
 			return;
 		}
 		inventoryDis.getInventoryDis().setVisible(true);
+		//System.out.println(inventoryDis.getInventoryDis().getHeight());
 	}
 	
 	public Scene getScene()
