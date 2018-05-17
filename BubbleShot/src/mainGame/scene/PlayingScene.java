@@ -74,7 +74,10 @@ public class PlayingScene
 	//private ImageView[] playerInventoryDis;
 	private Canvas[] playerHotbarDisCanvas;
 	
+	
 	private InventoryView inventoryDis;
+	
+	private ImageView holdingItem = new ImageView();
 	
 	//private HBox topHealthBox;
 	private Canvas miniMap;
@@ -113,7 +116,7 @@ public class PlayingScene
 		loadHeadsUpDis();
 		loadMiniMap();
 		loadInventoryDis();
-		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis());
+		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis(), holdingItem);
 	}
 	
 	public void loadMiniMap()
@@ -253,6 +256,13 @@ public class PlayingScene
 			//stack.setAlignment(text, Pos.BOTTOM_RIGHT);
 			bottomBox.add(playerHotbarDisCanvas[i], i, 0);
 		}
+		playerHotbarDisCanvas[0].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(0);});
+		playerHotbarDisCanvas[1].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(1);});
+		playerHotbarDisCanvas[2].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(2);});
+		playerHotbarDisCanvas[3].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(3);});
+		playerHotbarDisCanvas[4].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(4);});
+		playerHotbarDisCanvas[5].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(5);});
+		
 		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
 		bottomBox.setOnMousePressed(event -> event.consume());
 		return bottomBox;
@@ -264,17 +274,27 @@ public class PlayingScene
 		inventoryDis.getInventoryDis().layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-650/2));
 		inventoryDis.getInventoryDis().layoutYProperty().bind(GameRunner.getWindow().heightProperty().divide(2).add(-500/2));
 		inventoryDis.getInventoryDis().setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
+		inventoryDis.getInventoryDis().setOnMousePressed(event -> event.consume());
 //		inventoryDis.getInventoryDis().setBackground(new Background(new BackgroundImage(new Image("file:resources/obstacle/wallobstacle.png", 600, 650, false, false), null, null,null,null)));
 	}
 	
 	public void updateInventoryDis()
 	{
+		holdingItem.setLayoutX(GameRunner.getGameManager().getMouseXUnajusted());
+		holdingItem.setLayoutY(GameRunner.getGameManager().getMouseYUnajusted());
+		Item temp = currentRoom.getPlayer().getInventory().getSelectedItem();
+		if(temp != null)
+			holdingItem.setImage(temp.getSpriteImage());
+		else
+			holdingItem.setImage(null);
 		if(!GameRunner.getGameManager().displayInventory())
 		{
 			inventoryDis.getInventoryDis().setVisible(false);
 			return;
 		}
 		inventoryDis.getInventoryDis().setVisible(true);
+		
+		inventoryDis.updateInventoryDis(currentRoom.getPlayer().getInventory());
 		//System.out.println(inventoryDis.getInventoryDis().getHeight());
 	}
 	

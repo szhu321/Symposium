@@ -512,6 +512,27 @@ public class GameManager
 		return displayInventory;
 	}
 	
+	public double getMouseX()
+	{
+		return mouseX;
+	}
+
+	public double getMouseY() 
+	{
+		return mouseY;
+	}
+
+	public double getMouseXUnajusted() 
+	{
+		return mouseXUnajusted;
+	}
+
+	public double getMouseYUnajusted() 
+	{
+		return mouseYUnajusted;
+	}
+	
+
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
@@ -639,11 +660,22 @@ public class GameManager
 			mouseXUnajusted = event.getX();
 			mouseYUnajusted = event.getY();
 		});
-		scene.setOnMousePressed(event -> mouseDown = true);
+		scene.setOnMousePressed(event -> 
+		{
+			mouseDown = true;
+			player.getInventory().returnSelectedItem();
+		});
 		scene.setOnMouseReleased(event -> mouseDown = false);
 		scene.setOnScroll(event -> 
 		{
-			if(event.getDeltaY() < 0)
+			//System.out.println("Deata Y: " + event.getDeltaY());
+			//System.out.println("Deata X: " + event.getDeltaX());
+			double val;
+			if(event.isShiftDown())
+				val = event.getDeltaX();
+			else
+				val = event.getDeltaY();
+			if(val < 0)
 			{
 				player.setCurrentItemIdx((player.getCurrentItemIdx() + 1) % 6);
 			}

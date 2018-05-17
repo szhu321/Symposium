@@ -13,7 +13,8 @@ public class Inventory
 	private Item[] inventory;
 	private int hotBarSize;
 	private int currentItemIdx;
-	private int selectedItem;
+	private Item selectedItem;
+	private int selectedItemIdx;
 	
 	private Helmet helmet;
 	private BreastPlate breastPlate;
@@ -44,6 +45,32 @@ public class Inventory
 			nonHotBar[bar] = inventory[inv];
 		}
 		return nonHotBar;
+	}
+	
+	public void changeSelectedItem(int idx)
+	{
+		if(selectedItem != null)
+		{
+			Item temp = inventory[idx];
+			inventory[idx] = selectedItem;
+			selectedItem = temp;
+			selectedItemIdx = idx;
+			return;
+		}
+		//System.out.println(idx);
+		selectedItem = inventory[idx];
+		if(selectedItem == null)
+			return;
+		inventory[idx] = null;
+		selectedItemIdx = idx;
+	}
+	
+	public void returnSelectedItem()
+	{
+		if(selectedItem == null)
+			return;
+		inventory[selectedItemIdx] = selectedItem;
+		selectedItem = null;
 	}
 	
 	public boolean addItem(Item newItem)
@@ -147,5 +174,8 @@ public class Inventory
 		this.currentItemIdx = currentItemIdx;
 	}
 	
-	
+	public Item getSelectedItem()
+	{
+		return selectedItem;
+	}
 }
