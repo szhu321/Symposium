@@ -6,12 +6,19 @@ import map.Level;
 import map.Room;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
+import sprite.item.Item;
 
 public class Follower extends AI
 {
 	public Follower(Enemy enemy, Player player)
 	{
 		super(enemy,player,"Follower");
+	}
+	
+	public void action(double sec)
+	{
+		move(sec);
+		this.getEnemy().useCurrentItem(Item.WEAPON);
 	}
 	
 	public void move(double sec)

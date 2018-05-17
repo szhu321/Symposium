@@ -29,6 +29,7 @@ import sprite.item.ammo.Ammo;
 import sprite.item.potion.Potion;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
+import sprite.character.enemy.Spawner;
 import sprite.character.enemy.ai.AI;
 import sprite.projectile.LinearProjectile;
 import sprite.projectile.Projectile;
@@ -391,32 +392,38 @@ public class GameManager
     public void moveEnemy(double sec)
     {
     	List<Character> enemies=level.getCurrentRoom().getCharacters();
+    	//boolean spawnEnemy=false;
     	double circleRadius=300;
     	if((shift)&&(left||right||up||down))
     		circleRadius=500;
-    	for(Character e:enemies)
-    		if(e instanceof Enemy)
+    	for(int i=0; i<enemies.size();i++)
+    		if(enemies.get(i) instanceof Enemy)
     		{
-    			if(!((Enemy)e).getSpriteName().equals("Ghost Brian"))
+    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("Ghost Brian"))
     			{
-    				if(((Enemy)e).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
+    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
     				{
-    					((Enemy)e).getBrain().move(sec);
-    					calculateEnemyAngleToPlayer((Enemy)e);
-    					((Enemy)e).useCurrentItem(Item.WEAPON);
+	    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
+	    				{
+	    					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
+	    					((Enemy)enemies.get(i)).getBrain().action(sec);
+	    				}
+	    				else
+	    				{
+	    					((Enemy)enemies.get(i)).getBrain().wander(sec);
+	    				}
     				}
     				else
     				{
-    					((Enemy)e).getBrain().wander(sec);
+    			    	((Enemy)enemies.get(i)).getBrain().action(sec);
     				}
     			}
     			else
     			{
-    				((Enemy)e).getBrain().move(sec);
-					calculateEnemyAngleToPlayer((Enemy)e);
-					((Enemy)e).useCurrentItem(Item.WEAPON);
+					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
+					((Enemy)enemies.get(i)).getBrain().action(sec);
     			}
-    		}
+    		}    		
    	}
     
 	public void pauseGame()

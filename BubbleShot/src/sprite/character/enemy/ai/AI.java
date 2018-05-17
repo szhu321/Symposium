@@ -33,7 +33,7 @@ public abstract class AI
 		this.name = name;
 	}
 
-	public abstract void move(double sec);
+	public abstract void action(double sec);
 
 	public void wander(double sec)
 	{
@@ -41,31 +41,34 @@ public abstract class AI
 		double deltaY = 0;
 		Enemy enemy=this.getEnemy();
 		double changeAmount = enemy.getSpeed() * sec;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
 		if(directionSecs==20)
-		{
+		{	
 			direction=MyMath.getRandomInteger(1, 4);
 			directionSecs=0;
 		}
-		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
-		if(this.getEnemy().getEnemyType()!=Enemy.GHOST)
+		else
 		{
-			if(direction==1&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
-				deltaX -= changeAmount;
-			if(direction==2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
-				deltaX += changeAmount;
-			if(direction==3&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
-				deltaY -= changeAmount;
-			if(direction==4&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
-				deltaY += changeAmount;
+			if(this.getEnemy().getEnemyType()!=Enemy.GHOST)
+			{
+				if(direction==1&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
+					deltaX -= changeAmount;
+				if(direction==2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+					deltaX += changeAmount;
+				if(direction==3&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
+					deltaY -= changeAmount;
+				if(direction==4&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+					deltaY += changeAmount;
+			}
+			if(deltaX != 0 && deltaY != 0)
+			{
+				deltaX *= 1 / Math.sqrt(2);
+				deltaY *= 1 / Math.sqrt(2);
+			}		
+			enemy.addXLocation(deltaX);
+			enemy.addYLocation(deltaY);
+			directionSecs++;
 		}
-		if(deltaX != 0 && deltaY != 0)
-		{
-			deltaX *= 1 / Math.sqrt(2);
-			deltaY *= 1 / Math.sqrt(2);
-		}		
-		enemy.addXLocation(deltaX);
-		enemy.addYLocation(deltaY);
-		directionSecs++;
 	}
 	
 	public Enemy getEnemy()	{return enemy;}

@@ -13,6 +13,7 @@ import sprite.character.enemy.Enemy;
 import sprite.character.movement.Coord;
 import sprite.character.movement.MovementPath;
 import sprite.character.player.Player;
+import sprite.item.Item;
 import sprite.character.Character;
 
 public class Astar extends AI
@@ -26,7 +27,7 @@ public class Astar extends AI
 		timePass=Math.random();
 		//timePass = -.4;
 	}
-	
+		
 	public List<Coord> aStar() 
 	{
 		//Takes all tiles
@@ -329,6 +330,12 @@ public class Astar extends AI
 		}
 		
 		return path;
+	}
+	
+	public void action(double sec)
+	{
+		move(sec);
+		this.getEnemy().useCurrentItem(Item.WEAPON);
 	}
 	
 	public void move(double sec)

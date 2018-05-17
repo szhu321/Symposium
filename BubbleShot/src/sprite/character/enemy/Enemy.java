@@ -25,6 +25,7 @@ public abstract class Enemy extends Character
 	public static final String MELEE="melee";
 	public static final String MACHINEGUN="machinegun";
 	public static final String TOWER="tower";
+	public static final String BASE="base";
 	
 	public Enemy(String spriteName,String fileName, double xLocation, double yLocation, double health, double speed,
 			double width, double height,Item weapon,Player player,String enemyType) 
