@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -85,6 +86,7 @@ public class PlayingScene
 		currentRoom = room;
 		loadRoom();
 		scene = new Scene(root);
+		scene.setCursor(Cursor.CROSSHAIR);
 	}
 	
 	public void updateAllLocation()

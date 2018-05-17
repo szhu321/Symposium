@@ -13,6 +13,7 @@ public class Inventory
 	private Item[] inventory;
 	private int hotBarSize;
 	private int currentItemIdx;
+	private int selectedItem;
 	
 	private Helmet helmet;
 	private BreastPlate breastPlate;

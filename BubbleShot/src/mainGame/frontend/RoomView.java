@@ -21,6 +21,7 @@ public class RoomView
 {
 	private static boolean displayCharacterNames = true;
 	private static boolean displayItemNames = true;
+	private static boolean displayCharacterShadow = true;
 	
 	private Canvas canvas;
 	private Room room;
@@ -88,7 +89,14 @@ public class RoomView
 	{
 		for(Obstacle obs : room.getObstacles())
 		{
-			gc.drawImage(obs.getSpriteImage(), obs.getXLocation(), obs.getYLocation(), obs.getWidth(), obs.getHeight());
+			for(double x = obs.getXLocation(); x < obs.getXLocation() + obs.getWidth(); x += 100)
+			{
+				for(double y = obs.getYLocation(); y < obs.getYLocation() + obs.getHeight(); y += 100)
+				{
+					gc.drawImage(obs.getSpriteImage(), x, y, 100, 100);
+				}
+			}
+			//gc.drawImage(obs.getSpriteImage(), obs.getXLocation(), obs.getYLocation(), obs.getWidth(), obs.getHeight());
 		}
 	}
 	
@@ -118,6 +126,16 @@ public class RoomView
 			for(Character character : room.getCharacters())
 			{
 				gc.fillText(character.getSpriteName(), character.getXLocation(), character.getYLocation() - 12, character.getWidth());
+			}
+			gc.restore();
+		}
+		if(displayCharacterShadow)
+		{
+			gc.save();
+			gc.setFill(Color.rgb(0, 0, 0, .3));
+			for(Character character : room.getCharacters())
+			{
+				gc.fillOval(character.getXLocation(), character.getYLocation() + character.getHeight() - 10, character.getWidth(), 20);
 			}
 			gc.restore();
 		}
