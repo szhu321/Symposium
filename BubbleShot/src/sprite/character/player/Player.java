@@ -7,6 +7,8 @@ import sprite.item.armor.Boots;
 import sprite.item.armor.BreastPlate;
 import sprite.item.armor.Helmet;
 import sprite.item.armor.Legging;
+import sprite.item.collectable.Coin;
+import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
 import sprite.item.shield.Shield;
 import sprite.item.weapon.Fist;
@@ -40,6 +42,11 @@ public class Player extends Character
 	
 	public void addItem(Item newItem)
 	{
+		if(newItem instanceof InstantCollect)
+		{
+			((InstantCollect) newItem).collect(this);
+			return;
+		}
 		if(inventory.addItem(newItem))
 			newItem.setPossessor(this);
 	}

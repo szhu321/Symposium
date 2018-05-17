@@ -26,6 +26,7 @@ import myutilities.TimerManager;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
+import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
@@ -479,7 +480,7 @@ public class GameManager
 	public void playerPickUpItem()
 	{
 		Item item = level.getCurrentRoom().playerCollisionWithItem(player);
-		if(item != null && item.isItemPickable() && !player.isInventoryFull())
+		if(item != null && ((item.isItemPickable() && !player.isInventoryFull()) || item instanceof InstantCollect))
 		{
 			level.getCurrentRoom().removeItem(item);
 /////			playingScene.removeChildFromMoveArea(item.getSpriteImageView());

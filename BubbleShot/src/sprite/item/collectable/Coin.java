@@ -1,8 +1,9 @@
 package sprite.item.collectable;
 
+import sprite.character.player.Player;
 import sprite.item.Item;
 
-public class Coin extends Item
+public class Coin extends Item implements InstantCollect
 {
 	private int amount;
 	
@@ -20,5 +21,12 @@ public class Coin extends Item
 	public String toString()
 	{
 		return "Coin: Amount = " + amount + ".";
+	}
+
+	@Override
+	public void collect(Player player) 
+	{
+		player.setCoins(player.getCoins() + amount);
+		
 	}
 }
