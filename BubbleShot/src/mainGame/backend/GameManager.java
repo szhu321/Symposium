@@ -155,6 +155,7 @@ public class GameManager
 		}
 		manageCharacterDeath();
 		runAllCharacterEffects();
+		playerPickUpItem();
 		playingScene.updateAllLocation();
 	}
 	
@@ -477,8 +478,8 @@ public class GameManager
 	
 	public void playerPickUpItem()
 	{
-		Item item = level.getCurrentRoom().characterCollisionWithItem(player);
-		if(item != null && !player.isInventoryFull())
+		Item item = level.getCurrentRoom().playerCollisionWithItem(player);
+		if(item != null && item.isItemPickable() && !player.isInventoryFull())
 		{
 			level.getCurrentRoom().removeItem(item);
 /////			playingScene.removeChildFromMoveArea(item.getSpriteImageView());
@@ -491,11 +492,33 @@ public class GameManager
 		Item item = player.removeCurrentItem();
 		if(item != null)
 		{
-			item.setXLocation(player.getXLocation());
-			item.setYLocation(player.getYLocation());
-			level.getCurrentRoom().addItem(item);
+			dropItemToRoom(item);
 /////			playingScene.addChildToMoveArea(item.getSpriteImageView());
 		}
+	}
+	
+	public void playerDropSeceltedItem()
+	{
+		Item item = player.getInventory().removeSelectedItem();
+		if(item != null)
+		{
+			dropItemToRoom(item);
+		}
+	}
+	
+	private void dropItemToRoom(Item item)
+	{
+		int count = 50;
+		int decrement = 10;
+		item.setXLocation(player.getXLocation());
+		item.setYLocation(player.getYLocation());
+		while(count > 0 && !level.getCurrentRoom().spriteCollisionWithObstacle(item))
+		{
+			item.setXLocation(item.getXLocation() + Math.cos(Math.toRadians(player.getFaceAngle())) * decrement);
+			item.setYLocation(item.getYLocation() + Math.sin(Math.toRadians(player.getFaceAngle())) * decrement);
+			count -= decrement;
+		}
+		level.getCurrentRoom().addItem(item);
 	}
 	
 	public void toggleFullScreen()
@@ -555,8 +578,8 @@ public class GameManager
 				right = true;
 			if(code == KeyCode.SHIFT)
 				shift = true;
-			if(code == KeyCode.E)
-				playerPickUpItem();
+			//if(code == KeyCode.E)
+				//playerPickUpItem();
 			if(code == KeyCode.DIGIT1)
 				player.setCurrentItemIdx(0);
 			if(code == KeyCode.DIGIT2)
@@ -571,7 +594,7 @@ public class GameManager
 				player.setCurrentItemIdx(5);
 			if(code == KeyCode.G)
 				playerDropItem();
-			if(code == KeyCode.I)
+			if(code == KeyCode.I || code == KeyCode.ESCAPE || code == KeyCode.E)
 				toggleDisInventory();
 			if(code == KeyCode.F11)
 			{
@@ -669,8 +692,12 @@ public class GameManager
 		});
 		scene.setOnMousePressed(event -> 
 		{
-			mouseDown = true;
-			player.getInventory().returnSelectedItem();
+			if(player.getInventory().getSelectedItem() != null)
+				playerDropSeceltedItem();
+			else
+				mouseDown = true;
+			//player.getInventory().returnSelectedItem();
+			
 		});
 		scene.setOnMouseReleased(event -> mouseDown = false);
 		scene.setOnScroll(event -> 

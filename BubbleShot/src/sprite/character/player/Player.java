@@ -21,7 +21,7 @@ public class Player extends Character
 	
 	private int currentItemIdx;
 	//private Item[] inventory = new Item[6];
-	private int score;
+	//private int score;
 	private int coins;
 	private int currentAmmo;
 	private int defaultAmmo;
@@ -33,7 +33,6 @@ public class Player extends Character
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
 		inventory = new Inventory(10, 6);
 		currentItemIdx = 0;
-		score = 0;
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
 		coins = 0;
@@ -139,8 +138,6 @@ public class Player extends Character
 	
 	public int getCurrentAmmo() {return currentAmmo;}
 	public int getDefaultAmmo() {return defaultAmmo;}
-	public int getScore() {return score;}
-	public void setScore(int score) {this.score = score;}
 	public void setCurrentAmmo(int currentAmmo)
 	{
 		if(currentAmmo > defaultAmmo)

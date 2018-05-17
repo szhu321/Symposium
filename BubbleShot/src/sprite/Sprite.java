@@ -153,7 +153,7 @@ public abstract class Sprite implements Collider
 	
 	public CircleCollider getCircleBoundsOfObject(double radius)
 	{
-		return new CircleCollider(xCoord + (width / 2), yCoord + (height / 2), radius);
+		return new CircleCollider(getXCenter(), getYCenter(), radius);
 	}
 	
 	public CircleCollider getCircleBoundsOfObject()

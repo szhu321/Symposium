@@ -1,5 +1,7 @@
 	 package mainGame;
 
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,6 +12,8 @@ import sprite.character.enemy.Enemy;
 import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
+import sprite.item.collectable.Coin;
+import sprite.item.collectable.CoinDesign;
 
 /**
  * Run this class to start the Program.
@@ -43,6 +47,12 @@ public class GameRunner extends Application
 		window.setMinHeight(700);
 		window.setMinWidth(700);
 		window.show();
+		
+//		List<Coin> coins = CoinDesign.getCoinStack(14);
+//		for(Coin coin : coins)
+//		{
+//			System.out.println(coin);
+//		}
 	}
 	
 	/**

@@ -385,6 +385,14 @@ public class Room
 		return null;
 	}
 	
+	public Item playerCollisionWithItem(Player player)
+	{
+		for(Item item : items)
+			if(item.getCircleBoundsOfObject().intersect(player.getCircleBoundsOfObject()))
+				return item;
+		return null;
+	}
+	
 	public Tile characterCollisionWithTile(Character character)
 	{
 		/*for(Tile[] tileArr: tiles)

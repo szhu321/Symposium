@@ -2,6 +2,7 @@ package sprite.item;
 
 import map.Room;
 import sprite.Sprite;
+import sprite.bounds.CircleCollider;
 import sprite.character.Character;
 import sprite.character.player.Player;
 
@@ -10,9 +11,13 @@ public abstract class Item extends Sprite
 	public static final String WEAPON = "weapon";
 	public static final String POTION = "potion";
 	public static final String ARMOR = "armor";
+	public static final String COIN = "coin";
 	private String itemType;
 	private Character possessor;
 	private Room currentRoom;
+	
+	private double itemPickPeriod = 1.2;
+	private double lastItemDropTime;
 	//item types: potions and weapons
 	
 	public Item(String spriteName, String fileName, double xLocation, double yLocation,  double width, double height, String itemType) 
@@ -24,6 +29,13 @@ public abstract class Item extends Sprite
 	public Character getPossessor()
 	{
 		return possessor;
+	}
+	
+	public boolean isItemPickable()
+	{
+		if((System.currentTimeMillis() - lastItemDropTime) / 1000 > itemPickPeriod)
+			return true;
+		return false;
 	}
 	
 	public void destroy()
@@ -42,6 +54,7 @@ public abstract class Item extends Sprite
 	public void setCurrentRoom(Room currentRoom) 
 	{
 		this.currentRoom = currentRoom;
+		lastItemDropTime = System.currentTimeMillis();
 	}
 	
 	public void setPossessor(Character possessor)
@@ -52,6 +65,11 @@ public abstract class Item extends Sprite
 	public String getItemType()
 	{
 		return itemType;
+	}
+	
+	public CircleCollider getCircleBoundsOfObject()
+	{
+		return new CircleCollider(getXCenter(), getYCenter(), 7);
 	}
 	
 //	public void coolDownItem(double sec)

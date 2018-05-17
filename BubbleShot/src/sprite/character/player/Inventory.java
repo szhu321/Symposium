@@ -95,6 +95,13 @@ public class Inventory
 		return remove;
 	}
 	
+	public Item removeSelectedItem()
+	{
+		Item remove = selectedItem;
+		selectedItem = null;
+		return remove;
+	}
+	
 	public Item getCurrentItem()
 	{
 		return inventory[currentItemIdx];

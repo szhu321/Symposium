@@ -22,6 +22,7 @@ public class RoomView
 	private static boolean displayCharacterNames = true;
 	private static boolean displayItemNames = true;
 	private static boolean displayCharacterShadow = true;
+	private static boolean displayItemShadow = true;
 	
 	private Canvas canvas;
 	private Room room;
@@ -102,6 +103,16 @@ public class RoomView
 	
 	public static void drawCharacters(GraphicsContext gc, Room room)
 	{
+		if(displayCharacterShadow)
+		{
+			gc.save();
+			gc.setFill(Color.rgb(0, 0, 0, .3));
+			for(Character character : room.getCharacters())
+			{
+				gc.fillOval(character.getXLocation(), character.getYLocation() + character.getHeight() - 10, character.getWidth(), 20);
+			}
+			gc.restore();
+		}
 		gc.save();
 		for(Character character : room.getCharacters())
 		{
@@ -129,16 +140,7 @@ public class RoomView
 			}
 			gc.restore();
 		}
-		if(displayCharacterShadow)
-		{
-			gc.save();
-			gc.setFill(Color.rgb(0, 0, 0, .3));
-			for(Character character : room.getCharacters())
-			{
-				gc.fillOval(character.getXLocation(), character.getYLocation() + character.getHeight() - 10, character.getWidth(), 20);
-			}
-			gc.restore();
-		}
+		
 	}
 	
 	private static void drawCharacterActiveEffects(GraphicsContext gc, Character character)
@@ -190,6 +192,16 @@ public class RoomView
 	
 	public static void drawItems(GraphicsContext gc, Room room)
 	{
+		if(displayItemShadow)
+		{
+			gc.save();
+			gc.setFill(Color.rgb(0, 0, 0, .3));
+			for(Item item : room.getItems())
+			{
+				gc.fillOval(item.getXLocation(), item.getYLocation() + item.getHeight() - 10, item.getWidth(), 20);
+			}
+			gc.restore();
+		}
 		for(Item item : room.getItems())
 		{
 			gc.drawImage(item.getSpriteImage(), item.getXLocation(), item.getYLocation());
@@ -205,6 +217,7 @@ public class RoomView
 			}
 			gc.restore();
 		}
+		
 	}
 	
 	public static void drawProjectiles(GraphicsContext gc, Room room)

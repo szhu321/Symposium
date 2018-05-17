@@ -70,7 +70,7 @@ public class PlayingScene
 	private HealthBar healthbar;
 	private AmmoBar ammobar;
 	private Text playerAmmoDis;
-	private Text playerScoreDis;
+	private Text playerCoinDis;
 	//private ImageView[] playerInventoryDis;
 	private Canvas[] playerHotbarDisCanvas;
 	
@@ -153,7 +153,7 @@ public class PlayingScene
 		
 		playerHealthDis = new Text();
 		playerAmmoDis = new Text();
-		playerScoreDis = new Text();
+		playerCoinDis = new Text();
 		
 		/*
 		topHealthBox = new HBox(5);
@@ -185,7 +185,7 @@ public class PlayingScene
 		healthbar = new HealthBar(350, 50, currentRoom.getPlayer().getDefaultHealth());
 		ammobar = new AmmoBar(350, 50, currentRoom.getPlayer().getDefaultAmmo());
 		
-		topBox.getChildren().addAll(healthbar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerScoreDis, pauseBtn);
+		topBox.getChildren().addAll(healthbar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
@@ -201,7 +201,7 @@ public class PlayingScene
 		ammobar.updateCanvas(player.getCurrentAmmo());
 		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
-		playerScoreDis.setText("Score: " + player.getScore());
+		playerCoinDis.setText("Coins: " + player.getCoins());
 		for(int i = 0; i < player.getHotBar().length; i++)
 		{
 			playerHotbarDisCanvas[i].getGraphicsContext2D().setFill(Color.LIGHTGRAY);
@@ -232,6 +232,7 @@ public class PlayingScene
 			}
 		}
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
+		headUpDis.setPrefWidth(GameRunner.getWindowWidth());
 	}
 	
 	private GridPane getInventoryDisGUI()
