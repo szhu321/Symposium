@@ -68,6 +68,16 @@ public abstract class Sprite implements Collider
 		return yCoord;
 	}
 	
+	public double getXLocationMax()
+	{
+		return xCoord + width;
+	}
+	
+	public double getYLocationMax()
+	{
+		return yCoord + height;
+	}
+	
 	public double getXCenter()
 	{
 		return xCoord + (width / 2);
