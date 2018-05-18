@@ -533,9 +533,16 @@ public class GameManager
 	public void toggleDisInventory()
 	{
 		if(displayInventory)
+		{
 			displayInventory = false;
+			//TimerManager.resumeAll();
+		}
 		else
+		{
 			displayInventory = true;
+			//TimerManager.pauseAll();
+		}
+			
 	}
 	
 	public boolean displayInventory()

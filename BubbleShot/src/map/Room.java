@@ -206,6 +206,37 @@ public class Room
 		//System.out.println("added");
 	}
 	
+	public void scatterItems(Item[] items, double x, double y)
+	{
+		List<Item> itemList = new ArrayList<Item>();
+		for(int i = 0; i < items.length; i++)
+			if(items[i] != null)
+				itemList.add(items[i]);
+		this.scatterItems(itemList, x, y);
+	}
+	
+	public void scatterItems(List<Item> items, double x, double y)
+	{
+		for(int i = 0; i < items.size(); i++)
+		{
+			Item item = items.get(i);
+			if(item == null)
+				continue;
+			item.setXLocation(x);
+			item.setYLocation(y);
+			int angle = MyMath.getRandomInteger(0, 359);
+			int distance = MyMath.getRandomInteger(5, 50);
+			int decrement = 10;
+			while(distance > 0 && !spriteCollisionWithObstacle(item))
+			{
+				item.setXLocation(item.getXLocation() + Math.cos(Math.toRadians(angle)) * decrement);
+				item.setYLocation(item.getYLocation() + Math.sin(Math.toRadians(angle)) * decrement);
+				distance -= decrement;
+			}
+			addItem(item);
+		}
+	}
+	
 	public List<Projectile> getProjectiles() {return projectiles;}
 	
 	public void removeProjectile(Projectile projectile)
