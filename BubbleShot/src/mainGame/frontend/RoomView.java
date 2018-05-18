@@ -24,9 +24,13 @@ public class RoomView
 	private static boolean displayCharacterShadow = true;
 	private static boolean displayItemShadow = true;
 	private static boolean displayObstacleShadow = true;
+	private static boolean displayItemRotating = true;
 	
 	private Canvas canvas;
 	private Room room;
+	
+	private static double timePassed = 0.0;
+	private static long passTime = System.nanoTime();
 	
 	public RoomView(Room room)
 	{
@@ -48,6 +52,8 @@ public class RoomView
 	
 	public static void drawRoom(GraphicsContext gc, Room room)
 	{
+		timePassed += (double)(System.nanoTime() - passTime) / 1000000.0;
+		passTime = System.nanoTime();
 		drawTiles(gc, room);
 		drawItems(gc, room);
 		drawCharacters(gc, room);
@@ -219,7 +225,15 @@ public class RoomView
 		}
 		for(Item item : room.getItems())
 		{
-			gc.drawImage(item.getSpriteImage(), item.getXLocation(), item.getYLocation());
+			if(displayItemRotating)
+			{
+				gc.drawImage(item.getSpriteImage(), item.getXLocation() + (Math.sin((timePassed / 1000.0) + Math.PI) * item.getWidth() / 2) + (item.getWidth() / 2), item.getYLocation() + (Math.cos((timePassed / 1000.0)) * 10), Math.sin((timePassed / 1000.0)) * item.getWidth(), item.getHeight());
+			}
+			else
+			{
+				gc.drawImage(item.getSpriteImage(), item.getXLocation(), item.getYLocation());
+			}
+			
 		}
 		if(displayItemNames)
 		{
