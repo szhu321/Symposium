@@ -31,19 +31,4 @@ public class Armor extends Item
 	{
 		return maxDamageBoost;
 	}
-
-	public void setMaxHealthBoost(double maxHealthBoost) 
-	{
-		this.maxHealthBoost = maxHealthBoost;
-	}
-
-	public void setMaxSpeedBoost(double maxSpeedBoost)
-	{
-		this.maxSpeedBoost = maxSpeedBoost;
-	}
-
-	public void setMaxDamageBoost(double maxDamageBoost)
-	{
-		this.maxDamageBoost = maxDamageBoost;
-	}
 }

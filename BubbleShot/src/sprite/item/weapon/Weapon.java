@@ -67,7 +67,10 @@ public abstract class Weapon extends Item
 
 	public double getDamage()
 	{
-		return weaponDmg;
+		if(getPossessor() instanceof Player)
+			return weaponDmg * ((Player) getPossessor()).getDamageBoost() * getPossessor().getEffectManager().getDamageMultiplier();
+		else
+			return weaponDmg * getPossessor().getEffectManager().getDamageMultiplier();
 	}
 	
 	public int getAmmoUsed() 
@@ -131,7 +134,7 @@ public abstract class Weapon extends Item
 			projectile.setFaceAngle(character.getFaceAngle());
 			projectile.setXLocation(projectileStartX);
 			projectile.setYLocation(projectileStartY);
-			projectile.setDamage(projectile.getDamage() * character.getEffectManager().getDamageMultiplier());
+			projectile.setDamage(getDamage());
 			
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);

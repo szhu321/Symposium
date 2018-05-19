@@ -57,7 +57,7 @@ public abstract class Enemy extends Character
 	@Override
 	public void setCurrentHealth(double currentHealth) 
 	{
-		healthbar.updateCanvas(currentHealth);
+		healthbar.updateCanvas(currentHealth, getDefaultHealth());
 		super.setCurrentHealth(currentHealth);
 	}
 

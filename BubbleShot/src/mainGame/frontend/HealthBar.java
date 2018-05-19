@@ -21,7 +21,7 @@ public class HealthBar
 		this.maxHealth = maxHealth;
 		currentHealth = maxHealth;
 		buildCanvas();
-		updateCanvas(currentHealth);
+		updateCanvas(currentHealth, maxHealth);
 	}
 	
 	private void buildCanvas()
@@ -97,9 +97,10 @@ public class HealthBar
 		return canvas;
 	}
 	
-	public void updateCanvas(double currentHealth)
+	public void updateCanvas(double currentHealth, double maxHealth)
 	{
 		this.currentHealth = currentHealth;
+		this.maxHealth = maxHealth;
 		clearCanvas();
 		paintMiddle();
 		paintBorder();

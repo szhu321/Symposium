@@ -17,7 +17,6 @@ import sprite.item.weapon.WeaponDesign;
 
 public class Player extends Character
 {
-	
 	private String spriteName;
 	private Inventory inventory;
 	
@@ -71,13 +70,19 @@ public class Player extends Character
 		//If the player has no shield or if the player gained health.
 		if(inventory.getShield() == null || getCurrentHealth() < health)
 		{
-			super.setCurrentHealth(health);
+			if(health > getDefaultHealth())
+				super.setCurrentHealth(getDefaultHealth());
+			else
+				super.setCurrentHealth(health);
 			return;
 		}
 		//if the player has shield and lost health.
 		if(inventory.getShield().isShieldDown())
 		{
-			super.setCurrentHealth(health);
+			if(health > getDefaultHealth())
+				super.setCurrentHealth(getDefaultHealth());
+			else
+				super.setCurrentHealth(health);
 			return;
 		}
 		else
@@ -131,6 +136,21 @@ public class Player extends Character
 	public void selectItem(String input)
 	{
 		currentItemIdx = Integer.parseInt(input);
+	}
+	
+	public double getSpeed()
+	{
+		return super.getSpeed() * inventory.getMaxSpeedBoost();
+	}
+	
+	public double getDamageBoost()
+	{
+		return inventory.getMaxDamageBoost();
+	}
+	
+	public double getDefaultHealth()
+	{
+		return super.getDefaultHealth() + inventory.getMaxHealthBoost();
 	}
 	
 	public int getCurrentItemIdx()

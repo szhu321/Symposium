@@ -15,6 +15,12 @@ public class Inventory
 	private int currentItemIdx;
 	private Item selectedItem;
 	private int selectedItemIdx;
+
+	public static final int HELMET_IDX = -10;
+	public static final int BREASTPLATE_IDX = -11;
+	public static final int LEGGING_IDX = -12;
+	public static final int BOOTS_IDX = -13;
+	public static final int SHIELD_IDX = -14;
 	
 	private Helmet helmet;
 	private BreastPlate breastPlate;
@@ -49,6 +55,11 @@ public class Inventory
 	
 	public void changeSelectedItem(int idx)
 	{
+		if(idx < 0)
+		{
+			changeSelectedArmor(idx);
+			return;
+		}	
 		if(selectedItem != null)
 		{
 			Item temp = inventory[idx];
@@ -65,11 +76,86 @@ public class Inventory
 		selectedItemIdx = idx;
 	}
 	
+	private void swapArmor(int idx)
+	{
+		Item temp = null;
+		if(idx == Inventory.HELMET_IDX)
+		{
+			temp = helmet;
+			helmet = (Helmet)selectedItem;
+			selectedItemIdx = Inventory.HELMET_IDX;
+		}
+		if(idx == Inventory.BREASTPLATE_IDX)
+		{
+			temp = breastPlate;
+			breastPlate = (BreastPlate)selectedItem;
+			selectedItemIdx = Inventory.BREASTPLATE_IDX;
+		}
+		if(idx == Inventory.LEGGING_IDX)
+		{
+			temp = legging;
+			legging = (Legging)selectedItem;
+			selectedItemIdx = Inventory.LEGGING_IDX;
+		}
+		if(idx == Inventory.BOOTS_IDX)
+		{
+			temp = boots;
+			boots = (Boots)selectedItem;
+			selectedItemIdx = Inventory.BOOTS_IDX;
+		}
+		if(idx == Inventory.SHIELD_IDX)
+		{
+			temp = shield;
+			shield = (Shield)selectedItem;
+			selectedItemIdx = Inventory.SHIELD_IDX;
+		}
+		selectedItem = temp;
+	}
+	
+	public void changeSelectedArmor(int idx)
+	{
+		if(selectedItem != null)
+		{
+			//Checks to see if the swap is legal.
+			if(selectedItem instanceof Helmet && idx == Inventory.HELMET_IDX)
+				swapArmor(idx);
+			if(selectedItem instanceof BreastPlate && idx == Inventory.BREASTPLATE_IDX)
+				swapArmor(idx);
+			if(selectedItem instanceof Legging && idx == Inventory.LEGGING_IDX)
+				swapArmor(idx);
+			if(selectedItem instanceof Boots && idx == Inventory.BOOTS_IDX)
+				swapArmor(idx);
+			if(selectedItem instanceof Shield && idx == Inventory.SHIELD_IDX)
+				swapArmor(idx);
+		}
+		else
+			swapArmor(idx);
+	}
+	
 	public void returnSelectedItem()
 	{
 		if(selectedItem == null)
 			return;
+		if(selectedItemIdx < 0)
+			returnSelectedArmor();
 		inventory[selectedItemIdx] = selectedItem;
+		selectedItem = null;
+	}
+	
+	public void returnSelectedArmor()
+	{
+		if(selectedItem == null)
+			return;
+		if(selectedItemIdx == Inventory.BOOTS_IDX)
+			boots = (Boots)selectedItem;
+		if(selectedItemIdx == Inventory.HELMET_IDX)
+			helmet = (Helmet)selectedItem;
+		if(selectedItemIdx == Inventory.BREASTPLATE_IDX)
+			breastPlate = (BreastPlate)selectedItem;
+		if(selectedItemIdx == Inventory.LEGGING_IDX)
+			legging = (Legging)selectedItem;
+		if(selectedItemIdx == Inventory.SHIELD_IDX)
+			shield = (Shield)selectedItem;
 		selectedItem = null;
 	}
 	
@@ -126,46 +212,73 @@ public class Inventory
 		return true;
 	}
 	
-	public Item setHelmet(Helmet helmet) 
+	public double getMaxHealthBoost()
 	{
-		Helmet temp = this.helmet;
-		this.helmet = helmet;
-		return temp;
+		double result = 0;
+		if(helmet != null)
+			result += helmet.getMaxHealthBoost();
+		if(legging != null)
+			result += legging.getMaxHealthBoost();
+		if(breastPlate != null)
+			result += breastPlate.getMaxHealthBoost();
+		if(boots != null)
+			result += boots.getMaxHealthBoost();
+		return result;
+	}
+	
+	public double getMaxSpeedBoost()
+	{
+		double result = 1;
+		if(helmet != null)
+			result *= helmet.getMaxSpeedBoost();
+		if(legging != null)
+			result *= legging.getMaxSpeedBoost();
+		if(breastPlate != null)
+			result *= breastPlate.getMaxSpeedBoost();
+		if(boots != null)
+			result *= boots.getMaxSpeedBoost();
+		return result;
+	}
+	
+	public double getMaxDamageBoost()
+	{
+		double result = 1;
+		if(helmet != null)
+			result *= helmet.getMaxDamageBoost();
+		if(legging != null)
+			result *= legging.getMaxDamageBoost();
+		if(breastPlate != null)
+			result *= breastPlate.getMaxDamageBoost();
+		if(boots != null)
+			result *= boots.getMaxDamageBoost();
+		return result;
+	}
+	
+	public Helmet getHelmet() 
+	{
+		return helmet;
 	}
 
-	public Item setBreastPlate(BreastPlate breastPlate) 
+	public BreastPlate getBreastPlate() 
 	{
-		BreastPlate temp = this.breastPlate;
-		this.breastPlate = breastPlate;
-		return temp;
+		return breastPlate;
 	}
 
-	public Item setLegging(Legging legging) 
+	public Legging getLegging()
 	{
-		Legging temp = this.legging;
-		this.legging = legging;
-		return temp;
+		return legging;
 	}
 
-	public Item setBoots(Boots boots) 
+	public Boots getBoots()
 	{
-		Boots temp = this.boots;
-		this.boots = boots;
-		return temp;
-	}
-
-	public Item setShield(Shield shield) 
-	{
-		Shield temp = this.shield;
-		this.shield = shield;
-		return temp;
+		return boots;
 	}
 
 	public Shield getShield()
 	{
 		return shield;
 	}
-	
+
 	public Item[] getInventory()
 	{
 		return inventory;

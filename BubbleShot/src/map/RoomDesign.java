@@ -4,6 +4,7 @@ import map.obstacle.StoneWall;
 import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 import sprite.item.ammo.AmmoDesign;
+import sprite.item.armor.ArmorDesign;
 import sprite.item.collectable.CoinDesign;
 import sprite.item.potion.PotionDesign;
 import sprite.item.weapon.WeaponDesign;
@@ -45,6 +46,7 @@ public class RoomDesign
 		room.addItem(WeaponDesign.getAssaultRifleDesignOne(600, 140));
 		
 		room.addItem(CoinDesign.getCoinFive(700, 140));
+		room.addItem(ArmorDesign.getHelmetDesignOne(800, 130));
 		return room;
 	}
 	

@@ -62,7 +62,7 @@ public class Shotgun extends Weapon
 				projectile.setFaceAngle(faceAngle);
 				projectile.setXLocation(projectileStartX);
 				projectile.setYLocation(projectileStartY);
-				projectile.setDamage(projectile.getDamage() * character.getEffectManager().getDamageMultiplier());
+				projectile.setDamage(getDamage());
 				
 				//Adding the newly created projectile.
 				GameRunner.getGameManager().addProjectile(projectile);

@@ -197,7 +197,7 @@ public class PlayingScene
 	{
 		Player player = currentRoom.getPlayer();
 		playerHealthDis.setText("Health: " + player.getCurrentHealth());
-		healthbar.updateCanvas(player.getCurrentHealth());
+		healthbar.updateCanvas(player.getCurrentHealth(), player.getDefaultHealth());
 		ammobar.updateCanvas(player.getCurrentAmmo());
 		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
