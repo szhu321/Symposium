@@ -158,6 +158,7 @@ public class GameManager
 		runAllCharacterEffects();
 		playerPickUpItem();
 		teleportChecker();
+		instantCollectableAttract(((double)milliSecond) / 1000);
 		playingScene.updateAllLocation();
 	}
 	
@@ -366,6 +367,43 @@ public class GameManager
 	{
 		level.getCurrentRoom().removeProjectile(projectile);
 /////		playingScene.removeProjectileFromArea(projectile.getSpriteImageView());
+	}
+	
+	public void instantCollectableAttract(double sec)
+	{
+		double playerx = player.getXCenter();
+		double playery = player.getYCenter();
+		for(Item item : level.getCurrentRoom().getItems())
+		{
+			if(item instanceof InstantCollect)
+			{
+				double distance = MyMath.distanceBwtween(playerx, playery, item.getXCenter(), item.getYCenter());
+				if(distance > 150)
+					continue;
+				double speed = 50;
+				if(distance < 110)
+					speed = 140;
+				if(distance < 70)
+					speed = 300;
+				double deltax = 0;
+				double deltay = 0;
+				if(playerx < item.getXCenter() && level.getCurrentRoom().canSpriteMove(item, Constants.MOVE_DIR_LEFT, (speed * sec)))
+					deltax = -(speed * sec);
+				else if(level.getCurrentRoom().canSpriteMove(item, Constants.MOVE_DIR_RIGHT, (speed * sec)))
+					deltax = speed * sec;
+				if(playery < item.getYCenter() && level.getCurrentRoom().canSpriteMove(item, Constants.MOVE_DIR_UP, (speed * sec)))
+					deltay = -(speed * sec);
+				else if(level.getCurrentRoom().canSpriteMove(item, Constants.MOVE_DIR_DOWN, (speed * sec)))
+					deltay = speed * sec;
+				if(deltax != 0 && deltay != 0)
+				{
+					deltax *= 1 / Math.sqrt(2);
+					deltay *= 1 / Math.sqrt(2);
+				}
+				item.addXLocation(deltax);
+				item.addYLocation(deltay);
+			}
+		}
 	}
 	
 	public void movePlayer(double sec)

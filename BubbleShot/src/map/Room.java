@@ -400,6 +400,33 @@ public class Room
 		return false;
 	}
 	
+	public boolean canSpriteMove(Sprite sprite, String direction, double distance)
+	{
+		BoxCollider characterBounds = sprite.getBoundsOfObject();
+		if(direction.equals(Constants.MOVE_DIR_UP))
+		{
+			characterBounds.setY(characterBounds.getY() - (distance * 1.2));
+		}
+		if(direction.equals(Constants.MOVE_DIR_DOWN))
+		{
+			characterBounds.setY(characterBounds.getY() + (distance * 1.2));
+		}
+		if(direction.equals(Constants.MOVE_DIR_LEFT))
+		{
+			characterBounds.setX(characterBounds.getX() - (distance * 1.2));
+		}
+		if(direction.equals(Constants.MOVE_DIR_RIGHT))
+		{
+			characterBounds.setX(characterBounds.getX() + (distance * 1.2));
+		}
+		for(Obstacle obs : obstacles)
+		{
+			if(obs.getBoundsOfObject().intersect(characterBounds))
+				return false;
+		}
+		return true;
+	}
+	
 	public boolean spriteCollisionWithObstacle(Sprite sprite)
 	{
 		for(Obstacle obstacle: obstacles)
