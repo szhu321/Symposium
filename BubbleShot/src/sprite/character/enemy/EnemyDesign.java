@@ -8,6 +8,23 @@ import sprite.item.weapon.WeaponDesign;
 
 public class EnemyDesign
 {	
+	public static Enemy getRandomDesign(double x, double y, Player player, String type)
+	{
+		if(type.equals(Enemy.FOLLOWER))
+			return EnemyDesign.getRegularDesignOne(x, y, player);
+		if(type.equals(Enemy.SMART))
+			return EnemyDesign.getSmartDesignOne(x, y, player);
+		if(type.equals(Enemy.GHOST))
+			return EnemyDesign.getRegularDesignTwo(x, y, player);
+		if(type.equals(Enemy.SWORD))
+			return EnemyDesign.getSwordDesignOne(x, y, player);
+		if(type.equals(Enemy.TOWER))
+			return EnemyDesign.getTurrentDesignOne(x, y, player);
+		if(type.equals(Enemy.SPAWNER1))
+			return EnemyDesign.getBaseDesignOne(x, y, player);
+		return null;
+	}
+	
 	public static Enemy getRandomDesign(double x, double y, Player player, int num)
 	{
 		if(num==1)
@@ -22,6 +39,8 @@ public class EnemyDesign
 			return EnemyDesign.getTurrentDesignOne(x, y, player);
 		if(num==6)
 			return EnemyDesign.getBaseDesignOne(x, y, player);
+		if(num==7)
+			return EnemyDesign.getBaseDesignTwo(x, y, player);
 		return null;
 	}
 	
@@ -48,7 +67,7 @@ public class EnemyDesign
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
-		Enemy enemy=new Smart("Smart Brian",fileName, x, y,50, 130, 50, 50, pistol,player,Enemy.SMART);
+		Enemy enemy=new Smart("Soviet Brian",fileName, x, y,50, 130, 50, 50, pistol,player,Enemy.SMART);
 		return enemy;
 	}
 	
@@ -75,7 +94,27 @@ public class EnemyDesign
 		String fileName = "file:resources/enemy/enemy3.png";
 		Weapon rifle=WeaponDesign.getAssaultRifleDesignOne(x, y);
 		rifle.setDefaultCoolDownTime(.8);
-		Enemy enemy=new Spawner("Tower Brian",fileName, x, y,250, 130, 50, 50, rifle,player,Enemy.BASE);
+		Enemy enemy=new Spawner("Spawner1 Brian",fileName, x, y,250, 130, 50, 50, rifle,player,Enemy.SPAWNER1);
+		return enemy;
+	}
+	
+	public static Enemy getBaseDesignTwo(double x, double y, Player player)
+	{
+		String fileName = "file:resources/enemy/enemy3.png";
+		Weapon rifle=WeaponDesign.getAssaultRifleDesignOne(x, y);
+		rifle.setDefaultCoolDownTime(.8);
+		String randomEnemy="";
+		int chooser=0;
+		chooser=(int)(Math.random()*6)+1;
+		if(chooser==1)
+			randomEnemy=Enemy.FOLLOWER;
+		if(chooser==2)
+			randomEnemy=Enemy.SMART;
+		if(chooser==3)
+			randomEnemy=Enemy.GHOST;
+		if(chooser==4)
+			randomEnemy=Enemy.SWORD;
+		Enemy enemy=new Spawner("Spawner2 Brian",fileName, x, y,250, 130, 50, 50, rifle,player,Enemy.SPAWNER2,randomEnemy);
 		return enemy;
 	}
 	

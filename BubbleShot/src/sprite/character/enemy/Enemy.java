@@ -8,6 +8,7 @@ import sprite.character.Character;
 import sprite.character.enemy.ai.AI;
 import sprite.character.player.Player;
 import sprite.item.Item;
+import sprite.item.LootGen;
 import sprite.item.weapon.Weapon;
 
 public abstract class Enemy extends Character
@@ -22,10 +23,12 @@ public abstract class Enemy extends Character
 	public static final String FOLLOWER="follower";
 	public static final String SMART="smart";
 	public static final String GHOST="ghost";
+	public static final String SWORD="sword";
 	public static final String MELEE="melee";
 	public static final String MACHINEGUN="machinegun";
 	public static final String TOWER="tower";
-	public static final String BASE="base";
+	public static final String SPAWNER1="spawner1";
+	public static final String SPAWNER2="spawner2";
 	
 	public Enemy(String spriteName,String fileName, double xLocation, double yLocation, double health, double speed,
 			double width, double height,Item weapon,Player player,String enemyType) 
@@ -71,5 +74,10 @@ public abstract class Enemy extends Character
 	public void coolDownWeapons(double sec)
 	{
 		((Weapon)weapon).coolDownItem(sec);
+	}
+	
+	public Item dropItem()
+	{
+		return LootGen.randomEnemyItem(this);
 	}
 }

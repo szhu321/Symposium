@@ -279,6 +279,7 @@ public class GameManager
 /////					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
+					level.getCurrentRoom().addItem(((Enemy)characters.get(i)).dropItem());
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
 			}
@@ -413,16 +414,18 @@ public class GameManager
 			{
 				if(teleChecker[i][s] instanceof Teleporter)
 				{	
-					List<Teleporter> allTele=this.getLevel().getCurrentRoom().getPortManager().getRoomPorters();
-					for(Teleporter t:allTele)
+					if(teleChecker[i][s].getBoundsOfObject().contains(player.getBoundsOfObject()))
 					{
-						if(teleChecker[i][s].getBoundsOfObject().contains(player.getBoundsOfObject()))
-						{
-							if(((Teleporter)teleChecker[i][s]).isWasUsed()==false)
+						//System.out.println(((Teleporter)teleChecker[i][s]).isWasUsed());
+						//System.out.println("ON"+((Teleporter)teleChecker[i][s]).isPlayerOn());
+						List<Teleporter> allTele=this.getLevel().getCurrentRoom().getPortManager().getRoomPorters();
+						for(Teleporter t:allTele)
+						{	
+							if(((Teleporter)teleChecker[i][s]).isWasUsed()==false&&((Teleporter)teleChecker[i][s]).isPlayerOn()==false)
 							{
 								if(t.isBossTele()&&!level.allDead())
 								{				
-										continue;
+									continue;
 								}
 								else
 								{
@@ -438,22 +441,25 @@ public class GameManager
 										if(level.getCurrentRoom().isAllEnemyDead())
 										{
 											currentTele.getConnectedTeleporter().setWasUsed(true);
+											currentTele.getConnectedTeleporter().setPlayerOn(true);
 											t.setWasUsed(false);
 											this.level.setCurrentRoom(row, col);
 											player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
 											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
 											changeRoom();
 											break;
-										}				
-										break;
+										}
+									break;
 									}	
 								}
 							}
-						}
-						else
-							((Teleporter)teleChecker[i][s]).setWasUsed(false);
+						}break;
 					}
-					break;
+					else
+					{
+						((Teleporter)teleChecker[i][s]).setPlayerOn(false);
+						((Teleporter)teleChecker[i][s]).setWasUsed(false);
+					}
 				}
 			}
 		}

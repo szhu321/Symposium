@@ -13,4 +13,5 @@ public class Regular extends Enemy
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width, height, weapon,player,enemyType);		
 		this.setBrain(new Astar(this,this.getPlayer()));
 	}
+
 }
