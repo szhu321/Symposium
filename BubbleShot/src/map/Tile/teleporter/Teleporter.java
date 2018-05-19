@@ -9,6 +9,8 @@ public class Teleporter extends Tile
 	private Teleporter connectedTeleporter;
 	private boolean activated;
 	private boolean bossTele=false;
+	private boolean wasUsed=false;
+	private boolean playerOn=false;
 	private int id;
 	
 	public Teleporter(double xPos, double yPos, int id,String filename)
@@ -69,5 +71,21 @@ public class Teleporter extends Tile
 	public void setBossTele(boolean bossTele) 
 	{
 		this.bossTele = bossTele;
+	}
+
+	public boolean isWasUsed() {
+		return wasUsed;
+	}
+
+	public void setWasUsed(boolean wasUsed) {
+		this.wasUsed = wasUsed;
+	}
+
+	public boolean isPlayerOn() {
+		return playerOn;
+	}
+
+	public void setPlayerOn(boolean playerOn) {
+		this.playerOn = playerOn;
 	}
 }

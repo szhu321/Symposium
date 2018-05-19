@@ -155,7 +155,7 @@ public class Astar extends AI
 			//	int gScore=t.getgScore();
 			//	int hScore=t.gethScore();
 			//	t.setfScore(gScore+hScore);
-			//}
+			//}d
 			
 			//System.out.println("NEIGHBOOOORS SIZE: "+allNeighbors.size());
 			

@@ -157,6 +157,7 @@ public class GameManager
 		manageCharacterDeath();
 		runAllCharacterEffects();
 		playerPickUpItem();
+		teleportChecker();
 		playingScene.updateAllLocation();
 	}
 	
@@ -391,6 +392,73 @@ public class GameManager
 		player.addYLocation(deltaY);
 	}
 
+	public void teleportChecker()
+	{
+		Tile[][] teleChecker=level.getCurrentRoom().getTiles();
+		for(Character c: level.getCurrentRoom().getCharacters())
+			if(c instanceof Enemy)
+			{
+				level.getCurrentRoom().setAllEnemyDead(false);
+				break;
+			}
+			else
+			{
+				level.getCurrentRoom().setAllEnemyDead(true);
+				//level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
+			}
+				
+		for(int i=0; i<teleChecker.length;i++)
+		{
+			for(int s=0;s<teleChecker[0].length;s++)
+			{
+				if(teleChecker[i][s] instanceof Teleporter)
+				{	
+					List<Teleporter> allTele=this.getLevel().getCurrentRoom().getPortManager().getRoomPorters();
+					for(Teleporter t:allTele)
+					{
+						if(teleChecker[i][s].getBoundsOfObject().contains(player.getBoundsOfObject()))
+						{
+							if(((Teleporter)teleChecker[i][s]).isWasUsed()==false)
+							{
+								if(t.isBossTele()&&!level.allDead())
+								{				
+										continue;
+								}
+								else
+								{
+									if(t.getXLocation()/100==s && t.getYLocation()/100==i)
+									{
+										Teleporter currentTele=t;
+										//System.out.println(currentTele.getConnectedTeleporter().getId());
+										//System.out.println(currentTele.getId());
+										int row=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelRow();
+										int col=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelCol();
+										//System.out.println(row);
+										//System.out.println(col);
+										if(level.getCurrentRoom().isAllEnemyDead())
+										{
+											currentTele.getConnectedTeleporter().setWasUsed(true);
+											t.setWasUsed(false);
+											this.level.setCurrentRoom(row, col);
+											player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
+											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
+											changeRoom();
+											break;
+										}				
+										break;
+									}	
+								}
+							}
+						}
+						else
+							((Teleporter)teleChecker[i][s]).setWasUsed(false);
+					}
+					break;
+				}
+			}
+		}
+	}
+	
     public void moveEnemy(double sec)
     {
     	List<Character> enemies=level.getCurrentRoom().getCharacters();
@@ -624,62 +692,7 @@ public class GameManager
 				else
 					pauseGame();
 			}
-			if(code==KeyCode.T)
-			{
-				Tile[][] teleChecker=level.getCurrentRoom().getTiles();
-				for(Character c: level.getCurrentRoom().getCharacters())
-					if(c instanceof Enemy)
-					{
-						level.getCurrentRoom().setAllEnemyDead(false);
-						break;
-					}
-					else
-					{
-						level.getCurrentRoom().setAllEnemyDead(true);
-						//level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
-					}
-						
-				for(int i=0; i<teleChecker.length;i++)
-				{
-					for(int s=0;s<teleChecker[0].length;s++)
-					{
-						if(teleChecker[i][s] instanceof Teleporter && teleChecker[i][s].getBoundsOfObject().contains(player.getBoundsOfObject()))
-						{	
-							List<Teleporter> allTele=this.getLevel().getCurrentRoom().getPortManager().getRoomPorters();
-							for(Teleporter t:allTele)
-							{
-								if(t.isBossTele()&&!level.allDead())
-								{				
-										continue;
-								}
-								else
-								{
-									if(t.getXLocation()/100==s && t.getYLocation()/100==i)
-									{
-										Teleporter currentTele=t;
-										//System.out.println(currentTele.getConnectedTeleporter().getId());
-										//System.out.println(currentTele.getId());
-										int row=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelRow();
-										int col=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelCol();
-										//System.out.println(row);
-										//System.out.println(col);
-										if(level.getCurrentRoom().isAllEnemyDead())
-										{
-											this.level.setCurrentRoom(row, col);
-											player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
-											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
-											changeRoom();
-											break;
-										}
-										break;
-									}	
-								}
-							}
-							break;
-						}
-					}
-				}
-			}
+			
 		});
 		scene.setOnKeyReleased(event -> 
 		{
