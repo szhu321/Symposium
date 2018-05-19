@@ -14,4 +14,11 @@ public class Spawner extends Enemy
 		this.setGunVisibility(false);
 		this.setBrain(new Stationary(this,this.getPlayer()));
 	}
+	
+	public Spawner(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height, Item weapon,Player player,String enemyType,String specificEnemy)
+	{
+		super(spriteName,fileName, xLocation, yLocation, health, speed, width, height, weapon,player,enemyType);
+		this.setGunVisibility(false);
+		this.setBrain(new Stationary(this,this.getPlayer(),specificEnemy));
+	}
 }

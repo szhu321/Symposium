@@ -444,12 +444,13 @@ public class Room
 	public void spawnEnemies()
 	{
 		int[][] spawnTile=new int[tiles.length][tiles[0].length];
-		int amountEnemies=(int)((Math.random()*1)+1);
+		int amountEnemies=(int)((Math.random()*10)+1);
 		//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
 		int playerTileX=(int) ((this.characterCollisionWithTile(this.getPlayer()).getXLocation())/100);
 		int playerTileY=(int) ((this.characterCollisionWithTile(this.getPlayer()).getYLocation())/100);
 		//System.out.println(amountEnemies);
-		int enemyType=0;
+		int randomType=0;
+		String enemyType="";
 		int randomX=0;
 		int randomY=0;
 		for(int i=0;i<tiles.length;i++)
@@ -485,8 +486,8 @@ public class Room
 			}
 			else
 			{
-				enemyType=(int)((Math.random())+6);
-				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),enemyType));
+				randomType=(int)(Math.random()*7)+1;
+				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),randomType));
 				//spawnTile[randomY][randomX]=0;
 				randomX=(int)(Math.random()*spawnTile[0].length);
 				randomY=(int)(Math.random()*spawnTile.length);
