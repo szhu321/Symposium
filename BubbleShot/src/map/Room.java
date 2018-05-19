@@ -265,6 +265,8 @@ public class Room
 	
 	public void addCharacter(Character character)
 	{
+		if(character == null)
+			return;
 		characters.add(character);
 		character.setCurrentRoom(this);
 		//if(character instanceof Player)
