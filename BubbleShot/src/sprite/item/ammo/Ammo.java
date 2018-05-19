@@ -2,11 +2,12 @@ package sprite.item.ammo;
 
 import sprite.item.Consumable;
 import sprite.item.Item;
+import sprite.item.collectable.InstantCollect;
 import sprite.character.Character;
 import sprite.character.effect.Effect;
 import sprite.character.player.Player;
 
-public class Ammo extends Item implements Consumable
+public class Ammo extends Item implements Consumable, InstantCollect
 {
 	private Effect ammoEffect;
 	
@@ -26,5 +27,11 @@ public class Ammo extends Item implements Consumable
 	{
 		player.getEffectManager().addEffect(this.getEffect());
 		return true;
+	}
+
+	@Override
+	public void collect(Player player)
+	{
+		player.getEffectManager().addEffect(this.getEffect());
 	}
 }

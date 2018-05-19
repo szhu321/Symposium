@@ -90,6 +90,8 @@ public class PlayingScene
 		loadRoom();
 		scene = new Scene(root);
 		scene.setCursor(Cursor.CROSSHAIR);
+		//root.setScaleX(.5);
+		//root.setScaleY(.5);
 	}
 	
 	public void updateAllLocation()

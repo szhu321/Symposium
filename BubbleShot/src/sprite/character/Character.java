@@ -50,8 +50,8 @@ public abstract class Character extends Sprite
 	
 	public void setCurrentHealth(double currentHealth) 
 	{
-		if(currentHealth > defaultHealth)
-			this.currentHealth = defaultHealth;
+		if(currentHealth > getDefaultHealth())
+			this.currentHealth = getDefaultHealth();
 		else
 		{
 			this.currentHealth = currentHealth;
