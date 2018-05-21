@@ -277,7 +277,12 @@ public class PlayingScene
 		inventoryDis.getInventoryDis().layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-650/2));
 		inventoryDis.getInventoryDis().layoutYProperty().bind(GameRunner.getWindow().heightProperty().divide(2).add(-500/2));
 		inventoryDis.getInventoryDis().setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
-		inventoryDis.getInventoryDis().setOnMousePressed(event -> event.consume());
+		inventoryDis.getInventoryDis().setOnMousePressed(event -> 
+		{
+			//System.out.println("consumed");
+			event.consume();
+		});
+		holdingItem.setMouseTransparent(true);
 //		inventoryDis.getInventoryDis().setBackground(new Background(new BackgroundImage(new Image("file:resources/obstacle/wallobstacle.png", 600, 650, false, false), null, null,null,null)));
 	}
 	

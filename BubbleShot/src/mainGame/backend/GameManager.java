@@ -83,7 +83,6 @@ public class GameManager
 			//Runs in 60FPS
 			//long pasttime = System.nanoTime();
 			nextFrame(1000.0/framesPerSec);
-			//System.out.println(MyMath.getRandomInteger(10, 15));
 			//long now = System.nanoTime();
 			//System.out.println("totalTime Passed: " + ((now - pasttime ) / 1000000) + " ms.");
 			//pasttime = now;
@@ -757,6 +756,7 @@ public class GameManager
 		});
 		scene.setOnMousePressed(event -> 
 		{
+			//System.out.println(player.getInventory().getSelectedItem());
 			if(player.getInventory().getSelectedItem() != null)
 				playerDropSeceltedItem();
 			else

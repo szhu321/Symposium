@@ -19,6 +19,26 @@ public class ArmorDesign
 		double maxHealthBoost = 100;
 		double maxSpeedBoost = 1;
 		double maxDamageBoost = 1.01;
-		return new BreastPlate("Helmet", "file:resources/armor/woodbreastplate.png", x, y, width, height, maxHealthBoost, maxSpeedBoost, maxDamageBoost);
+		return new BreastPlate("Breast Plate", "file:resources/armor/woodbreastplate.png", x, y, width, height, maxHealthBoost, maxSpeedBoost, maxDamageBoost);
+	}
+	
+	public static Legging getLeggingDesignOne(double x, double y)
+	{
+		double width = 35;
+		double height = 60;
+		double maxHealthBoost = 70;
+		double maxSpeedBoost = 1.05;
+		double maxDamageBoost = 1;
+		return new Legging("Legging", "file:resources/armor/leatherlegging.png", x, y, width, height, maxHealthBoost, maxSpeedBoost, maxDamageBoost);
+	}
+	
+	public static Boots getBootsDesignOne(double x, double y)
+	{
+		double width = 60;
+		double height = 37;
+		double maxHealthBoost = 40;
+		double maxSpeedBoost = 1.1;
+		double maxDamageBoost = 1.1;
+		return new Boots("Boots", "file:resources/armor/leatherboots.png", x, y, width, height, maxHealthBoost, maxSpeedBoost, maxDamageBoost);
 	}
 }

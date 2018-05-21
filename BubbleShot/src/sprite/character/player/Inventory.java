@@ -119,13 +119,13 @@ public class Inventory
 			//Checks to see if the swap is legal.
 			if(selectedItem instanceof Helmet && idx == Inventory.HELMET_IDX)
 				swapArmor(idx);
-			if(selectedItem instanceof BreastPlate && idx == Inventory.BREASTPLATE_IDX)
+			else if(selectedItem instanceof Legging && idx == Inventory.LEGGING_IDX)
+				{swapArmor(idx); System.out.println("leggings");}
+			else if(selectedItem instanceof BreastPlate && idx == Inventory.BREASTPLATE_IDX)
 				swapArmor(idx);
-			if(selectedItem instanceof Legging && idx == Inventory.LEGGING_IDX)
+			else if(selectedItem instanceof Boots && idx == Inventory.BOOTS_IDX)
 				swapArmor(idx);
-			if(selectedItem instanceof Boots && idx == Inventory.BOOTS_IDX)
-				swapArmor(idx);
-			if(selectedItem instanceof Shield && idx == Inventory.SHIELD_IDX)
+			else if(selectedItem instanceof Shield && idx == Inventory.SHIELD_IDX)
 				swapArmor(idx);
 		}
 		else

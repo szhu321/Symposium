@@ -107,7 +107,7 @@ public abstract class Weapon extends Item
 	
 	public String toString()
 	{
-		String output = this.toString();
+		String output = "";
 		output += "Weapon Damage = " + weaponDmg + "\n";
 		output += "Weapon Attack Rate = " + getDefaultCoolDownTime() + "\n";
 		output += "Weapon Attack Range = " + weaponAttackRange + "\n";
