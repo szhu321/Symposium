@@ -58,17 +58,20 @@ public class FontendTest extends Application
 //		btn2.setTranslateY(130);
 //		
 //		root.getChildren().addAll(healthbar.getCanvas(), btn, ammobar.getCanvas(), btn2);
+//		
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+//		Level level = LevelDesign.getLevelDesignOne(player);
+//		
+//		Room room = level.getCurrentRoom();
+//		
+//		RoomView roomDis = new RoomView(room);
+//		
+//		root.getChildren().add(roomDis.getCanvas());
 		
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		Level level = LevelDesign.getLevelDesignOne(player);
+		InGameMenuView ig = new InGameMenuView();
+		root.getChildren().add(ig.getMenu());
 		
-		Room room = level.getCurrentRoom();
-		
-		RoomView roomDis = new RoomView(room);
-		
-		root.getChildren().add(roomDis.getCanvas());
-		
-		scene = new Scene(root, 500 ,500);
+		scene = new Scene(root);
 		window.setScene(scene);
 		window.show();
 	}
