@@ -115,6 +115,7 @@ public class InventoryView
 			helmetDis.getGraphicsContext2D().fillRect(0, 0, helmetDis.getWidth(), helmetDis.getHeight());
 			fillText(helmetDis.getGraphicsContext2D(), Color.BLACK, "helmet", 20);
 		}
+		
 		if(inventory.getBreastPlate() != null)
 			breastPlateDis.getGraphicsContext2D().drawImage(inventory.getBreastPlate().getSpriteImage(), 0, 0, 50, 50);
 		else
@@ -122,6 +123,7 @@ public class InventoryView
 			breastPlateDis.getGraphicsContext2D().fillRect(0, 0, breastPlateDis.getWidth(), breastPlateDis.getHeight());
 			fillText(breastPlateDis.getGraphicsContext2D(), Color.BLACK, "breast \nplate", 20);
 		}
+		
 		if(inventory.getLegging() != null)
 			leggingDis.getGraphicsContext2D().drawImage(inventory.getLegging().getSpriteImage(), 0, 0, 50, 50);
 		else
@@ -129,6 +131,7 @@ public class InventoryView
 			leggingDis.getGraphicsContext2D().fillRect(0, 0, leggingDis.getWidth(), leggingDis.getHeight());
 			fillText(leggingDis.getGraphicsContext2D(), Color.BLACK, "legging", 20);
 		}
+		
 		if(inventory.getBoots() != null)
 			bootsDis.getGraphicsContext2D().drawImage(inventory.getBoots().getSpriteImage(), 0, 0, 50, 50);
 		else
@@ -136,6 +139,7 @@ public class InventoryView
 			bootsDis.getGraphicsContext2D().fillRect(0, 0, bootsDis.getWidth(), bootsDis.getHeight());
 			fillText(bootsDis.getGraphicsContext2D(), Color.BLACK, "boots", 20);
 		}
+		
 		if(inventory.getShield() != null)
 			shieldDis.getGraphicsContext2D().drawImage(inventory.getShield().getSpriteImage(), 0, 0, 50, 50);
 		else

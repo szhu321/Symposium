@@ -48,6 +48,8 @@ public class RoomDesign
 		room.addItem(CoinDesign.getCoinFive(700, 140));
 		room.addItem(ArmorDesign.getHelmetDesignOne(820, 130));
 		room.addItem(ArmorDesign.getBreastPlateDesignOne(820, 230));
+		room.addItem(ArmorDesign.getLeggingDesignOne(820, 330));
+		room.addItem(ArmorDesign.getBootsDesignOne(820, 430));
 		return room;
 	}
 	
