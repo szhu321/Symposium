@@ -158,6 +158,7 @@ public class GameManager
 		playerPickUpItem();
 		teleportChecker();
 		instantCollectableAttract(((double)milliSecond) / 1000);
+		updateShield(((double)milliSecond) / 1000);
 		playingScene.updateAllLocation();
 	}
 	
@@ -250,6 +251,12 @@ public class GameManager
 			System.out.println("y: " + level.getCurrentRoom().getProjectiles().get(0).getYLocation());
 		}*/
 		
+	}
+	
+	public void updateShield(double sec)
+	{
+		if(player.getInventory().getShield() != null)
+			player.getInventory().getShield().runShield(sec);
 	}
 	
 	public void updateCameraLocation()

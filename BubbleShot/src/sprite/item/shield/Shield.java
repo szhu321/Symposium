@@ -62,4 +62,15 @@ public class Shield extends Item
 	{
 		return currentShieldAmount;
 	}
+
+	public double getDefualtRechargeDelay() 
+	{
+		return defualtRechargeDelay;
+	}
+
+	public double getDefaultShieldAmount()
+	{
+		return defaultShieldAmount;
+	}
+	
 }

@@ -7,6 +7,7 @@ import sprite.item.ammo.AmmoDesign;
 import sprite.item.armor.ArmorDesign;
 import sprite.item.collectable.CoinDesign;
 import sprite.item.potion.PotionDesign;
+import sprite.item.shield.ShieldDesign;
 import sprite.item.weapon.WeaponDesign;
 
 public class RoomDesign
@@ -50,6 +51,7 @@ public class RoomDesign
 		room.addItem(ArmorDesign.getBreastPlateDesignOne(820, 230));
 		room.addItem(ArmorDesign.getLeggingDesignOne(820, 330));
 		room.addItem(ArmorDesign.getBootsDesignOne(820, 430));
+		room.addItem(ShieldDesign.getShieldDesignOne(820, 530));
 		return room;
 	}
 	

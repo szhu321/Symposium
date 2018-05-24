@@ -34,6 +34,7 @@ import mainGame.frontend.HealthBar;
 import mainGame.frontend.InventoryView;
 import mainGame.frontend.MiniLevelMap;
 import mainGame.frontend.RoomView;
+import mainGame.frontend.ShieldBarView;
 import javafx.scene.transform.Scale;
 import map.Room;
 import map.Tile.Tile;
@@ -68,6 +69,7 @@ public class PlayingScene
 	
 	private Text playerHealthDis;
 	private HealthBar healthbar;
+	private ShieldBarView shieldBar;
 	private AmmoBar ammobar;
 	private Text playerAmmoDis;
 	private Text playerCoinDis;
@@ -185,9 +187,11 @@ public class PlayingScene
 		});
 		
 		healthbar = new HealthBar(350, 50, currentRoom.getPlayer().getDefaultHealth());
+		shieldBar = new ShieldBarView(350, 50, 0);
+		shieldBar.getCanvas().setVisible(false);
 		ammobar = new AmmoBar(350, 50, currentRoom.getPlayer().getDefaultAmmo());
 		
-		topBox.getChildren().addAll(healthbar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, pauseBtn);
+		topBox.getChildren().addAll(healthbar.getCanvas(), shieldBar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
@@ -200,6 +204,17 @@ public class PlayingScene
 		Player player = currentRoom.getPlayer();
 		playerHealthDis.setText("Health: " + player.getCurrentHealth());
 		healthbar.updateCanvas(player.getCurrentHealth(), player.getDefaultHealth());
+		if(player.getInventory().getShield() != null)
+		{
+			shieldBar.getCanvas().setVisible(true);
+			shieldBar.updateCanvas(player.getInventory().getShield().getCurrentShieldAmount(), player.getInventory().getShield().getDefaultShieldAmount());
+		}
+		else
+		{
+			shieldBar.getCanvas().setVisible(false);
+		}
+		
+		
 		ammobar.updateCanvas(player.getCurrentAmmo());
 		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
