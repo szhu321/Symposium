@@ -33,6 +33,7 @@ public class Shield extends Item
 			currentRechargeDelay = defualtRechargeDelay;
 		//If the recharge delay is completed recharge the shield.
 		currentShieldAmount += rechargeRate * seconds;
+		shieldDown = false;
 		if(currentShieldAmount > defaultShieldAmount)
 			currentShieldAmount = defaultShieldAmount;
 	}
@@ -41,14 +42,10 @@ public class Shield extends Item
 	public void setCurrentShieldAmount(double currentShieldAmount)
 	{
 		this.currentShieldAmount = currentShieldAmount;
-		if(currentShieldAmount <= 0)
+		if(this.currentShieldAmount <= 0)
 		{
 			shieldDown = true;
-			currentShieldAmount = 0;
-		}
-		else
-		{
-			shieldDown = false;
+			this.currentShieldAmount = 0;
 		}
 		currentRechargeDelay = 0;
 	}

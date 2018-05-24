@@ -31,4 +31,5 @@ public class Armor extends Item
 	{
 		return maxDamageBoost;
 	}
+
 }

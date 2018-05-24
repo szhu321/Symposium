@@ -186,12 +186,14 @@ public class PlayingScene
 			}
 		});
 		
-		healthbar = new HealthBar(350, 50, currentRoom.getPlayer().getDefaultHealth());
-		shieldBar = new ShieldBarView(350, 50, 0);
-		shieldBar.getCanvas().setVisible(false);
+		VBox healthShieldContainer = new VBox(2);
+		healthbar = new HealthBar(350, 24, currentRoom.getPlayer().getDefaultHealth());
+		shieldBar = new ShieldBarView(350, 24, 0);
+		//shieldBar.getCanvas().setVisible(false);
 		ammobar = new AmmoBar(350, 50, currentRoom.getPlayer().getDefaultAmmo());
+		healthShieldContainer.getChildren().addAll(healthbar.getCanvas(), shieldBar.getCanvas());
 		
-		topBox.getChildren().addAll(healthbar.getCanvas(), shieldBar.getCanvas(), /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, pauseBtn);
+		topBox.getChildren().addAll(healthShieldContainer, /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, pauseBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
@@ -209,10 +211,7 @@ public class PlayingScene
 			shieldBar.getCanvas().setVisible(true);
 			shieldBar.updateCanvas(player.getInventory().getShield().getCurrentShieldAmount(), player.getInventory().getShield().getDefaultShieldAmount());
 		}
-		else
-		{
-			shieldBar.getCanvas().setVisible(false);
-		}
+		
 		
 		
 		ammobar.updateCanvas(player.getCurrentAmmo());

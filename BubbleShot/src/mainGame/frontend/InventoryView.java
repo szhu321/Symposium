@@ -7,10 +7,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import sprite.character.player.Inventory;
 import sprite.item.Item;
 
@@ -32,7 +34,8 @@ public class InventoryView
 	private Canvas[] inventorySlotsTop;
 	private Canvas[] inventorySlotsHotBar;
 	
-	private int slotCounter;
+	private Text itemDiscription;
+	//private int slotCounter;
 	
 	public InventoryView(Inventory inventory)
 	{
@@ -41,8 +44,13 @@ public class InventoryView
 		inventoryDis.setPadding(new Insets(20, 20 ,20 ,20));
 		createSlotSection(inventory);
 		createArmorSection(inventory);
-		inventoryDis.setAlignment(Pos.CENTER);
-		inventoryDis.getChildren().addAll(inventoryArmorSection, inventorySlotsContainer);
+		inventoryDis.setAlignment(Pos.TOP_CENTER);
+		
+		HBox container = new HBox(20);
+		container.getChildren().addAll(inventoryArmorSection, itemDiscription);
+		container.setAlignment(Pos.CENTER);
+		
+		inventoryDis.getChildren().addAll(container, inventorySlotsContainer);
 	}
 	
 	private void createSlotSection(Inventory inventory)
@@ -50,7 +58,7 @@ public class InventoryView
 		inventorySlotsContainer = new VBox(30);
 		inventorySlotsContainer.setPrefWidth(650);
 		
-		slotCounter = 0;
+		//slotCounter = 0;
 		
 		FlowPane hotBarDis = new FlowPane();
 		hotBarDis.setPrefWidth(650);
@@ -93,6 +101,9 @@ public class InventoryView
 	{
 		Item[] invItems = inventory.getNonHotBarItems();
 		Item[] invHotBar = inventory.getHotBar();
+		
+		if(inventory.getSelectedItem() != null)
+			itemDiscription.setText(inventory.getSelectedItem().toString());
 		
 		for(int i = 0; i < invItems.length; i++)
 		{
@@ -160,6 +171,7 @@ public class InventoryView
 	
 	private void createArmorSection(Inventory inventory)
 	{
+		//HBox armorAndDiscription = new HBox(20);
 		inventoryArmorSection = new BorderPane();
 		inventoryArmorSection.setMaxWidth(200);
 		
@@ -185,6 +197,11 @@ public class InventoryView
 		leftSide.getChildren().addAll(shieldDis, bootsDis);
 		VBox rightSide = new VBox(10);
 		rightSide.getChildren().addAll(breastPlateDis, leggingDis);
+		
+		itemDiscription = new Text();
+		itemDiscription.setFont(new Font("arial", 22));
+		itemDiscription.setWrappingWidth(350);
+		//armorAndDiscription.getChildren().addAll(rightSide, itemDiscription);
 		
 		inventoryArmorSection.setTop(helmetDis);
 		BorderPane.setAlignment(helmetDis, Pos.CENTER);

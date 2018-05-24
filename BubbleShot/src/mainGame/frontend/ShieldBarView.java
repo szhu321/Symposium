@@ -56,7 +56,7 @@ public class ShieldBarView
 	private void paintText()
 	{
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFont(new Font(30));
+		gc.setFont(new Font(20));
 		gc.setFill(Color.BLACK);
 		gc.fillText((int)currentShield + "/ " +(int)maxShield, (canvas.getWidth() / 2) - 100, (canvas.getHeight() / 2) + 10);
 	}
