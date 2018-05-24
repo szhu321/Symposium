@@ -12,11 +12,9 @@ import sprite.item.weapon.WeaponDesign;
 
 public class RoomDesign
 {
-	public static Room getRoomDesignOne(int row, int col)
+	public static Room getRoomDesignOne()
 	{
 		Room room = new Room();
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -55,11 +53,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignTwo(int row, int col)
+	public static Room getRoomDesignTwo()
 	{
 		Room room = new Room();
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -74,11 +70,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignThree(int row, int col)
+	public static Room getRoomDesignThree()
 	{
 		Room room = new Room();
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -91,11 +85,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFour(int row, int col)
+	public static Room getRoomDesignFour()
 	{
 		Room room = new Room();
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -110,11 +102,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFive(int row, int col)
+	public static Room getRoomDesignFive()
 	{
 		Room room = new Room();
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 //		room.addObstacle(new StoneWall(50, 1000,00,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -128,11 +118,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignSix(int row, int col)
+	public static Room getRoomDesignSix()
 	{
 		Room room = new Room();
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 //		room.addObstacle(new StoneWall(50, 1000,00,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -146,12 +134,10 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getBossRoomDesignOne(int row, int col)
+	public static Room getBossRoomDesignOne()
 	{
 		Room room = new Room();
 		room.setBossRoom(true);
-		room.setLevelRow(row);
-		room.setLevelCol(col);
 		//room.addObstacle(new StoneWall(50, 1000,00,0,0));
 		//room.addObstacle(new StoneWall(50, 1000,950,0,0));
 		//room.addObstacle(new StoneWall(1000, 50,0,0,0));

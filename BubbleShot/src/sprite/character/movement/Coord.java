@@ -31,6 +31,13 @@ public class Coord
 		this.y = y;
 	}
 	
+	public boolean equals(Coord other)
+	{
+		if(x == other.x && y == other.x)
+			return true;
+		return false;
+	}
+	
 	public String toString()
 	{
 		return "( " + x + ", " + y + " )";
