@@ -38,7 +38,7 @@ public class GameRunner extends Application
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
 		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelDesignOne(player), player, window);
+		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
 		gameManager.startGame();
 		
 		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);

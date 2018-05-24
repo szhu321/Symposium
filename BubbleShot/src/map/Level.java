@@ -40,14 +40,44 @@ public class Level
 		if(map[row][col] != null)
 			return false;
 		map[row][col] = room;
+		room.setLevelCol(col);
+		room.setLevelRow(row);
 		return true;
 	}
 	
 	public Room removeRoomFrom(int row, int col)
 	{
 		Room room = map[row][col];
+		room.setLevelCol(0);
+		room.setLevelRow(0);
 		map[row][col] = null;
 		return room;
+	}
+	
+	public int getRowOfRoom(Room room)
+	{
+		for(int i = 0; i < map.length; i++)
+		{
+			for(int j = 0; j < map[0].length; j++)
+			{
+				if(map[i][j] != null && map[i][j].equals(room))
+					return i;
+			}
+		}
+		return -1;
+	}
+	
+	public int getColOfRoom(Room room)
+	{
+		for(int i = 0; i < map.length; i++)
+		{
+			for(int j = 0; j < map[0].length; j++)
+			{
+				if(map[i][j] != null && map[i][j].equals(room))
+					return j;
+			}
+		}
+		return -1;
 	}
 	
 	public Room[][] getMap() {return map;}

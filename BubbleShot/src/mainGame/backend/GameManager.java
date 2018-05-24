@@ -70,6 +70,7 @@ public class GameManager
 	{
 		this.level = level;
 		this.player = player;
+		this.level.getCurrentRoom().addCharacter(player);
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		this.window = window;
@@ -487,7 +488,11 @@ public class GameManager
 											currentTele.getConnectedTeleporter().setWasUsed(true);
 											currentTele.getConnectedTeleporter().setPlayerOn(true);
 											t.setWasUsed(false);
+											
+											this.level.getCurrentRoom().removeCharacter(player);
 											this.level.setCurrentRoom(row, col);
+											this.level.getCurrentRoom().addCharacter(player);
+											
 											player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
 											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
 											changeRoom();
