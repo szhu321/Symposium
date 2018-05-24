@@ -227,7 +227,7 @@ public class RoomView
 		{
 			if(displayItemRotating)
 			{
-				gc.drawImage(item.getSpriteImage(), item.getXLocation() + (Math.sin((timePassed / 1000.0) + Math.PI) * item.getWidth() / 2) + (item.getWidth() / 2), item.getYLocation() + (Math.cos((timePassed / 1000.0)) * 10), Math.sin((timePassed / 1000.0)) * item.getWidth(), item.getHeight());
+				gc.drawImage(item.getSpriteImage(), item.getXLocation() + (Math.sin((timePassed / 1000.0) + Math.PI) * item.getWidth() / 2) + (item.getWidth() / 2), item.getYLocation() + (Math.cos((timePassed / 1000.0)) * 10), Math.sin((timePassed / 1000.0)) * item.getSpriteImage().getWidth(), item.getHeight());
 			}
 			else
 			{

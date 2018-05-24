@@ -28,11 +28,14 @@ public class Inventory
 	private Boots boots;
 	private Shield shield;
 	
-	public Inventory(int inventorySize, int hotBarSize)
+	private Player possessor;
+	
+	public Inventory(int inventorySize, int hotBarSize, Player possessor)
 	{
 		this.hotBarSize = hotBarSize;
 		inventory = new Item[inventorySize];
 		currentItemIdx = 0;
+		this.possessor = possessor;
 	}
 	
 	public Item[] getHotBar()
@@ -297,5 +300,10 @@ public class Inventory
 	public Item getSelectedItem()
 	{
 		return selectedItem;
+	}
+	
+	public Player getPossessor()
+	{
+		return possessor;
 	}
 }

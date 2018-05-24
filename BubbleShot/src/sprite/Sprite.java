@@ -21,7 +21,7 @@ public abstract class Sprite implements Collider
 		yCoord = yLocation;
 		this.width = width;
 		this.height = height;
-		spriteImage = new Image(fileName, width, height, false, false);
+		spriteImage = new Image(fileName, width, height, true, true);
 		spriteImageView = new ImageView(spriteImage);
 		this.faceAngle = faceAngle;
 	}

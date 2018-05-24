@@ -98,18 +98,18 @@ public class InventoryView
 		{
 			inventorySlotsTop[i].getGraphicsContext2D().fillRect(0, 0, inventorySlotsTop[i].getWidth(), inventorySlotsTop[i].getHeight());
 			if(invItems[i] != null)
-				inventorySlotsTop[i].getGraphicsContext2D().drawImage(invItems[i].getSpriteImage(), 0, 0, 50, 50);
+				inventorySlotsTop[i].getGraphicsContext2D().drawImage(invItems[i].getSpriteImage(), 0, (inventorySlotsTop[i].getHeight() - invItems[i].getSpriteImage().getHeight()) / 2);
 		}
 		
 		for(int i = 0; i < invHotBar.length; i++)
 		{
 			inventorySlotsHotBar[i].getGraphicsContext2D().fillRect(0, 0, inventorySlotsHotBar[i].getWidth(), inventorySlotsHotBar[i].getHeight());
 			if(invHotBar[i] != null)
-				inventorySlotsHotBar[i].getGraphicsContext2D().drawImage(invHotBar[i].getSpriteImage(), 0, 0, 50, 50);
+				inventorySlotsHotBar[i].getGraphicsContext2D().drawImage(invHotBar[i].getSpriteImage(), 0,  (inventorySlotsHotBar[i].getHeight() - invHotBar[i].getSpriteImage().getHeight()) / 2);
 		}
 		//Draw armor
 		if(inventory.getHelmet() != null)
-			helmetDis.getGraphicsContext2D().drawImage(inventory.getHelmet().getSpriteImage(), 0, 0, 50, 50);
+			helmetDis.getGraphicsContext2D().drawImage(inventory.getHelmet().getSpriteImage(), 0, (helmetDis.getHeight() - inventory.getHelmet().getSpriteImage().getHeight()) / 2);
 		else
 		{
 			helmetDis.getGraphicsContext2D().fillRect(0, 0, helmetDis.getWidth(), helmetDis.getHeight());
@@ -117,7 +117,7 @@ public class InventoryView
 		}
 		
 		if(inventory.getBreastPlate() != null)
-			breastPlateDis.getGraphicsContext2D().drawImage(inventory.getBreastPlate().getSpriteImage(), 0, 0, 50, 50);
+			breastPlateDis.getGraphicsContext2D().drawImage(inventory.getBreastPlate().getSpriteImage(), 0, (breastPlateDis.getHeight() - inventory.getBreastPlate().getSpriteImage().getHeight()) / 2);
 		else
 		{
 			breastPlateDis.getGraphicsContext2D().fillRect(0, 0, breastPlateDis.getWidth(), breastPlateDis.getHeight());
@@ -125,7 +125,7 @@ public class InventoryView
 		}
 		
 		if(inventory.getLegging() != null)
-			leggingDis.getGraphicsContext2D().drawImage(inventory.getLegging().getSpriteImage(), 0, 0, 50, 50);
+			leggingDis.getGraphicsContext2D().drawImage(inventory.getLegging().getSpriteImage(), 0, (leggingDis.getHeight() - inventory.getLegging().getSpriteImage().getHeight()) / 2);
 		else
 		{
 			leggingDis.getGraphicsContext2D().fillRect(0, 0, leggingDis.getWidth(), leggingDis.getHeight());
@@ -133,7 +133,7 @@ public class InventoryView
 		}
 		
 		if(inventory.getBoots() != null)
-			bootsDis.getGraphicsContext2D().drawImage(inventory.getBoots().getSpriteImage(), 0, 0, 50, 50);
+			bootsDis.getGraphicsContext2D().drawImage(inventory.getBoots().getSpriteImage(), 0, (bootsDis.getHeight() - inventory.getBoots().getSpriteImage().getHeight()) / 2);
 		else
 		{
 			bootsDis.getGraphicsContext2D().fillRect(0, 0, bootsDis.getWidth(), bootsDis.getHeight());
@@ -141,7 +141,7 @@ public class InventoryView
 		}
 		
 		if(inventory.getShield() != null)
-			shieldDis.getGraphicsContext2D().drawImage(inventory.getShield().getSpriteImage(), 0, 0, 50, 50);
+			shieldDis.getGraphicsContext2D().drawImage(inventory.getShield().getSpriteImage(), 0, (shieldDis.getHeight() - inventory.getShield().getSpriteImage().getHeight()) / 2);
 		else
 		{
 			shieldDis.getGraphicsContext2D().fillRect(0, 0, shieldDis.getWidth(), shieldDis.getHeight());
@@ -162,7 +162,13 @@ public class InventoryView
 	{
 		inventoryArmorSection = new BorderPane();
 		inventoryArmorSection.setMaxWidth(200);
+		
 		avatar = new Canvas(100, 100);
+		avatar.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
+		avatar.getGraphicsContext2D().fillRect(0, 0, avatar.getWidth(), avatar.getHeight());
+		avatar.getGraphicsContext2D().drawImage(inventory.getPossessor().getSpriteImage(), (avatar.getWidth() - inventory.getPossessor().getSpriteImage().getWidth()) / 2, (avatar.getHeight() - inventory.getPossessor().getSpriteImage().getHeight()) / 2);
+		
+		
 		helmetDis = createCanvas();
 		breastPlateDis = createCanvas();
 		leggingDis = createCanvas();
@@ -181,9 +187,10 @@ public class InventoryView
 		rightSide.getChildren().addAll(breastPlateDis, leggingDis);
 		
 		inventoryArmorSection.setTop(helmetDis);
-		inventoryArmorSection.setAlignment(helmetDis, Pos.CENTER);
+		BorderPane.setAlignment(helmetDis, Pos.CENTER);
 		inventoryArmorSection.setLeft(leftSide);
 		inventoryArmorSection.setRight(rightSide);
+		BorderPane.setMargin(avatar, new Insets(10, 10, 10, 10));
 		inventoryArmorSection.setCenter(avatar);
 	}
 	

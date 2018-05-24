@@ -32,7 +32,7 @@ public class Player extends Character
 	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double health, double speed, int ammoCount) 
 	{
 		super(spriteName,fileName, xLocation, yLocation, health, speed, width,height);
-		inventory = new Inventory(10, 6);
+		inventory = new Inventory(10, 6 , this);
 		currentItemIdx = 0;
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
