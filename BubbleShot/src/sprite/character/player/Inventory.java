@@ -123,7 +123,7 @@ public class Inventory
 			if(selectedItem instanceof Helmet && idx == Inventory.HELMET_IDX)
 				swapArmor(idx);
 			else if(selectedItem instanceof Legging && idx == Inventory.LEGGING_IDX)
-				{swapArmor(idx); System.out.println("leggings");}
+				swapArmor(idx);
 			else if(selectedItem instanceof BreastPlate && idx == Inventory.BREASTPLATE_IDX)
 				swapArmor(idx);
 			else if(selectedItem instanceof Boots && idx == Inventory.BOOTS_IDX)
