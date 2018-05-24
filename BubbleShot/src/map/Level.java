@@ -1,5 +1,6 @@
 package map;
 
+import map.Tile.Tile;
 import map.Tile.teleporter.LevelPortManager;
 import map.Tile.teleporter.Teleporter;
 import map.Tile.teleporter.TeleporterDesign;
@@ -80,17 +81,19 @@ public class Level
 					TeleporterPair currentPair=new TeleporterPair();
 					Teleporter tele1=null;
 					Teleporter tele2=null;
+					Tile currentTile=map[i][s].getTileAt(map[i][s].getRoomPixWidth()-200, map[i][s].getRoomPixHeight()/2);
+					Tile currentTile1=map[i][s+1].getTileAt(100, map[i][s+1].getRoomPixHeight()/2);
 					if(map[i][s].isBossRoom()||map[i][s+1].isBossRoom())
 					{
-						tele1=TeleporterDesign.getBossTeleporter(800,400,pairCounter);
-						tele2=TeleporterDesign.getBossTeleporter(100,400,pairCounter);
+						tele1=TeleporterDesign.getBossTeleporter(currentTile.getXLocation(),currentTile.getYLocation(),pairCounter);
+						tele2=TeleporterDesign.getBossTeleporter(currentTile1.getXLocation(),currentTile1.getYLocation(),pairCounter);
 						tele1.setBossTele(true);
 						tele2.setBossTele(true);
 					}
 					else
 					{
-						tele1=TeleporterDesign.getRegularTeleporter(800,400,pairCounter);
-						tele2=TeleporterDesign.getRegularTeleporter(100,400,pairCounter);
+						tele1=TeleporterDesign.getRegularTeleporter(currentTile.getXLocation(),currentTile.getYLocation(),pairCounter);
+						tele2=TeleporterDesign.getRegularTeleporter(currentTile1.getXLocation(),currentTile1.getYLocation(),pairCounter);
 					}
 					tele1.setConnectedRoom(map[i][s]);					
 					tele2.setConnectedRoom(map[i][s+1]);
@@ -112,17 +115,19 @@ public class Level
 					TeleporterPair currentPair=new TeleporterPair();
 					Teleporter tele1=null;
 					Teleporter tele2=null;
+					Tile currentTile=map[i][s].getTileAt(map[i][s].getRoomPixWidth()/2, map[i][s].getRoomPixHeight()-200);
+					Tile currentTile1=map[i+1][s].getTileAt(map[i+1][s].getRoomPixWidth()/2,100);
 					if(map[i][s].isBossRoom()||map[i+1][s].isBossRoom())
 					{
-						tele1=TeleporterDesign.getBossTeleporter(400,800, pairCounter);
-						tele2=TeleporterDesign.getBossTeleporter(400,100, pairCounter);
+						tele1=TeleporterDesign.getBossTeleporter(currentTile.getXLocation(),currentTile.getYLocation(), pairCounter);
+						tele2=TeleporterDesign.getBossTeleporter(currentTile1.getXLocation(),currentTile1.getYLocation(), pairCounter);
 						tele1.setBossTele(true);
 						tele2.setBossTele(true);
 					}
 					else
 					{
-						tele1=TeleporterDesign.getRegularTeleporter(400,800, pairCounter);
-						tele2=TeleporterDesign.getRegularTeleporter(400,100, pairCounter);
+						tele1=TeleporterDesign.getRegularTeleporter(currentTile.getXLocation(),currentTile.getYLocation(), pairCounter);
+						tele2=TeleporterDesign.getRegularTeleporter(currentTile1.getXLocation(),currentTile1.getYLocation(), pairCounter);
 					}
 					tele1.setConnectedRoom(map[i][s]);
 					tele2.setConnectedRoom(map[i+1][s]);
