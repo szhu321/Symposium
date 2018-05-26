@@ -3,6 +3,7 @@ package map;
 import java.util.ArrayList;
 import java.util.List;
 
+import myutilities.MyMath;
 import sprite.character.movement.Coord;
 import sprite.character.player.Player;
 
@@ -60,49 +61,90 @@ public class LevelDesign
 	{
 		Level level = new Level(rows, cols);
 		Room[][] map = level.getMap();
+		Coord[][] coords = new Coord[rows][cols];
+		for(int y = 0; y < rows; y++)
+		{
+			for(int x = 0; x < cols; x++)
+			{
+				coords[y][x] = new Coord(x, y);
+			}
+		}
 		
 		List<Coord> openset = new ArrayList<Coord>();
 		List<Coord> closedset = new ArrayList<Coord>();
 		List<Coord> finalset = new ArrayList<Coord>();
 		
-		openset.add(new Coord(0, 0));
+		//The map starts generating here
+		openset.add(coords[0][0]);
 		
 		while(openset.size() > 0)
 		{
 			Coord current = openset.get(0);
 			
-			List<Coord> neighbors = getNeighbors(map, current);
+			System.out.println("current:" + current);
+			
+			List<Coord> neighbors = getNeighbors(map, current, coords);
+			
+			for(Coord coor: neighbors)
+				System.out.println("neighbor:" + coor);
+			
+			//if the openset or closedset contains the neighbor remove it.
 			for(int i = neighbors.size() - 1; i >= 0; i--)
 			{
 				if(openset.contains(neighbors.get(i)))
-				{
 					neighbors.remove(i);
-				}
+				else if(closedset.contains(neighbors.get(i)))
+					neighbors.remove(i);
 			}
-			for(int i = neighbors.size() - 1; i >= 0; i--)
+			
+			
+			//if there are multiple neighbors there is a chance of adding it to the openset.
+			
+//			List<Coord> shuffledNeighbors = new ArrayList<Coord>();
+//			while(neighbors.size() > 0)
+//			{
+//				shuffledNeighbors.add(neighbors.remove(MyMath.getRandomInteger(0, neighbors.size() - 1)));
+//			}
+			if(neighbors.size() > 0)
 			{
-				if(closedset.contains(neighbors.get(i)))
+				int addAmount = MyMath.getRandomInteger(1, neighbors.size());
+				for(int i = 0; i < addAmount; i++)
 				{
-					neighbors.remove(i);
+					openset.add(neighbors.get(i));
 				}
 			}
-			//not finished	
+			
+			
+			for(Coord coor: neighbors)
+				System.out.println("non removed neighbor:" + coor);
+			
+			openset.remove(current);
+			finalset.add(current);
+			closedset.add(current);
+			
+			for(Coord coor: closedset)
+				System.out.println("closed:" + coor);
+			for(Coord coor: openset)
+				System.out.println("openend:" + coor);
+			System.out.println();
 		}
 		
+		for(Coord coor: finalset)
+			System.out.println(coor);
 		return null;
 	}
 	
-	private static List<Coord> getNeighbors(Room[][] map, Coord current)
+	private static List<Coord> getNeighbors(Room[][] map, Coord current, Coord[][] allCoords)
 	{
 		List<Coord> neighbors = new ArrayList<Coord>();
 		if(current.getX() + 1 < map[0].length)
-			neighbors.add(new Coord(current.getX() + 1, current.getY()));
+			neighbors.add(allCoords[current.getY()][current.getX() + 1]);
 		if(current.getX() - 1 >= 0)
-			neighbors.add(new Coord(current.getX() - 1, current.getY()));
+			neighbors.add(allCoords[current.getY()][current.getX() - 1]);
 		if(current.getY() + 1 < map.length)
-			neighbors.add(new Coord(current.getX(), current.getY() + 1));
+			neighbors.add(allCoords[current.getY() + 1][current.getX()]);
 		if(current.getY() - 1 >= 0)
-			neighbors.add(new Coord(current.getX(), current.getY() - 1));
+			neighbors.add(allCoords[current.getY() - 1][current.getX()]);
 		return neighbors;
 	}
 }

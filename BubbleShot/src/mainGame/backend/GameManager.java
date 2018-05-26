@@ -384,7 +384,7 @@ public class GameManager
 		{
 			if(item instanceof InstantCollect)
 			{
-				double distance = MyMath.distanceBwtween(playerx, playery, item.getXCenter(), item.getYCenter());
+				double distance = MyMath.distanceBetween(playerx, playery, item.getXCenter(), item.getYCenter());
 				if(distance > 150)
 					continue;
 				double speed = 50;

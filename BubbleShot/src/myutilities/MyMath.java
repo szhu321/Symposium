@@ -39,7 +39,7 @@ public class MyMath
 	 * @param y2 y coordinate of the second point.
 	 * @return The distance between the two points.
 	 */
-	public static double distanceBwtween(double x1, double y1, double x2, double y2)
+	public static double distanceBetween(double x1, double y1, double x2, double y2)
 	{
 		return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 	}
