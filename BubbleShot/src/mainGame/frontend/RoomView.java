@@ -19,8 +19,8 @@ import sprite.projectile.Projectile;
 
 public class RoomView
 {
-	private static boolean displayCharacterNames = true;
-	private static boolean displayItemNames = true;
+	private static boolean displayCharacterNames = false;
+	private static boolean displayItemNames = false;
 	private static boolean displayCharacterShadow = true;
 	private static boolean displayItemShadow = true;
 	private static boolean displayObstacleShadow = true;

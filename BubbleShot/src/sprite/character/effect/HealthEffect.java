@@ -7,6 +7,8 @@ public class HealthEffect extends Effect
 	
 	public static final HealthEffect HEALTH_POTION_EFFECT = new HealthEffect(0, 200, false);
 
+	public static final HealthEffect LAVA_TILE_EFFECT = new HealthEffect(2, -.1, false);
+	
 	public static final HealthEffect POSION_SWAMP_EFFECT = new HealthEffect(2, -2, false);
 	
 	public static final HealthEffect SPIKE_TRAP_EFFECT = new HealthEffect(1, -5, false);
@@ -21,7 +23,7 @@ public class HealthEffect extends Effect
 	{
 		if(isActive())
 		{
-			character.setCurrentHealth(character.getCurrentHealth() + (int)getEffectAmount());
+			character.setCurrentHealth(character.getCurrentHealth() + getEffectAmount());
 			//System.out.println("IT TIME " + getEffectTime());
 			setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
 			return true;
