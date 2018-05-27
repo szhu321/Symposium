@@ -8,10 +8,11 @@ import sprite.character.player.Player;
 
 public abstract class Item extends Sprite
 {
-	public static final String WEAPON = "weapon";
-	public static final String POTION = "potion";
-	public static final String ARMOR = "armor";
-	public static final String COIN = "coin";
+	public static final String WEAPON = "Weapon";
+	public static final String POTION = "Potion";
+	public static final String ARMOR = "Armor";
+	public static final String SHIELD = "Shield";
+	public static final String COIN = "Coin";
 	private String itemType;
 	private Character possessor;
 	private Room currentRoom;
