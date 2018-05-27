@@ -23,6 +23,11 @@ public class Level
 		map = new Room[height][width];
 	}
 	
+	/**
+	 * Increases the map size by a certain width and height.
+	 * @param width The increase in width.
+	 * @param height The increase in height.
+	 */
 	public void incMapSize(int width, int height)
 	{
 		int currentWidth = map[0].length;
@@ -35,6 +40,13 @@ public class Level
 		map = tempRoom;
 	}
 	
+	/**
+	 * Adds a room to the specified row and column.
+	 * @param room The room that is getting added.
+	 * @param row The row to add the room to.
+	 * @param col The col to add the room to.
+	 * @return true if the room was successfully added, false otherwise.
+	 */
 	public boolean addRoomTo(Room room, int row, int col)
 	{
 		if(map[row][col] != null)
@@ -45,6 +57,12 @@ public class Level
 		return true;
 	}
 	
+	/**
+	 * Removes a room from a specified row and col.
+	 * @param row The row to remove the room from.
+	 * @param col The column to remove the room from.
+	 * @return The room that was removed.
+	 */
 	public Room removeRoomFrom(int row, int col)
 	{
 		Room room = map[row][col];
@@ -54,6 +72,11 @@ public class Level
 		return room;
 	}
 	
+	/**
+	 * Finds the row of a certain room.
+	 * @param room The room that you wish to find the row of.
+	 * @return The row of the room passed in. If the room is not in the level return -1;
+	 */
 	public int getRowOfRoom(Room room)
 	{
 		for(int i = 0; i < map.length; i++)
@@ -67,6 +90,11 @@ public class Level
 		return -1;
 	}
 	
+	/**
+	 * Finds the column of a certain room.
+	 * @param room The room that you wish to find the column of.
+	 * @return The column of the room passed in. If the room is not in the level return -1;
+	 */
 	public int getColOfRoom(Room room)
 	{
 		for(int i = 0; i < map.length; i++)
@@ -94,6 +122,7 @@ public class Level
 	{
 		return allTeleporters;
 	}
+	
 	public void setAllTeleporters(LevelPortManager allTeleporters) 
 	{
 		this.allTeleporters = allTeleporters;

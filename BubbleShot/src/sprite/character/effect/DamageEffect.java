@@ -12,9 +12,9 @@ public class DamageEffect extends Effect
 	}
 
 	@Override
-	public boolean applyEffect(Character character) 
+	public boolean applyEffect(Character character, double sec) 
 	{
-		setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
+		setEffectTime(getEffectTime() - sec);
 		return true;
 	}
 	

@@ -63,7 +63,7 @@ public class WeaponDesign
 	
 	public static Sniper getSniperDesignEPIC(double x, double y)
 	{
-		double damage = 50;
+		double damage = 5;
 		double attackRate = .01;
 		double attackRange = 5000;
 		int ammoUsedPerShot = 0;

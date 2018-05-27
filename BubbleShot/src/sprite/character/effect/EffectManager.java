@@ -45,11 +45,11 @@ public class EffectManager
 		return true;
 	}
 	
-	public void runAllEffect()
+	public void runAllEffect(double sec)
 	{
 		for(Effect effect : effects)
 		{
-			effect.applyEffect(character);
+			effect.applyEffect(character, sec);
 			//System.out.println(effect);
 		}
 			

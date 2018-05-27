@@ -8,21 +8,15 @@ public abstract class Effect
 	private double effectTime;
 	private double effectAmount;
 	private boolean active;
+	private boolean instantaneous;
 
 	public Effect(double effectTime, double effectAmount, boolean instantaneous)
 	{
 		this.effectTime = effectTime;
 		this.effectAmount = effectAmount;
 		defaultEffectTime = effectTime;
-		if(instantaneous)
-		{
-			active = false;
-			applyEffect(thisManager.getCharacter());
-		}
-		else
-		{
-			active = true;
-		}
+		this.instantaneous = instantaneous;
+		active = true;
 		//System.out.println("DWAFAWFAW" + defaultEffectTime);
 	}
 	
@@ -48,6 +42,7 @@ public abstract class Effect
 	public double getEffectAmount() {return effectAmount;}
 	public void setEffectAmount(int effectAmount) {this.effectAmount = effectAmount;}
 	public double getDefaultEffectTime() {return defaultEffectTime;}
+
 	
 	public boolean isActive()
 	{
@@ -59,7 +54,12 @@ public abstract class Effect
 		active = boo;
 	}
 	
-	public abstract boolean applyEffect(Character character);
+	public boolean isInstantaneous() 
+	{
+		return instantaneous;
+	}
+
+	public abstract boolean applyEffect(Character character, double sec);
 	
 	public String toString()
 	{

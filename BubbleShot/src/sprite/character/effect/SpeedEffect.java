@@ -17,10 +17,10 @@ public class SpeedEffect extends Effect
 	}
 
 	@Override
-	public boolean applyEffect(Character character)
+	public boolean applyEffect(Character character, double sec)
 	{
 		//System.out.println(getEffectTime() - .1);
-		setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
+		setEffectTime(getEffectTime() - sec);
 		//System.out.println(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
 		return true;
 	}

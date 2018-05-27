@@ -5,11 +5,11 @@ import sprite.character.player.Player;
 
 public class AmmoEffect extends Effect
 {
-	public static final AmmoEffect AMMO_MAGAZINE_EFFECT = new AmmoEffect(0, 15, false);
+	public static final AmmoEffect AMMO_MAGAZINE_EFFECT = new AmmoEffect(0, 15, true);
 	
-	public static final AmmoEffect AMMO_BOX_EFFECT = new AmmoEffect(0, 50, false);
+	public static final AmmoEffect AMMO_BOX_EFFECT = new AmmoEffect(0, 50, true);
 	
-	public static final AmmoEffect AMMO_PACK_EFFECT = new AmmoEffect(0, 150, false);
+	public static final AmmoEffect AMMO_PACK_EFFECT = new AmmoEffect(0, 150, true);
 	
 	public AmmoEffect(double effectTime, double effectAmount, boolean instantaneous)
 	{
@@ -17,12 +17,16 @@ public class AmmoEffect extends Effect
 	}
 
 	@Override
-	public boolean applyEffect(Character character) 
+	public boolean applyEffect(Character character, double sec) 
 	{
 		if(isActive() && character instanceof Player)
 		{
-			((Player)character).setCurrentAmmo(((Player) character).getCurrentAmmo() + (int)getEffectAmount());
-			setEffectTime(getEffectTime() - (1 / EffectManager.TIMES_RUN_PER_SEC));
+			if(isInstantaneous())
+			{
+				((Player)character).setCurrentAmmo(((Player) character).getCurrentAmmo() + (int)getEffectAmount());
+				setEffectTime(getEffectTime() - sec);
+				setActive(false);
+			}
 			return true;
 		}
 		return false;

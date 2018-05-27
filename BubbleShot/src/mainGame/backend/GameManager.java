@@ -155,7 +155,7 @@ public class GameManager
 			player.useCurrentItem(Item.WEAPON);
 		}
 		manageCharacterDeath();
-		runAllCharacterEffects();
+		runAllCharacterEffects(((double)milliSecond) / 1000);
 		playerPickUpItem();
 		teleportChecker();
 		instantCollectableAttract(((double)milliSecond) / 1000);
@@ -232,7 +232,7 @@ public class GameManager
 		System.out.println("Time Passed After managing character death: " + (now - pasttime));
 		pasttime = now;
 		
-		runAllCharacterEffects();
+		runAllCharacterEffects(((double)milliSecond) / 1000);
 		now = System.nanoTime();
 		System.out.println("Time Passed After character effect run: " + (now - pasttime));
 		pasttime = now;
@@ -266,10 +266,10 @@ public class GameManager
 		Camera.shiftCamera(player.getXLocation() + player.getWidth() / 2, player.getYLocation() + player.getHeight() / 2, GameRunner.getWindowWidth(), GameRunner.getWindowHeight());
 	}
 	
-	public void runAllCharacterEffects()
+	public void runAllCharacterEffects(double sec)
 	{
 		for(Character c: level.getCurrentRoom().getCharacters())
-			c.getEffectManager().runAllEffect();
+			c.getEffectManager().runAllEffect(sec);
 	}
 	
 	public void manageCharacterDeath()

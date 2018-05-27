@@ -11,7 +11,7 @@ public class NoEffect extends Effect
 	}
 
 	@Override
-	public boolean applyEffect(Character character)
+	public boolean applyEffect(Character character, double sec)
 	{
 		return false;
 	}
