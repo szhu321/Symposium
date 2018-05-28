@@ -1,7 +1,5 @@
 package sprite.bounds;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 public class BoxCollider
 {
 	private int x;
