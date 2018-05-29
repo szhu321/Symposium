@@ -1,4 +1,4 @@
-package mainGame.scene;
+package mainGame.fxmls;
 
 public class PlayMenuViewController
 {
