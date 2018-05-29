@@ -1,5 +1,6 @@
 package map;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import sprite.character.enemy.EnemyDesign;
  * almost all of the objects seen on the screen. It also contains mathods
  * for collision checks between those objects.
  */
-public class Room
+public class Room implements Serializable
 {
 	public static final int DEFAULT_TILE_ROW = 10;
 	public static final int DEFUALT_TILE_COLUMN = 10;

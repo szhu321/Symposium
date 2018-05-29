@@ -11,14 +11,15 @@ public class MenuScene
 {
 	private Scene menuScene;
 	private BorderPane menuScenelayout;
-	
-	private Stage window;
-	
-	
 	private Button playBtn;
 	private Button mapEditorBtn;
 	private Button settingsBtn;
 	private Button QuitBtn;
+	
+	private Stage window;
+	
+	private BorderPane characterCreationPage;
+	
 	
 	public MenuScene(Stage window)
 	{
