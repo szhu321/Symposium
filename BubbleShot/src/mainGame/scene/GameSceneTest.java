@@ -1,6 +1,9 @@
 package mainGame.scene;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GameSceneTest extends Application
@@ -20,8 +23,9 @@ public class GameSceneTest extends Application
 		window = primaryStage;
 		window.setTitle("BubbleSHOT");
 		
-		MenuScene menuScene = new MenuScene(window);
-		
+		//MenuScene menuScene = new MenuScene(window);
+		Parent root = FXMLLoader.load(getClass().getResource("CharacterCreationView.fxml"));
+		window.setScene(new Scene(root));
 		window.show();
 		
 	}
