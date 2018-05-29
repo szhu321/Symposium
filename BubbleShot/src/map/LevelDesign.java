@@ -14,14 +14,14 @@ public class LevelDesign
 		Level level1 = new Level(20,20);
 		level1.addRoomTo(RoomDesign.getRoomDesignOne(), 0, 0);
 		//level1.addRoomTo(RoomDesign.getRoomDesignThree(player,0,1), 0, 1);
-		level1.addRoomTo(RoomDesign.getBossRoomDesignOne(), 0, 1);
+		//level1.addRoomTo(RoomDesign.getBossRoomDesignOne(), 0, 1);
 		//level1.addRoomTo(null, 0, 2);
 		//level1.addRoomTo(null, 1, 0);
 		//level1.addRoomTo(null, 1, 1);
 		//level1.addRoomTo(null, 1, 2);
-		level1.addRoomTo(RoomDesign.getRoomDesignTwo(), 0, 2);
-		level1.addRoomTo(RoomDesign.getRoomDesignThree(), 1, 0);
-		level1.addRoomTo(RoomDesign.getRoomDesignThree(), 1, 1);
+		level1.addRoomTo(RoomDesign.getRoomDesignTwo(), 0, 1);
+		level1.addRoomTo(RoomDesign.getRoomDesignThree(), 0, 2);
+		level1.addRoomTo(RoomDesign.getRoomDesignFour(), 1, 0);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,2,1), 2, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,3,1), 3, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,4,1), 4, 1);
@@ -30,7 +30,8 @@ public class LevelDesign
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,7,1), 7, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,8,1), 8, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,9,1), 9, 1);
-		level1.addRoomTo(RoomDesign.getRoomDesignFive(), 1, 2);
+		level1.addRoomTo(RoomDesign.getRoomDesignFive(), 1, 1);
+		level1.addRoomTo(RoomDesign.getBossRoomDesignOne(), 1, 2);
 //		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,10,1), 10, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,11,1), 11, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,12,1), 12, 1);
@@ -52,9 +53,24 @@ public class LevelDesign
 	public static Level getLevelDesignTwo()
 	{
 		Level level2 = new Level(3,3);
-		level2.addRoomTo(RoomDesign.getRoomDesignFive(), 0, 0);	
-		level2.setCurrentRoom(0, 0);
+		level2.addRoomTo(RoomDesign.getRoomDesignSix(), 0, 0);	
+		level2.addRoomTo(RoomDesign.getRoomDesignSeven(), 0, 2);	
+		level2.addRoomTo(RoomDesign.getRoomDesignEight(), 1, 0);
+		level2.addRoomTo(RoomDesign.getRoomDesignNine(), 1, 1);
+		level2.addRoomTo(RoomDesign.getRoomDesignTen(), 1, 2);
+		level2.addRoomTo(RoomDesign.getRoomDesignEleven(), 2, 0);
+		level2.addRoomTo(RoomDesign.getRoomDesignTwelve(), 2, 2);
+		level2.setCurrentRoom(2, 2);
 		return level2;
+	}
+	
+	public static Level getLevelDesignThree()
+	{
+		Level level3 = new Level(4,4);
+		level3.addRoomTo(RoomDesign.getRoomDesignThirteen(), 0, 0);
+		level3.addRoomTo(RoomDesign.getRoomDesignFourteen(), 0, 1);
+		level3.setCurrentRoom(0,1);
+		return level3;
 	}
 	
 	public static Level getRandomLevelDesign(int rows, int cols)

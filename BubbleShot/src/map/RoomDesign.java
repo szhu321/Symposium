@@ -118,6 +118,24 @@ public class RoomDesign
 		return room;
 	}
 	
+	
+	public static Room getBossRoomDesignOne()
+	{
+		Room room = new Room();
+		room.setBossRoom(true);
+		//room.addObstacle(new StoneWall(50, 1000,00,0,0));
+		//room.addObstacle(new StoneWall(50, 1000,950,0,0));
+		//room.addObstacle(new StoneWall(1000, 50,0,0,0));
+		//room.addObstacle(new StoneWall(1000, 50,0,950,0));
+		//room.addObstacle(new StoneWall(500,50,160,120,0));
+		//room.addObstacle(new StoneWall(500,50,160,520,0));
+		//room.addObstacle(new StoneWall(50,160,478,170,0));
+		//room.addObstacle(new StoneWall(50,90,478,431,0));
+		//room.addCharacter(player);
+		//room.addCharacter(enemy);
+		return room;
+	}
+	
 	public static Room getRoomDesignSix()
 	{
 		Room room = new Room();
@@ -134,20 +152,78 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getBossRoomDesignOne()
+	public static Room getRoomDesignSeven()
 	{
 		Room room = new Room();
-		room.setBossRoom(true);
-		//room.addObstacle(new StoneWall(50, 1000,00,0,0));
-		//room.addObstacle(new StoneWall(50, 1000,950,0,0));
-		//room.addObstacle(new StoneWall(1000, 50,0,0,0));
-		//room.addObstacle(new StoneWall(1000, 50,0,950,0));
-		//room.addObstacle(new StoneWall(500,50,160,120,0));
-		//room.addObstacle(new StoneWall(500,50,160,520,0));
-		//room.addObstacle(new StoneWall(50,160,478,170,0));
-		//room.addObstacle(new StoneWall(50,90,478,431,0));
-		//room.addCharacter(player);
-		//room.addCharacter(enemy);
+		
+		room.addObstacle(new StoneWall(50,50,700,200,0));
+		room.addObstacle(new StoneWall(50,50,300,200,0));
+		room.addObstacle(new StoneWall(50,50,700,800,0));
+		room.addObstacle(new StoneWall(50,50,300,800,0));
+		room.addObstacle(new StoneWall(50,50,500,500,0));
+		return room;
+	}
+	
+	public static Room getRoomDesignEight()
+	{
+		Room room = new Room();
+		
+		room.addObstacle(new StoneWall(600,400,200,300,0));
+		return room;
+	}
+	
+	public static Room getRoomDesignNine()
+	{
+		Room room = new Room();
+		
+		room.addObstacle(new StoneWall(600,100,200,300,0));
+		room.addObstacle(new StoneWall(100,300,400,400,0));
+		return room;
+	}
+	
+	public static Room getRoomDesignTen()
+	{
+		Room room = new Room();
+		
+		room.addObstacle(new StoneWall(100,100,400,700,0));
+		room.addObstacle(new StoneWall(0,500,600,100,0));
+		room.addObstacle(new StoneWall(300,0,600,700,0));		
+		return room;
+	}
+	
+	public static Room getRoomDesignEleven()
+	{
+		Room room = new Room();
+		return room;
+	}
+	
+	public static Room getRoomDesignTwelve()
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(0,300,300,100,0));
+		room.addObstacle(new StoneWall(0,300,300,600,0));
+		room.addObstacle(new StoneWall(0,300,700,100,0));
+		room.addObstacle(new StoneWall(0,300,700,600,0));
+		room.addObstacle(new StoneWall(100,100,500,500,0));
+		return room;
+	}
+	
+	public static Room getRoomDesignThirteen()
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(0,300,400,100,0));
+		room.addObstacle(new StoneWall(0,400,400,500,0));
+		room.addObstacle(new StoneWall(500,0,400,400,0));
+		room.addObstacle(new StoneWall(500,0,400,500,0));
+		return room;
+	}
+	
+	public static Room getRoomDesignFourteen()
+	{
+		Room room = new Room();
+		room.addObstacle(new StoneWall(100,100,300,500,0));
+		room.addObstacle(new StoneWall(300,300,300,600,0));
+		//room.addObstacle(new StoneWall(500,0,400,400,0));
 		return room;
 	}
 }
