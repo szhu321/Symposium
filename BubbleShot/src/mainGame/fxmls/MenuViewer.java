@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import map.Level;
+import sprite.character.player.Player;
 
-public class MenuTests extends Application
+public class MenuViewer extends Application
 {
 	private Stage window;
 	private Scene scene;
@@ -14,6 +16,9 @@ public class MenuTests extends Application
 	private Parent mainMenu;
 	private Parent characterCreation;
 	private Parent playMenu;
+	
+	private Player player;
+	private Level level;
 	
 	public static void main(String[] args) 
 	{

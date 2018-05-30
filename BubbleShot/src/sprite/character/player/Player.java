@@ -101,11 +101,13 @@ public class Player extends Character
 	{
 		if(getCurrentItem() == null && input.equals(Item.WEAPON))
 		{
+			//System.out.println("Shoot");
 			fist.useItem();
 			return;
 		}
 		if(input.equals(Item.POTION)&&inventory.getCurrentItem().getItemType().equals(Item.POTION))
 		{
+			//System.out.println("What");
 			if(inventory.getCurrentItem() instanceof Ammo)
 			{
 				((Ammo) inventory.getCurrentItem()).useItemOnPlayer(this);
@@ -113,6 +115,7 @@ public class Player extends Character
 			else
 			{
 				((Potion) inventory.getCurrentItem()).useItemOnPlayer(this);
+				//System.out.println("hint");
 			}
 		}
 		if(input.equals(Item.WEAPON)&&inventory.getCurrentItem().getItemType().equals(Item.WEAPON))
