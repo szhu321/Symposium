@@ -69,7 +69,17 @@ public class LevelDesign
 		Level level3 = new Level(4,4);
 		level3.addRoomTo(RoomDesign.getRoomDesignThirteen(), 0, 0);
 		level3.addRoomTo(RoomDesign.getRoomDesignFourteen(), 0, 1);
-		level3.setCurrentRoom(0,1);
+		level3.addRoomTo(RoomDesign.getRoomDesignFifteen(), 0, 3);
+		level3.addRoomTo(RoomDesign.getRoomDesignSixteen(), 1, 1);
+		level3.addRoomTo(RoomDesign.getRoomDesignSeventeen(), 1, 2);
+		level3.addRoomTo(RoomDesign.getRoomDesignEighteen(), 1, 3);
+		level3.addRoomTo(RoomDesign.getRoomDesignNineteen(), 2, 0);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwenty(), 2, 1);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentyone(), 2, 3);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentytwo(), 3, 0);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentythree(), 3, 2);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentyfour(), 3, 3);
+		level3.setCurrentRoom(3,3);
 		return level3;
 	}
 	
