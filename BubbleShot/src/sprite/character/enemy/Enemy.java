@@ -19,6 +19,7 @@ public abstract class Enemy extends Character
 	private Player player;
 	private HealthBar healthbar;
 	private String enemyType;
+	private double circleRadius;
 	
 	public static final String FOLLOWER="follower";
 	public static final String SMART="smart";
@@ -39,6 +40,7 @@ public abstract class Enemy extends Character
 		this.player=player;
 		healthbar = new HealthBar(70, 5, getCurrentHealth());
 		this.enemyType=enemyType;
+		circleRadius=400;
 	}
 	
 	public int getKillPoints(){return killPoints;}
@@ -79,5 +81,17 @@ public abstract class Enemy extends Character
 	public Item dropItem()
 	{
 		return LootGen.randomEnemyItem(this);
+	}
+
+	public double getCircleRadius() {
+		return circleRadius;
+	}
+
+	public void setCircleRadius(double circleRadius) {
+		this.circleRadius = circleRadius;
+	}
+	
+	public void addCircleRadius(double circleRadius) {
+		this.circleRadius += circleRadius;
 	}
 }
