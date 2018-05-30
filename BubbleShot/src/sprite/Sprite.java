@@ -1,12 +1,14 @@
 package sprite;
 
+import java.io.Serializable;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sprite.bounds.BoxCollider;
 import sprite.bounds.CircleCollider;
 import sprite.bounds.Collider;
 
-public abstract class Sprite implements Collider
+public abstract class Sprite implements Collider, Serializable
 {
 	private String spriteName,fileName;
 	private double xCoord,yCoord,width,height,faceAngle;

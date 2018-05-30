@@ -35,11 +35,13 @@ public class EffectManager
 	{
 		if(effects.contains(effect))
 		{
+			
 			effect.setEffectTime(effect.getDefaultEffectTime());
 			effect.setActive(true);
 			//System.out.println(effect);
 			return false;
-		}		
+		}	
+		//System.out.println(effect);	
 		effect.setManager(this);
 		effects.add(effect);
 		return true;

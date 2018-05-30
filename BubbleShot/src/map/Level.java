@@ -1,5 +1,7 @@
 package map;
 
+import java.io.Serializable;
+
 import map.Tile.Tile;
 import map.Tile.teleporter.LevelPortManager;
 import map.Tile.teleporter.Teleporter;
@@ -7,7 +9,7 @@ import map.Tile.teleporter.TeleporterDesign;
 import map.Tile.teleporter.TeleporterPair;
 import sprite.character.player.Player;
 
-public class Level
+public class Level implements Serializable
 {
 	private Room[][] map;
 	private Room currentRoom;

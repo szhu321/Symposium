@@ -21,6 +21,7 @@ public class HealthEffect extends Effect
 	@Override
 	public boolean applyEffect(Character character, double sec) 
 	{
+		//System.out.println("He,");
 		if(isActive())
 		{
 			//if the effect is instantaneous
