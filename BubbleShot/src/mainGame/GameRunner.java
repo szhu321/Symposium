@@ -1,8 +1,11 @@
 	 package mainGame;
 
+import java.io.File;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
@@ -38,12 +41,20 @@ public class GameRunner extends Application
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
 		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelDesignThree(), player, window);
+		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
 		gameManager.startGame();
 		
 		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 		bs.playSound(.05);
-				
+//		
+//		SceneTracker.setWindow(window);
+//		
+//		Parent mainMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml"));
+//		SceneTracker.setMainMenuview(mainMenuView);
+//		
+//		Scene scene = new Scene(SceneTracker.getMainMenuview(), 500, 400);
+//		SceneTracker.setScene(scene);
+		
 		window.setMinHeight(700);
 		window.setMinWidth(700);
 		window.show();
