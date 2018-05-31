@@ -11,9 +11,9 @@ public class Potion extends Item implements Consumable
 	private Effect potionEffect;
 	
 	public Potion(String spriteName,String fileName, double xLocation, double yLocation, String itemType, String color, 
-			Effect effect) 
+			Effect effect,int cost) 
 	{
-		super(spriteName, fileName, xLocation, yLocation, 50, 50, itemType);
+		super(spriteName, fileName, xLocation, yLocation, 50, 50, itemType,cost);
 		potionColor = color;
 		potionEffect = effect;
 	}

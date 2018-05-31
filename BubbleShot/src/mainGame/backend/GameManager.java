@@ -355,6 +355,16 @@ public class GameManager
 		}
 	}
 	
+	public void removeAllProjectiles()
+	{
+		List<Projectile> projectiles = level.getCurrentRoom().getProjectiles();
+		for(int i = projectiles.size() - 1; i >= 0; i--)
+		{
+			Projectile currentProjectile = projectiles.get(i);
+			removeProjectile(currentProjectile);
+		}
+	}
+	
 	public void addProjectile(Projectile projectile)
 	{
 		level.getCurrentRoom().addProjectile(projectile);
@@ -491,6 +501,7 @@ public class GameManager
 											currentTele.getConnectedTeleporter().setPlayerOn(true);
 											t.setWasUsed(false);
 											
+											removeAllProjectiles();
 											this.level.getCurrentRoom().removeCharacter(player);
 											this.level.setCurrentRoom(row, col);
 											this.level.getCurrentRoom().addCharacter(player);

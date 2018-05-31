@@ -8,7 +8,7 @@ public class Fist extends Weapon
 			 double damage, double attackRate, double attackRange,  Projectile projectile) 
 	{
 		super(spriteName ,fileName, xLocation, yLocation, damage, attackRate, 
-				attackRange, projectile, 30, 30, 0);
+				attackRange, projectile, 30, 30, 0,0);
 	}
 	
 }

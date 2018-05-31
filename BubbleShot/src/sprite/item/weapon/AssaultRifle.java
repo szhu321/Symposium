@@ -12,10 +12,10 @@ public class AssaultRifle extends Weapon
 	private int offsetAngle;
 	
 	public AssaultRifle(String spriteName, double xLocation, double yLocation,
-			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int ammoUsed) 
+			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int ammoUsed,int cost) 
 	{
 		super(spriteName,"file:resources/weaponPictures/assaultrifle.png", xLocation, yLocation, damage, attackRate, attackRange, projectile,
-				100, 27, ammoUsed);
+				100, 27, ammoUsed,cost);
 		this.offsetAngle = offsetAngle;
 	}
 	

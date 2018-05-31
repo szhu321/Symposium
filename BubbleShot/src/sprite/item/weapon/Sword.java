@@ -10,10 +10,10 @@ import sprite.projectile.Projectile;
 public class Sword extends Weapon
 {
 	public Sword(String spriteName, double xLocation, double yLocation, 
-			 double damage, double attackRate, double attackRange, Projectile projectile) 
+			 double damage, double attackRate, double attackRange, Projectile projectile,int cost) 
 	{
 		super(spriteName,"file:resources/weaponPictures/sword.png", xLocation, yLocation,  
-				 damage, attackRate, attackRange, projectile, 60, 60, 0);
+				 damage, attackRate, attackRange, projectile, 60, 60, 0,cost);
 		setAmmoUsed(0);
 	}
 	

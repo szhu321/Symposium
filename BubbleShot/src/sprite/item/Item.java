@@ -19,12 +19,14 @@ public abstract class Item extends Sprite
 	
 	private double itemPickPeriod = 1.2;
 	private double lastItemDropTime;
+	private int cost;
 	//item types: potions and weapons
 	
-	public Item(String spriteName, String fileName, double xLocation, double yLocation,  double width, double height, String itemType) 
+	public Item(String spriteName, String fileName, double xLocation, double yLocation,  double width, double height, String itemType,int cost) 
 	{
 		super(spriteName, fileName, xLocation, yLocation, width, height, 0);
 		this.itemType = itemType;
+		this.cost=cost;
 	}
 	
 	public Character getPossessor()
@@ -71,6 +73,14 @@ public abstract class Item extends Sprite
 	public CircleCollider getCircleBoundsOfObject()
 	{
 		return new CircleCollider(getXCenter(), getYCenter(), 7);
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	
 //	public void coolDownItem(double sec)

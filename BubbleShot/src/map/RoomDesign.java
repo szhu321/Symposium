@@ -1,5 +1,6 @@
 package map;
 
+import map.obstacle.Shop;
 import map.obstacle.StoneWall;
 import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
@@ -67,6 +68,22 @@ public class RoomDesign
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		//room.addCharacter(player);
 		//room.addCharacter(enemy);
+		return room;
+	}
+	
+	public static Room getShopRoomDesign()
+	{
+		Room room = new Room();
+//		room.addObstacle(new StoneWall(50, 1000,0,0,0));
+//		room.addObstacle(new StoneWall(50, 1000,950,0,0));
+//		room.addObstacle(new StoneWall(1000, 50,0,0,0));
+//		room.addObstacle(new StoneWall(1000, 50,0,950,0));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
+		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
+		//room.addCharacter(player);
+		//room.addCharacter(enemy);
+		room.addObstacle(new Shop(100,100,100,100,0));
 		return room;
 	}
 	

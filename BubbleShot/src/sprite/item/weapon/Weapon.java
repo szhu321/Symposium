@@ -19,9 +19,9 @@ public abstract class Weapon extends Item
 	private double defaultCoolDownTime;
 	
 	public Weapon(String spriteName,String fileName, double xLocation, double yLocation, 
-			 double damage, double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed) 
+			 double damage, double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed,int cost) 
 	{
-		super(spriteName ,fileName, xLocation, yLocation, width, height, Item.WEAPON);
+		super(spriteName ,fileName, xLocation, yLocation, width, height, Item.WEAPON,cost);
 		weaponDmg = damage;
 		weaponAttackRange = attackRange;
 		this.projectile = projectile;

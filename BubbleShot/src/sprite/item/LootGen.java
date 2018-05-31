@@ -1,9 +1,12 @@
 package sprite.item;
 
+import map.obstacle.Obstacle;
 import sprite.character.enemy.Enemy;
 import sprite.item.ammo.AmmoDesign;
+import sprite.item.armor.ArmorDesign;
 import sprite.item.collectable.CoinDesign;
 import sprite.item.potion.PotionDesign;
+import sprite.item.shield.ShieldDesign;
 import sprite.item.weapon.WeaponDesign;
 
 public class LootGen 
@@ -24,12 +27,39 @@ public class LootGen
 		else if(percent<=95)
 			return PotionDesign.getDamagePotDesignOne(enemy.getXLocation(), enemy.getYLocation());
 		else if(percent<=100)
-			return PotionDesign.getHealthPotDesignOne(enemy.getXLocation(), enemy.getYLocation());
+			return PotionDesign.getSpeedPotDesignOne(enemy.getXLocation(), enemy.getYLocation());
 		return null;
 	}
 	
-	public static Item randomShopItem()
+	public static Item randomShopItem(Obstacle table)
 	{
+		int percent=(int)(Math.random()*8)+1;
+		if(percent==1)
+			return PotionDesign.getHealthPotDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==2)
+			return PotionDesign.getDamagePotDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==3)
+			return PotionDesign.getSpeedPotDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==4)
+			return WeaponDesign.getAssaultRifleDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==5)
+			return  WeaponDesign.getPistolDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==6)
+			return WeaponDesign.getShotgunDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==7)
+			return WeaponDesign.getSniperDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==8)
+			return WeaponDesign.getSwordDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==9)
+			return ArmorDesign.getBootsDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==10)
+			return ArmorDesign.getBreastPlateDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==11)
+			return ArmorDesign.getHelmetDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==12)
+			return ArmorDesign.getLeggingDesignOne(table.getXLocation(), table.getYLocation());
+		if(percent==13)
+			return ShieldDesign.getShieldDesignOne(table.getXLocation(), table.getYLocation());
 		return null;
 	}
 }

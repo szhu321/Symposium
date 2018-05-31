@@ -14,10 +14,10 @@ public class Shotgun extends Weapon
 	private int bulletPerShot;
 	
 	public Shotgun(String spriteName, double xLocation, double yLocation, 
-			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed) 
+			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed,int cost) 
 	{
 		super(spriteName,"file:resources/weaponPictures/shotgun.png", xLocation, yLocation, damage, attackRate, attackRange, projectile,
-				100, 27, ammoUsed);
+				100, 27, ammoUsed,cost);
 		this.offsetAngle = offsetAngle;
 		this.bulletPerShot = bulletPerShot;
 	}

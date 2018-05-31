@@ -21,7 +21,7 @@ public class LevelDesign
 		//level1.addRoomTo(null, 1, 2);
 		level1.addRoomTo(RoomDesign.getRoomDesignTwo(), 0, 1);
 		level1.addRoomTo(RoomDesign.getRoomDesignThree(), 0, 2);
-		level1.addRoomTo(RoomDesign.getRoomDesignFour(), 1, 0);
+		level1.addRoomTo(RoomDesign.getShopRoomDesign(), 1, 0);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,2,1), 2, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,3,1), 3, 1);
 //		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,4,1), 4, 1);
