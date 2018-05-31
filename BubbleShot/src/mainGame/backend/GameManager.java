@@ -105,7 +105,7 @@ public class GameManager
 	{
 		TimerManager.pauseAll();
 		resetKeys();
-		if(this.level.getCurrentRoom().isEnemySpawned()==false)
+		if(this.level.getCurrentRoom().isEnemySpawned()==false&&!this.level.getCurrentRoom().isShopRoom())
 		{
 			this.level.getCurrentRoom().spawnEnemies();
 			this.level.getCurrentRoom().setEnemySpawned(true);
