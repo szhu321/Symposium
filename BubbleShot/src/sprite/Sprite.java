@@ -163,6 +163,11 @@ public abstract class Sprite implements Collider, Serializable
 		return new BoxCollider(xCoord, yCoord, width, height, faceAngle);
 	}
 	
+	public BoxCollider getBoundsOfObject(double setX,double setY)
+	{
+		return new BoxCollider(setX, setY, width, height, faceAngle);
+	}
+	
 	public CircleCollider getCircleBoundsOfObject(double radius)
 	{
 		return new CircleCollider(getXCenter(), getYCenter(), radius);

@@ -85,11 +85,11 @@ public class RoomDesign
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		//room.addCharacter(player);
 		//room.addCharacter(enemy);
-		room.addObstacle(new Shop(100,100,100,200,0));
-		room.addObstacle(new Shop(100,100,100,400,0));
-		room.addObstacle(new Shop(100,100,100,600,0));
-		room.addObstacle(new Shop(100,100,100,800,0));
-		room.addObstacle(new Shop(100,100,300,200,0));
+		room.addObstacle(new Shop(100,100,200,100,0));
+		room.addObstacle(new Shop(100,100,400,100,0));
+		room.addObstacle(new Shop(100,100,600,100,0));
+		room.addObstacle(new Shop(100,100,800,100,0));
+		room.addObstacle(new Shop(100,100,200,300,0));
 		return room;
 	}
 	
