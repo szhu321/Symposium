@@ -20,4 +20,13 @@ public class Shop extends Obstacle
 		return null;
 	}
 
+	public Item getOnSale() {
+		return onSale;
+	}
+
+	public void setOnSale(Item onSale) {
+		this.onSale = onSale;
+	}
+	
+	
 }

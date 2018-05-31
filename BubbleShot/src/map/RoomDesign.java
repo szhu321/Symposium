@@ -51,6 +51,8 @@ public class RoomDesign
 		room.addItem(ArmorDesign.getLeggingDesignOne(820, 330));
 		room.addItem(ArmorDesign.getBootsDesignOne(820, 430));
 		room.addItem(ShieldDesign.getShieldDesignOne(820, 530));
+		
+		room.addObstacle(new Shop(100,100,300,800,0));
 		return room;
 	}
 	
@@ -83,7 +85,6 @@ public class RoomDesign
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		//room.addCharacter(player);
 		//room.addCharacter(enemy);
-		room.addObstacle(new Shop(100,100,100,100,0));
 		return room;
 	}
 	

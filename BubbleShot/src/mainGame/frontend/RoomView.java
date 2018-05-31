@@ -11,6 +11,8 @@ import map.Room;
 import map.Tile.Tile;
 import map.Tile.teleporter.Teleporter;
 import map.obstacle.Obstacle;
+import map.obstacle.Shop;
+import map.obstacle.StoneWall;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
@@ -102,9 +104,12 @@ public class RoomView
 			gc.setFill(Color.rgb(0, 0, 0, .3));
 			for(Obstacle obs : room.getObstacles())
 			{
-				double[] xPoints = {obs.getXLocation()   , obs.getXLocationMax(), obs.getXLocationMax(), obs.getXLocationMax() + shadowLength, obs.getXLocationMax() + shadowLength, obs.getXLocation() + shadowLength};
-				double[] yPoints = {obs.getYLocationMax(), obs.getYLocationMax(), obs.getYLocation()   , obs.getYLocation() + shadowLength   , obs.getYLocationMax() + shadowLength, obs.getYLocationMax() + shadowLength};
-				gc.fillPolygon(xPoints, yPoints, 6);
+				if(obs instanceof StoneWall)
+				{
+					double[] xPoints = {obs.getXLocation()   , obs.getXLocationMax(), obs.getXLocationMax(), obs.getXLocationMax() + shadowLength, obs.getXLocationMax() + shadowLength, obs.getXLocation() + shadowLength};
+					double[] yPoints = {obs.getYLocationMax(), obs.getYLocationMax(), obs.getYLocation()   , obs.getYLocation() + shadowLength   , obs.getYLocationMax() + shadowLength, obs.getYLocationMax() + shadowLength};
+					gc.fillPolygon(xPoints, yPoints, 6);
+				}
 			}
 			gc.restore();
 		}
@@ -115,6 +120,8 @@ public class RoomView
 				for(double y = obs.getYLocation(); y < obs.getYLocation() + obs.getHeight(); y += 100)
 				{
 					gc.drawImage(obs.getSpriteImage(), x, y, 100, 100);
+					if(obs instanceof Shop)
+						gc.drawImage(((Shop)obs).getOnSale().getSpriteImage(), obs.getXCenter()-((Shop)obs).getOnSale().getWidth()/2, y,((Shop)obs).getOnSale().getWidth(),((Shop)obs).getOnSale().getHeight());
 				}
 			}
 			//gc.drawImage(obs.getSpriteImage(), obs.getXLocation(), obs.getYLocation(), obs.getWidth(), obs.getHeight());
