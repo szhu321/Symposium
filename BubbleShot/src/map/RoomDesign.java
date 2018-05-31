@@ -52,7 +52,6 @@ public class RoomDesign
 		room.addItem(ArmorDesign.getBootsDesignOne(820, 430));
 		room.addItem(ShieldDesign.getShieldDesignOne(820, 530));
 		
-		room.addObstacle(new Shop(100,100,300,800,0));
 		return room;
 	}
 	
@@ -76,6 +75,7 @@ public class RoomDesign
 	public static Room getShopRoomDesign()
 	{
 		Room room = new Room();
+		room.setShopRoom(true);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -85,6 +85,11 @@ public class RoomDesign
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		//room.addCharacter(player);
 		//room.addCharacter(enemy);
+		room.addObstacle(new Shop(100,100,200,100,0));
+		room.addObstacle(new Shop(100,100,400,100,0));
+		room.addObstacle(new Shop(100,100,600,100,0));
+		room.addObstacle(new Shop(100,100,800,100,0));
+		room.addObstacle(new Shop(100,100,200,300,0));
 		return room;
 	}
 	
