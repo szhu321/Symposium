@@ -11,21 +11,21 @@ public class PotionDesign
 	public static DamagePot getDamagePotDesignOne(double x, double y)
 	{
 		Effect effect = DamageEffect.DAMAGE_POTION_EFFECT;
-		DamagePot potion = new DamagePot("Damage Potion",x,y,Item.POTION,"pink",effect);
+		DamagePot potion = new DamagePot("Damage Potion",x,y,Item.POTION,"pink",effect,5);
 		return potion;
 	}
 	
 	public static HealthPot getHealthPotDesignOne(double x, double y)
 	{
 		Effect effect = HealthEffect.HEALTH_POTION_EFFECT;
-		HealthPot potion = new HealthPot("Health Potion",x,y,Item.POTION,"red",effect);
+		HealthPot potion = new HealthPot("Health Potion",x,y,Item.POTION,"red",effect,5);
 		return potion;
 	}
 	
 	public static SpeedPot getSpeedPotDesignOne(double x, double y)
 	{
 		Effect effect = SpeedEffect.SPEED_POTION_EFFECT;
-		SpeedPot potion = new SpeedPot("Speed Potion", x, y, Item.POTION, "green", effect);
+		SpeedPot potion = new SpeedPot("Speed Potion", x, y, Item.POTION, "green", effect,5);
 		return potion;
 	}
 }

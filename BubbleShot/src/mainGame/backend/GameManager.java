@@ -287,7 +287,9 @@ public class GameManager
 /////					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
-					level.getCurrentRoom().addItem(((Enemy)characters.get(i)).dropItem());
+					Item droppedItem=((Enemy)characters.get(i)).dropItem();
+					if(droppedItem!=null)
+						level.getCurrentRoom().addItem(droppedItem);
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
 			}
@@ -350,6 +352,16 @@ public class GameManager
 			{
 				removeProjectile(currentProjectile);
 			}
+		}
+	}
+	
+	public void removeAllProjectiles()
+	{
+		List<Projectile> projectiles = level.getCurrentRoom().getProjectiles();
+		for(int i = projectiles.size() - 1; i >= 0; i--)
+		{
+			Projectile currentProjectile = projectiles.get(i);
+			removeProjectile(currentProjectile);
 		}
 	}
 	
@@ -489,6 +501,7 @@ public class GameManager
 											currentTele.getConnectedTeleporter().setPlayerOn(true);
 											t.setWasUsed(false);
 											
+											removeAllProjectiles();
 											this.level.getCurrentRoom().removeCharacter(player);
 											this.level.setCurrentRoom(row, col);
 											this.level.getCurrentRoom().addCharacter(player);
@@ -518,9 +531,7 @@ public class GameManager
     {
     	List<Character> enemies=level.getCurrentRoom().getCharacters();
     	//boolean spawnEnemy=false;
-    	double circleRadius=300;
-    	if((shift)&&(left||right||up||down))
-    		circleRadius=500;
+    	double circleRadius=0;
     	for(int i=0; i<enemies.size();i++)
     		if(enemies.get(i) instanceof Enemy)
     		{
@@ -528,6 +539,9 @@ public class GameManager
     			{
     				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
     				{
+    					circleRadius=((Enemy)enemies.get(i)).getCircleRadius();
+    					if((shift)&&(left||right||up||down))
+    			    		circleRadius+=200;
 	    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
 	    				{
 	    					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));

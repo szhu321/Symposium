@@ -7,10 +7,10 @@ public class BreastPlate extends Armor
 
 	public BreastPlate(String spriteName, String fileName, double xLocation, double yLocation, 
 			double width, double height, double maxHealthBoost,
-			double maxSpeedBoost, double maxDamageBoost) 
+			double maxSpeedBoost, double maxDamageBoost,int cost) 
 	{
 		super(spriteName, fileName, xLocation, yLocation,width, height, Item.ARMOR, maxHealthBoost,
-				maxSpeedBoost, maxDamageBoost);
+				maxSpeedBoost, maxDamageBoost,cost);
 	}
 
 }

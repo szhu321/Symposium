@@ -137,7 +137,7 @@ public class Astar extends AI
 				//{
 				//	itWorked+="("+t.getXLocation()/100+","+t.getYLocation()/100+")"+" ";
 				//}
-				//System.out.println(itWorked);
+				//System.out.pinrtln(itWorked);
 				//System.out.println("worked");
 				pathCoords.remove(0);
 				return pathCoords;

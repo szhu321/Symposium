@@ -13,7 +13,7 @@ public class Ammo extends Item implements Consumable, InstantCollect
 	
 	public Ammo(String spriteName, String fileName, double xLocation, double yLocation,  double width, double height, String itemType, Effect ammoEffect) 
 	{
-		super(spriteName, fileName, xLocation, yLocation, width, height,itemType);
+		super(spriteName, fileName, xLocation, yLocation, width, height,itemType,0);
 		this.ammoEffect = ammoEffect;
 	}
 

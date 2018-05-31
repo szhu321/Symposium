@@ -393,6 +393,7 @@ public class Room implements Serializable
 				{
 					//System.out.println("Collide With enemy");
 					character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
+					((Enemy)character).addCircleRadius(50);
 					//projectiles.remove(projectile);
 					return true;
 				}

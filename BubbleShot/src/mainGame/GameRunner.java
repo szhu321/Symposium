@@ -1,8 +1,11 @@
 	 package mainGame;
 
+import java.io.File;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
@@ -41,9 +44,11 @@ public class GameRunner extends Application
 		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
 		gameManager.startGame();
 		
-		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
-		bs.playSound(.05);
-				
+//		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
+//		bs.playSound(.05);
+//		
+		//loadFXMLs();
+		
 		window.setMinHeight(700);
 		window.setMinWidth(700);
 		window.show();
@@ -53,6 +58,27 @@ public class GameRunner extends Application
 //		{
 //			System.out.println(coin);
 //		}
+	}
+	
+	private void loadFXMLs() throws Exception
+	{
+		//First sets the window for the scene tracker
+		SceneTracker.setWindow(window);
+		
+		//Add all the FXMLs to the SceneTracker
+		Parent mainMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml"));
+		SceneTracker.setMainMenuview(mainMenuView);
+		
+		Parent playMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml"));
+		SceneTracker.setPlayMenuView(playMenuView);
+		
+		Parent characterCreationView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/CharacterCreationView.fxml"));
+		SceneTracker.setCharacterCreationView(characterCreationView);
+		
+		Parent levelPickerView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml"));
+		SceneTracker.setLevelPickerView(levelPickerView);
+		
+		SceneTracker.initialize();
 	}
 	
 	/**

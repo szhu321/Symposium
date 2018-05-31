@@ -10,9 +10,9 @@ public class Ranged extends Weapon
 	private int ammoUsed;
 	
 	public Ranged(String spriteName, String fileName, double xLocation, double yLocation, double damage,
-			double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed)
+			double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed,int cost)
 	{
-		super(spriteName, fileName, xLocation, yLocation, damage, attackRate, attackRange, projectile, width, height, ammoUsed);
+		super(spriteName, fileName, xLocation, yLocation, damage, attackRate, attackRange, projectile, width, height, ammoUsed,cost);
 		// TODO Auto-generated constructor stub
 	}
 

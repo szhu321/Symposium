@@ -9,6 +9,6 @@ public class ShieldDesign
 		double rechargeDelay = 3;
 		double rechargeRate = 2;
 		double shieldAmount = 200;
-		return new Shield("Shield", "file:resources/shield/simpleshield.png", x, y, 30, 46, Item.ARMOR, rechargeDelay, rechargeRate, shieldAmount);
+		return new Shield("Shield", "file:resources/shield/simpleshield.png", x, y, 30, 46, Item.ARMOR, rechargeDelay, rechargeRate, shieldAmount,5);
 	}
 }

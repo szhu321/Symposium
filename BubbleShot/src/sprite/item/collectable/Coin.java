@@ -9,7 +9,7 @@ public class Coin extends Item implements InstantCollect
 	
 	public Coin(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, int amount)
 	{
-		super(spriteName, fileName, xLocation, yLocation, width, height, Item.COIN);
+		super(spriteName, fileName, xLocation, yLocation, width, height, Item.COIN,0);
 		this.amount = amount;
 	}
 

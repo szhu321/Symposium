@@ -12,9 +12,9 @@ public class Shield extends Item
 	private boolean shieldDown;
 	
 	public Shield(String spriteName, String fileName, double xLocation, double yLocation, 
-		 double width, double height, String itemType, double rechargeDelay, double rechargeRate, double shieldAmount) 
+		 double width, double height, String itemType, double rechargeDelay, double rechargeRate, double shieldAmount,int cost) 
 	{
-		super(spriteName, fileName, xLocation, yLocation, width, height, Item.ARMOR);
+		super(spriteName, fileName, xLocation, yLocation, width, height, Item.ARMOR,cost);
 		this.currentRechargeDelay = rechargeDelay;
 		this.defualtRechargeDelay = rechargeDelay;
 		this.rechargeRate = rechargeRate;
