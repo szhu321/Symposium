@@ -19,15 +19,10 @@ public class SceneTracker
 	private static Parent levelPickerView;
 	private static Parent settingsView;
 	
-	public static void setWindow(Stage window)
+	public static void initialize(Stage window, Scene scene, Group root)
 	{
 		SceneTracker.window = window;
-	}
-	
-	public static void initialize()
-	{
-		root = new Group();
-		scene = new Scene(root, 500, 400);
+		SceneTracker.scene = scene;
 		window.setScene(scene);
 	}
 	

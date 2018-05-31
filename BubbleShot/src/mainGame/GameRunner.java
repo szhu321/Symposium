@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -63,11 +64,12 @@ public class GameRunner extends Application
 	private void loadFXMLs() throws Exception
 	{
 		//First sets the window for the scene tracker
-		SceneTracker.setWindow(window);
-		
 		//Add all the FXMLs to the SceneTracker
-		Parent mainMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml"));
-		SceneTracker.setMainMenuview(mainMenuView);
+		Group root = new Group();
+		Scene scene = new Scene(root);
+		
+		//root.getChildren().setAll(FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml")));
+		
 		
 		Parent playMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml"));
 		SceneTracker.setPlayMenuView(playMenuView);
@@ -78,7 +80,7 @@ public class GameRunner extends Application
 		Parent levelPickerView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml"));
 		SceneTracker.setLevelPickerView(levelPickerView);
 		
-		SceneTracker.initialize();
+		//SceneTracker.initialize();
 	}
 	
 	/**
