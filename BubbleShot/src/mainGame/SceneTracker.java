@@ -1,101 +1,45 @@
 package mainGame;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SceneTracker
 {
-	private static Scene scene;
-	private static Group root;
-	private static Stage window;
+	private Scene scene;
+	private Group root;
+	private Stage window;
 	
-	private static Parent currentView;
-	
-	private static Parent mainMenuview;
-	private static Parent characterCreationView;
-	private static Parent playMenuView;
-	private static Parent levelPickerView;
-	private static Parent settingsView;
-	
-	public static void initialize(Stage window, Scene scene, Group root)
+	public SceneTracker(Stage window)
 	{
-		SceneTracker.window = window;
-		SceneTracker.scene = scene;
-		window.setScene(scene);
+		this.window = window;
+		root = new Group();
+		scene = new Scene(root);
+		this.window.setScene(scene);
 	}
 	
-	public static void switchView(Parent view)
+	public void switchToMainMenuView() throws Exception
 	{
-		view.setVisible(true);
-		currentView.setVisible(false);
-		currentView = view;
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml")));
 	}
 	
-	public static Parent getMainMenuview()
+	public void switchToPlayMenuView() throws Exception
 	{
-		return mainMenuview;
+		root.getChildren().setAll((GridPane)FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml")));
 	}
-
-	public static void setMainMenuview(Parent mainMenuview)
-	{
-		SceneTracker.mainMenuview = mainMenuview;
-		root.getChildren().add(mainMenuview);
-	}
-
-	public static Parent getCharacterCreationView()
-	{
-		return characterCreationView;
-	}
-
-	public static void setCharacterCreationView(Parent characterCreationView)
-	{
-		SceneTracker.characterCreationView = characterCreationView;
-		SceneTracker.characterCreationView.setVisible(false);
-		root.getChildren().add(SceneTracker.characterCreationView);
-	}
-
-	public static Parent getPlayMenuView()
-	{
-		return playMenuView;
-	}
-
-	public static void setPlayMenuView(Parent playMenuView)
-	{
-		SceneTracker.playMenuView = playMenuView;
-		SceneTracker.playMenuView.setVisible(false);
-		root.getChildren().add(SceneTracker.playMenuView);
-	}
-
-	public static Parent getLevelPickerView()
-	{
-		return levelPickerView;
-	}
-
-	public static void setLevelPickerView(Parent levelPickerView)
-	{
-		SceneTracker.levelPickerView = levelPickerView;
-		SceneTracker.levelPickerView.setVisible(false);
-		root.getChildren().add(SceneTracker.levelPickerView);
-	}
-
-	public static Parent getSettingsView()
-	{
-		return settingsView;
-	}
-
-	public static void setSettingsView(Parent settingsView)
-	{
-		SceneTracker.settingsView = settingsView;
-		SceneTracker.settingsView.setVisible(false);
-		root.getChildren().add(SceneTracker.settingsView);
-	}
-
-	public static void switchParent(Parent parent)
-	{
-		scene.setRoot(parent);
-	}
-
 	
+	public void switchToCharacterCreationView() throws Exception
+	{
+		root.getChildren().setAll((VBox)FXMLLoader.load(getClass().getResource("/mainGame/fxmls/CharacterCreationView.fxml")));
+	}
+	
+	public void switchToLevelPickerView() throws Exception
+	{
+		root.getChildren().setAll((GridPane)FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml")));
+	}
 }

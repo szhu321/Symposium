@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
 import map.LevelDesign;
@@ -28,6 +31,7 @@ public class GameRunner extends Application
 {	
 	private static Stage window;
 	private static GameManager gameManager;
+	private static SceneTracker sceneTracker;
 	
 	public static void main(String[] args)
 	{
@@ -65,22 +69,19 @@ public class GameRunner extends Application
 	{
 		//First sets the window for the scene tracker
 		//Add all the FXMLs to the SceneTracker
-		Group root = new Group();
-		Scene scene = new Scene(root);
+		sceneTracker = new SceneTracker(window);
+		sceneTracker.switchToMainMenuView();
 		
-		//root.getChildren().setAll(FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml")));
-		
-		
-		Parent playMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml"));
-		SceneTracker.setPlayMenuView(playMenuView);
-		
-		Parent characterCreationView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/CharacterCreationView.fxml"));
-		SceneTracker.setCharacterCreationView(characterCreationView);
-		
-		Parent levelPickerView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml"));
-		SceneTracker.setLevelPickerView(levelPickerView);
-		
-		//SceneTracker.initialize();
+//		GridPane playMenuView = (GridPane)FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml"));
+//		SceneTracker.setPlayMenuView(playMenuView);
+//		
+//		Parent characterCreationView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/CharacterCreationView.fxml"));
+//		SceneTracker.setCharacterCreationView(characterCreationView);
+//		
+//		Parent levelPickerView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml"));
+//		SceneTracker.setLevelPickerView(levelPickerView);
+//		
+//		SceneTracker.initialize(window, scene, root);
 	}
 	
 	/**
@@ -110,6 +111,11 @@ public class GameRunner extends Application
 		return window;
 	}
 	
+	public static SceneTracker getSceneTracker() 
+	{
+		return sceneTracker;
+	}
+
 	public static GameManager getGameManager()
 	{
 		return gameManager;

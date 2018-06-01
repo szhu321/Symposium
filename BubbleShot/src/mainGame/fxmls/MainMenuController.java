@@ -1,6 +1,7 @@
 package mainGame.fxmls;
 
 import javafx.scene.control.Button;
+import mainGame.GameRunner;
 import mainGame.SceneTracker;
 
 public class MainMenuController
@@ -10,9 +11,9 @@ public class MainMenuController
 	public Button settingsBtn;
 	public Button quitBtn;
 	
-	public void playBtnOnclick()
+	public void playBtnOnclick() throws Exception
 	{
-		SceneTracker.switchParent(SceneTracker.getPlayMenuView());
+		GameRunner.getSceneTracker().switchToPlayMenuView();
 	}
 	
 	public void mapEditorBtnOnclick()
@@ -27,6 +28,6 @@ public class MainMenuController
 	
 	public void quitBtnOnclick()
 	{
-		
+		GameRunner.getWindow().close();
 	}
 }
