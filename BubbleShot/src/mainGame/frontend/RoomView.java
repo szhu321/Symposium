@@ -120,7 +120,7 @@ public class RoomView
 				for(double y = obs.getYLocation(); y < obs.getYLocation() + obs.getHeight(); y += 100)
 				{
 					gc.drawImage(obs.getSpriteImage(), x, y, 100, 100);
-					if(obs instanceof Shop)
+					if(obs instanceof Shop && ((Shop)obs).getOnSale()!=null)
 						gc.drawImage(((Shop)obs).getOnSale().getSpriteImage(), obs.getXCenter()-((Shop)obs).getOnSale().getWidth()/2, y,((Shop)obs).getOnSale().getWidth(),((Shop)obs).getOnSale().getHeight());
 				}
 			}

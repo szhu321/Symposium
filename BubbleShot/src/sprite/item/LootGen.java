@@ -33,7 +33,7 @@ public class LootGen
 	
 	public static Item randomShopItem(Obstacle table)
 	{
-		int percent=(int)(Math.random()*8)+1;
+		int percent=(int)(Math.random()*13)+1;
 		if(percent==1)
 			return PotionDesign.getHealthPotDesignOne(table.getXLocation(), table.getYLocation());
 		if(percent==2)
@@ -43,7 +43,7 @@ public class LootGen
 		if(percent==4)
 			return WeaponDesign.getAssaultRifleDesignOne(table.getXLocation(), table.getYLocation());
 		if(percent==5)
-			return  WeaponDesign.getPistolDesignOne(table.getXLocation(), table.getYLocation());
+			return WeaponDesign.getPistolDesignOne(table.getXLocation(), table.getYLocation());
 		if(percent==6)
 			return WeaponDesign.getShotgunDesignOne(table.getXLocation(), table.getYLocation());
 		if(percent==7)

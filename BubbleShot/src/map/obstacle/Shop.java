@@ -16,7 +16,12 @@ public class Shop extends Obstacle
 	public Item buyItem(Player player)
 	{
 		if(player.getCoins()>=onSale.getCost())
-			return onSale;
+		{
+			player.addCoins(-onSale.getCost());
+			Item bought=onSale;
+			onSale=null;
+			return bought;
+		}
 		return null;
 	}
 

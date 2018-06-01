@@ -19,6 +19,8 @@ import map.Tile.Tile;
 import map.Tile.teleporter.RoomPortManager;
 import map.Tile.teleporter.Teleporter;
 import map.Tile.teleporter.TeleporterPair;
+import map.obstacle.Obstacle;
+import map.obstacle.Shop;
 import myutilities.Camera;
 import myutilities.MyMath;
 import myutilities.TimeTracker;
@@ -687,6 +689,19 @@ public class GameManager
 		return displayInventory;
 	}
 	
+	public Item checkShopCollision()
+	{
+		List<Obstacle> allObs=level.getCurrentRoom().getObstacles();
+		for(Obstacle o:allObs)
+		{
+			if(o instanceof Shop && o.getBoundsOfObject(o.getWidth(), o.getHeight()+50).intersect(player.getBoundsOfObject()))
+			{
+				return ((Shop)o).buyItem(player);
+			}
+		}
+		return null;
+	}
+	
 	public double getMouseX()
 	{
 		return mouseX;
@@ -739,19 +754,27 @@ public class GameManager
 				player.setCurrentItemIdx(5);
 			if(code == KeyCode.G)
 				playerDropItem();
-			if(code == KeyCode.I || code == KeyCode.ESCAPE || code == KeyCode.E)
+			if(code == KeyCode.I || code == KeyCode.ESCAPE)
 				toggleDisInventory();
 			if(code == KeyCode.F11)
 			{
 				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
 				toggleFullScreen();
 			}
-			if(code == KeyCode.F)
+			if(code == KeyCode.E)
 			{
 				if(player.getCurrentItem() instanceof Potion || player.getCurrentItem() instanceof Ammo)
 				{
 					player.useCurrentItem(Item.POTION);
 					player.removeCurrentItem();
+				}
+			}
+			if(code == KeyCode.Q)
+			{
+				Item boughtItem=checkShopCollision();
+				if(boughtItem!=null)
+				{
+					player.addItem(boughtItem);
 				}
 			}
 			if(code == KeyCode.P)

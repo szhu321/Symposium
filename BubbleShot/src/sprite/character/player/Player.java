@@ -59,6 +59,11 @@ public class Player extends Character
 		return remove;
 	}
 	
+	public void addCoins(int num)
+	{
+		coins+=num;
+	}
+	
 	public void removeItem(Item item)
 	{
 		if(inventory.removeItem(item))
