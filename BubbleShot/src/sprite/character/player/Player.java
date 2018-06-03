@@ -1,6 +1,9 @@
 package sprite.character.player;
 
+import javafx.scene.image.Image;
 import sprite.character.Character;
+import sprite.character.effect.EffectManager;
+import sprite.character.movement.MovementDrive;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
 import sprite.item.armor.Boots;

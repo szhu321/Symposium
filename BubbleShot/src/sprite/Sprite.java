@@ -12,8 +12,8 @@ public abstract class Sprite implements Collider, Serializable
 {
 	private String spriteName,fileName;
 	private double xCoord,yCoord,width,height,faceAngle;
-	private Image spriteImage;
-	private ImageView spriteImageView;
+	private transient Image spriteImage;
+	//private ImageView spriteImageView;
 	
 	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double faceAngle)
 	{
@@ -24,7 +24,7 @@ public abstract class Sprite implements Collider, Serializable
 		this.width = width;
 		this.height = height;
 		spriteImage = new Image(fileName, width, height, true, true);
-		spriteImageView = new ImageView(spriteImage);
+		//spriteImageView = new ImageView(spriteImage);
 		this.faceAngle = faceAngle;
 	}
 	
@@ -37,8 +37,13 @@ public abstract class Sprite implements Collider, Serializable
 		this.width = width;
 		this.height = height;
 		spriteImage = image;
-		spriteImageView = new ImageView(spriteImage);
+		//spriteImageView = new ImageView(spriteImage);
 		this.faceAngle = faceAngle;
+	}
+	
+	public void reloadObject()
+	{
+		spriteImage = new Image(fileName, width, height, true, true);
 	}
 	
 	public String getSpriteFileName()
@@ -130,10 +135,15 @@ public abstract class Sprite implements Collider, Serializable
 		return spriteImage;
 	}
 	
-	public ImageView getSpriteImageView()
+	public void setSpriteImage(Image image)
 	{
-		return spriteImageView;
+		this.spriteImage = image;
 	}
+	
+//	public ImageView getSpriteImageView()
+//	{
+//		return spriteImageView;
+//	}
 	
 	public void addXLocation(double newX)
 	{

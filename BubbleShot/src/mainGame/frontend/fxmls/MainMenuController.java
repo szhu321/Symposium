@@ -1,4 +1,4 @@
-package mainGame.fxmls;
+package mainGame.frontend.fxmls;
 
 import javafx.scene.control.Button;
 import mainGame.GameRunner;

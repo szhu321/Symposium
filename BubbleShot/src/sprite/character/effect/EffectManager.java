@@ -8,7 +8,7 @@ import javafx.util.Duration;
 import sprite.character.Character;
 import myutilities.TimerManager;
 
-public class EffectManager 
+public class EffectManager
 {
 	public static final double TIMES_RUN_PER_SEC = 60.0;
 	private Character character;

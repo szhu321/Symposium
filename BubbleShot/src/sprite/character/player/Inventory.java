@@ -1,5 +1,7 @@
 package sprite.character.player;
 
+import java.io.Serializable;
+
 import sprite.item.Item;
 import sprite.item.armor.Armor;
 import sprite.item.armor.Boots;
@@ -8,7 +10,7 @@ import sprite.item.armor.Helmet;
 import sprite.item.armor.Legging;
 import sprite.item.shield.Shield;
 
-public class Inventory
+public class Inventory implements Serializable
 {
 	private Item[] inventory;
 	private int hotBarSize;

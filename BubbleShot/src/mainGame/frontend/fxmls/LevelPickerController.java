@@ -1,4 +1,4 @@
-package mainGame.fxmls;
+package mainGame.frontend.fxmls;
 
 public class LevelPickerController
 {

@@ -1,26 +1,14 @@
-	 package mainGame;
-
-import java.io.File;
-import java.util.List;
+package mainGame;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
+import mainGame.saving.FileReader;
 import map.LevelDesign;
 import sound.BackgroundSound;
-import sprite.character.enemy.Enemy;
-import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
-import sprite.item.collectable.Coin;
-import sprite.item.collectable.CoinDesign;
 
 /**
  * Run this class to start the Program.
@@ -54,34 +42,18 @@ public class GameRunner extends Application
 //		
 		//loadFXMLs();
 		
+		
+		
 		window.setMinHeight(700);
 		window.setMinWidth(700);
 		window.show();
-		
-//		List<Coin> coins = CoinDesign.getCoinStack(14);
-//		for(Coin coin : coins)
-//		{
-//			System.out.println(coin);
-//		}
 	}
 	
 	private void loadFXMLs() throws Exception
 	{
-		//First sets the window for the scene tracker
-		//Add all the FXMLs to the SceneTracker
+		//Loads the scene Tracker then sets the scene to the MainMenuView();
 		sceneTracker = new SceneTracker(window);
 		sceneTracker.switchToMainMenuView();
-		
-//		GridPane playMenuView = (GridPane)FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml"));
-//		SceneTracker.setPlayMenuView(playMenuView);
-//		
-//		Parent characterCreationView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/CharacterCreationView.fxml"));
-//		SceneTracker.setCharacterCreationView(characterCreationView);
-//		
-//		Parent levelPickerView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml"));
-//		SceneTracker.setLevelPickerView(levelPickerView);
-//		
-//		SceneTracker.initialize(window, scene, root);
 	}
 	
 	/**

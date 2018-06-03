@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.fxmls.CharacterCreationController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.CharacterCreationController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="&lt;" />
+            <Button mnemonicParsing="false" onMouseClicked="#previousIconBtnOnclick" text="&lt;" />
             <ImageView fx:id="playIconView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Button mnemonicParsing="false" text="&gt;" />
+            <Button mnemonicParsing="false" onMouseClicked="#nextIconBtnOnclick" text="&gt;" />
          </children>
          <padding>
             <Insets top="20.0" />
@@ -33,7 +33,7 @@
                </font></TextField>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Create Character">
+      <Button mnemonicParsing="false" onMouseClicked="#createCharacterBtn" text="Create Character">
          <font>
             <Font size="24.0" />
          </font>
