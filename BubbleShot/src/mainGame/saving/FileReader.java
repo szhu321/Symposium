@@ -14,7 +14,7 @@ public class FileReader
 		
 		//System.out.println(files.length);
 		//return null;
-		if(files.length == 0)
+		if(files == null)
 			return null;
 		Player[] players = new Player[files.length];
 		for(int i = 0; i < players.length; i++)
