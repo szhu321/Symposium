@@ -23,30 +23,33 @@ public class PlayMenuController implements Initializable
 	public void initialize(URL location, ResourceBundle resources)
 	{
 		players = FileReader.loadPlayer();
-		characterImages = new ImageView[players.length];
-		for(int i = 0; i < players.length; i++)
+		if(players != null)
 		{
-			characterImages[i] = new ImageView(players[i].getSpriteImage());
-			characterImages[i].setOnMouseClicked(event -> 
+			characterImages = new ImageView[players.length];
+			for(int i = 0; i < players.length; i++)
 			{
-				for(int j = 0; j < characterImages.length; j++)
+				characterImages[i] = new ImageView(players[i].getSpriteImage());
+				characterImages[i].setOnMouseClicked(event -> 
 				{
-					if(characterImages[j].equals(event.getTarget()))
+					for(int j = 0; j < characterImages.length; j++)
 					{
-						selectedPlayer = players[j];
-						characterImages[j].setStyle("-fx-opacity:1");
+						if(characterImages[j].equals(event.getTarget()))
+						{
+							selectedPlayer = players[j];
+							characterImages[j].setStyle("-fx-opacity:1");
+						}
+						else
+						{
+							characterImages[j].setStyle("-fx-opacity:0.5");
+						}
 					}
-					else
-					{
-						characterImages[j].setStyle("-fx-opacity:0.5");
-					}
-				}
-				//displaySelectedPlayer();
-			});
-		}
-		for(int i = 0; i < characterImages.length; i++)
-		{
-			playerPickerRow.getChildren().add(i, characterImages[i]);
+					//displaySelectedPlayer();
+				});
+			}
+			for(int i = 0; i < characterImages.length; i++)
+			{
+				playerPickerRow.getChildren().add(i, characterImages[i]);
+			}
 		}
 	}
 	
