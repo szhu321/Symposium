@@ -24,7 +24,7 @@ public class FileReader
 				{
 					players[i] = (Player)objstream.readObject();
 					players[i].reloadObject();
-					System.out.println("successfully loaded player : " + i);
+					//System.out.println("successfully loaded player : " + i);
 				} 
 				catch (ClassNotFoundException e) 
 				{

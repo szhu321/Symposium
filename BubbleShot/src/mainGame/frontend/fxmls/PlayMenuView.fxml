@@ -23,18 +23,18 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <HBox prefHeight="80.0" prefWidth="460.0" GridPane.rowIndex="1">
+      <HBox fx:id="playerPickerRow" prefHeight="80.0" prefWidth="460.0" GridPane.rowIndex="1">
          <children>
             <Button mnemonicParsing="false" onMouseClicked="#createCharacterBtnOnclick" text="Create New Character" />
          </children>
       </HBox>
-      <Label text="Pick Level" GridPane.rowIndex="2">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#chooseLevelBtnOnclick" text="Choose" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a character before starting a game." wrappingWidth="411.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
          </children>
       </HBox>
       <Button mnemonicParsing="false" onMouseClicked="#startBtnOnclick" text="Start" GridPane.rowIndex="4" />

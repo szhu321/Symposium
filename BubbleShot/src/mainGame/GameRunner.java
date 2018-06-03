@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
 import mainGame.saving.FileReader;
+import map.Level;
 import map.LevelDesign;
 import sound.BackgroundSound;
 import sprite.character.player.Player;
@@ -32,15 +33,15 @@ public class GameRunner extends Application
 		window = primaryStage;
 		window.setTitle("Little Boy");
 		
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
-		gameManager.startGame();
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+//		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+//		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
+//		gameManager.startGame();
 		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-		//loadFXMLs();
+		loadFXMLs();
 		
 		
 		
@@ -91,5 +92,18 @@ public class GameRunner extends Application
 	public static GameManager getGameManager()
 	{
 		return gameManager;
+	}
+	
+	public static void createGameManager(Level level, Player player)
+	{
+		gameManager = new GameManager(level, player, window);
+	}
+	
+	public static void startGameManager()
+	{
+		if(gameManager != null)
+			gameManager.startGame();
+		else
+			System.out.println("Null Gamemanager");
 	}
 }
