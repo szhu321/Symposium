@@ -1,6 +1,9 @@
 package sprite.character.player;
 
+import javafx.scene.image.Image;
 import sprite.character.Character;
+import sprite.character.effect.EffectManager;
+import sprite.character.movement.MovementDrive;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
 import sprite.item.armor.Boots;
@@ -57,6 +60,11 @@ public class Player extends Character
 			return null;
 		remove.setPossessor(null);
 		return remove;
+	}
+	
+	public void addCoins(int num)
+	{
+		coins+=num;
 	}
 	
 	public void removeItem(Item item)

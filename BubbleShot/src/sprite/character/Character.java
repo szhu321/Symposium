@@ -13,9 +13,9 @@ public abstract class Character extends Sprite
 	private double speed;
 	private boolean gunVisibility;
 	
-	private MovementDrive movement;
+	private transient MovementDrive movement;
 	
-	private EffectManager effectManager;
+	private transient EffectManager effectManager;
 	private	Room currentRoom;
 	
 	public Character(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height) 
@@ -25,8 +25,20 @@ public abstract class Character extends Sprite
 		this.currentHealth = health;
 		this.defaultHealth = health;
 		this.speed = speed;
-		movement=new MovementDrive(this);
+		movement = new MovementDrive(this);
 		setGunVisibility(true);
+	}
+	
+	public void reloadObject()
+	{
+		super.reloadObject();
+		effectManager = new EffectManager(this);
+		movement = new MovementDrive(this);
+	}
+	
+	public void setEffectManager(EffectManager effectManager)
+	{
+		this.effectManager = effectManager;
 	}
 	
 	public Room getCurrentRoom() 

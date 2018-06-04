@@ -1,22 +1,15 @@
-	 package mainGame;
-
-import java.io.File;
-import java.util.List;
+package mainGame;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainGame.backend.GameManager;
+import mainGame.saving.FileReader;
+import map.Level;
 import map.LevelDesign;
 import sound.BackgroundSound;
-import sprite.character.enemy.Enemy;
-import sprite.character.enemy.EnemyDesign;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
-import sprite.item.collectable.Coin;
-import sprite.item.collectable.CoinDesign;
 
 /**
  * Run this class to start the Program.
@@ -27,6 +20,7 @@ public class GameRunner extends Application
 {	
 	private static Stage window;
 	private static GameManager gameManager;
+	private static SceneTracker sceneTracker;
 	
 	public static void main(String[] args)
 	{
@@ -39,46 +33,28 @@ public class GameRunner extends Application
 		window = primaryStage;
 		window.setTitle("Little Boy");
 		
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
-		gameManager.startGame();
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+//		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+//		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
+//		gameManager.startGame();
 		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-		//loadFXMLs();
+		loadFXMLs();
+		
+		
 		
 		window.setMinHeight(700);
 		window.setMinWidth(700);
 		window.show();
-		
-//		List<Coin> coins = CoinDesign.getCoinStack(14);
-//		for(Coin coin : coins)
-//		{
-//			System.out.println(coin);
-//		}
 	}
 	
 	private void loadFXMLs() throws Exception
 	{
-		//First sets the window for the scene tracker
-		SceneTracker.setWindow(window);
-		
-		//Add all the FXMLs to the SceneTracker
-		Parent mainMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/MainMenuView.fxml"));
-		SceneTracker.setMainMenuview(mainMenuView);
-		
-		Parent playMenuView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/PlayMenuView.fxml"));
-		SceneTracker.setPlayMenuView(playMenuView);
-		
-		Parent characterCreationView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/CharacterCreationView.fxml"));
-		SceneTracker.setCharacterCreationView(characterCreationView);
-		
-		Parent levelPickerView = FXMLLoader.load(getClass().getResource("/mainGame/fxmls/LevelPickerView.fxml"));
-		SceneTracker.setLevelPickerView(levelPickerView);
-		
-		SceneTracker.initialize();
+		//Loads the scene Tracker then sets the scene to the MainMenuView();
+		sceneTracker = new SceneTracker(window);
+		sceneTracker.switchToMainMenuView();
 	}
 	
 	/**
@@ -108,8 +84,26 @@ public class GameRunner extends Application
 		return window;
 	}
 	
+	public static SceneTracker getSceneTracker() 
+	{
+		return sceneTracker;
+	}
+
 	public static GameManager getGameManager()
 	{
 		return gameManager;
+	}
+	
+	public static void createGameManager(Level level, Player player)
+	{
+		gameManager = new GameManager(level, player, window);
+	}
+	
+	public static void startGameManager()
+	{
+		if(gameManager != null)
+			gameManager.startGame();
+		else
+			System.out.println("Null Gamemanager");
 	}
 }

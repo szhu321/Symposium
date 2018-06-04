@@ -41,6 +41,7 @@ public class Room implements Serializable
 	private boolean allEnemyDead=false;
 	private boolean enemySpawned=false;
 	private boolean isBossRoom=false;
+	private boolean isShopRoom=false;
 
 	private String name = "unnamed";
 	
@@ -158,6 +159,14 @@ public class Room implements Serializable
 	public List<Item> getItems() {return items;}
 	
 	public RoomPortManager getRoomTeleporterManager() {return roomTeleporterManager;}
+	public boolean isShopRoom() {
+		return isShopRoom;
+	}
+
+	public void setShopRoom(boolean isShopRoom) {
+		this.isShopRoom = isShopRoom;
+	}
+
 	public void setTeleporterManager(RoomPortManager teleporterManager) {this.roomTeleporterManager = teleporterManager;}
 	
 	/**

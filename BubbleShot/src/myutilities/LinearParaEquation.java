@@ -1,10 +1,12 @@
 package myutilities;
 
+import java.io.Serializable;
+
 /**
  * The class that keeps track of a projectile's location on the screen
  * based on time.
  */
-public class LinearParaEquation
+public class LinearParaEquation implements Serializable
 {
 	private double deltaX;
 	private double deltaY;

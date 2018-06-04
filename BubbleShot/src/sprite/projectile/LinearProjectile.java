@@ -1,5 +1,7 @@
 package sprite.projectile;
 
+import java.io.Serializable;
+
 import javafx.scene.image.Image;
 import myutilities.LinearEquation;
 import myutilities.LinearParaEquation;
