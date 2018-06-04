@@ -10,9 +10,6 @@ import sprite.bounds.Collider;
 
 public abstract class Sprite implements Collider, Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8948031829820320618L;
 	
 	private String spriteName,fileName;

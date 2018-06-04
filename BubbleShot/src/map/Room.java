@@ -29,6 +29,8 @@ import sprite.character.enemy.EnemyDesign;
  */
 public class Room implements Serializable
 {
+	private static final long serialVersionUID = -6377950154664530429L;
+	
 	public static final int DEFAULT_TILE_ROW = 10;
 	public static final int DEFUALT_TILE_COLUMN = 10;
 	//For now the roomPixWidth and Height does nothing.

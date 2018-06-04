@@ -8,6 +8,8 @@ import sprite.character.player.Player;
 
 public abstract class Item extends Sprite
 {
+	private static final long serialVersionUID = -7776646671388557472L;
+	
 	public static final String WEAPON = "Weapon";
 	public static final String POTION = "Potion";
 	public static final String ARMOR = "Armor";

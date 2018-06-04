@@ -38,5 +38,10 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </VBox>

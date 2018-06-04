@@ -12,6 +12,8 @@ import sprite.item.shield.Shield;
 
 public class Inventory implements Serializable
 {
+	private static final long serialVersionUID = -669932254505864887L;
+	
 	private Item[] inventory;
 	private int hotBarSize;
 	private int currentItemIdx;
@@ -38,6 +40,27 @@ public class Inventory implements Serializable
 		inventory = new Item[inventorySize];
 		currentItemIdx = 0;
 		this.possessor = possessor;
+	}
+	
+	public void reloadObject()
+	{
+		if(helmet != null)
+			helmet.reloadObject();
+		if(breastPlate != null)
+			breastPlate.reloadObject();
+		if(legging != null)
+			legging.reloadObject();
+		if(boots != null)
+			boots.reloadObject();
+		if(shield != null)
+			shield.reloadObject();
+		if(selectedItem != null)
+			selectedItem.reloadObject();
+		for(int i = 0; i < inventory.length; i++)
+		{
+			if(inventory[i] != null)
+				inventory[i].reloadObject();
+		}
 	}
 	
 	public Item[] getHotBar()

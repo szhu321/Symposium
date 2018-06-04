@@ -9,6 +9,8 @@ import sprite.item.Item;
 
 public abstract class Character extends Sprite
 {
+	private static final long serialVersionUID = 5734238308090470540L;
+	
 	private double currentHealth, defaultHealth;
 	private double speed;
 	private boolean gunVisibility;

@@ -10,6 +10,8 @@ import sprite.character.Character;
 
 public abstract class Weapon extends Item
 {
+	private static final long serialVersionUID = -5855881898898826251L;
+	
 	private double weaponDmg;
 	private double weaponAttackRange;
 	private Projectile projectile;
@@ -31,6 +33,12 @@ public abstract class Weapon extends Item
 		this.currentCoolDownTime = attackRate;
 		this.defaultCoolDownTime = attackRate;
 		this.isCooledDown = true;
+	}
+	
+	public void reloadObject()
+	{
+		super.reloadObject();
+		projectile.reloadObject();
 	}
 	
 	public boolean isCooledDown()

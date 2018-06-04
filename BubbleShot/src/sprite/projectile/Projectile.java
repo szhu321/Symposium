@@ -62,6 +62,7 @@ public abstract class Projectile extends Sprite
 	public Projectile getCopy()
 	{
 		Projectile projectile = new LinearProjectile(getSpriteName(), getSpriteImage(), bulletOwner, getXLocation(), getYLocation(), getWidth(), getHeight(), speed, getFaceAngle(), damage, range);
+		projectile.setSpriteFileName(getSpriteFileName());
 		return projectile;
 	}
 	

@@ -52,6 +52,11 @@ public class CharacterCreationController implements Initializable
 		displayImage();
 	}
 	
+	public void backBtnOnclick() throws Exception
+	{
+		GameRunner.getSceneTracker().switchToPlayMenuView();
+	}
+	
 	public void createCharacterBtn() throws Exception
 	{
 		String str = playerNameField.getText();

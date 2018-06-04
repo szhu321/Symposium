@@ -1,25 +1,18 @@
 package sprite.character.player;
 
-import javafx.scene.image.Image;
 import sprite.character.Character;
-import sprite.character.effect.EffectManager;
-import sprite.character.movement.MovementDrive;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
-import sprite.item.armor.Boots;
-import sprite.item.armor.BreastPlate;
-import sprite.item.armor.Helmet;
-import sprite.item.armor.Legging;
-import sprite.item.collectable.Coin;
 import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
-import sprite.item.shield.Shield;
 import sprite.item.weapon.Fist;
 import sprite.item.weapon.Weapon;
 import sprite.item.weapon.WeaponDesign;
 
 public class Player extends Character
 {
+	private static final long serialVersionUID = 6250201579574452541L;
+	
 	private String spriteName;
 	private Inventory inventory;
 	
@@ -40,6 +33,13 @@ public class Player extends Character
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
 		coins = 0;
+	}
+	
+	public void reloadObject()
+	{
+		super.reloadObject();
+		fist.reloadObject();
+		inventory.reloadObject();
 	}
 	
 	public void addItem(Item newItem)
@@ -107,9 +107,10 @@ public class Player extends Character
 	@Override
 	public void useCurrentItem(String input) 
 	{
+		//System.out.println(getCurrentItem());
 		if(getCurrentItem() == null && input.equals(Item.WEAPON))
 		{
-			//System.out.println("Shoot");
+			
 			fist.useItem();
 			return;
 		}

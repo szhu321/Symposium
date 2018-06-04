@@ -11,6 +11,8 @@ import sprite.character.player.Player;
 
 public class Level implements Serializable
 {
+	private static final long serialVersionUID = -7920860956185670599L;
+	
 	private Room[][] map;
 	private Room currentRoom;
 	
