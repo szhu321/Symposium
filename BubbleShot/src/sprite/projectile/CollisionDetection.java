@@ -27,17 +27,16 @@ public interface CollisionDetection
 		Point[] charSpritePts = new Point[4];
 		charSpritePts[0] = new Point((int)(charSprite.getXCenter() - (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() - (charSprite.getHeight()/2)));
-		charSpritePts[0] = new Point((int)(charSprite.getXCenter() - (charSprite.getWidth()/2)), 
+		charSpritePts[1] = new Point((int)(charSprite.getXCenter() - (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() + (charSprite.getHeight()/2)));
-		charSpritePts[0] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
+		charSpritePts[2] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() - (charSprite.getHeight()/2)));
-		charSpritePts[0] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
+		charSpritePts[3] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() + (charSprite.getHeight()/2)));
 		for(int i = 0; i < 4; i++)
 		{
 			Point currentCorner = charSpritePts[i];
-			Vector2D vMaxTest = new Vector2D((int)(currentCorner.getX() - charSprite.getXCenter()),
-					(int)(currentCorner.getY() - charSprite.getYCenter()));
+			Vector2D vMaxTest = new Vector2D((int)(currentCorner.getX()), (int)(currentCorner.getY()));
 			double currentProjection = vMaxTest.dotProduct(proVectorNormed);
 			if(currentProjection > max)
 				max = currentProjection;
