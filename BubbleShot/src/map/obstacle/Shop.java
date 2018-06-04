@@ -15,7 +15,7 @@ public class Shop extends Obstacle
 	
 	public Item buyItem(Player player)
 	{
-		if(onSale!=null && player.getCoins()>=onSale.getCost())
+		if(!(player.getInventory().isInventoryFull())&&onSale!=null && player.getCoins()>=onSale.getCost())
 		{
 			player.addCoins(-onSale.getCost());
 			Item bought=onSale;
