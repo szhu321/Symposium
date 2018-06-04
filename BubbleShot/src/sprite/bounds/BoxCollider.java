@@ -1,5 +1,7 @@
 package sprite.bounds;
 
+import sprite.projectile.CollisionDetection;
+
 public class BoxCollider
 {
 	private int x;

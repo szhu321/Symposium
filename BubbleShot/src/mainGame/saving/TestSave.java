@@ -21,36 +21,38 @@ public class TestSave
 //			System.out.println("Doesnt exists");
 //		}
 		
-		BoxCollider obj = new BoxCollider(10, 10, 10, 10, 0);
-		ObjectOutputStream objstream = null;
+//		BoxCollider obj = new BoxCollider(10, 10, 10, 10, 0);
+//		ObjectOutputStream objstream = null;
+//		
+//		try //"C:\\Users\\Sheng\\Desktop\\boxcollider.dat"
+//		{
+//			objstream = new ObjectOutputStream(new FileOutputStream(new File("saves/levels/boxcollider.dat")));
+//			objstream.writeObject(obj);
+//			System.out.println("Success");
+//		} 
+//		catch (FileNotFoundException e) 
+//		{
+//			e.printStackTrace();
+//			
+//		} 
+//		catch (IOException e) 
+//		{
+//			e.printStackTrace();
+//		}
+//		finally
+//		{
+//			try 
+//			{
+//				objstream.close();
+//			} 
+//			catch (IOException e) 
+//			{
+//				
+//				e.printStackTrace();
+//			}
+//		}
 		
-		try //"C:\\Users\\Sheng\\Desktop\\boxcollider.dat"
-		{
-			objstream = new ObjectOutputStream(new FileOutputStream(new File("saves/levels/boxcollider.dat")));
-			objstream.writeObject(obj);
-			System.out.println("Success");
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-			
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			try 
-			{
-				objstream.close();
-			} 
-			catch (IOException e) 
-			{
-				
-				e.printStackTrace();
-			}
-		}
+		FileSaver.createPlayerSavesFolder();
 	}
 
 }

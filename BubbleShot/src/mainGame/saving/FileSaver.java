@@ -9,6 +9,7 @@ public class FileSaver
 	
 	public static void savePlayer(Player player)
 	{
+		createPlayerSavesFolder();
 		ObjectOutputStream objstream = null;
 		try 
 		{
@@ -37,5 +38,23 @@ public class FileSaver
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static void createPlayerSavesFolder()
+	{
+		File file = new File("saves");
+		if(!file.exists())
+		{
+			file.mkdirs();
+			System.out.println("saves directory was successfully created.");
+		}
+		
+		File file2 = new File("saves/players");
+		if(!file2.exists())
+		{
+			file2.mkdirs();
+			System.out.println("saves/players directory was successfully created.");
+		}
+	
 	}
 }

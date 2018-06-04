@@ -6,7 +6,7 @@ import sprite.character.Character;
 import java.awt.Point;
 import sprite.projectile.Vector2D;
 
-public interface CollisionDetection
+public class CollisionDetection
 {
 	//dot product
 	//char is a circle, proj is a square
@@ -22,22 +22,22 @@ public interface CollisionDetection
 		//circle is greater than 0 and the magnitude of the normalized vector is greater than 0
 		//there is no collision, otherwise there is
 		double max = Integer.MIN_VALUE;
-		Vector2D projectionVector = new Vector2D(Math.abs(proj.getXCenter() - charSprite.getXCenter()), Math.abs(proj.getYCenter() - charSprite.getYCenter()));
+		Vector2D projectionVector = new Vector2D(proj.getXCenter() - charSprite.getXCenter(), proj.getYCenter() - charSprite.getYCenter());
 		Vector2D proVectorNormed = projectionVector.normalize();
 		Point[] charSpritePts = new Point[4];
 		charSpritePts[0] = new Point((int)(charSprite.getXCenter() - (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() - (charSprite.getHeight()/2)));
-		charSpritePts[0] = new Point((int)(charSprite.getXCenter() - (charSprite.getWidth()/2)), 
+		charSpritePts[1] = new Point((int)(charSprite.getXCenter() - (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() + (charSprite.getHeight()/2)));
-		charSpritePts[0] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
+		charSpritePts[2] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() - (charSprite.getHeight()/2)));
-		charSpritePts[0] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
+		charSpritePts[3] = new Point((int)(charSprite.getXCenter() + (charSprite.getWidth()/2)), 
 				(int)(charSprite.getYCenter() + (charSprite.getHeight()/2)));
 		for(int i = 0; i < 4; i++)
 		{
 			Point currentCorner = charSpritePts[i];
-			Vector2D vMaxTest = new Vector2D((int)(currentCorner.getX() - charSprite.getXCenter()),
-					(int)(currentCorner.getY() - charSprite.getYCenter()));
+			Vector2D vMaxTest = new Vector2D((int)(currentCorner.getX()),
+					(int)(currentCorner.getY()));
 			double currentProjection = vMaxTest.dotProduct(proVectorNormed);
 			if(currentProjection > max)
 				max = currentProjection;

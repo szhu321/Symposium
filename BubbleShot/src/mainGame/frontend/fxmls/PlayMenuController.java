@@ -29,18 +29,16 @@ public class PlayMenuController implements Initializable
 			for(int i = 0; i < players.length; i++)
 			{
 				characterImages[i] = new ImageView(players[i].getSpriteImage());
+				characterImages[i].setStyle("-fx-opacity:.5");
 				characterImages[i].setOnMouseClicked(event -> 
 				{
 					for(int j = 0; j < characterImages.length; j++)
 					{
+						characterImages[j].setStyle("-fx-opacity:.5");
 						if(characterImages[j].equals(event.getTarget()))
 						{
 							selectedPlayer = players[j];
 							characterImages[j].setStyle("-fx-opacity:1");
-						}
-						else
-						{
-							characterImages[j].setStyle("-fx-opacity:0.5");
 						}
 					}
 					//displaySelectedPlayer();

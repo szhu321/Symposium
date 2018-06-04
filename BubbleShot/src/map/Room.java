@@ -12,6 +12,7 @@ import map.obstacle.Obstacle;
 import map.obstacle.StoneWall;
 import myutilities.MyMath;
 import sprite.item.Item;
+import sprite.projectile.CollisionDetection;
 import sprite.projectile.Projectile;
 import sprite.Sprite;
 import sprite.bounds.BoxCollider;
@@ -386,7 +387,7 @@ public class Room implements Serializable
 		//if projectileHitPlayer
 		Player player = getPlayer();
 		//if player collide with projectile and projectile isnt shot by player.
-		if(player.getBoundsOfObject().intersect(projectile.getBoundsOfObject()) && !projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
+		if(CollisionDetection.collides(projectile, player)/*player.getBoundsOfObject().intersect(projectile.getBoundsOfObject())*/ && !projectile.getBulletOwner().equals(Projectile.SHOT_BY_PLAYER))
 		{
 			//System.out.println("Collide With player");
 			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
