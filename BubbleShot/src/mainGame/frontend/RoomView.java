@@ -261,7 +261,7 @@ public class RoomView
 		gc.save();
 		for(Projectile pro : room.getProjectiles())
 		{
-			System.out.println(pro);
+			//System.out.println(pro);
 			rotateGC(gc, pro.getFaceAngle(), pro.getXLocation() + pro.getWidth() / 2, pro.getYLocation() + pro.getHeight() / 2);
 			gc.drawImage(pro.getSpriteImage(), pro.getXLocation(), pro.getYLocation());
 		}
