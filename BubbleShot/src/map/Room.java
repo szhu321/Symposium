@@ -484,59 +484,66 @@ public class Room implements Serializable
 		return getTileAt(character.getXCenter(), character.getYCenter());
 	}
 	
-	public void spawnEnemies()
+	public void spawnEnemies(Boolean BossRoom)
 	{
-		int[][] spawnTile=new int[tiles.length][tiles[0].length];
-		int amountEnemies=(int)((Math.random()*10)+1);
-		//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
-		int playerTileX=(int) ((this.characterCollisionWithTile(this.getPlayer()).getXLocation())/100);
-		int playerTileY=(int) ((this.characterCollisionWithTile(this.getPlayer()).getYLocation())/100);
-		//System.out.println(amountEnemies);
-		int randomType=0;
-		String enemyType="";
-		int randomX=0;
-		int randomY=0;
-		for(int i=0;i<tiles.length;i++)
+		if(!BossRoom)
 		{
-			for(int s=0;s<tiles[0].length;s++)
-			{			
-				spawnTile[i][s]=1;
-				for(int q=0;q<obstacles.size();q++)
-				{
-					if(tiles[i][s].getBoundsOfObject().intersect(obstacles.get(q).getBoundsOfObject()))
-					{	
-						spawnTile[i][s]=0;				
+			int[][] spawnTile=new int[tiles.length][tiles[0].length];
+			int amountEnemies=(int)((Math.random()*10)+1);
+			//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
+			int playerTileX=(int) ((this.characterCollisionWithTile(this.getPlayer()).getXLocation())/100);
+			int playerTileY=(int) ((this.characterCollisionWithTile(this.getPlayer()).getYLocation())/100);
+			//System.out.println(amountEnemies);
+			int randomType=0;
+			String enemyType="";
+			int randomX=0;
+			int randomY=0;
+			for(int i=0;i<tiles.length;i++)
+			{
+				for(int s=0;s<tiles[0].length;s++)
+				{			
+					spawnTile[i][s]=1;
+					for(int q=0;q<obstacles.size();q++)
+					{
+						if(tiles[i][s].getBoundsOfObject().intersect(obstacles.get(q).getBoundsOfObject()))
+						{	
+							spawnTile[i][s]=0;				
+						}			
 					}			
-				}			
-			}
-		}		
-		spawnTile[playerTileY][playerTileX]=2;			
-		spawnTile[playerTileY-1][playerTileX-1]=0;
-		spawnTile[playerTileY-1][playerTileX]=0;
-		spawnTile[playerTileY-1][playerTileX+1]=0;
-		spawnTile[playerTileY][playerTileX-1]=0;
-		spawnTile[playerTileY][playerTileX+1]=0;
-		spawnTile[playerTileY+1][playerTileX-1]=0;
-		spawnTile[playerTileY+1][playerTileX]=0;
-		spawnTile[playerTileY+1][playerTileX+1]=0;
-		
-		while(amountEnemies>0)
-		{
-			if(spawnTile[randomY][randomX]==0||spawnTile[randomY][randomX]==2)
+				}
+			}		
+			spawnTile[playerTileY][playerTileX]=2;			
+			spawnTile[playerTileY-1][playerTileX-1]=0;
+			spawnTile[playerTileY-1][playerTileX]=0;
+			spawnTile[playerTileY-1][playerTileX+1]=0;
+			spawnTile[playerTileY][playerTileX-1]=0;
+			spawnTile[playerTileY][playerTileX+1]=0;
+			spawnTile[playerTileY+1][playerTileX-1]=0;
+			spawnTile[playerTileY+1][playerTileX]=0;
+			spawnTile[playerTileY+1][playerTileX+1]=0;
+			
+			while(amountEnemies>0)
 			{
-				randomX=(int)(Math.random()*spawnTile[0].length);
-				randomY=(int)(Math.random()*spawnTile.length);
-			}
-			else
-			{
-				randomType=(int)(Math.random()*7)+1;
-				this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),randomType));
-				//spawnTile[randomY][randomX]=0;
-				randomX=(int)(Math.random()*spawnTile[0].length);
-				randomY=(int)(Math.random()*spawnTile.length);
-				amountEnemies--;
-			}
+				if(spawnTile[randomY][randomX]==0||spawnTile[randomY][randomX]==2)
+				{
+					randomX=(int)(Math.random()*spawnTile[0].length);
+					randomY=(int)(Math.random()*spawnTile.length);
+				}
+				else
+				{
+					randomType=(int)(Math.random()*7)+1;
+					this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),randomType));
+					//spawnTile[randomY][randomX]=0;
+					randomX=(int)(Math.random()*spawnTile[0].length);
+					randomY=(int)(Math.random()*spawnTile.length);
+					amountEnemies--;
+				}
 		//	System.out.println("AMOUNT ENEMIES: "+amountEnemies);
+			}
+		}
+		else
+		{
+			this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
 		}
 		//debugger
 		/*for(int i=0;i<spawnTile.length;i++)

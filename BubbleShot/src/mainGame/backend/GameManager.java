@@ -110,7 +110,7 @@ public class GameManager
 		resetKeys();
 		if(this.level.getCurrentRoom().isEnemySpawned()==false&&!this.level.getCurrentRoom().isShopRoom())
 		{
-			this.level.getCurrentRoom().spawnEnemies();
+			this.level.getCurrentRoom().spawnEnemies(this.level.getCurrentRoom().isBossRoom());
 			this.level.getCurrentRoom().setEnemySpawned(true);
 		}
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
@@ -559,35 +559,43 @@ public class GameManager
     	for(int i=0; i<enemies.size();i++)
     		if(enemies.get(i) instanceof Enemy)
     		{
-    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("Ghost Brian"))
+    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("ROBOTBOSS"))
     			{
-    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
-    				{
-    					circleRadius=((Enemy)enemies.get(i)).getCircleRadius();
-    					if((shift)&&(left||right||up||down))
-    			    		circleRadius+=200;
-	    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
+	    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("Ghost Brian"))
+	    			{
+	    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
 	    				{
-	    					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
-	    					((Enemy)enemies.get(i)).getBrain().action(sec);
+	    					circleRadius=((Enemy)enemies.get(i)).getCircleRadius();
+	    					if((shift)&&(left||right||up||down))
+	    			    		circleRadius+=200;
+		    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
+		    				{
+		    					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
+		    					((Enemy)enemies.get(i)).getBrain().action(sec);
+		    				}
+		    				else
+		    				{
+		    					((Enemy)enemies.get(i)).getBrain().wander(sec);
+		    				}
 	    				}
 	    				else
 	    				{
-	    					((Enemy)enemies.get(i)).getBrain().wander(sec);
+	    			    	((Enemy)enemies.get(i)).getBrain().action(sec);
 	    				}
-    				}
-    				else
-    				{
-    			    	((Enemy)enemies.get(i)).getBrain().action(sec);
-    				}
+	    			}
+	    			else
+	    			{
+						calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
+						((Enemy)enemies.get(i)).getBrain().action(sec);
+	    			}
     			}
     			else
-    			{
-					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
-					((Enemy)enemies.get(i)).getBrain().action(sec);
-    			}
-    		}    		
-   	}
+        		{
+        			((Enemy)enemies.get(i)).getBrain().action(sec);
+        			((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()+1);
+        		}
+    		}    		   	
+  	}
     
 	public void pauseGame()
 	{

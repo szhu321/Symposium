@@ -83,6 +83,16 @@ public class LevelDesign
 		return level3;
 	}
 	
+	public static Level getLevelTestBoss()
+	{
+		Level level2 = new Level(1,2);
+		level2.addRoomTo(RoomDesign.getRoomDesignOne(), 0, 0);	
+		level2.addRoomTo(RoomDesign.getBossRoomDesignOne(), 1, 0);	
+		level2.placeTeleportersInLevel();
+		level2.setCurrentRoom(0, 0);
+		return level2;
+	}
+	
 	public static Level getRandomLevelDesign(int rows, int cols)
 	{
 		Level level = new Level(rows, cols);

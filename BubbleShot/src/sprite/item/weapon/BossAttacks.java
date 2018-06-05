@@ -1,13 +1,20 @@
 package sprite.item.weapon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
 
 public class BossAttacks 
 {
-	public static Weapon[] getBossOneAtkPattern()
+	public static List<Weapon> getBossOneAtkPattern(double x, double y)
 	{
-		return null;
+		List<Weapon> atkList=new ArrayList<Weapon>();
+		atkList.add(BossAttacks.getBossAtkOne(x,y));
+		atkList.add(BossAttacks.getBossAtkTwo(x,y));
+		atkList.add(BossAttacks.getBossAtkThree(x,y));
+		return atkList;
 	}
 	
 	public static BossWepOne getBossAtkOne(double x, double y)
@@ -20,6 +27,7 @@ public class BossAttacks
 		int bulletPerShot = 5;
 		int ammoUsedPerShot = 0;
 		BossWepOne shotgun = new BossWepOne("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
+		shotgun.setAutomatic(true);
 		return shotgun;
 	}
 	
@@ -33,6 +41,7 @@ public class BossAttacks
 		int bulletPerShot = 1;
 		int ammoUsedPerShot = 0;
 		BossWepTwo shotgun = new BossWepTwo("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
+		shotgun.setAutomatic(true);
 		return shotgun;
 	}
 	
@@ -46,6 +55,7 @@ public class BossAttacks
 		int bulletPerShot = 360;
 		int ammoUsedPerShot = 0;
 		BossWepThree shotgun = new BossWepThree("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
+		shotgun.setAutomatic(true);
 		return shotgun;
 	}
 }

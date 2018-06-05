@@ -1,8 +1,12 @@
 package sprite.character.enemy;
 
+
+import java.util.List;
+
 import sprite.character.enemy.ai.AI;
 import sprite.character.enemy.ai.Astar;
 import sprite.character.player.Player;
+import sprite.item.weapon.BossAttacks;
 import sprite.item.weapon.Weapon;
 import sprite.item.weapon.WeaponDesign;
 
@@ -55,7 +59,7 @@ public class EnemyDesign
 	
 	public static Enemy getRegularDesignTwo(double x, double y, Player player)
 	{
-		String fileName = "file:resources/enemy/enemy.png";
+		String fileName = "file:resources/enemy/ghost.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
 		Enemy enemy=new Ghost("Ghost Brian",fileName, x, y,50, 100, 50, 50, pistol,player,Enemy.GHOST);
@@ -121,8 +125,11 @@ public class EnemyDesign
 	public static Boss getBossDesignOne(double x, double y, Player player)
 	{
 		String fileName = "file:resources/enemy/robo.png";
-		Weapon[] atkPatterns=new Weapon[4];
-		Boss boss=new RobotBoss("ROBOTBOSS",fileName, x, y,250, 130, 50, 50, null,player,Enemy.ROBOTBOSS,null);
+		List<Weapon> weps=BossAttacks.getBossOneAtkPattern(x, y);
+		Boss boss=new RobotBoss("ROBOTBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
+		for(Weapon w:weps)
+			w.setPossessor(boss);
+		boss.setGunVisibility(false);
 		return boss;
 	}
 }

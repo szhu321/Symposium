@@ -52,7 +52,9 @@ public class RoomDesign
 		room.addItem(ArmorDesign.getLeggingDesignOne(820, 330));
 		room.addItem(ArmorDesign.getBootsDesignOne(820, 430));
 		room.addItem(ShieldDesign.getShieldDesignOne(820, 530));
-		
+		room.setBossRoom(false);
+		room.setAllEnemyDead(true);
+		room.setEnemySpawned(true);
 		return room;
 	}
 	
@@ -91,6 +93,9 @@ public class RoomDesign
 		room.addObstacle(new Shop(100,100,600,100,0));
 		room.addObstacle(new Shop(100,100,800,100,0));
 		room.addObstacle(new Shop(100,100,200,300,0));
+		room.setBossRoom(false);
+		room.setAllEnemyDead(true);
+		room.setEnemySpawned(true);
 		return room;
 	}
 	

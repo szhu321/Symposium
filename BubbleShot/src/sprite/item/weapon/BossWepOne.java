@@ -29,7 +29,6 @@ public class BossWepOne extends Weapon
 			//long pasttime = System.nanoTime();
 			//Creating a copy of the weapon's projectile;
 			int numOfBullets = bulletPerShot;
-			
 			while(numOfBullets > 0)
 			{
 				numOfBullets--;
