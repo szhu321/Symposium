@@ -30,6 +30,7 @@ public abstract class Enemy extends Character
 	public static final String TOWER="tower";
 	public static final String SPAWNER1="spawner1";
 	public static final String SPAWNER2="spawner2";
+	public static final String ROBOTBOSS="robotboss";
 	
 	public Enemy(String spriteName,String fileName, double xLocation, double yLocation, double health, double speed,
 			double width, double height,Item weapon,Player player,String enemyType) 

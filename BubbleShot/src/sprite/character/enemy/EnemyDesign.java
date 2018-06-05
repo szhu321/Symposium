@@ -46,7 +46,7 @@ public class EnemyDesign
 	
 	public static Enemy getRegularDesignOne(double x, double y, Player player)
 	{
-		String fileName = "file:resources/enemy/robo.png";
+		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
 		Enemy enemy=new Regular("Brian",fileName, x, y,50, 80, 50, 50, pistol,player,Enemy.FOLLOWER);
@@ -55,7 +55,7 @@ public class EnemyDesign
 	
 	public static Enemy getRegularDesignTwo(double x, double y, Player player)
 	{
-		String fileName = "file:resources/enemy/robo.png";
+		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y);
 		pistol.setDefaultCoolDownTime(.3);
 		Enemy enemy=new Ghost("Ghost Brian",fileName, x, y,50, 100, 50, 50, pistol,player,Enemy.GHOST);
@@ -73,7 +73,7 @@ public class EnemyDesign
 	
 	public static Enemy getSwordDesignOne(double x, double y, Player player)
 	{
-		String fileName = "file:resources/enemy/robo.png";
+		String fileName = "file:resources/enemy/enemy.png";
 		Weapon sword=WeaponDesign.getSwordDesignOne(x, y);
 		sword.setDefaultCoolDownTime(.8);
 		Enemy enemy=new Swordsman("Sword Brian",fileName, x, y,50, 130, 50, 50, sword,player,Enemy.MELEE);
@@ -118,8 +118,11 @@ public class EnemyDesign
 		return enemy;
 	}
 	
-	public static Boss getBossDesignOne()
+	public static Boss getBossDesignOne(double x, double y, Player player)
 	{
-		return null;
+		String fileName = "file:resources/enemy/robo.png";
+		Weapon[] atkPatterns=new Weapon[4];
+		Boss boss=new RobotBoss("ROBOTBOSS",fileName, x, y,250, 130, 50, 50, null,player,Enemy.ROBOTBOSS,null);
+		return boss;
 	}
 }

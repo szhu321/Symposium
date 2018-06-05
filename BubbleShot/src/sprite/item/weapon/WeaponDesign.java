@@ -119,4 +119,5 @@ public class WeaponDesign
 		Sword sword = new Sword("Sword", x, y, damage, attackRate, attackRange, projectile,5);
 		return sword;
 	}
+	
 }

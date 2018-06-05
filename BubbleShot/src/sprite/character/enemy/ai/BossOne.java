@@ -6,8 +6,8 @@ import sprite.character.player.Player;
 public class BossOne extends AI
 {
 
-	public BossOne(Enemy enemy, Player player, String name) {
-		super(enemy, player, name);
+	public BossOne(Enemy enemy, Player player) {
+		super(enemy, player, "BossOne");
 		// TODO Auto-generated constructor stub
 	}
 

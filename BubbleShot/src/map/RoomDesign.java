@@ -9,6 +9,7 @@ import sprite.item.armor.ArmorDesign;
 import sprite.item.collectable.CoinDesign;
 import sprite.item.potion.PotionDesign;
 import sprite.item.shield.ShieldDesign;
+import sprite.item.weapon.BossAttacks;
 import sprite.item.weapon.WeaponDesign;
 
 public class RoomDesign
@@ -41,7 +42,7 @@ public class RoomDesign
 		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
 		room.addItem(WeaponDesign.getSniperDesignEPIC(400, 140));
 		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500));
-		room.addItem(WeaponDesign.getShotgunDesignEPIC(300, 140));
+		room.addItem(BossAttacks.getBossAtkThree(300, 140));
 		room.addItem(WeaponDesign.getSwordDesignOne(500, 100));
 		room.addItem(WeaponDesign.getAssaultRifleDesignOne(600, 140));
 		
