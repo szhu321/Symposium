@@ -57,6 +57,7 @@ public abstract class Enemy extends Character
 	}
 
 	public Item getWeapon()	{return weapon;}
+	public void setWeapon(Item wep)	{weapon=wep;}
 	public HealthBar getHealthbar() {return healthbar;}
 	
 	@Override

@@ -4,7 +4,7 @@ import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.item.weapon.Weapon;
 
-public class Boss extends Enemy
+public abstract class Boss extends Enemy
 {
 	private Item[] allWep;
 	
@@ -14,8 +14,8 @@ public class Boss extends Enemy
 		allWep=wepArr;
 	}
 
-	public void switchWeapon()
+	public void switchWeapon(int wepNum)
 	{
-		
+		this.setWeapon(allWep[wepNum]);
 	}
 }
