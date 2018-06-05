@@ -81,6 +81,7 @@ public class GameManager
 	public void startGame()
 	{
 		TimeTracker.resetTime();
+		setScene(playingScene.getScene());
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
@@ -93,7 +94,6 @@ public class GameManager
 			//System.out.println(level.allDead());
 		});
 		TimerManager.addKeyFrameToNewTimeline(keyframe);
-		setScene(playingScene.getScene());
 	}
 	
 	public static void setScene(Scene scene)
@@ -112,6 +112,27 @@ public class GameManager
 			this.level.getCurrentRoom().spawnEnemies();
 			this.level.getCurrentRoom().setEnemySpawned(true);
 		}
+		playingScene = new PlayingScene(this.level.getCurrentRoom());
+		setSceneControls(playingScene.getScene());
+		if(window.isFullScreen())
+		{
+			GameRunner.setScene(playingScene.getScene());
+			window.setFullScreenExitHint("");
+			window.setFullScreen(true);
+		}
+		else
+		{
+			GameRunner.setScene(playingScene.getScene());
+		}
+		TimerManager.resumeAll();
+	}
+	
+	public void changeLevel(Level level)
+	{
+		TimerManager.pauseAll();
+		resetKeys();
+		this.level = level;
+		this.level.getCurrentRoom().addCharacter(player);
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		if(window.isFullScreen())
