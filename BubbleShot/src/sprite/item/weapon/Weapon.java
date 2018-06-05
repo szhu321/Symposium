@@ -19,6 +19,7 @@ public abstract class Weapon extends Item
 	private boolean isCooledDown;
 	private double currentCoolDownTime;
 	private double defaultCoolDownTime;
+	private boolean isAutomatic;
 	
 	public Weapon(String spriteName,String fileName, double xLocation, double yLocation, 
 			 double damage, double attackRate, double attackRange, Projectile projectile, double width, double height, int ammoUsed,int cost) 
@@ -33,6 +34,7 @@ public abstract class Weapon extends Item
 		this.currentCoolDownTime = attackRate;
 		this.defaultCoolDownTime = attackRate;
 		this.isCooledDown = true;
+		isAutomatic = false;
 	}
 	
 	public void reloadObject()
@@ -152,5 +154,15 @@ public abstract class Weapon extends Item
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isAutomatic()
+	{
+		return isAutomatic;
+	}
+
+	public void setAutomatic(boolean isAutomatic)
+	{
+		this.isAutomatic = isAutomatic;
 	}
 }

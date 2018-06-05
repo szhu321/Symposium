@@ -52,13 +52,14 @@ public class GameManager
 	private static Stage window;
 	private int framesPerSec = 60;
 	
-	private Boolean up = false;
-	private Boolean down = false;
-	private Boolean left = false;
-	private Boolean right = false;
-	private Boolean shift = false;
-	private Boolean mouseDown = false;
+	private boolean up = false;
+	private boolean down = false;
+	private boolean left = false;
+	private boolean right = false;
+	private boolean shift = false;
+	private boolean mouseDown = false;
 	private double mouseAngle = 0.0;
+	private boolean isClick = false;
 	
 	private boolean displayInventory = false;
 	
@@ -743,7 +744,21 @@ public class GameManager
 		return mouseYUnajusted;
 	}
 	
-
+	/**
+	 * Checking to see if the mouse clicked.
+	 * Afterwards making isClick false.
+	 * @return true if the mouse clicked false otherwise
+	 */
+	public boolean isClick()
+	{
+		if(isClick)
+		{
+			isClick = false;
+			return true;
+		}
+		return false;
+	}
+	
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
@@ -836,8 +851,10 @@ public class GameManager
 			if(player.getInventory().getSelectedItem() != null)
 				playerDropSeceltedItem();
 			else
+			{
 				mouseDown = true;
-			//player.getInventory().returnSelectedItem();
+				isClick = true;
+			}//player.getInventory().returnSelectedItem();
 			
 		});
 		scene.setOnMouseReleased(event -> mouseDown = false);

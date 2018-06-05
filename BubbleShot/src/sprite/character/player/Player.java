@@ -1,5 +1,6 @@
 package sprite.character.player;
 
+import mainGame.GameRunner;
 import sprite.character.Character;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
@@ -129,10 +130,13 @@ public class Player extends Character
 		}
 		if(input.equals(Item.WEAPON)&&inventory.getCurrentItem().getItemType().equals(Item.WEAPON))
 		{
-			if(currentAmmo - ((Weapon) inventory.getCurrentItem()).getAmmoUsed() >= 0)
+			if(((Weapon) inventory.getCurrentItem()).isAutomatic() || (!((Weapon) inventory.getCurrentItem()).isAutomatic() && GameRunner.getGameManager().isClick()))
 			{
-				if(((Weapon) inventory.getCurrentItem()).useItem())
-					currentAmmo -= ((Weapon) inventory.getCurrentItem()).getAmmoUsed();
+				if(currentAmmo - ((Weapon) inventory.getCurrentItem()).getAmmoUsed() >= 0)
+				{
+					if(((Weapon) inventory.getCurrentItem()).useItem())
+						currentAmmo -= ((Weapon) inventory.getCurrentItem()).getAmmoUsed();
+				}
 			}
 		}
 	}
