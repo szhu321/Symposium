@@ -780,9 +780,15 @@ public class GameManager
 			if(code == KeyCode.P)
 			{
 				if(TimerManager.isPaused)
+				{
 					unPauseGame();
+					playingScene.getInGameMenu().setVisible(false);
+				}
 				else
+				{
 					pauseGame();
+					playingScene.getInGameMenu().setVisible(true);
+				}
 			}
 			
 		});

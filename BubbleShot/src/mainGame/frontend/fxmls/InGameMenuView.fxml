@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Group fx:id="menu" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.InGameMenuController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" />
       <VBox prefHeight="200.0" prefWidth="100.0" />
       <VBox prefHeight="200.0" prefWidth="100.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" />
+      <VBox fx:id="settingsView" prefHeight="200.0" prefWidth="100.0" visible="false">
+         <children>
+            <Button mnemonicParsing="false" text="Back" />
+         </children></VBox>
+      <VBox fx:id="mainView" alignment="CENTER" prefHeight="252.0" prefWidth="140.0" spacing="10.0">
+         <children>
+            <Button fx:id="saveGameBtn" mnemonicParsing="false" text="Save Game">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="loadGameBtn" mnemonicParsing="false" text="Load Game">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="settingsBtn" mnemonicParsing="false" text="Settings">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#quitBtnOnclick" text="Quit">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+         </children>
+      </VBox>
    </children>
 </Group>

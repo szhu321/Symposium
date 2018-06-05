@@ -23,6 +23,11 @@ public class SceneTracker
 		this.window.setScene(scene);
 	}
 	
+	public void useScene()
+	{
+		window.setScene(scene);
+	}
+	
 	public void switchToMainMenuView() throws Exception
 	{
 		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/MainMenuView.fxml")));

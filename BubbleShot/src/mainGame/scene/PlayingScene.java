@@ -1,7 +1,9 @@
 package mainGame.scene;
 
+import java.io.IOException;
 import java.util.List;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -85,6 +87,7 @@ public class PlayingScene
 	private Canvas miniMap;
 	
 	private RoomView roomView;
+	private Group inGameMenu;
 	
 	public PlayingScene(Room room)
 	{
@@ -120,7 +123,25 @@ public class PlayingScene
 		loadHeadsUpDis();
 		loadMiniMap();
 		loadInventoryDis();
-		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis(), holdingItem);
+		loadInGameMenu();
+		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis(), holdingItem, inGameMenu);
+	}
+	
+	public void loadInGameMenu()
+	{
+		inGameMenu = new Group();
+		try 
+		{
+			inGameMenu.getChildren().setAll((Group)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/InGameMenuView.fxml")));
+			inGameMenu.layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-30));
+			inGameMenu.layoutYProperty().bind(GameRunner.getWindow().heightProperty().divide(2).add(-50));
+			inGameMenu.setVisible(false);
+		} 
+		catch (IOException e)
+		{
+			//D:
+			e.printStackTrace();
+		}
 	}
 	
 	public void loadMiniMap()
@@ -170,19 +191,21 @@ public class PlayingScene
 		healthBoxContainer.getChildren().addAll(bottomHealthBox, topHealthBox);
 		*/
 	
-		Button pauseBtn = new Button("Pause");
-		pauseBtn.setOnMousePressed(event -> 
+		Button igMenuBtn = new Button("Menu");
+		igMenuBtn.setOnMousePressed(event -> 
 		{
 			if(TimerManager.isPaused)
 			{
 				TimeTracker.resetTime();
 				TimerManager.resumeAll();
 				TimerManager.isPaused = false;
+				inGameMenu.setVisible(false);
 			}
 			else
 			{
 				TimerManager.pauseAll();
 				TimerManager.isPaused = true;
+				inGameMenu.setVisible(true);
 			}
 		});
 		
@@ -193,7 +216,7 @@ public class PlayingScene
 		ammobar = new AmmoBar(350, 50, currentRoom.getPlayer().getDefaultAmmo());
 		healthShieldContainer.getChildren().addAll(healthbar.getCanvas(), shieldBar.getCanvas());
 		
-		topBox.getChildren().addAll(healthShieldContainer, /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, pauseBtn);
+		topBox.getChildren().addAll(healthShieldContainer, /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, igMenuBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
@@ -333,6 +356,11 @@ public class PlayingScene
 	public void setCurrentRoom(Room room)
 	{
 		currentRoom = room;
+	}
+	
+	public Group getInGameMenu()
+	{
+		return inGameMenu;
 	}
 	
 	/* Node GUI approach. No longer in use.

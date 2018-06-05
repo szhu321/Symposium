@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import mainGame.GameRunner;
 
 public class InGameMenuController 
 {
@@ -20,7 +21,23 @@ public class InGameMenuController
 	public Button settingsBtn;
 	public Button controlsBtn;
 	
-	public void dw()
+	public void loadGameBtnOnclick()
+	{
+		
+	}
+	
+	public void saveGameBtnOnclick()
+	{
+		
+	}
+	
+	public void quitBtnOnclick() throws Exception
+	{
+		GameRunner.getSceneTracker().useScene();
+		GameRunner.getSceneTracker().switchToMainMenuView();
+	}
+	
+	public void controlsBtnOnclick()
 	{
 		
 	}
