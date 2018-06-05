@@ -13,6 +13,7 @@ import sprite.Sprite;
  */
 public abstract class Projectile extends Sprite
 {
+	private static final long serialVersionUID = -346498712394367096L;
 	public static final String SHOT_BY_PLAYER = "player";
 	public static final String SHOT_BY_ENEMY = "enemy";
 	

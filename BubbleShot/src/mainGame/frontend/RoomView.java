@@ -21,12 +21,12 @@ import sprite.projectile.Projectile;
 
 public class RoomView
 {
-	private static boolean displayCharacterNames = false;
-	private static boolean displayItemNames = false;
-	private static boolean displayCharacterShadow = true;
-	private static boolean displayItemShadow = true;
-	private static boolean displayObstacleShadow = true;
-	private static boolean displayItemRotating = true;
+	public static boolean displayCharacterNames = false;
+	public static boolean displayItemNames = false;
+	public static boolean displayCharacterShadow = true;
+	public static boolean displayItemShadow = true;
+	public static boolean displayObstacleShadow = true;
+	public static boolean displayItemRotating = true;
 	
 	private Canvas canvas;
 	private Room room;
