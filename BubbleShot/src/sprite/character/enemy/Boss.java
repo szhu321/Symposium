@@ -9,6 +9,7 @@ import sprite.item.weapon.Weapon;
 public abstract class Boss extends Enemy
 {
 	private List<Weapon> allWep;
+	boolean followPlayer;
 	
 	public Boss(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed,
 			double width, double height, Item weapon, Player player, String enemyType, List<Weapon> wepArr) {

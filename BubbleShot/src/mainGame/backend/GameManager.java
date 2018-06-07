@@ -591,8 +591,9 @@ public class GameManager
     			}
     			else
         		{
+    				if(((Enemy)enemies.get(i)).getBrain().isFollowPlayer())
+    					((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()+1);
         			((Enemy)enemies.get(i)).getBrain().action(sec);
-        			((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()+1);
         		}
     		}    		   	
   	}

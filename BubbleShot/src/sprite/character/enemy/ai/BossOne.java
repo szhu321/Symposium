@@ -22,7 +22,7 @@ public class BossOne extends AI
 		{
 			wepIdx=(int)(Math.random()*3);
 			((Boss)(this.getEnemy())).switchWeapon(wepIdx);
-		}			
+		}	
 		this.getEnemy().useCurrentItem(Item.WEAPON);	
 		time++;
 	}

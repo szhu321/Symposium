@@ -38,10 +38,11 @@ public class BossWepTwo extends Weapon
 				
 				Projectile projectile = this.getProjectile().getCopy();
 				Character character = getPossessor();
+				((Enemy)character).getBrain().setFollowPlayer(false);
 				double characterCenterX = character.getXLocation() + character.getWidth() / 2;
 				double characterCenterY = character.getYLocation() + character.getHeight() / 2;
-				double projectileStartX = (characterCenterX - projectile.getWidth() / 2) + (Math.cos(Math.toRadians(character.getFaceAngle())) * character.getWidth());
-				double projectileStartY = (characterCenterY - projectile.getHeight() / 2) + (Math.sin(Math.toRadians(character.getFaceAngle())) * character.getHeight());
+				double projectileStartX = characterCenterX;
+				double projectileStartY = characterCenterY;
 				
 				//int flip = (int)(Math.random() * 4);
 				double faceAngle=0;

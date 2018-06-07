@@ -15,6 +15,7 @@ public abstract class AI
 	private String name;
 	private int directionSecs;
 	private int direction;
+	private boolean followPlayer;
 	
 	public AI(Enemy enemy, Player player,String name)
 	{
@@ -23,6 +24,7 @@ public abstract class AI
 		this.name=name;
 		directionSecs=1;
 		direction=0;
+		followPlayer=false;
 	}
 	
 	public String getName() {
@@ -73,4 +75,12 @@ public abstract class AI
 	
 	public Enemy getEnemy()	{return enemy;}
 	public Player getPlayer(){return player;}
+
+	public boolean isFollowPlayer() {
+		return followPlayer;
+	}
+
+	public void setFollowPlayer(boolean followPlayer) {
+		this.followPlayer = followPlayer;
+	}
 }
