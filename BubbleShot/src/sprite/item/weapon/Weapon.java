@@ -5,6 +5,7 @@ import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.projectile.LinearProjectile;
+import sprite.projectile.PenetrationBullet;
 import sprite.projectile.Projectile;
 import sprite.character.Character;
 
@@ -132,6 +133,7 @@ public abstract class Weapon extends Item
 			//long pasttime = System.nanoTime();
 			//Creating a copy of the weapon's projectile;
 			Projectile projectile = this.projectile.getCopy();
+			
 			Character character = getPossessor();
 			double characterCenterX = character.getXLocation() + character.getWidth() / 2;
 			double characterCenterY = character.getYLocation() + character.getHeight() / 2;
@@ -146,7 +148,6 @@ public abstract class Weapon extends Item
 			projectile.setXLocation(projectileStartX);
 			projectile.setYLocation(projectileStartY);
 			projectile.setDamage(getDamage());
-			
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCooledDown(false);
