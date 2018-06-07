@@ -43,15 +43,6 @@ public class PenetrationBullet extends LinearProjectile
 		return false;
 	}
 	
-	public Projectile getCopy()
-	{
-		PenetrationBullet pro = (PenetrationBullet) super.getCopy();
-		pro.setPenetrationCount(penetrationCount);
-		pro.currentPeneCharacter = null;
-		pro.peneCharacters = new ArrayList<Character>();
-		return pro;
-	}
-	
 	public void setPenetrationCount(int penetrationCount)
 	{
 		this.penetrationCount = penetrationCount;

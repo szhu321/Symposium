@@ -111,8 +111,10 @@ public class RoomView
 					gc.fillPolygon(xPoints, yPoints, 6);
 				}
 			}
-			gc.restore();
 		}
+		gc.setFont(new Font(50));
+		gc.setFill(Color.WHITE);
+		gc.setStroke(Color.BLACK);
 		for(Obstacle obs : room.getObstacles())
 		{
 			for(double x = obs.getXLocation(); x < obs.getXLocation() + obs.getWidth(); x += 100)
@@ -121,12 +123,16 @@ public class RoomView
 				{
 					gc.drawImage(obs.getSpriteImage(), x, y, 100, 100);
 					if(obs instanceof Shop && ((Shop)obs).getOnSale()!=null)
+					{
 						gc.drawImage(((Shop)obs).getOnSale().getSpriteImage(), obs.getXCenter()-((Shop)obs).getOnSale().getWidth()/2, y,((Shop)obs).getOnSale().getWidth(),((Shop)obs).getOnSale().getHeight());
+						gc.fillText(((Shop)obs).getOnSale().getCost() + "G ", obs.getXLocation(), obs.getYLocationMax(), obs.getWidth());
+						gc.strokeText(((Shop)obs).getOnSale().getCost() + "G ", obs.getXLocation(), obs.getYLocationMax(), obs.getWidth());
+					}
 				}
 			}
 			//gc.drawImage(obs.getSpriteImage(), obs.getXLocation(), obs.getYLocation(), obs.getWidth(), obs.getHeight());
 		}
-		
+		gc.restore();
 	}
 	
 	public static void drawCharacters(GraphicsContext gc, Room room)

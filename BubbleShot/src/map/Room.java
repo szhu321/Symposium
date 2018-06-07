@@ -13,6 +13,7 @@ import map.obstacle.StoneWall;
 import myutilities.MyMath;
 import sprite.item.Item;
 import sprite.projectile.CollisionDetection;
+import sprite.projectile.PenetrationBullet;
 import sprite.projectile.Projectile;
 import sprite.Sprite;
 import sprite.bounds.BoxCollider;
@@ -394,6 +395,8 @@ public class Room implements Serializable
 			//System.out.println("Collide With player");
 			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
 			//projectiles.remove(projectile);
+			if(projectile instanceof PenetrationBullet && !((PenetrationBullet)projectile).isDown(player))
+				return false;
 			return true;
 		}
 		//if enemy collide with player projectile
