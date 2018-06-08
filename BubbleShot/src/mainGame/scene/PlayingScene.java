@@ -272,6 +272,7 @@ public class PlayingScene
 		}
 		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
 		headUpDis.setPrefWidth(GameRunner.getWindowWidth());
+		//System.out.println(GameRunner.getWindowWidth());
 	}
 	
 	private GridPane getInventoryDisGUI()

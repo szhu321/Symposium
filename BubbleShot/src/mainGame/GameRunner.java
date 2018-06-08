@@ -3,6 +3,7 @@ package mainGame;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
 import mainGame.backend.GameManager;
 import mainGame.saving.FileReader;
 import map.Level;
@@ -45,8 +46,8 @@ public class GameRunner extends Application
 		
 		
 		
-		window.setMinHeight(700);
-		window.setMinWidth(700);
+		window.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		window.setMinWidth(Screen.getPrimary().getVisualBounds().getWidth());
 		window.show();
 	}
 	

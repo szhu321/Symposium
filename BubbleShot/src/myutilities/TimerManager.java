@@ -40,6 +40,12 @@ public class TimerManager
 		}
 	}
 	
+	public static void reset()
+	{
+		timers = new ArrayList<Timeline>();
+		isPaused = false;
+	}
+	
 	public static void addKeyFrameToNewTimeline(KeyFrame keyframe)
 	{
 		Timeline tempTimeline = new Timeline();

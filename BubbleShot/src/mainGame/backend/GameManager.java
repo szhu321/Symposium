@@ -77,6 +77,7 @@ public class GameManager
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		this.window = window;
+		TimerManager.reset();
 	}
 	
 	public void startGame()
