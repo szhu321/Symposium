@@ -522,6 +522,7 @@ public class GameManager
 										//System.out.println(col);
 										if(level.getCurrentRoom().isAllEnemyDead())
 										{
+											//if(currentTele.)
 											currentTele.getConnectedTeleporter().setWasUsed(true);
 											currentTele.getConnectedTeleporter().setPlayerOn(true);
 											t.setWasUsed(false);
