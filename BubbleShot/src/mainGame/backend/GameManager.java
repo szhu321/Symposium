@@ -68,6 +68,7 @@ public class GameManager
 	private double mouseXUnajusted = 0.0;
 	private double mouseYUnajusted = 0.0;
 	
+	private Teleporter currentTeleporterTracker;
 	
 	public GameManager(Level level, Player player, Stage window)
 	{
@@ -182,7 +183,7 @@ public class GameManager
 		manageCharacterDeath();
 		runAllCharacterEffects(((double)milliSecond) / 1000);
 		playerPickUpItem();
-		teleportChecker();
+		teleportChecker(((double)milliSecond) / 1000);
 		instantCollectableAttract(((double)milliSecond) / 1000);
 		updateShield(((double)milliSecond) / 1000);
 		playingScene.updateAllLocation();
@@ -475,7 +476,7 @@ public class GameManager
 		player.addYLocation(deltaY);
 	}
 
-	public void teleportChecker()
+	public void teleportChecker(double sec)
 	{
 		Tile[][] teleChecker=level.getCurrentRoom().getTiles();
 		for(Character c: level.getCurrentRoom().getCharacters())
@@ -514,6 +515,15 @@ public class GameManager
 									if(t.getXLocation()/100==s && t.getYLocation()/100==i)
 									{
 										Teleporter currentTele=t;
+										if(!currentTele.equals(currentTeleporterTracker))
+										{
+											currentTeleporterTracker = currentTele;
+											currentTele.resetTimer();
+										}
+										if(!currentTele.runTimer(sec))
+										{
+											return;
+										}
 										//System.out.println(currentTele.getConnectedTeleporter().getId());
 										//System.out.println(currentTele.getId());
 										int row=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelRow();
