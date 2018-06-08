@@ -4,9 +4,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import map.Level;
 import map.Room;
+import myutilities.StaticImage;
 
 public class MiniLevelMap
 {
+	private static int boxSize = 20;
+	private static int boxGap = 10;
+	
+	private static int startX = 10;
+	private static int startY = 10;
 	
 	private static void fillBackground(GraphicsContext gc)
 	{
@@ -48,6 +54,14 @@ public class MiniLevelMap
 					{
 						gc.setFill(Color.YELLOW);
 						gc.fillRect(x, y, 20, 20);
+					}
+					if(rooms[i][j].isShopRoom())
+					{
+						gc.drawImage(StaticImage.SHOP_IMAGE, x, y, 20, 20);
+					}
+					if(rooms[i][j].isBossRoom())
+					{
+						gc.drawImage(StaticImage.ROBO_BOSS_IMAGE, x, y, 20, 20);
 					}
 				}
 			}
