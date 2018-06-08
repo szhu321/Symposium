@@ -41,7 +41,7 @@ public class BossWepOne extends Weapon
 				double projectileStartX = characterCenterX ;
 				double projectileStartY = characterCenterY ;
 				
-				int flip = (int)(Math.random() * 4);
+				int flip = (int)(Math.random() * 3);
 				int angleOffset = (int)(offsetAngle);
 				double faceAngle=0;
 				if(flip == 0)
@@ -49,9 +49,7 @@ public class BossWepOne extends Weapon
 				if(flip == 1)
 					faceAngle = character.getFaceAngle() - angleOffset;
 				if(flip == 2)
-					faceAngle = character.getFaceAngle() - angleOffset+90;
-				if(flip == 3)
-					faceAngle = character.getFaceAngle() - angleOffset-90;
+					faceAngle = character.getFaceAngle() - angleOffset+120;
 				if(faceAngle > 360)
 					faceAngle = faceAngle % 360;
 				if(faceAngle < 0)
