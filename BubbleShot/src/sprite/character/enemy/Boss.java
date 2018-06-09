@@ -21,4 +21,12 @@ public abstract class Boss extends Enemy
 	{
 		this.setWeapon(allWep.get(wepNum));
 	}
+
+	public List<Weapon> getAllWep() {
+		return allWep;
+	}
+
+	public void setAllWep(List<Weapon> allWep) {
+		this.allWep = allWep;
+	}
 }

@@ -16,6 +16,7 @@ public abstract class AI
 	private int directionSecs;
 	private int direction;
 	private boolean followPlayer;
+	boolean clockwise;
 	
 	public AI(Enemy enemy, Player player,String name)
 	{
@@ -25,6 +26,7 @@ public abstract class AI
 		directionSecs=1;
 		direction=0;
 		followPlayer=false;
+		clockwise=true;
 	}
 	
 	public String getName() {
@@ -82,5 +84,17 @@ public abstract class AI
 
 	public void setFollowPlayer(boolean followPlayer) {
 		this.followPlayer = followPlayer;
+	}
+
+	public boolean isClockwise() {
+		return clockwise;
+	}
+
+	public void setClockwise(boolean clockwise) {
+		this.clockwise = clockwise;
+	}
+	
+	public void switchClockwise() {
+		clockwise= !clockwise;
 	}
 }

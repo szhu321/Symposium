@@ -14,12 +14,13 @@ public class BossAttacks
 		atkList.add(BossAttacks.getBossAtkOne(x,y));
 		atkList.add(BossAttacks.getBossAtkTwo(x,y));
 		atkList.add(BossAttacks.getBossAtkThree(x,y));
+		atkList.add(BossAttacks.getBossAtkFour(x,y));
 		return atkList;
 	}
 	
 	public static BossWepOne getBossAtkOne(double x, double y)
 	{
-		double damage = 5;
+		double damage = 1;
 		double attackRate = .05;
 		double attackRange = 500;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
@@ -33,8 +34,8 @@ public class BossAttacks
 	
 	public static BossWepTwo getBossAtkTwo(double x, double y)
 	{
-		double damage = 5;
-		double attackRate = .001d;
+		double damage = 1;
+		double attackRate = .001;
 		double attackRange = 500;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
 		int offsetAngle = 72;
@@ -50,11 +51,25 @@ public class BossAttacks
 		double damage = .07;
 		double attackRate = .1;
 		double attackRange = 500;
-		int offsetAngle = 160;
+		int offsetAngle = 179;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
 		int bulletPerShot = 180;
 		int ammoUsedPerShot = 0;
 		BossWepThree shotgun = new BossWepThree("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
+		shotgun.setAutomatic(true);
+		return shotgun;
+	}
+	
+	public static BossWepFour getBossAtkFour(double x, double y)
+	{
+		double damage = .07;
+		double attackRate = .40;
+		double attackRange = 500;
+		int offsetAngle = 160;
+		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
+		int bulletPerShot = 180;
+		int ammoUsedPerShot = 0;
+		BossWepFour shotgun = new BossWepFour("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
 		shotgun.setAutomatic(true);
 		return shotgun;
 	}
