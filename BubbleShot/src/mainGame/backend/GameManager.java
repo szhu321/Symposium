@@ -534,6 +534,7 @@ public class GameManager
 										{
 											currentTeleporterTracker = currentTele;
 											currentTele.resetTimer();
+											currentTeleporterTracker.resetTimer();
 										}
 										if(!currentTele.runTimer(sec))
 										{
@@ -575,6 +576,8 @@ public class GameManager
 				}
 			}
 		}
+		if(currentTeleporterTracker != null)
+			currentTeleporterTracker.resetTimer();
 	}
 	
     public void moveEnemy(double sec)

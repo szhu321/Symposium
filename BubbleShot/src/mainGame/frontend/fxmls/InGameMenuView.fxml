@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,30 +10,78 @@
 
 <Group fx:id="menu" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.InGameMenuController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" />
-      <VBox prefHeight="200.0" prefWidth="100.0" />
-      <VBox fx:id="settingsView" prefHeight="200.0" prefWidth="100.0" visible="false">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#367bbc" height="401.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
+      <VBox prefHeight="400.0" prefWidth="342.0" />
+      <VBox fx:id="settingsView" prefHeight="401.0" prefWidth="342.0">
          <children>
+            <ScrollPane prefHeight="388.0" prefWidth="331.0">
+               <content>
+                  <AnchorPane prefHeight="374.0" prefWidth="340.0">
+                     <children>
+                        <VBox layoutX="3.0" layoutY="4.0" prefHeight="467.0" prefWidth="396.0" spacing="50.0">
+                           <children>
+                              <CheckBox mnemonicParsing="false" text="DisplayShadows">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="DisplayCharacterNames">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="DisplayItemNames">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" text="ItemSpin">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </CheckBox>
+                              <HBox prefHeight="27.0" prefWidth="290.0">
+                                 <children>
+                                    <Label text="Background Music">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Slider />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="26.0" prefWidth="290.0">
+                                 <children>
+                                    <Label text="Sound Effects">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Slider />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
             <Button mnemonicParsing="false" text="Back" />
          </children></VBox>
-      <VBox fx:id="mainView" alignment="CENTER" prefHeight="252.0" prefWidth="140.0" spacing="10.0">
+      <VBox fx:id="mainView" alignment="CENTER" prefHeight="399.0" prefWidth="341.0" spacing="10.0" visible="false">
          <children>
-            <Button fx:id="saveGameBtn" mnemonicParsing="false" text="Save Game">
+            <Button minWidth="250.0" mnemonicParsing="false" text="Resume">
                <font>
-                  <Font size="18.0" />
+                  <Font size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="settingsBtn" minWidth="250.0" mnemonicParsing="false" text="Settings">
+               <font>
+                  <Font size="36.0" />
                </font></Button>
-            <Button fx:id="loadGameBtn" mnemonicParsing="false" text="Load Game">
+            <Button minWidth="250.0" mnemonicParsing="false" onMouseClicked="#quitBtnOnclick" text="Quit">
                <font>
-                  <Font size="18.0" />
-               </font></Button>
-            <Button fx:id="settingsBtn" mnemonicParsing="false" text="Settings">
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" onMouseClicked="#quitBtnOnclick" text="Quit">
-               <font>
-                  <Font size="18.0" />
+                  <Font size="36.0" />
                </font></Button>
          </children>
       </VBox>

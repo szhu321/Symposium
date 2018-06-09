@@ -16,7 +16,6 @@ public class Teleporter extends Tile
 	public static final double TELEPORT_TIME = 2;
 	private double defaultTime;
 	private double currentTime;
-	private double timePassed;
 	
 	
 	public Teleporter(double xPos, double yPos, int id,String filename)
@@ -51,7 +50,6 @@ public class Teleporter extends Tile
 	{
 		currentTime = 0;
 		defaultTime = 0;
-		timePassed = 0;
 	}
 	
 	public void setTimer()
