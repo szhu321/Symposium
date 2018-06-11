@@ -13,7 +13,7 @@ public class Teleporter extends Tile
 	private boolean playerOn=false;
 	private int id;
 	
-	public static final double TELEPORT_TIME = 2;
+	public static final double TELEPORT_TIME = 1;
 	private double defaultTime;
 	private double currentTime;
 	

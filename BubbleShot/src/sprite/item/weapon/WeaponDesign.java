@@ -88,11 +88,11 @@ public class WeaponDesign
 	
 	public static Shotgun getShotgunDesignEPIC(double x, double y)
 	{
-		double damage = .07;
+		double damage = .05;
 		double attackRate = .10;
-		double attackRange = 500;
-		int offsetAngle = 360;
-		int bulletPerShot = 450;
+		double attackRange = 400;
+		double offsetAngle = 360;
+		int bulletPerShot = 1000;
 		int ammoUsedPerShot = 0;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
 		Shotgun shotgun = new Shotgun("Legendary Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,99999);

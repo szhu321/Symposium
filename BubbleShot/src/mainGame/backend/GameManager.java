@@ -536,7 +536,7 @@ public class GameManager
 											currentTele.resetTimer();
 											currentTeleporterTracker.resetTimer();
 										}
-										if(!currentTele.runTimer(sec))
+										if(currentTele.isActivated() && !currentTele.runTimer(sec))
 										{
 											return;
 										}

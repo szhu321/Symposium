@@ -10,11 +10,11 @@ import sprite.projectile.Projectile;
 public class Shotgun extends Weapon
 {
 
-	private int offsetAngle;
+	private double offsetAngle;
 	private int bulletPerShot;
 	
 	public Shotgun(String spriteName, double xLocation, double yLocation, 
-			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed,int cost) 
+			 double damage, double attackRate, double attackRange, Projectile projectile, double offsetAngle, int bulletPerShot, int ammoUsed,int cost) 
 	{
 		super(spriteName,"file:resources/weaponPictures/shotgun.png", xLocation, yLocation, damage, attackRate, attackRange, projectile,
 				100, 27, ammoUsed,cost);
@@ -42,7 +42,7 @@ public class Shotgun extends Weapon
 				double projectileStartY = (characterCenterY - projectile.getHeight() / 2) + (Math.sin(Math.toRadians(character.getFaceAngle())) * character.getHeight());
 				
 				int flip = (int)(Math.random() * 2);
-				int angleOffset = (int)(Math.random() * offsetAngle);
+				double angleOffset = (Math.random() * offsetAngle);
 				double faceAngle;
 				if(flip == 0)
 					faceAngle = character.getFaceAngle() + angleOffset;
