@@ -93,7 +93,7 @@ public class PlayingScene
 	{
 		currentRoom = room;
 		loadRoom();
-		scene = new Scene(root);
+		scene = new Scene(root, GameRunner.getResolutionWidth(), GameRunner.getResolutionHeight());
 		scene.setCursor(Cursor.CROSSHAIR);
 		//root.setScaleX(.5);
 		//root.setScaleY(.5);
@@ -124,7 +124,7 @@ public class PlayingScene
 		loadMiniMap();
 		loadInventoryDis();
 		loadInGameMenu();
-		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis(), holdingItem, inGameMenu);
+		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis(), holdingItem);
 	}
 	
 	public void loadInGameMenu()
@@ -133,9 +133,10 @@ public class PlayingScene
 		try 
 		{
 			inGameMenu.getChildren().setAll((Group)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/InGameMenuView.fxml")));
-			inGameMenu.layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-30));
-			inGameMenu.layoutYProperty().bind(GameRunner.getWindow().heightProperty().divide(2).add(-50));
+			//inGameMenu.layoutXProperty().bind(GameRunner.getWindow().widthProperty().divide(2).add(-30));
+			//inGameMenu.layoutYProperty().bind(GameRunner.getWindow().heightProperty().divide(2).add(-50));
 			inGameMenu.setVisible(false);
+			headUpDis.setCenter(inGameMenu);
 		} 
 		catch (IOException e)
 		{
@@ -221,6 +222,8 @@ public class PlayingScene
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
 		headUpDis.setBottom(getInventoryDisGUI());
+		headUpDis.setMinHeight(GameRunner.getResolutionHeight());
+		headUpDis.setPrefWidth(GameRunner.getResolutionWidth());
 		updateHeadUpDis();
 	}
 	
@@ -270,8 +273,8 @@ public class PlayingScene
 				playerHotbarDisCanvas[i].getGraphicsContext2D().drawImage(player.getHotBar()[i].getSpriteImage(), 0, 0);
 			}
 		}
-		headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
-		headUpDis.setPrefWidth(GameRunner.getWindowWidth());
+		//headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
+		//headUpDis.setPrefWidth(GameRunner.getWindowWidth());
 		//System.out.println(GameRunner.getWindowWidth());
 	}
 	

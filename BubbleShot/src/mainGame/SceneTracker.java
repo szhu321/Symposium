@@ -35,12 +35,12 @@ public class SceneTracker
 	
 	public void switchToPlayMenuView() throws Exception
 	{
-		root.getChildren().setAll((GridPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/PlayMenuView.fxml")));
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/PlayMenuView.fxml")));
 	}
 	
 	public void switchToCharacterCreationView() throws Exception
 	{
-		root.getChildren().setAll((VBox)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/CharacterCreationView.fxml")));
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/CharacterCreationView.fxml")));
 	}
 	
 	public void switchToLevelPickerView() throws Exception

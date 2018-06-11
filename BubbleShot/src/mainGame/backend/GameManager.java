@@ -105,8 +105,8 @@ public class GameManager
 	public static void setScene(Scene scene)
 	{
 		window.setScene(scene);
-		window.setHeight(800);
-		window.setWidth(800);
+		//window.setHeight(800);
+		//window.setWidth(800);
 	}
 	
 	public void changeRoom()

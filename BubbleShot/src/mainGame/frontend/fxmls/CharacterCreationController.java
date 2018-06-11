@@ -5,9 +5,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import mainGame.GameRunner;
 import mainGame.saving.FileSaver;
 import myutilities.FileUtil;
@@ -15,7 +18,9 @@ import sprite.character.player.PlayerDesign;
 
 public class CharacterCreationController implements Initializable
 {
-	public ImageView playIconView;
+	public BorderPane container;
+	
+	public Canvas playIconView;
 	public TextField playerNameField;
 	private int imgIdx;
 	private File[] files;
@@ -23,6 +28,8 @@ public class CharacterCreationController implements Initializable
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
+		container.setPrefHeight(GameRunner.getResolutionHeight());
+		container.setPrefWidth(GameRunner.getResolutionWidth());
 		grabImages();
 		displayImage();
 	}
@@ -34,7 +41,8 @@ public class CharacterCreationController implements Initializable
 	
 	private void displayImage()
 	{
-		playIconView.setImage(new Image("file:" + files[imgIdx]));
+		playIconView.getGraphicsContext2D().clearRect(0, 0, playIconView.getWidth(), playIconView.getHeight());
+		playIconView.getGraphicsContext2D().drawImage(new Image("file:" + files[imgIdx]), 0, 0, playIconView.getWidth(), playIconView.getHeight());
 	}
 	
 	public void nextIconBtnOnclick()

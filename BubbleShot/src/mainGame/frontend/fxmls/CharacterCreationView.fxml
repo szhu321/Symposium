@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.Canvas?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.CharacterCreationController">
-   <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+<BorderPane fx:id="container" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.CharacterCreationController">
+   <center>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#previousIconBtnOnclick" text="&lt;" />
-            <ImageView fx:id="playIconView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Button mnemonicParsing="false" onMouseClicked="#nextIconBtnOnclick" text="&gt;" />
-         </children>
-         <padding>
-            <Insets top="20.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label text="Name: ">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#previousIconBtnOnclick" text="&lt;" />
+                  <Canvas fx:id="playIconView" height="150.0" width="150.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#nextIconBtnOnclick" text="&gt;" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Name: ">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="playerNameField" promptText="Enter Name">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onMouseClicked="#createCharacterBtn" text="Create Character">
                <font>
                   <Font size="24.0" />
                </font>
-            </Label>
-            <TextField fx:id="playerNameField" promptText="Enter Name">
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back">
                <font>
                   <Font size="24.0" />
-               </font></TextField>
+               </font>
+            </Button>
          </children>
-      </HBox>
-      <Button mnemonicParsing="false" onMouseClicked="#createCharacterBtn" text="Create Character">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-      <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
-   </children>
-</VBox>
+      </VBox>
+   </center>
+</BorderPane>

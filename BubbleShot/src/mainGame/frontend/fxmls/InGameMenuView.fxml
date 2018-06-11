@@ -12,7 +12,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#367bbc" height="401.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
       <VBox prefHeight="400.0" prefWidth="342.0" />
-      <VBox fx:id="settingsView" prefHeight="401.0" prefWidth="342.0">
+      <VBox fx:id="settingsView" prefHeight="401.0" prefWidth="342.0" visible="false">
          <children>
             <ScrollPane prefHeight="388.0" prefWidth="331.0">
                <content>
@@ -68,7 +68,7 @@
             </ScrollPane>
             <Button mnemonicParsing="false" text="Back" />
          </children></VBox>
-      <VBox fx:id="mainView" alignment="CENTER" prefHeight="399.0" prefWidth="341.0" spacing="10.0" visible="false">
+      <VBox fx:id="mainView" alignment="CENTER" prefHeight="399.0" prefWidth="341.0" spacing="10.0">
          <children>
             <Button minWidth="250.0" mnemonicParsing="false" text="Resume">
                <font>

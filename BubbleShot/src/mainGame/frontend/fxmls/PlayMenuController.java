@@ -4,7 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import mainGame.GameRunner;
 import mainGame.SceneTracker;
@@ -14,6 +16,8 @@ import sprite.character.player.Player;
 
 public class PlayMenuController implements Initializable
 {
+	public BorderPane container;
+	
 	public HBox playerPickerRow;
 	private ImageView[] characterImages;
 	private Player[] players;
@@ -22,6 +26,9 @@ public class PlayMenuController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
+		container.setPrefHeight(GameRunner.getResolutionHeight());
+		container.setPrefWidth(GameRunner.getResolutionWidth());
+		
 		players = FileReader.loadPlayer();
 		if(players != null)
 		{
