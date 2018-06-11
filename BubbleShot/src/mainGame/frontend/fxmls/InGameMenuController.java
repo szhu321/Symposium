@@ -16,20 +16,9 @@ public class InGameMenuController
 	public VBox saveGameView;
 	public VBox loadGameView;
 	
-	public Button loadGameBtn;
-	public Button saveGameBtn;
 	public Button settingsBtn;
 	public Button controlsBtn;
 	
-	public void loadGameBtnOnclick()
-	{
-		
-	}
-	
-	public void saveGameBtnOnclick()
-	{
-		
-	}
 	
 	public void quitBtnOnclick() throws Exception
 	{

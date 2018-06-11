@@ -38,24 +38,24 @@ public class BossWepTwo extends Weapon
 				
 				Projectile projectile = this.getProjectile().getCopy();
 				Character character = getPossessor();
-				((Enemy)character).getBrain().setFollowPlayer(false);
+				((Enemy)character).getBrain().setFollowPlayer(true);			
 				double characterCenterX = character.getXLocation() + character.getWidth() / 2;
 				double characterCenterY = character.getYLocation() + character.getHeight() / 2;
 				double projectileStartX = characterCenterX;
 				double projectileStartY = characterCenterY;
 				
-				//int flip = (int)(Math.random() * 4);
+				int flip = (int)(Math.random() * 5);
 				double faceAngle=0;
-//				if(flip == 0)
-//					faceAngle = character.getFaceAngle() + angleOffset;
-//				if(flip == 1)
-//					faceAngle = character.getFaceAngle() - angleOffset;
-//				if(flip == 2)
-//					faceAngle = character.getFaceAngle() - angleOffset+90;
-//				if(flip == 3)
-				faceAngle = character.getFaceAngle() + angleOffset;
-				if(faceAngle>60&&faceAngle<100)
-					faceAngle=101;
+				if(flip == 0)
+					faceAngle = character.getFaceAngle() + angleOffset;
+				if(flip == 1)
+					faceAngle = character.getFaceAngle() - angleOffset;
+				if(flip == 2)
+					faceAngle = character.getFaceAngle() + angleOffset+72;
+				if(flip == 3)
+				faceAngle = character.getFaceAngle() + angleOffset-72;
+				if(flip == 4)
+					faceAngle = character.getFaceAngle() - angleOffset-72;
 				if(faceAngle > 360)
 					faceAngle = faceAngle % 360;
 				if(faceAngle < 0)

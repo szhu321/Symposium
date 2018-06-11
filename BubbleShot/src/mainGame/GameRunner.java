@@ -23,6 +23,9 @@ public class GameRunner extends Application
 	private static GameManager gameManager;
 	private static SceneTracker sceneTracker;
 	
+	private static double resolutionHeight;
+	private static double resolutionWidth;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -32,22 +35,23 @@ public class GameRunner extends Application
 	public void start(Stage primaryStage) throws Exception 
 	{
 		window = primaryStage;
-		window.setTitle("Little Boy");
+		window.setTitle("Lost Cause");
+		resolutionHeight = Screen.getPrimary().getVisualBounds().getHeight() - 45;
+		resolutionWidth = Screen.getPrimary().getVisualBounds().getWidth();
 		
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-//		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelDesignOne(), player, window);
-		gameManager.startGame();
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+////		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+//		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window);
+//		gameManager.startGame();
 		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-		//loadFXMLs();
+		loadFXMLs();
 		
-		
-		
-		window.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight());
-		window.setMinWidth(Screen.getPrimary().getVisualBounds().getWidth());
+		window.setMinHeight(resolutionHeight);
+		window.setMinWidth(resolutionWidth);
+		window.setResizable(false);
 		window.show();
 	}
 	
@@ -80,6 +84,16 @@ public class GameRunner extends Application
 		return window.getWidth();
 	}
 	
+	public static double getResolutionHeight()
+	{
+		return resolutionHeight;
+	}
+
+	public static double getResolutionWidth() 
+	{
+		return resolutionWidth;
+	}
+
 	public static Stage getWindow()
 	{
 		return window;

@@ -4,6 +4,7 @@ import sprite.character.enemy.Boss;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 import sprite.item.Item;
+import sprite.item.weapon.BossWepThree;
 
 public class BossOne extends AI
 {
@@ -18,12 +19,24 @@ public class BossOne extends AI
 	public void action(double sec)
 	{
 		int wepIdx=0;
-		if(time%200==0)
+		if(time==400)
+			time=0;
+		if(time<=300)
 		{
-			wepIdx=(int)(Math.random()*3);
-			((Boss)(this.getEnemy())).switchWeapon(wepIdx);
-		}	
-		this.getEnemy().useCurrentItem(Item.WEAPON);	
+			if(time%200==0)
+				this.getEnemy().getBrain().switchClockwise();
+			if(time%300==0)
+			{
+				wepIdx=(int)(Math.random()*((Boss)(this.getEnemy())).getAllWep().size());
+				((Boss)(this.getEnemy())).switchWeapon(wepIdx);
+				if(this.getEnemy().getWeapon() instanceof BossWepThree)
+				{
+					((BossWepThree)this.getEnemy().getWeapon()).setRange((int)(Math.random()*361));
+					
+				}
+			}	
+			this.getEnemy().useCurrentItem(Item.WEAPON);
+		}
 		time++;
 	}
 	

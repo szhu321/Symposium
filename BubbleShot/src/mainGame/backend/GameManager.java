@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,6 +31,7 @@ import sprite.item.Item;
 import sprite.item.ammo.Ammo;
 import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
+import sprite.item.weapon.Weapon;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.Spawner;
@@ -57,7 +59,8 @@ public class GameManager
 	private boolean left = false;
 	private boolean right = false;
 	private boolean shift = false;
-	private boolean mouseDown = false;
+	private boolean mouseDownLeft = false;
+	private boolean mouseDownRight = false;
 	private double mouseAngle = 0.0;
 	private boolean isClick = false;
 	
@@ -68,6 +71,7 @@ public class GameManager
 	private double mouseXUnajusted = 0.0;
 	private double mouseYUnajusted = 0.0;
 	
+	private Teleporter currentTeleporterTracker;
 	
 	public GameManager(Level level, Player player, Stage window)
 	{
@@ -101,8 +105,8 @@ public class GameManager
 	public static void setScene(Scene scene)
 	{
 		window.setScene(scene);
-		window.setHeight(800);
-		window.setWidth(800);
+		//window.setHeight(800);
+		//window.setWidth(800);
 	}
 	
 	public void changeRoom()
@@ -175,14 +179,20 @@ public class GameManager
 		checkCharacterCollisionWithTile();
 		updateProjectileLocation((double) milliSecond);
 		checkProjectileCollision();
-		if(mouseDown)
+		if(mouseDownLeft)
+				player.useCurrentItem(Item.WEAPON);
+		if(mouseDownRight)
 		{
-			player.useCurrentItem(Item.WEAPON);
+			if(player.getCurrentItem() instanceof Potion || player.getCurrentItem() instanceof Ammo)
+			{
+				player.useCurrentItem(Item.POTION);
+				player.removeCurrentItem();
+			}
 		}
 		manageCharacterDeath();
 		runAllCharacterEffects(((double)milliSecond) / 1000);
 		playerPickUpItem();
-		teleportChecker();
+		teleportChecker(((double)milliSecond) / 1000);
 		instantCollectableAttract(((double)milliSecond) / 1000);
 		updateShield(((double)milliSecond) / 1000);
 		playingScene.updateAllLocation();
@@ -243,10 +253,16 @@ public class GameManager
 		pasttime = now;
 		
 		//System.out.println("Frame rate: " + 1/(((double)milliSecond) / 1000));
-		if(mouseDown)
-		{
+		if(mouseDownLeft)
 			//addProjectile(ProjectileDesign.getBulletDesignOne(Projectile.SHOT_BY_PLAYER, player.getXLocation(), player.getYLocation(), player.getFaceAngle(), 10));
 			player.useCurrentItem(Item.WEAPON);
+		if(mouseDownRight)
+		{
+			if(player.getCurrentItem() instanceof Potion || player.getCurrentItem() instanceof Ammo)
+			{
+				player.useCurrentItem(Item.POTION);
+				player.removeCurrentItem();
+			}
 		}
 		now = System.nanoTime();
 		System.out.println("Time Passed After useing player item: " + (now - pasttime));
@@ -475,7 +491,7 @@ public class GameManager
 		player.addYLocation(deltaY);
 	}
 
-	public void teleportChecker()
+	public void teleportChecker(double sec)
 	{
 		Tile[][] teleChecker=level.getCurrentRoom().getTiles();
 		for(Character c: level.getCurrentRoom().getCharacters())
@@ -514,6 +530,16 @@ public class GameManager
 									if(t.getXLocation()/100==s && t.getYLocation()/100==i)
 									{
 										Teleporter currentTele=t;
+										if(!currentTele.equals(currentTeleporterTracker))
+										{
+											currentTeleporterTracker = currentTele;
+											currentTele.resetTimer();
+											currentTeleporterTracker.resetTimer();
+										}
+										if(!currentTele.runTimer(sec))
+										{
+											return;
+										}
 										//System.out.println(currentTele.getConnectedTeleporter().getId());
 										//System.out.println(currentTele.getId());
 										int row=currentTele.getConnectedTeleporter().getConnectedRoom().getLevelRow();
@@ -551,6 +577,8 @@ public class GameManager
 				}
 			}
 		}
+		if(currentTeleporterTracker != null)
+			currentTeleporterTracker.resetTimer();
 	}
 	
     public void moveEnemy(double sec)
@@ -594,7 +622,10 @@ public class GameManager
     			else
         		{
     				if(((Enemy)enemies.get(i)).getBrain().isFollowPlayer())
-    					((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()+1);
+    					if(((Enemy)enemies.get(i)).getBrain().isClockwise())
+    						((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()+1);
+    					else
+    						((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()-1);
         			((Enemy)enemies.get(i)).getBrain().action(sec);
         		}
     		}    		   	
@@ -801,20 +832,12 @@ public class GameManager
 				player.setCurrentItemIdx(5);
 			if(code == KeyCode.G)
 				playerDropItem();
-			if(code == KeyCode.I || code == KeyCode.ESCAPE)
+			if(code == KeyCode.I || code == KeyCode.ESCAPE||code == KeyCode.E)
 				toggleDisInventory();
 			if(code == KeyCode.F11)
 			{
 				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
 				toggleFullScreen();
-			}
-			if(code == KeyCode.E)
-			{
-				if(player.getCurrentItem() instanceof Potion || player.getCurrentItem() instanceof Ammo)
-				{
-					player.useCurrentItem(Item.POTION);
-					player.removeCurrentItem();
-				}
 			}
 			if(code == KeyCode.Q)
 			{
@@ -859,16 +882,21 @@ public class GameManager
 		scene.setOnMousePressed(event -> 
 		{
 			//System.out.println(player.getInventory().getSelectedItem());
+			MouseButton button=event.getButton();
 			if(player.getInventory().getSelectedItem() != null)
 				playerDropSeceltedItem();
 			else
 			{
-				mouseDown = true;
+				if(button==MouseButton.PRIMARY)
+					mouseDownLeft = true;
+				if(button==MouseButton.SECONDARY)
+					mouseDownRight = true;
 				isClick = true;
-			}//player.getInventory().returnSelectedItem();
+			}
+			//player.getInventory().returnSelectedItem();
 			
 		});
-		scene.setOnMouseReleased(event -> mouseDown = false);
+		scene.setOnMouseReleased(event -> {mouseDownLeft = false ; mouseDownRight = false;});
 		scene.setOnScroll(event -> 
 		{
 			//System.out.println("Deata Y: " + event.getDeltaY());
