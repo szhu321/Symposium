@@ -48,4 +48,9 @@ public class SceneTracker
 	{
 		root.getChildren().setAll((GridPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/LevelPickerView.fxml")));
 	}
+	
+	public void switchToSettingsView() throws Exception
+	{
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/SettingsView.fxml")));
+	}
 }

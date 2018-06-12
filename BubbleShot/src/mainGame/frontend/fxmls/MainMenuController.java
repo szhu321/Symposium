@@ -35,9 +35,9 @@ public class MainMenuController implements Initializable
 		
 	}
 	
-	public void settingsBtnOnclick()
+	public void settingsBtnOnclick() throws Exception
 	{
-		
+		GameRunner.getSceneTracker().switchToSettingsView();
 	}
 	
 	public void quitBtnOnclick()
