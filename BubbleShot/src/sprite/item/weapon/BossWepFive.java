@@ -7,7 +7,7 @@ import sprite.character.player.Player;
 import sprite.projectile.LinearProjectile;
 import sprite.projectile.Projectile;
 
-public class BossWepThree extends Weapon
+public class BossWepFive extends Weapon
 {
 
 	private int offsetAngle;
@@ -15,7 +15,7 @@ public class BossWepThree extends Weapon
 	private int rangeMin;
 	private int rangeMax;
 	
-	public BossWepThree(String spriteName, double xLocation, double yLocation, 
+	public BossWepFive(String spriteName, double xLocation, double yLocation, 
 			 double damage, double attackRate, double attackRange, Projectile projectile, int offsetAngle, int bulletPerShot, int ammoUsed,int cost) 
 	{
 		super(spriteName,"file:resources/weaponPictures/shotgun.png", xLocation, yLocation, damage, attackRate, attackRange, projectile,
@@ -57,7 +57,7 @@ public class BossWepThree extends Weapon
 				if(faceAngle < 0)
 					faceAngle += 360;
 				
-				if(!(faceAngle>rangeMin)||!(faceAngle<rangeMax))
+				if(faceAngle>rangeMin&&faceAngle<rangeMax)
 				{
 					if(character instanceof Player)
 						projectile.setBulletOwner(Projectile.SHOT_BY_PLAYER);
@@ -71,9 +71,8 @@ public class BossWepThree extends Weapon
 					
 					//Adding the newly created projectile.
 					GameRunner.getGameManager().addProjectile(projectile);
-				
-				setCooledDown(false);
 				}
+				setCooledDown(false);
 			}
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;

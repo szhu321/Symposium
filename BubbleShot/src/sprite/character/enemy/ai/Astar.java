@@ -334,6 +334,7 @@ public class Astar extends AI
 	
 	public void action(double sec)
 	{
+		this.getEnemy().calculateEnemyAngleToPlayer();
 		move(sec);
 		this.getEnemy().useCurrentItem(Item.WEAPON);
 	}

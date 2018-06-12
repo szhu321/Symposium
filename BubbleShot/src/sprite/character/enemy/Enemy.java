@@ -96,4 +96,18 @@ public abstract class Enemy extends Character
 	public void addCircleRadius(double circleRadius) {
 		this.circleRadius += circleRadius;
 	}
+	
+	public void calculateEnemyAngleToPlayer()
+	{
+		double distanceX = (player.getXLocation()+(player.getWidth()/2)) - this.getXLocation() - this.getWidth()/2;
+		double distanceY = (player.getYLocation()+(player.getHeight()/2)) - this.getYLocation() - this.getHeight()/2;
+		double enemyAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
+		if(distanceY <= 0 && distanceX < 0)
+			enemyAngle += 180;
+		else if(distanceY > 0 && distanceX < 0)
+			enemyAngle = 90 + (90 - Math.abs(enemyAngle));
+		else if(distanceX > 0 && distanceY < 0)
+			enemyAngle += 360;
+		this.setFaceAngle(enemyAngle);
+	}
 }

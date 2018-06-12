@@ -591,43 +591,21 @@ public class GameManager
     		{
     			if(!((Enemy)enemies.get(i)).getSpriteName().equals("ROBOTBOSS"))
     			{
-	    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("Ghost Brian"))
-	    			{
 	    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
 	    				{
 	    					circleRadius=((Enemy)enemies.get(i)).getCircleRadius();
 	    					if((shift)&&(left||right||up||down))
 	    			    		circleRadius+=200;
 		    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
-		    				{
-		    					calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
 		    					((Enemy)enemies.get(i)).getBrain().action(sec);
-		    				}
 		    				else
-		    				{
 		    					((Enemy)enemies.get(i)).getBrain().wander(sec);
-		    				}
 	    				}
 	    				else
-	    				{
-	    			    	((Enemy)enemies.get(i)).getBrain().action(sec);
-	    				}
-	    			}
-	    			else
-	    			{
-						calculateEnemyAngleToPlayer((Enemy)enemies.get(i));
-						((Enemy)enemies.get(i)).getBrain().action(sec);
-	    			}
+	    					((Enemy)enemies.get(i)).getBrain().action(sec);
     			}
     			else
-        		{
-    				if(((Enemy)enemies.get(i)).getBrain().isFollowPlayer())
-    					if(((Enemy)enemies.get(i)).getBrain().isClockwise())
-    						((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()+1);
-    					else
-    						((Enemy)enemies.get(i)).setFaceAngle(((Enemy)enemies.get(i)).getFaceAngle()-1);
         			((Enemy)enemies.get(i)).getBrain().action(sec);
-        		}
     		}    		   	
   	}
     
@@ -665,19 +643,6 @@ public class GameManager
 			mouseAngle = 90 + (90 - Math.abs(mouseAngle));
 		else if(distanceX > 0 && distanceY < 0)
 			mouseAngle += 360;
-	}
-	private void calculateEnemyAngleToPlayer(Enemy enemy)
-	{
-		double distanceX = (player.getXLocation()+(player.getWidth()/2)) - enemy.getXLocation() - enemy.getWidth()/2;
-		double distanceY = (player.getYLocation()+(player.getHeight()/2)) - enemy.getYLocation() - enemy.getHeight()/2;
-		double enemyAngle = Math.toDegrees(Math.atan(distanceY / distanceX));
-		if(distanceY <= 0 && distanceX < 0)
-			enemyAngle += 180;
-		else if(distanceY > 0 && distanceX < 0)
-			enemyAngle = 90 + (90 - Math.abs(enemyAngle));
-		else if(distanceX > 0 && distanceY < 0)
-			enemyAngle += 360;
-		enemy.setFaceAngle(enemyAngle);
 	}
 	
 	public void playerPickUpItem()

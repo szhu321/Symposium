@@ -43,6 +43,7 @@ public class Stationary extends AI
 	
 	public void action(double sec)
 	{
+		this.getEnemy().calculateEnemyAngleToPlayer();
 		if(this.getEnemy().getEnemyType().equals(Enemy.SPAWNER1)||this.getEnemy().getEnemyType().equals(Enemy.SPAWNER2))
 		{
 			if(time%200==0)
