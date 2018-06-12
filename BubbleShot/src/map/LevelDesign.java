@@ -175,7 +175,7 @@ public class LevelDesign
 		Level newLevel = new Level(rows,cols);
 		Room[][] map = newLevel.getMap();
 		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
-		newLevel.setCurrentRoom(2,2);
+		newLevel.setCurrentRoom(rows/2,cols/2);
 		newLevel.getCurrentRoom().setEnemySpawned(true);
 		newLevel.getCurrentRoom().setAllEnemyDead(true);;
 		boolean foundCurrent=false;
