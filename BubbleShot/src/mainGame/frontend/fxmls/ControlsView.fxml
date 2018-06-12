@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.ControlsViewController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="UP" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="528.0">
+                     <children>
+                        <TextField />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="DOWN" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="508.0">
+                     <children>
+                        <TextField />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="LEFT" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="521.0">
+                     <children>
+                        <TextField />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="RIGHT" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="513.0">
+                     <children>
+                        <TextField />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="DROP ITEM" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="484.0">
+                     <children>
+                        <TextField />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="INVENTORY" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="483.0">
+                     <children>
+                        <TextField />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

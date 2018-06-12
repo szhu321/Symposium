@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
@@ -124,7 +125,8 @@ public class PlayingScene
 		loadMiniMap();
 		loadInventoryDis();
 		loadInGameMenu();
-		root.getChildren().addAll(roomView.getCanvas() ,headUpDis, miniMap, inventoryDis.getInventoryDis(), holdingItem);
+		
+		root.getChildren().addAll(roomView.getCanvas() ,headUpDis , miniMap, inventoryDis.getInventoryDis(), holdingItem);
 	}
 	
 	public void loadInGameMenu()
@@ -222,7 +224,7 @@ public class PlayingScene
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
 		headUpDis.setBottom(getInventoryDisGUI());
-		headUpDis.setMinHeight(GameRunner.getResolutionHeight());
+		headUpDis.setPrefHeight(GameRunner.getResolutionHeight() - 40);
 		headUpDis.setPrefWidth(GameRunner.getResolutionWidth());
 		updateHeadUpDis();
 	}
@@ -273,7 +275,7 @@ public class PlayingScene
 				playerHotbarDisCanvas[i].getGraphicsContext2D().drawImage(player.getHotBar()[i].getSpriteImage(), 0, 0);
 			}
 		}
-		//headUpDis.setMinHeight(GameRunner.getWindowHeight() - 65);
+		//headUpDis.setMinHeight(GameRunner.getWindowHeight());
 		//headUpDis.setPrefWidth(GameRunner.getWindowWidth());
 		//System.out.println(GameRunner.getWindowWidth());
 	}

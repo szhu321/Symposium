@@ -53,4 +53,14 @@ public class SceneTracker
 	{
 		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/SettingsView.fxml")));
 	}
+	
+	public void switchToControlsView() throws Exception
+	{
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/ControlsView.fxml")));
+	}
+	
+	public void switchToGraphicsView() throws Exception
+	{
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/GraphicsView.fxml")));
+	}
 }

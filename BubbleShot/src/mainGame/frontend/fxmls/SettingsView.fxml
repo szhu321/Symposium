@@ -6,51 +6,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <BorderPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.SettingsViewController">
-   <bottom>
-      <Button mnemonicParsing="false" text="Back" BorderPane.alignment="CENTER" />
-   </bottom>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="598.0">
-               <children>
-                  <VBox layoutX="-1.0" prefHeight="518.0" prefWidth="600.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Item Spin" />
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Label" />
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Label" />
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Label" />
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Label" />
-                              <CheckBox mnemonicParsing="false" text="CheckBox" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="controlBtn" mnemonicParsing="false" onMouseClicked="#controlBtnOnclick" text="Controls" />
+            <Button fx:id="graphicsBtn" mnemonicParsing="false" onMouseClicked="#graphicsBtnOnclick" text="Graphics" />
+            <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" />
+         </children>
+      </VBox>
    </center>
 </BorderPane>
