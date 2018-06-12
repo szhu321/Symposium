@@ -6,29 +6,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.MainMenuController" stylesheets="mainGame/frontend/css/button.css">
+<BorderPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.MainMenuController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" stylesheets="mainGame/frontend/fxmls/button.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="playBtn" minWidth="200.0" mnemonicParsing="false" onMouseClicked="#playBtnOnclick" text="Play">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <Button fx:id="playBtn" mnemonicParsing="false" onMouseClicked="#playBtnOnclick" text="Play">
             </Button>
-            <Button fx:id="mapEditorBtn" minWidth="200.0" mnemonicParsing="false" onMouseClicked="#mapEditorBtnOnclick" text="Map Editor">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <Button fx:id="mapEditorBtn" mnemonicParsing="false" onMouseClicked="#mapEditorBtnOnclick" text="Map Editor">  
             </Button>
-            <Button fx:id="settingsBtn" minWidth="200.0" mnemonicParsing="false" onMouseClicked="#settingsBtnOnclick" text="Settings">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <Button fx:id="settingsBtn" mnemonicParsing="false" onMouseClicked="#settingsBtnOnclick" text="Settings">
             </Button>
-            <Button fx:id="quitBtn" minWidth="200.0" mnemonicParsing="false" onMouseClicked="#quitBtnOnclick" text="Quit">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <Button fx:id="quitBtn" mnemonicParsing="false" onMouseClicked="#quitBtnOnclick" text="Quit">
             </Button>
          </children>
       </VBox>
