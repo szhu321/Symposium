@@ -84,11 +84,13 @@ public class RoomView
 				{
 						
 						gc.save();
-						gc.setFill(Color.WHITE);
-						gc.setStroke(Color.BLACK);
-						gc.setFont(new Font(24));
-						gc.fillText(String.format("%.2f", ((Teleporter)tile).getCurrentTeleTime()), tile.getXLocation(), tile.getYLocation() + tile.getHeight());
-						gc.strokeText(String.format("%.2f", ((Teleporter)tile).getCurrentTeleTime()), tile.getXLocation(), tile.getYLocation() + tile.getHeight());
+//						gc.setFill(Color.WHITE);
+//						gc.setStroke(Color.BLACK);
+//						gc.setFont(new Font(24));
+//						gc.fillText(String.format("%.2f", ((Teleporter)tile).getCurrentTeleTime()), tile.getXLocation(), tile.getYLocation() + tile.getHeight());
+//						gc.strokeText(String.format("%.2f", ((Teleporter)tile).getCurrentTeleTime()), tile.getXLocation(), tile.getYLocation() + tile.getHeight());
+						gc.setFill(Color.rgb(0, 0, 0, .5));
+						gc.fillRect(tile.getXLocation(), tile.getYLocation(), tile.getWidth() * (((Teleporter)tile).getCurrentTeleTime() / ((Teleporter)tile).getDefaultTeleTime()), tile.getHeight());
 						gc.restore();
 				}
 //				if(tile instanceof Teleporter)
