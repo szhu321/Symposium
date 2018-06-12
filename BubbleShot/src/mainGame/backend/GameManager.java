@@ -583,30 +583,31 @@ public class GameManager
 	
     public void moveEnemy(double sec)
     {
-    	List<Character> enemies=level.getCurrentRoom().getCharacters();
-    	//boolean spawnEnemy=false;
-    	double circleRadius=0;
-    	for(int i=0; i<enemies.size();i++)
-    		if(enemies.get(i) instanceof Enemy)
-    		{
-    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("ROBOTBOSS"))
-    			{
-	    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
-	    				{
-	    					circleRadius=((Enemy)enemies.get(i)).getCircleRadius();
-	    					if((shift)&&(left||right||up||down))
-	    			    		circleRadius+=200;
-		    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
-		    					((Enemy)enemies.get(i)).getBrain().action(sec);
+    	
+	    	List<Character> enemies=level.getCurrentRoom().getCharacters();
+	    	//boolean spawnEnemy=false;
+	    	double circleRadius=0;
+	    	for(int i=0; i<enemies.size();i++)
+	    		if(enemies.get(i) instanceof Enemy)
+	    		{
+	    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("ROBOTBOSS"))
+	    			{
+		    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
+		    				{
+		    					circleRadius=((Enemy)enemies.get(i)).getCircleRadius();
+		    					if((shift)&&(left||right||up||down))
+		    			    		circleRadius+=200;
+			    				if(((Enemy)enemies.get(i)).getCircleBoundsOfObject(circleRadius).contains(player.getCircleBoundsOfObject()))
+			    					((Enemy)enemies.get(i)).getBrain().action(sec);
+			    				else
+			    					((Enemy)enemies.get(i)).getBrain().wander(sec);
+		    				}
 		    				else
-		    					((Enemy)enemies.get(i)).getBrain().wander(sec);
-	    				}
-	    				else
-	    					((Enemy)enemies.get(i)).getBrain().action(sec);
-    			}
-    			else
-        			((Enemy)enemies.get(i)).getBrain().action(sec);
-    		}    		   	
+		    					((Enemy)enemies.get(i)).getBrain().action(sec);
+	    			}
+	    			else
+	        			((Enemy)enemies.get(i)).getBrain().action(sec);
+	    		}  
   	}
     
 	public void pauseGame()

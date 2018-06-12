@@ -93,83 +93,132 @@ public class LevelDesign
 		return level2;
 	}
 	
+//	public static Level getRandomLevelDesign(int rows, int cols)
+//	{
+//		Level level = new Level(rows, cols);
+//		Room[][] map = level.getMap();
+//		Coord[][] coords = new Coord[rows][cols];
+//		for(int y = 0; y < rows; y++)
+//		{
+//			for(int x = 0; x < cols; x++)
+//			{
+//				coords[y][x] = new Coord(x, y);
+//			}
+//		}
+//		
+//		List<Coord> openset = new ArrayList<Coord>();
+//		List<Coord> closedset = new ArrayList<Coord>();
+//		List<Coord> finalset = new ArrayList<Coord>();
+//		
+//		//The map starts generating here
+//		openset.add(coords[0][0]);
+//		
+//		while(openset.size() > 0)
+//		{
+//			Coord current = openset.get(0);
+//			
+//			System.out.println("current:" + current);
+//			
+//			List<Coord> neighbors = getNeighbors(map, current, coords);
+//			
+//			for(Coord coor: neighbors)
+//				System.out.println("neighbor:" + coor);
+//			
+//			//if the openset or closedset contains the neighbor remove it.
+//			for(int i = neighbors.size() - 1; i >= 0; i--)
+//			{
+//				if(openset.contains(neighbors.get(i)))
+//					neighbors.remove(i);
+//				else if(closedset.contains(neighbors.get(i)))
+//					neighbors.remove(i);
+//			}
+//			
+//			
+//			//if there are multiple neighbors there is a chance of adding it to the openset.
+//			
+////			List<Coord> shuffledNeighbors = new ArrayList<Coord>();
+////			while(neighbors.size() > 0)
+////			{
+////				shuffledNeighbors.add(neighbors.remove(MyMath.getRandomInteger(0, neighbors.size() - 1)));
+////			}
+//			if(neighbors.size() > 0)
+//			{
+//				int addAmount = MyMath.getRandomInteger(1, neighbors.size());
+//				for(int i = 0; i < addAmount; i++)
+//				{
+//					openset.add(neighbors.get(i));
+//				}
+//			}
+//			
+//			
+//			for(Coord coor: neighbors)
+//				System.out.println("non removed neighbor:" + coor);
+//			
+//			openset.remove(current);
+//			finalset.add(current);
+//			closedset.add(current);
+//			
+//			for(Coord coor: closedset)
+//				System.out.println("closed:" + coor);
+//			for(Coord coor: openset)
+//				System.out.println("openend:" + coor);
+//			System.out.println();
+//		}
+//		
+//		for(Coord coor: finalset)
+//			System.out.println(coor);
+//		return null;
+//	}
+	
 	public static Level getRandomLevelDesign(int rows, int cols)
 	{
-		Level level = new Level(rows, cols);
-		Room[][] map = level.getMap();
-		Coord[][] coords = new Coord[rows][cols];
-		for(int y = 0; y < rows; y++)
+		Level newLevel = new Level(rows,cols);
+		Room[][] map = newLevel.getMap();
+		map[2][2]=RoomDesign.getRoomDesignOne();
+		newLevel.setCurrentRoom(2,2);
+		newLevel.getCurrentRoom().setEnemySpawned(true);
+		newLevel.getCurrentRoom().setAllEnemyDead(true);;
+//		boolean foundCurrent=false;
+		int roomCounter=(int)((Math.random()*(rows*cols))+1);
+		while(roomCounter>0)
 		{
-			for(int x = 0; x < cols; x++)
+			for(int i=0;i<rows;i++)
 			{
-				coords[y][x] = new Coord(x, y);
-			}
-		}
-		
-		List<Coord> openset = new ArrayList<Coord>();
-		List<Coord> closedset = new ArrayList<Coord>();
-		List<Coord> finalset = new ArrayList<Coord>();
-		
-		//The map starts generating here
-		openset.add(coords[0][0]);
-		
-		while(openset.size() > 0)
-		{
-			Coord current = openset.get(0);
-			
-			System.out.println("current:" + current);
-			
-			List<Coord> neighbors = getNeighbors(map, current, coords);
-			
-			for(Coord coor: neighbors)
-				System.out.println("neighbor:" + coor);
-			
-			//if the openset or closedset contains the neighbor remove it.
-			for(int i = neighbors.size() - 1; i >= 0; i--)
-			{
-				if(openset.contains(neighbors.get(i)))
-					neighbors.remove(i);
-				else if(closedset.contains(neighbors.get(i)))
-					neighbors.remove(i);
-			}
-			
-			
-			//if there are multiple neighbors there is a chance of adding it to the openset.
-			
-//			List<Coord> shuffledNeighbors = new ArrayList<Coord>();
-//			while(neighbors.size() > 0)
-//			{
-//				shuffledNeighbors.add(neighbors.remove(MyMath.getRandomInteger(0, neighbors.size() - 1)));
-//			}
-			if(neighbors.size() > 0)
-			{
-				int addAmount = MyMath.getRandomInteger(1, neighbors.size());
-				for(int i = 0; i < addAmount; i++)
+				for(int s=0;s<cols;s++)
 				{
-					openset.add(neighbors.get(i));
+					if(map[s][i]==null)
+					{
+						int rollRoom=(int)(Math.random()*2)+1;
+						if(rollRoom==2)
+						{
+							newLevel.addRoomTo(RoomDesign.getRoomDesignTwo(), i, s);
+							roomCounter--;
+						}
+					}
 				}
 			}
-			
-			
-			for(Coord coor: neighbors)
-				System.out.println("non removed neighbor:" + coor);
-			
-			openset.remove(current);
-			finalset.add(current);
-			closedset.add(current);
-			
-			for(Coord coor: closedset)
-				System.out.println("closed:" + coor);
-			for(Coord coor: openset)
-				System.out.println("openend:" + coor);
-			System.out.println();
 		}
-		
-		for(Coord coor: finalset)
-			System.out.println(coor);
-		return null;
+//		while(foundCurrent==false)
+//		{
+//			for(int i=0;i<rows;i++)
+//			{
+//				for(int s=0;s<cols;s++)
+//				{
+//					if(map[s][i]!=null)
+//					{
+//						//int randomCurr=(int)(Math.random()*(8))+1;
+//					//	if(randomCurr<2)
+//						//{
+//							newLevel.setCurrentRoom(s,i);
+//							foundCurrent=true;
+//					//}
+//					}
+//				}
+//			}
+//		}
+		newLevel.placeTeleportersInLevel();
+		return newLevel;
 	}
-	
 	private static List<Coord> getNeighbors(Room[][] map, Coord current, Coord[][] allCoords)
 	{
 		List<Coord> neighbors = new ArrayList<Coord>();
