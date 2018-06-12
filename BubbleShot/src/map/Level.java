@@ -61,6 +61,11 @@ public class Level implements Serializable
 		return true;
 	}
 	
+	public boolean addNullRoomTo(Room room, int row, int col)
+	{
+		map[row][col] = room;
+		return true;
+	}
 	/**
 	 * Removes a room from a specified row and col.
 	 * @param row The row to remove the room from.

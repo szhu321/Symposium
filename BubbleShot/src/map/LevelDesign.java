@@ -174,11 +174,11 @@ public class LevelDesign
 	{
 		Level newLevel = new Level(rows,cols);
 		Room[][] map = newLevel.getMap();
-		map[2][2]=RoomDesign.getRoomDesignOne();
+		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
 		newLevel.setCurrentRoom(2,2);
 		newLevel.getCurrentRoom().setEnemySpawned(true);
 		newLevel.getCurrentRoom().setAllEnemyDead(true);;
-//		boolean foundCurrent=false;
+		boolean foundCurrent=false;
 		int roomCounter=(int)((Math.random()*(rows*cols))+1);
 		while(roomCounter>0)
 		{
@@ -198,24 +198,36 @@ public class LevelDesign
 				}
 			}
 		}
-//		while(foundCurrent==false)
-//		{
-//			for(int i=0;i<rows;i++)
-//			{
-//				for(int s=0;s<cols;s++)
-//				{
-//					if(map[s][i]!=null)
-//					{
-//						//int randomCurr=(int)(Math.random()*(8))+1;
-//					//	if(randomCurr<2)
-//						//{
-//							newLevel.setCurrentRoom(s,i);
-//							foundCurrent=true;
-//					//}
-//					}
-//				}
-//			}
-//		}
+		for(int i=0;i<rows;i++)
+		{
+			for(int s=0;s<cols;s++)
+			{
+				int nullCheck=0;
+				if(i==0)
+					nullCheck++;
+				else
+					if(map[i-1][s]==null)
+						nullCheck++;
+				if(i==rows-1)
+					nullCheck++;
+				else
+					if(map[i+1][s]==null)
+						nullCheck++;
+				if(s==0)
+					nullCheck++;
+				else
+					if(map[i][s-1]==null)
+						nullCheck++;
+				if(s==rows-1)
+					nullCheck++;
+				else
+					if(map[i][s+1]==null)
+						nullCheck++;
+				if(nullCheck==4)
+					newLevel.addNullRoomTo(null,i,s);
+				nullCheck=0;
+			}			
+		}
 		newLevel.placeTeleportersInLevel();
 		return newLevel;
 	}
