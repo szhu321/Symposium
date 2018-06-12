@@ -9,10 +9,18 @@
 	-fx-border-style: solid;
 	-fx-border-width: 2px;
 	-fx-border-radius: 20px;
+	-fx-cursor: hand;
 }
+
+.button:hover:pressed
+{
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
+
 
 .button:hover
 {
 	-fx-background-color: white;
-	-fx-text-fill: black; 
+	-fx-text-fill: black;
 }
