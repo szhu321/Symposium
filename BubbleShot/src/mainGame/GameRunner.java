@@ -41,15 +41,15 @@ public class GameRunner extends Application
 		window.setHeight(resolutionHeight);
 		window.setWidth(resolutionWidth);
 		window.setResizable(false);
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-////		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getRandomLevelDesign(5, 5), player, window);
-		gameManager.startGame();
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+//////		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+//		gameManager = new GameManager(LevelDesign.getRandomLevelDesign(5, 5), player, window);
+//		gameManager.startGame();
 		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-//		loadFXMLs();
+		loadFXMLs();
 		
 		
 		window.show();
