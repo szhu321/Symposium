@@ -12,9 +12,9 @@ public class BossAttacks
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
 		atkList.add(BossAttacks.getBossAtkOne(x,y));
-		atkList.add(BossAttacks.getBossAtkTwo(x,y));
-		atkList.add(BossAttacks.getBossAtkThree(x,y));
-		atkList.add(BossAttacks.getBossAtkFour(x,y));
+//		atkList.add(BossAttacks.getBossAtkTwo(x,y));
+//		atkList.add(BossAttacks.getBossAtkThree(x,y));
+//		atkList.add(BossAttacks.getBossAtkFour(x,y));
 		atkList.add(BossAttacks.getBossAtkFive(x,y));
 		return atkList;
 	}
