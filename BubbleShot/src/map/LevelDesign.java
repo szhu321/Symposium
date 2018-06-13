@@ -174,11 +174,17 @@ public class LevelDesign
 	{
 		Level newLevel = new Level(rows,cols);
 		Room[][] map = newLevel.getMap();
+//		map[0][3]=RoomDesign.getRoomDesignOne();
+//		map[0][3].setLevelRow(0);
+//		map[0][3].setLevelCol(3);
+//		newLevel.setCurrentRoom(0,3);
 		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
+		map[rows/2][cols/2].setLevelRow(rows/2);
+		map[rows/2][cols/2].setLevelCol(cols/2);
 		newLevel.setCurrentRoom(rows/2,cols/2);
 		newLevel.getCurrentRoom().setEnemySpawned(true);
 		newLevel.getCurrentRoom().setAllEnemyDead(true);;
-		boolean foundCurrent=false;
+		//boolean foundCurrent=false;
 		int roomCounter=(int)((Math.random()*(rows*cols))+1);
 		while(roomCounter>0)
 		{

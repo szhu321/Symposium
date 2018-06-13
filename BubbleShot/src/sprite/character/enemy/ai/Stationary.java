@@ -46,7 +46,7 @@ public class Stationary extends AI
 		this.getEnemy().calculateEnemyAngleToPlayer();
 		if(this.getEnemy().getEnemyType().equals(Enemy.SPAWNER1)||this.getEnemy().getEnemyType().equals(Enemy.SPAWNER2))
 		{
-			if(time%200==0)
+			if(time%300==0)
 			{
 				spawnEnemy();
 			}
