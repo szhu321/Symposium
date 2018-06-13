@@ -46,7 +46,7 @@ public class BossOne extends AI
 				if(this.getEnemy().getWeapon() instanceof BossWepFive)
 				{
 					this.setFollowPlayer(false);
-					int direction=1;//(int)(Math.random()*4);
+					int direction=(int)(Math.random()*4);
 					if(direction==0)
 					{
 						this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()/2);
@@ -96,10 +96,10 @@ public class BossOne extends AI
 				{
 					this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()/2);
 					this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()/2);
-					if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
+					if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject())||this.getEnemy().getBoundsOfObject().intersect(this.getPlayer().getBoundsOfObject()))
 					{
-						this.getEnemy().addXLocation(this.getPlayer().getWidth()+50);
-						this.getEnemy().addYLocation(this.getPlayer().getHeight()+50);
+						this.getEnemy().addXLocation(this.getPlayer().getWidth()+100);
+					//	this.getEnemy().addYLocation(this.getPlayer().getHeight()+50);
 					}
 				}
 			}	
