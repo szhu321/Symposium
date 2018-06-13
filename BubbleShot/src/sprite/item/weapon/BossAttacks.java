@@ -12,10 +12,10 @@ public class BossAttacks
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
 		atkList.add(BossAttacks.getBossAtkOne(x,y));
-		atkList.add(BossAttacks.getBossAtkTwo(x,y));
-		atkList.add(BossAttacks.getBossAtkThree(x,y));
-		atkList.add(BossAttacks.getBossAtkFour(x,y));
-	//	atkList.add(BossAttacks.getBossAtkFive(x,y));
+//		atkList.add(BossAttacks.getBossAtkTwo(x,y));
+//		atkList.add(BossAttacks.getBossAtkThree(x,y));
+//		atkList.add(BossAttacks.getBossAtkFour(x,y));
+		atkList.add(BossAttacks.getBossAtkFive(x,y));
 		return atkList;
 	}
 	
@@ -86,7 +86,6 @@ public class BossAttacks
 		int ammoUsedPerShot = 0;
 		BossWepFive shotgun = new BossWepFive("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
 		shotgun.setAutomatic(true);
-		shotgun.setRange(75,115);
 		return shotgun;
 	}
 }
