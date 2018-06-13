@@ -15,7 +15,7 @@ public class TileDesign
 	
 	public static Tile getStoneTileDesignOne(double x, double y, double width, double height, double faceAngle)
 	{
-		Effect effect = new NoEffect();
+		Effect effect = NoEffect.NO_EFFECT;
 		Tile result = new Tile("StoneTile", "file:resources/tile/stonetile.png", effect, x, y, width, height, faceAngle);
 		return result;
 	}

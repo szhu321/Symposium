@@ -125,8 +125,9 @@ public class PlayingScene
 		loadMiniMap();
 		loadInventoryDis();
 		loadInGameMenu();
-		
 		root.getChildren().addAll(roomView.getCanvas() ,headUpDis , miniMap, inventoryDis.getInventoryDis(), holdingItem);
+		//System.out.println(headUpDis.getPrefHeight());
+		//System.out.println(GameRunner.getResolutionHeight());
 	}
 	
 	public void loadInGameMenu()
@@ -223,9 +224,10 @@ public class PlayingScene
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
-		headUpDis.setBottom(getInventoryDisGUI());
 		headUpDis.setPrefHeight(GameRunner.getResolutionHeight() - 40);
 		headUpDis.setPrefWidth(GameRunner.getResolutionWidth());
+		headUpDis.setBottom(getInventoryDisGUI());
+		BorderPane.setAlignment(headUpDis.getBottom(), Pos.CENTER);
 		updateHeadUpDis();
 	}
 	
@@ -283,7 +285,9 @@ public class PlayingScene
 	private GridPane getInventoryDisGUI()
 	{
 		GridPane bottomBox = new GridPane();
-		bottomBox.setAlignment(Pos.BOTTOM_CENTER);
+		bottomBox.setMaxWidth(600);
+		bottomBox.setPadding(new Insets(5, 20, 5, 20));
+		bottomBox.setAlignment(Pos.CENTER);
 		bottomBox.setHgap(20);
 		//playerInventoryDis = new ImageView[currentRoom.getPlayer().getInventory().length];
 		playerHotbarDisCanvas = new Canvas[currentRoom.getPlayer().getHotBar().length];
@@ -344,7 +348,6 @@ public class PlayingScene
 			return;
 		}
 		inventoryDis.getInventoryDis().setVisible(true);
-		
 		inventoryDis.updateInventoryDis(currentRoom.getPlayer().getInventory());
 		//System.out.println(inventoryDis.getInventoryDis().getHeight());
 	}

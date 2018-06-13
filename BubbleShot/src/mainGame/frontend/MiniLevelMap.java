@@ -29,9 +29,15 @@ public class MiniLevelMap
 	public static void fillLevelRec(GraphicsContext gc, Level level)
 	{
 		Room[][] rooms = level.getMap();
-		for(int i = 0, y = 10; i < rooms.length; i++, y += 40)
+		int row = level.getCurrentRoom().getLevelRow();
+		int col = level.getCurrentRoom().getLevelCol();
+		if(row > 0)
+			row--;
+		if(col > 0)
+			col--;
+		for(int i = row, y = 10; i < rooms.length; i++, y += 40)
 		{
-			for(int j = 0, x = 10; j < rooms[i].length; j++, x += 40)
+			for(int j = col, x = 10; j < rooms[i].length; j++, x += 40)
 			{
 				if(rooms[i][j] != null)
 				{
