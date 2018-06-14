@@ -73,7 +73,9 @@ public class GameManager
 	
 	private Teleporter currentTeleporterTracker;
 	
-	public GameManager(Level level, Player player, Stage window)
+	private Controls controls;
+	
+	public GameManager(Level level, Player player, Stage window, Controls controls)
 	{
 		this.level = level;
 		this.player = player;
@@ -81,6 +83,7 @@ public class GameManager
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		this.window = window;
+		this.controls = controls;
 		TimerManager.reset();
 	}
 	
@@ -732,6 +735,29 @@ public class GameManager
 		return null;
 	}
 	
+	public void playerBuyItem()
+	{
+		Item boughtItem=checkShopCollision();
+		if(boughtItem!=null)
+		{
+			player.addItem(boughtItem);
+		}
+	}
+	
+	public void togglePause()
+	{
+		if(TimerManager.isPaused)
+		{
+			unPauseGame();
+			playingScene.getInGameMenu().setVisible(false);
+		}
+		else
+		{
+			pauseGame();
+			playingScene.getInGameMenu().setVisible(true);
+		}
+	}
+	
 	public double getMouseX()
 	{
 		return mouseX;
@@ -767,20 +793,66 @@ public class GameManager
 		return false;
 	}
 	
+	public Controls getControls()
+	{
+		return controls;
+	}
+	
+	public void applyInputControlPressed(String input)
+	{
+		if(input.equals(controls.getUp()))
+			up = true;
+		else if(input.equals(controls.getDown()))
+			down = true;
+		else if(input.equals(controls.getRight()))
+			right = true;
+		else if(input.equals(controls.getLeft()))
+			left = true;
+		else if(input.equals(controls.getSprint()))
+			shift = true;
+		else if(input.equals(controls.getDropItem()))
+			playerDropItem();
+		else if(input.equals(controls.getInventory()))
+			toggleDisInventory();
+		else if(input.equals(controls.getBuyItem()))
+			playerBuyItem();
+		else if(input.equals(controls.getPause()))
+			togglePause();
+			
+			
+			
+			
+		
+	}
+	
+	public void applyInputControlReleased(String input)
+	{
+		if(input.equals(controls.getUp()))
+			up = false;
+		else if(input.equals(controls.getDown()))
+			down = false;
+		else if(input.equals(controls.getRight()))
+			right = false;
+		else if(input.equals(controls.getLeft()))
+			left = false;
+		else if(input.equals(controls.getSprint()))
+			shift = false;
+	}
+	
 	public void setSceneControls(Scene scene)
 	{
 		scene.setOnKeyPressed(event -> 
 		{
 			KeyCode code = event.getCode();
-			if(code == KeyCode.W)
+			if(code.toString() == controls.getUp())
 				up = true;
-			if(code == KeyCode.A)
+			if(code.toString() == controls.getLeft())
 				left = true;
-			if(code == KeyCode.S)
+			if(code.toString() == controls.getDown())
 				down = true;
-			if(code == KeyCode.D)
+			if(code.toString() == controls.getRight())
 				right = true;
-			if(code == KeyCode.SHIFT)
+			if(code.toString() == controls.getSprint())
 				shift = true;
 			//if(code == KeyCode.E)
 				//playerPickUpItem();
@@ -796,16 +868,16 @@ public class GameManager
 				player.setCurrentItemIdx(4);
 			if(code == KeyCode.DIGIT6)
 				player.setCurrentItemIdx(5);
-			if(code == KeyCode.G)
+			if(code.toString() == controls.getDropItem())
 				playerDropItem();
-			if(code == KeyCode.I || code == KeyCode.ESCAPE||code == KeyCode.E)
+			if(code == KeyCode.I || code == KeyCode.ESCAPE||code.toString() == controls.getInventory())
 				toggleDisInventory();
 			if(code == KeyCode.F11)
 			{
 				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
 				toggleFullScreen();
 			}
-			if(code == KeyCode.Q)
+			if(code.toString() == controls.getBuyItem())
 			{
 				Item boughtItem=checkShopCollision();
 				if(boughtItem!=null)
@@ -813,7 +885,7 @@ public class GameManager
 					player.addItem(boughtItem);
 				}
 			}
-			if(code == KeyCode.P)
+			if(code.toString() == controls.getPause())
 			{
 				if(TimerManager.isPaused)
 				{

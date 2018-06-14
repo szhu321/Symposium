@@ -15,7 +15,7 @@
                   <Label text="UP" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="528.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="upField" />
                      </children>
                   </HBox>
                </children>
@@ -25,7 +25,7 @@
                   <Label text="DOWN" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="508.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="downField" />
                      </children>
                   </HBox>
                </children>
@@ -35,7 +35,7 @@
                   <Label text="LEFT" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="521.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="leftField" />
                      </children>
                   </HBox>
                </children>
@@ -45,7 +45,7 @@
                   <Label text="RIGHT" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="513.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="rightField" />
                      </children>
                   </HBox>
                </children>
@@ -55,7 +55,7 @@
                   <Label text="DROP ITEM" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="484.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="dropItemField" />
                      </children>
                   </HBox>
                </children>
@@ -65,7 +65,7 @@
                   <Label text="INVENTORY" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="483.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="inventoryField" />
                      </children>
                   </HBox>
                </children>

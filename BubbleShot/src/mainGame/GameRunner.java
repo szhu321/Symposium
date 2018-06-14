@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
+import mainGame.backend.Controls;
 import mainGame.backend.GameManager;
 import mainGame.saving.FileReader;
 import map.Level;
@@ -26,6 +27,8 @@ public class GameRunner extends Application
 	private static double resolutionHeight;
 	private static double resolutionWidth;
 	
+	private static Controls controls;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -41,15 +44,16 @@ public class GameRunner extends Application
 		window.setHeight(resolutionHeight);
 		window.setWidth(resolutionWidth);
 		window.setResizable(false);
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-////		//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window);
-		gameManager.startGame();
+		loadControls();
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+//////	//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+//		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window, controls);
+//		gameManager.startGame();
 //		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-		//loadFXMLs();
+		loadFXMLs();
 		
 		
 		window.show();
@@ -60,6 +64,16 @@ public class GameRunner extends Application
 		//Loads the scene Tracker then sets the scene to the MainMenuView();
 		sceneTracker = new SceneTracker(window);
 		sceneTracker.switchToMainMenuView();
+	}
+	
+	private void loadControls()
+	{
+		controls = new Controls();
+	}
+	
+	public static Controls getControls()
+	{
+		return controls;
 	}
 	
 	/**
@@ -111,7 +125,7 @@ public class GameRunner extends Application
 	
 	public static void createGameManager(Level level, Player player)
 	{
-		gameManager = new GameManager(level, player, window);
+		gameManager = new GameManager(level, player, window, controls);
 	}
 	
 	public static void startGameManager()
