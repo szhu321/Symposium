@@ -87,7 +87,7 @@ public class EnemyDesign
 	public static Enemy getTurrentDesignOne(double x, double y, Player player)
 	{
 		String fileName = "file:resources/enemy/turret.png";
-		Weapon rifle=WeaponDesign.getAssaultRifleDesignOne(x, y);
+		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y);
 		rifle.setDefaultCoolDownTime(.8);
 		Enemy enemy=new Turrent("Turrent Brian",fileName, x, y,50, 130, 50, 50, rifle,player,Enemy.TOWER);
 		return enemy;
@@ -96,7 +96,7 @@ public class EnemyDesign
 	public static Enemy getBaseDesignOne(double x, double y, Player player)
 	{
 		String fileName = "file:resources/enemy/enemy3.png";
-		Weapon rifle=WeaponDesign.getAssaultRifleDesignOne(x, y);
+		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y);
 		rifle.setDefaultCoolDownTime(.8);
 		Enemy enemy=new Spawner("Spawner1 Brian",fileName, x, y,250, 130, 50, 50, rifle,player,Enemy.SPAWNER1);
 		return enemy;
@@ -105,7 +105,7 @@ public class EnemyDesign
 	public static Enemy getBaseDesignTwo(double x, double y, Player player)
 	{
 		String fileName = "file:resources/enemy/enemy3.png";
-		Weapon rifle=WeaponDesign.getAssaultRifleDesignOne(x, y);
+		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y);
 		rifle.setDefaultCoolDownTime(.8);
 		String randomEnemy="";
 		int chooser=0;
@@ -127,6 +127,17 @@ public class EnemyDesign
 		String fileName = "file:resources/enemy/robo.png";
 		List<Weapon> weps=BossAttacks.getBossOneAtkPattern(x, y);
 		Boss boss=new RobotBoss("ROBOTBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
+		for(Weapon w:weps)
+			w.setPossessor(boss);
+		boss.setGunVisibility(false);
+		return boss;
+	}
+	
+	public static Boss getBossDesignTwo(double x, double y, Player player)
+	{
+		String fileName = "file:resources/enemy/knight.png";
+		List<Weapon> weps=BossAttacks.getBossTwoAtkPattern(x, y);
+		Boss boss=new KnightBoss("ROBOTBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
 		for(Weapon w:weps)
 			w.setPossessor(boss);
 		boss.setGunVisibility(false);

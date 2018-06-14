@@ -549,7 +549,8 @@ public class Room implements Serializable
 		}
 		else
 		{
-			this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
+			//this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
+			this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
 		}
 		//debugger
 		/*for(int i=0;i<spawnTile.length;i++)

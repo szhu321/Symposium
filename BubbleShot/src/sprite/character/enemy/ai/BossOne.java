@@ -14,7 +14,7 @@ public class BossOne extends AI
 	public BossOne(Enemy enemy, Player player) {
 		super(enemy, player, "BossOne");
 		// TODO Auto-generated constructor stub
-		time=0;
+		time=400;
 	}
 
 	@Override
@@ -47,50 +47,8 @@ public class BossOne extends AI
 				{
 					this.setFollowPlayer(false);
 					int direction=(int)(Math.random()*4);
-					if(direction==0)
-					{
-						this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()/2);
-						this.getEnemy().setYLocation(100);
-						if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
-						{
-							this.getEnemy().addXLocation(this.getPlayer().getWidth()+50);
-							this.getEnemy().addYLocation(this.getPlayer().getHeight());
-						}
-						((BossWepFive)this.getEnemy().getWeapon()).setRange(70,120);
-					}
-					if(direction==1)
-					{
-						this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()-200);
-						this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()/2);
-						if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
-						{
-							//this.getEnemy().addXLocation(this.getPlayer().getWidth());
-							this.getEnemy().addYLocation(this.getPlayer().getHeight()+50);
-						}
-						((BossWepFive)this.getEnemy().getWeapon()).setRange(150,210);
-					}
-					if(direction==2)
-					{
-						this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()/2);
-						this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()-200);
-						if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
-						{
-							this.getEnemy().addXLocation(this.getPlayer().getWidth());
-							this.getEnemy().addYLocation(this.getPlayer().getHeight());
-						}
-						((BossWepFive)this.getEnemy().getWeapon()).setRange(240,300);
-					}
-					if(direction==3)
-					{
-						this.getEnemy().setXLocation(100);
-						this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()/2);
-						if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
-						{
-							this.getEnemy().addXLocation(this.getPlayer().getWidth());
-							this.getEnemy().addYLocation(this.getPlayer().getHeight()+50);
-						}
-						((BossWepFive)this.getEnemy().getWeapon()).setRange(-30,30);
-					}
+					move(direction);
+					
 				}
 				else
 				{
@@ -108,9 +66,53 @@ public class BossOne extends AI
 		time++;
 	}
 	
-	public void move(double sec)
+	public boolean move(int direction)
 	{
-		//Doesn't Move
+		if(direction==0)
+		{
+			this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()/2);
+			this.getEnemy().setYLocation(100);
+			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
+			{
+				move(direction+1);
+				return false;
+			}
+			((BossWepFive)this.getEnemy().getWeapon()).setRange(70,120);
+		}
+		if(direction==1)
+		{
+			this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()-200);
+			this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()/2);
+			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
+			{
+				move(direction+1);
+				return false;
+			}
+			((BossWepFive)this.getEnemy().getWeapon()).setRange(150,210);
+		}
+		if(direction==2)
+		{
+			this.getEnemy().setXLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixWidth()/2);
+			this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()-200);
+			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
+			{
+				move(direction+1);
+				return false;
+			}
+			((BossWepFive)this.getEnemy().getWeapon()).setRange(240,300);
+		}
+		if(direction==3)
+		{
+			this.getEnemy().setXLocation(100);
+			this.getEnemy().setYLocation(GameRunner.getGameManager().getLevel().getCurrentRoom().getRoomPixHeight()/2);
+			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
+			{
+				move(0);
+				return false;
+			}
+			((BossWepFive)this.getEnemy().getWeapon()).setRange(-30,30);
+		}
+		return true;
 	}
 	
 	public void wander(double sec)

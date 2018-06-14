@@ -112,6 +112,19 @@ public class WeaponDesign
 		return rifle;
 	}
 	
+	public static AssaultRifle getEAssaultRifleDesignOne(double x, double y)
+	{
+		double damage = 5;
+		double attackRate = .1;
+		double attackRange = 500;
+		int offsetAngle = 7;
+		int ammoUsedPerShot = 1;
+		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
+		AssaultRifle rifle = new AssaultRifle("Assault Rifle", x, y, damage, attackRate, attackRange, projectile, offsetAngle, ammoUsedPerShot,5);
+		rifle.setAutomatic(true);
+		return rifle;
+	}
+	
 	public static Sword getSwordDesignOne(double x, double y)
 	{
 		double damage = 20;

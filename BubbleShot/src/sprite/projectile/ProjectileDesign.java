@@ -46,6 +46,17 @@ public class ProjectileDesign
 		return bullet;
 	}
 	
+	public static Projectile getESlashDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/slash/slash.png";
+		double width = 20;
+		double height = 100;
+		double travelDistance = 1500;
+		double speed = 350;
+		Slash bullet = new Slash("Slash", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		return bullet;
+	}
+	
 	public static Projectile getFistDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
 	{
 		String fileName = "file:resources/weaponPictures/fist.png";
