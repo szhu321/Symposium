@@ -189,6 +189,31 @@ public class LevelDesign
 					if(map[s][i]==null)
 					{
 						int rollRoom=(int)(Math.random()*2)+1;
+						
+						int nullCheck=0;
+						if(i==0)
+							nullCheck++;
+						else
+							if(map[i-1][s]==null)
+								nullCheck++;
+						if(i==rows-1)
+							nullCheck++;
+						else
+							if(map[i+1][s]==null)
+								nullCheck++;
+						if(s==0)
+							nullCheck++;
+						else
+							if(map[i][s-1]==null)
+								nullCheck++;
+						if(s==rows-1)
+							nullCheck++;
+						else
+							if(map[i][s+1]==null)
+								nullCheck++;
+						if(nullCheck==4)
+							rollRoom = 0;
+							
 						if(rollRoom==2)
 						{
 							newLevel.addRoomTo(RoomDesign.getRoomDesignTwo(), i, s);
@@ -198,36 +223,7 @@ public class LevelDesign
 				}
 			}
 		}
-		for(int i=0;i<rows;i++)
-		{
-			for(int s=0;s<cols;s++)
-			{
-				int nullCheck=0;
-				if(i==0)
-					nullCheck++;
-				else
-					if(map[i-1][s]==null)
-						nullCheck++;
-				if(i==rows-1)
-					nullCheck++;
-				else
-					if(map[i+1][s]==null)
-						nullCheck++;
-				if(s==0)
-					nullCheck++;
-				else
-					if(map[i][s-1]==null)
-						nullCheck++;
-				if(s==rows-1)
-					nullCheck++;
-				else
-					if(map[i][s+1]==null)
-						nullCheck++;
-				if(nullCheck==4)
-					newLevel.addNullRoomTo(null,i,s);
-				nullCheck=0;
-			}			
-		}
+		
 		newLevel.placeTeleportersInLevel();
 		return newLevel;
 	}
