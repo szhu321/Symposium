@@ -144,7 +144,7 @@ public class Level implements Serializable
 		{
 			for(int s=0;s<map[0].length;s++)
 			{
-				if(!(s+1>=map[0].length)&&map[i][s]!=null&&map[i][s+1]!=null)
+				if(map[i][s]!=null&&!(s+1>=map[0].length)&&map[i][s+1]!=null)
 				{
 					TeleporterPair currentPair=new TeleporterPair();
 					Teleporter tele1=null;
@@ -178,7 +178,7 @@ public class Level implements Serializable
 					
 					pairCounter++;
 				}
-				if(!(i+1>=map.length)&&map[i][s]!=null&&map[i+1][s]!=null)
+				if(map[i][s]!=null&&!(i+1>=map.length)&&map[i+1][s]!=null)
 				{
 					TeleporterPair currentPair=new TeleporterPair();
 					Teleporter tele1=null;
