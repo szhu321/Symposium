@@ -74,7 +74,7 @@ public class BossAttacks
 		double attackRate = .40;
 		double attackRange = 100;
 		int offsetAngle = 160;
-		Projectile projectile =ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
+		Projectile projectile =ProjectileDesign.getESlowBulletDesignOne(null, x, y, 0, 5);
 		int bulletPerShot = 180;
 		int ammoUsedPerShot = 0;
 		BossWepFour shotgun = new BossWepFour("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
