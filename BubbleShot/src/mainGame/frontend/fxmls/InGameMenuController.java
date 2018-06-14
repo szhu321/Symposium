@@ -22,7 +22,7 @@ public class InGameMenuController
 	
 	public void quitBtnOnclick() throws Exception
 	{
-		GameRunner.getSceneTracker().useScene();
+		GameRunner.getSceneTracker().useMenuScene();
 		GameRunner.getSceneTracker().switchToMainMenuView();
 	}
 	

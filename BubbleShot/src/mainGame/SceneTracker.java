@@ -24,7 +24,7 @@ public class SceneTracker
 		this.window.setScene(scene);
 	}
 	
-	public void useScene()
+	public void useMenuScene()
 	{
 		window.setScene(scene);
 	}

@@ -37,6 +37,14 @@ public class GameRunner extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception 
 	{
+		/*
+		 * - Start method sets up the window by first setting the title and then adjusting 
+		 * the size of the window based on user screen.
+		 * - Next it loads up the controls from a save file. If there is no save file 
+		 * create a new one and apply default controls.
+		 * - Then it loads up the FXML files for the main menu.
+		 * - Finally the window starts displaying the first scene, which is the main menu.
+		 */
 		window = primaryStage;
 		window.setTitle("Lost Cause");
 		resolutionHeight = Screen.getPrimary().getVisualBounds().getHeight();
@@ -45,20 +53,25 @@ public class GameRunner extends Application
 		window.setWidth(resolutionWidth);
 		window.setResizable(false);
 		loadControls();
-//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
-//////	//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-//		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window, controls);
-//		gameManager.startGame();
+		loadFXMLs();
+		
+		
+		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+////	//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
+		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window, controls);
+		gameManager.startGame();
 //		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-		loadFXMLs();
-		
 		
 		window.show();
 	}
 	
+	/**
+	 * Loads the main menu.
+	 * @throws Exception 
+	 */
 	private void loadFXMLs() throws Exception
 	{
 		//Loads the scene Tracker then sets the scene to the MainMenuView();
@@ -66,14 +79,12 @@ public class GameRunner extends Application
 		sceneTracker.switchToMainMenuView();
 	}
 	
+	/**
+	 * Loads the controls for the game.
+	 */
 	private void loadControls()
 	{
 		controls = new Controls();
-	}
-	
-	public static Controls getControls()
-	{
-		return controls;
 	}
 	
 	/**
@@ -86,6 +97,34 @@ public class GameRunner extends Application
 	public static void setScene(Scene scene)
 	{
 		window.setScene(scene);
+	}
+	
+	/**
+	 * creates a new gameManager that runs the game.
+	 * @param level the level the user is playing.
+	 * @param player the player the user plays with.
+	 */
+	public static void createGameManager(Level level, Player player)
+	{
+		gameManager = new GameManager(level, player, window, controls);
+	}
+	
+	/**
+	 * If gameManger exists starts the gameManager.
+	 * else print out error message.
+	 */
+	public static void startGameManager()
+	{
+		if(gameManager != null)
+			gameManager.startGame();
+		else
+			System.out.println("Null Gamemanager");
+	}
+	
+	/*Getters and Setters*/
+	public static Controls getControls()
+	{
+		return controls;
 	}
 	
 	public static double getWindowHeight()
@@ -123,16 +162,4 @@ public class GameRunner extends Application
 		return gameManager;
 	}
 	
-	public static void createGameManager(Level level, Player player)
-	{
-		gameManager = new GameManager(level, player, window, controls);
-	}
-	
-	public static void startGameManager()
-	{
-		if(gameManager != null)
-			gameManager.startGame();
-		else
-			System.out.println("Null Gamemanager");
-	}
 }

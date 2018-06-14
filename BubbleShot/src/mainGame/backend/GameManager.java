@@ -810,6 +810,18 @@ public class GameManager
 			left = true;
 		else if(input.equals(controls.getSprint()))
 			shift = true;
+		else if(input.equals(controls.getHotBar1()))
+			player.setCurrentItemIdx(0);
+		else if(input.equals(controls.getHotBar2()))
+			player.setCurrentItemIdx(1);
+		else if(input.equals(controls.getHotBar3()))
+			player.setCurrentItemIdx(2);
+		else if(input.equals(controls.getHotBar4()))
+			player.setCurrentItemIdx(3);
+		else if(input.equals(controls.getHotBar5()))
+			player.setCurrentItemIdx(4);
+		else if(input.equals(controls.getHotBar6()))
+			player.setCurrentItemIdx(5);
 		else if(input.equals(controls.getDropItem()))
 			playerDropItem();
 		else if(input.equals(controls.getInventory()))
@@ -818,11 +830,11 @@ public class GameManager
 			playerBuyItem();
 		else if(input.equals(controls.getPause()))
 			togglePause();
-			
-			
-			
-			
-		
+		else if(input.equals(controls.getFullScreen()))
+		{
+			window.setFullScreenExitHint("Press F11 to exit full-screen mode");
+			toggleFullScreen();
+		}	
 	}
 	
 	public void applyInputControlReleased(String input)
@@ -843,74 +855,77 @@ public class GameManager
 	{
 		scene.setOnKeyPressed(event -> 
 		{
-			KeyCode code = event.getCode();
-			if(code.toString() == controls.getUp())
-				up = true;
-			if(code.toString() == controls.getLeft())
-				left = true;
-			if(code.toString() == controls.getDown())
-				down = true;
-			if(code.toString() == controls.getRight())
-				right = true;
-			if(code.toString() == controls.getSprint())
-				shift = true;
-			//if(code == KeyCode.E)
-				//playerPickUpItem();
-			if(code == KeyCode.DIGIT1)
-				player.setCurrentItemIdx(0);
-			if(code == KeyCode.DIGIT2)
-				player.setCurrentItemIdx(1);
-			if(code == KeyCode.DIGIT3)
-				player.setCurrentItemIdx(2);
-			if(code == KeyCode.DIGIT4)
-				player.setCurrentItemIdx(3);
-			if(code == KeyCode.DIGIT5)
-				player.setCurrentItemIdx(4);
-			if(code == KeyCode.DIGIT6)
-				player.setCurrentItemIdx(5);
-			if(code.toString() == controls.getDropItem())
-				playerDropItem();
-			if(code == KeyCode.I || code == KeyCode.ESCAPE||code.toString() == controls.getInventory())
-				toggleDisInventory();
-			if(code == KeyCode.F11)
-			{
-				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
-				toggleFullScreen();
-			}
-			if(code.toString() == controls.getBuyItem())
-			{
-				Item boughtItem=checkShopCollision();
-				if(boughtItem!=null)
-				{
-					player.addItem(boughtItem);
-				}
-			}
-			if(code.toString() == controls.getPause())
-			{
-				if(TimerManager.isPaused)
-				{
-					unPauseGame();
-					playingScene.getInGameMenu().setVisible(false);
-				}
-				else
-				{
-					pauseGame();
-					playingScene.getInGameMenu().setVisible(true);
-				}
-			}
+			applyInputControlPressed(event.getCode().toString());
+			
+//			KeyCode code = event.getCode();
+//			if(code.toString() == controls.getUp())
+//				up = true;
+//			if(code.toString() == controls.getLeft())
+//				left = true;
+//			if(code.toString() == controls.getDown())
+//				down = true;
+//			if(code.toString() == controls.getRight())
+//				right = true;
+//			if(code.toString() == controls.getSprint())
+//				shift = true;
+//			//if(code == KeyCode.E)
+//				//playerPickUpItem();
+//			if(code == KeyCode.DIGIT1)
+//				player.setCurrentItemIdx(0);
+//			if(code == KeyCode.DIGIT2)
+//				player.setCurrentItemIdx(1);
+//			if(code == KeyCode.DIGIT3)
+//				player.setCurrentItemIdx(2);
+//			if(code == KeyCode.DIGIT4)
+//				player.setCurrentItemIdx(3);
+//			if(code == KeyCode.DIGIT5)
+//				player.setCurrentItemIdx(4);
+//			if(code == KeyCode.DIGIT6)
+//				player.setCurrentItemIdx(5);
+//			if(code.toString() == controls.getDropItem())
+//				playerDropItem();
+//			if(code == KeyCode.I || code == KeyCode.ESCAPE||code.toString() == controls.getInventory())
+//				toggleDisInventory();
+//			if(code == KeyCode.F11)
+//			{
+//				window.setFullScreenExitHint("Press F11 to exit full-screen mode");
+//				toggleFullScreen();
+//			}
+//			if(code.toString() == controls.getBuyItem())
+//			{
+//				Item boughtItem=checkShopCollision();
+//				if(boughtItem!=null)
+//				{
+//					player.addItem(boughtItem);
+//				}
+//			}
+//			if(code.toString() == controls.getPause())
+//			{
+//				if(TimerManager.isPaused)
+//				{
+//					unPauseGame();
+//					playingScene.getInGameMenu().setVisible(false);
+//				}
+//				else
+//				{
+//					pauseGame();
+//					playingScene.getInGameMenu().setVisible(true);
+//				}
+//			}
 			
 		});
 		scene.setOnKeyReleased(event -> 
 		{
-			switch(event.getCode())
-			{
-				case W: up = false; break;
-				case A: left = false; break;
-				case S: down = false; break;
-				case D: right = false; break;
-				case SHIFT: shift = false; break;
-				default: break;
-			}
+			applyInputControlReleased(event.getCode().toString());
+//			switch(event.getCode())
+//			{
+//				case W: up = false; break;
+//				case A: left = false; break;
+//				case S: down = false; break;
+//				case D: right = false; break;
+//				case SHIFT: shift = false; break;
+//				default: break;
+//			}
 		});
 		scene.addEventHandler(MouseEvent.ANY, event -> 
 		{
