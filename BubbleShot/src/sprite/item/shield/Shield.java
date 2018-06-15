@@ -5,7 +5,7 @@ import sprite.item.Item;
 public class Shield extends Item
 {
 	private double currentRechargeDelay;
-	private double defualtRechargeDelay;
+	private double defaultRechargeDelay;
 	private double rechargeRate;
 	private double currentShieldAmount;
 	private double defaultShieldAmount;
@@ -16,7 +16,7 @@ public class Shield extends Item
 	{
 		super(spriteName, fileName, xLocation, yLocation, width, height, Item.ARMOR,cost);
 		this.currentRechargeDelay = rechargeDelay;
-		this.defualtRechargeDelay = rechargeDelay;
+		this.defaultRechargeDelay = rechargeDelay;
 		this.rechargeRate = rechargeRate;
 		this.currentShieldAmount = shieldAmount;
 		this.defaultShieldAmount = shieldAmount;
@@ -27,10 +27,10 @@ public class Shield extends Item
 	{
 		//First Check to see if the recharge delay is completed before recharging the shield.
 		currentRechargeDelay += seconds;
-		if(currentRechargeDelay < defualtRechargeDelay)
+		if(currentRechargeDelay < defaultRechargeDelay)
 			return;
 		else
-			currentRechargeDelay = defualtRechargeDelay;
+			currentRechargeDelay = defaultRechargeDelay;
 		//If the recharge delay is completed recharge the shield.
 		currentShieldAmount += rechargeRate * seconds;
 		shieldDown = false;
@@ -62,12 +62,20 @@ public class Shield extends Item
 
 	public double getDefualtRechargeDelay() 
 	{
-		return defualtRechargeDelay;
+		return defaultRechargeDelay;
 	}
 
 	public double getDefaultShieldAmount()
 	{
 		return defaultShieldAmount;
+	}
+
+	@Override
+	public String description() {
+		return this.getSpriteName()+"\n"+"\n"
+				+ "Shield Amount: " + defaultShieldAmount + "\n" 
+				+ "Recharge Rate: " + rechargeRate+ "\n"
+				+ "Recharge Delay: " + defaultRechargeDelay;
 	}
 	
 }

@@ -136,21 +136,29 @@ public class Level implements Serializable
 	{
 		this.allTeleporters = allTeleporters;
 	}
-
+	/**
+	 * Place all teleporters in the Level
+	 */
 	public void placeTeleportersInLevel()
 	{
 		int pairCounter=0;
+		//Checks through all rooms
 		for(int i=0;i<map.length;i++)
 		{
 			for(int s=0;s<map[0].length;s++)
 			{
+				//Checks for null rooms or out of bounds to the right
 				if(map[i][s]!=null&&!(s+1>=map[0].length)&&map[i][s+1]!=null)
 				{
 					TeleporterPair currentPair=new TeleporterPair();
 					Teleporter tele1=null;
 					Teleporter tele2=null;
+					
+					//Find the tile to place the teleporter
 					Tile currentTile=map[i][s].getTileAt(map[i][s].getRoomPixWidth()-200, map[i][s].getRoomPixHeight()/2);
 					Tile currentTile1=map[i][s+1].getTileAt(100, map[i][s+1].getRoomPixHeight()/2);
+					
+					//Checks for a BossRoom
 					if(map[i][s].isBossRoom()||map[i][s+1].isBossRoom())
 					{
 						tele1=TeleporterDesign.getBossTeleporter(currentTile.getXLocation(),currentTile.getYLocation(),pairCounter);
@@ -160,24 +168,29 @@ public class Level implements Serializable
 					}
 					else
 					{
+						//Regular Teleporter
 						tele1=TeleporterDesign.getRegularTeleporter(currentTile.getXLocation(),currentTile.getYLocation(),pairCounter);
 						tele2=TeleporterDesign.getRegularTeleporter(currentTile1.getXLocation(),currentTile1.getYLocation(),pairCounter);
 					}
+					
+					//Sets the rooms the teleporter are in
 					tele1.setConnectedRoom(map[i][s]);					
 					tele2.setConnectedRoom(map[i][s+1]);
+					//Connect the teleporter to each other
 					tele1.setConnectedTeleporter(tele2);
 					tele2.setConnectedTeleporter(tele1);
 					currentPair.setId(tele1.getId());
 					currentPair.setTeleporter1(tele1);
-					currentPair.setTeleporter1(tele2);
-					
+					currentPair.setTeleporter1(tele2);		
 					allTeleporters.getTeleporterPair().add(currentPair);
-										
+						
+					//Place Teleporter
 					map[i][s].setTileAt((int)(tele1.getYLocation()/100), (int)(tele1.getXLocation()/100), tele1);
 					map[i][s+1].setTileAt((int)(tele2.getYLocation()/100), (int)(tele2.getXLocation()/100), tele2);
 					
 					pairCounter++;
 				}
+				//Checks for null rooms or out of bounds below
 				if(map[i][s]!=null&&!(i+1>=map.length)&&map[i+1][s]!=null)
 				{
 					TeleporterPair currentPair=new TeleporterPair();
@@ -228,6 +241,10 @@ public class Level implements Serializable
 		currentRoom.getCharacters().remove(player);
 	}
 	
+	/**
+	 * Checks if all enemies in all rooms are dead
+	 * @return true if all dead false if alive
+	 */
 	public boolean allDead()
 	{
 		int counter=map.length*map[0].length;

@@ -32,6 +32,7 @@ public class Astar extends AI
 	{
 		//Takes all tiles
 		Tile[][] allTiles=GameRunner.getGameManager().getLevel().getCurrentRoom().getTiles();
+		
 		//All Obstacles
 		List<Obstacle> allOb=GameRunner.getGameManager().getLevel().getCurrentRoom().getObstacles();
 		
@@ -41,8 +42,10 @@ public class Astar extends AI
 		int enemyX=(int)this.getEnemy().getXCenter()/100;
 		int enemyY=(int)this.getEnemy().getYCenter()/100;
 		
+		//Resets previous tile
 		Tile previous=null;
 		
+		//Set all tile's f,h,g and camefrom
 		for(Tile[] tilearr: allTiles)
 		{
 			for(Tile tile: tilearr)
@@ -89,22 +92,27 @@ public class Astar extends AI
 		}
 		*/
 		
+		//Closed set for tiles already check, Open set for tiles needed to be checked
 		List<Tile> closedSet=new ArrayList<Tile>();
 		List<Tile> openSet=new ArrayList<Tile>();
 		
+		//Sets the starting tile and the destination
 		Tile start=allTiles[enemyY][enemyX];	
 		Tile end=allTiles[playerY][playerX];
 		
-		
+		//Checks and initializes the first tile
 		openSet.add(start);
 		start.setgScore(0);
 		start.setfScore(allTiles[(int)start.getYLocation()/100][(int)start.getYLocation()/100].gethScore());
 		
+		//Checks all tiles in open set
 		while(openSet.size()>0)
 		{
 			////System.out.println();
 			Tile current=openSet.get(0); 
 		//	//System.out.println(openSet.size());
+			
+			//Finds the next tile to see if it is a better paath
 			for(int i=0;i<openSet.size();i++)
 			{
 				if(openSet.get(i).getfScore()<current.getfScore())
@@ -112,6 +120,7 @@ public class Astar extends AI
 					current=openSet.get(i);
 				}
 			}
+			
 			//if(current.getCame()==null)
 				//System.out.println("NULL");
 		//	else
@@ -123,15 +132,24 @@ public class Astar extends AI
 			//System.out.print("PLOCATION: "+end.getXLocation()+" "+end.getYLocation());
 			//System.out.println();
 			
+			//If the current tile is the destination then make a path
 			if(current.equals(end))
 			{
 				//System.out.println("CAME FROM: ("+current.getCame().getXLocation()/100+","+current.getCame().getYLocation()/100+")");
+				
+				//Makes the path
 				List<Tile> path=Astar.makePath(current);
+				
+				//Makes a list of coords for the player to move
 				List<Coord> pathCoords=new ArrayList<Coord>();
+				
+				//For every path, add the coords of the path to the list
 				for(Tile t: path)
 				{
 					pathCoords.add(0, new Coord((int)t.getXCenter(),(int)t.getYCenter()));
 				}
+				
+				
 				//String itWorked="PATH LOCATION INDEX: ";
 				//for(Tile t:path)
 				//{
@@ -139,16 +157,21 @@ public class Astar extends AI
 				//}
 				//System.out.pinrtln(itWorked);
 				//System.out.println("worked");
+				
+				//First position is the start
 				pathCoords.remove(0);
 				return pathCoords;
 			}
 			
+			//The current Tile is not checked again
 			openSet.remove(current);
 			closedSet.add(current);
 			
 			//System.out.println("OPEN SET SIZE: "+openSet.size());
 			//System.out.println("CLOSED SET SIZE: "+closedSet.size());
 			
+			
+			//Find the neighbors of the current tile
 			List<Tile> allNeighbors=Astar.getNeighbors(allTiles,current);
 			//for(Tile t:allNeighbors)
 			//{
@@ -159,57 +182,25 @@ public class Astar extends AI
 			
 			//System.out.println("NEIGHBOOOORS SIZE: "+allNeighbors.size());
 			
+			//Checks all neighbors to see which is the best path
 			for(int i=0;i<allNeighbors.size();i++)
 			{
-				/*Boolean isInClosed=false;
-				for(int s=0;s<closedSet.size();s++)
-				{
-					if(allNeighbors.get(i).equals(closedSet.get(s)))
-					{
-						isInClosed=true;
-						//System.out.println("CLOSED LIST SIZE IN NEIGHBOR: "+ closedSet.size());
-						break;
-					}				
-				}
-				
-				if(isInClosed)
-					continue;
-				*/
+				//Doesn't check for neighbors already checked
 				if(closedSet.contains(allNeighbors.get(i)))
 					continue;
 				
+				//Adds up the g score of the current tile with the neighbor
 				int tentGScore=current.getgScore()+allNeighbors.get(i).getgScore();
 				//System.out.println("TENTG SCORE: "+tentGScore);
 				//System.out.println("CURRENT NEIGHBOR G SCORE: "+allNeighbors.get(i).getgScore());
 				
-			/*	if(openSet.size()!=0)
-				{
-					for(int q=0;q<openSet.size();q++)
-					{
-						if(!(openSet.get(q).equals(allNeighbors.get(i))))
-						{
-							openSet.add(allNeighbors.get(i));
-							//System.out.println("NEIGHBOR ADD TO OPEN: "+openSet.size());
-							break;
-						}	
-						else
-							if(tentGScore>=allNeighbors.get(i).getgScore())
-							{
-								continue;
-							}
-					}	
-				}
-				else
-				{
-					openSet.add(allNeighbors.get(i));
-					//System.out.println("NEIGHBOR ADD TO OPEN: "+openSet.size());
-				}
-				*/
+				//Add the neighbors to openset if not done so already and checks if a neighbor has a better path
 				if(!openSet.contains(allNeighbors.get(i)))
 					openSet.add(allNeighbors.get(i));
 				else if(tentGScore>=allNeighbors.get(i).getgScore())
 					continue;
 				
+				//The current neighbor is the best path
 				allNeighbors.get(i).setCame(current);
 				//System.out.println("CAME FROM: ("+allNeighbors.get(i).getCame().getXLocation()/100+","+allNeighbors.get(i).getCame().getYLocation()/100+")");
 				allNeighbors.get(i).setgScore(tentGScore);
@@ -236,6 +227,12 @@ public class Astar extends AI
 		return null;
 	}
 	
+	/**
+	 * Gets all neighbors for a tile
+	 * @param tilesArr
+	 * @param start
+	 * @return return all neighbors
+	 */
 	public static List<Tile> getNeighbors(Tile[][] tilesArr, Tile start)
 	{
 		List<Tile> neighbor=new ArrayList<Tile>();
@@ -319,6 +316,11 @@ public class Astar extends AI
 		return neighbor;
 	}
 	
+	/**
+	 * Makes a path when destination is found
+	 * @param current
+	 * @return
+	 */
 	public static List<Tile> makePath(Tile current)
 	{
 		List<Tile> path=new ArrayList<Tile>();
@@ -350,7 +352,11 @@ public class Astar extends AI
 			//coords.add(new Coord(750,150));
 			//coords.add(new Coord(650,150));
 			//coords.add(new Coord(550,150));
+			
+			//Gets path
 			MovementPath hardPath=new MovementPath(aStar(),false);
+			
+			//Updates path if enemy moves
 			this.getEnemy().getMovement().updateMovementPath(hardPath);
 		}
 		

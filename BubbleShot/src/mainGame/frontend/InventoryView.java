@@ -103,7 +103,7 @@ public class InventoryView
 		Item[] invHotBar = inventory.getHotBar();
 		
 		if(inventory.getSelectedItem() != null)
-			itemDiscription.setText(inventory.getSelectedItem().toString());
+			itemDiscription.setText(inventory.getSelectedItem().description());
 		
 		for(int i = 0; i < invItems.length; i++)
 		{

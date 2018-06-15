@@ -489,21 +489,34 @@ public class Room implements Serializable
 		*/
 		return getTileAt(character.getXCenter(), character.getYCenter());
 	}
-	
+	/**
+	 * Spawn enemies in a room
+	 * @param BossRoom checks if the room is a boss room
+	 */
 	public void spawnEnemies(Boolean BossRoom)
 	{
 		if(!BossRoom)
 		{
+			//All tiles in the current room
 			int[][] spawnTile=new int[tiles.length][tiles[0].length];
+			//Random amount of enemies 
 			int amountEnemies=(int)((Math.random()*10)+1);
+			
 			//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
+			
+			//Get Current X and Y tile of player
 			int playerTileX=(int) ((this.characterCollisionWithTile(this.getPlayer()).getXLocation())/100);
 			int playerTileY=(int) ((this.characterCollisionWithTile(this.getPlayer()).getYLocation())/100);
+			
 			//System.out.println(amountEnemies);
+			
+			//Makes a random enemy
 			int randomType=0;
 			String enemyType="";
 			int randomX=0;
 			int randomY=0;
+			
+			//Makes a map of which tile is enemies able to spawn on
 			for(int i=0;i<tiles.length;i++)
 			{
 				for(int s=0;s<tiles[0].length;s++)
@@ -517,7 +530,8 @@ public class Room implements Serializable
 						}			
 					}			
 				}
-			}		
+			}	
+			//Enemies are not allowed to spawn near the player
 			spawnTile[playerTileY][playerTileX]=2;			
 			spawnTile[playerTileY-1][playerTileX-1]=0;
 			spawnTile[playerTileY-1][playerTileX]=0;
@@ -528,8 +542,10 @@ public class Room implements Serializable
 			spawnTile[playerTileY+1][playerTileX]=0;
 			spawnTile[playerTileY+1][playerTileX+1]=0;
 			
+			//Place the enemies
 			while(amountEnemies>0)
 			{
+				//If the location is unavailable find a new location
 				if(spawnTile[randomY][randomX]==0||spawnTile[randomY][randomX]==2)
 				{
 					randomX=(int)(Math.random()*spawnTile[0].length);
@@ -549,11 +565,14 @@ public class Room implements Serializable
 		}
 		else
 		{
+			//Place boss in boss room
+			
 			//this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
 			this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
 		}
-		//debugger
-		/*for(int i=0;i<spawnTile.length;i++)
+		
+		/*debugger
+		for(int i=0;i<spawnTile.length;i++)
 		{
 			String name="";
 			for(int s=0;s<spawnTile[0].length;s++)

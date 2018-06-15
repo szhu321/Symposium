@@ -22,26 +22,8 @@ public class LevelDesign
 		level1.addRoomTo(RoomDesign.getRoomDesignTwo(), 0, 1);
 		level1.addRoomTo(RoomDesign.getRoomDesignThree(), 0, 2);
 		level1.addRoomTo(RoomDesign.getShopRoomDesign(), 1, 0);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,2,1), 2, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,3,1), 3, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,4,1), 4, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,5,1), 5, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,6,1), 6, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,7,1), 7, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,8,1), 8, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignThree(player,9,1), 9, 1);
 		level1.addRoomTo(RoomDesign.getRoomDesignFive(), 1, 1);
 		level1.addRoomTo(RoomDesign.getBossRoomDesignOne(), 1, 2);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,10,1), 10, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,11,1), 11, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,12,1), 12, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,13,1), 13, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,14,1), 14, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,15,1), 15, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,16,1), 16, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,17,1), 17, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,18,1), 18, 1);
-//		level1.addRoomTo(RoomDesign.getRoomDesignFive(player,19,1), 19, 1);
 		level1.setCurrentRoom(0, 0);
 		
 		level1.getCurrentRoom().setEnemySpawned(true);
@@ -93,109 +75,38 @@ public class LevelDesign
 		return level2;
 	}
 	
-//	public static Level getRandomLevelDesign(int rows, int cols)
-//	{
-//		Level level = new Level(rows, cols);
-//		Room[][] map = level.getMap();
-//		Coord[][] coords = new Coord[rows][cols];
-//		for(int y = 0; y < rows; y++)
-//		{
-//			for(int x = 0; x < cols; x++)
-//			{
-//				coords[y][x] = new Coord(x, y);
-//			}
-//		}
-//		
-//		List<Coord> openset = new ArrayList<Coord>();
-//		List<Coord> closedset = new ArrayList<Coord>();
-//		List<Coord> finalset = new ArrayList<Coord>();
-//		
-//		//The map starts generating here
-//		openset.add(coords[0][0]);
-//		
-//		while(openset.size() > 0)
-//		{
-//			Coord current = openset.get(0);
-//			
-//			System.out.println("current:" + current);
-//			
-//			List<Coord> neighbors = getNeighbors(map, current, coords);
-//			
-//			for(Coord coor: neighbors)
-//				System.out.println("neighbor:" + coor);
-//			
-//			//if the openset or closedset contains the neighbor remove it.
-//			for(int i = neighbors.size() - 1; i >= 0; i--)
-//			{
-//				if(openset.contains(neighbors.get(i)))
-//					neighbors.remove(i);
-//				else if(closedset.contains(neighbors.get(i)))
-//					neighbors.remove(i);
-//			}
-//			
-//			
-//			//if there are multiple neighbors there is a chance of adding it to the openset.
-//			
-////			List<Coord> shuffledNeighbors = new ArrayList<Coord>();
-////			while(neighbors.size() > 0)
-////			{
-////				shuffledNeighbors.add(neighbors.remove(MyMath.getRandomInteger(0, neighbors.size() - 1)));
-////			}
-//			if(neighbors.size() > 0)
-//			{
-//				int addAmount = MyMath.getRandomInteger(1, neighbors.size());
-//				for(int i = 0; i < addAmount; i++)
-//				{
-//					openset.add(neighbors.get(i));
-//				}
-//			}
-//			
-//			
-//			for(Coord coor: neighbors)
-//				System.out.println("non removed neighbor:" + coor);
-//			
-//			openset.remove(current);
-//			finalset.add(current);
-//			closedset.add(current);
-//			
-//			for(Coord coor: closedset)
-//				System.out.println("closed:" + coor);
-//			for(Coord coor: openset)
-//				System.out.println("openend:" + coor);
-//			System.out.println();
-//		}
-//		
-//		for(Coord coor: finalset)
-//			System.out.println(coor);
-//		return null;
-//	}
-	
+	/**
+	 * Makes a random Level with random Rooms
+	 * @param rows amount of rows in the level
+	 * @param cols amount of cols in the level
+	 * @return randomly generated Level
+	 */
 	public static Level getRandomLevelDesign(int rows, int cols)
 	{
 		Level newLevel = new Level(rows,cols);
 		Room[][] map = newLevel.getMap();
-//		map[0][3]=RoomDesign.getRoomDesignOne();
-//		map[0][3].setLevelRow(0);
-//		map[0][3].setLevelCol(3);
-//		newLevel.setCurrentRoom(0,3);
+		//Sets the current room to the middle of the level
 		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
 		map[rows/2][cols/2].setLevelRow(rows/2);
 		map[rows/2][cols/2].setLevelCol(cols/2);
 		newLevel.setCurrentRoom(rows/2,cols/2);
 		newLevel.getCurrentRoom().setEnemySpawned(true);
 		newLevel.getCurrentRoom().setAllEnemyDead(true);;
-		//boolean foundCurrent=false;
+		//Amount of rooms to be generated
 		int roomCounter=(int)((Math.random()*(rows*cols))+1);
 		while(roomCounter>0)
 		{
+			//Goes through entire map array
 			for(int i=0;i<rows;i++)
 			{
 				for(int s=0;s<cols;s++)
 				{
 					if(map[s][i]==null)
 					{
+						//Chance of the current Room being a room
 						int rollRoom=(int)(Math.random()*2)+1;
 						
+						//Checks neighbors if null
 						int nullCheck=0;
 						if(i==0)
 							nullCheck++;

@@ -116,10 +116,10 @@ public abstract class Weapon extends Item
 			isCooledDown = true;
 	}
 	
-	public String toString()
+	public String description()
 	{
 		String output = "";
-		output += "Name: " + getSpriteName() + "\n";
+		output += getSpriteName() + "\n"+"\n";
 		output += "Weapon Damage = " + weaponDmg + "\n";
 		output += "Weapon Attack Rate = " + getDefaultCoolDownTime() + "\n";
 		output += "Weapon Attack Range = " + weaponAttackRange + "\n";

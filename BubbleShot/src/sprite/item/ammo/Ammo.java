@@ -34,4 +34,10 @@ public class Ammo extends Item implements Consumable, InstantCollect
 	{
 		player.getEffectManager().addEffect(this.getEffect());
 	}
+
+	@Override
+	public String description() 
+	{
+		return null;
+	}
 }

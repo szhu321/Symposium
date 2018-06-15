@@ -85,6 +85,8 @@ public abstract class Item extends Sprite
 		this.cost = cost;
 	}
 	
+	public abstract String description();
+	
 //	public void coolDownItem(double sec)
 //	{
 //		currentCoolDownTime -= sec;

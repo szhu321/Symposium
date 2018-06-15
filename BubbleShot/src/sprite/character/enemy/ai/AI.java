@@ -39,13 +39,19 @@ public abstract class AI
 
 	public abstract void action(double sec);
 
+	/**
+	 * Makes enemies move randomly
+	 * @param sec
+	 */
 	public void wander(double sec)
 	{
 		double deltaX = 0;
-		double deltaY = 0;
+		double deltaY = 0;	
 		Enemy enemy=this.getEnemy();
+		//Change in movement per sec
 		double changeAmount = enemy.getSpeed() * sec;
 		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		//Change directions 
 		if(directionSecs==20)
 		{	
 			direction=MyMath.getRandomInteger(1, 4);
@@ -53,6 +59,7 @@ public abstract class AI
 		}
 		else
 		{
+			//How much an enemy will move in a certain direction
 			if(this.getEnemy().getEnemyType()!=Enemy.GHOST)
 			{
 				if(direction==1&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
@@ -68,7 +75,9 @@ public abstract class AI
 			{
 				deltaX *= 1 / Math.sqrt(2);
 				deltaY *= 1 / Math.sqrt(2);
-			}		
+			}	
+			
+			//Moves the enemy
 			enemy.addXLocation(deltaX);
 			enemy.addYLocation(deltaY);
 			directionSecs++;

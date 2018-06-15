@@ -29,4 +29,10 @@ public class Coin extends Item implements InstantCollect
 		player.setCoins(player.getCoins() + amount);
 		
 	}
+
+	@Override
+	public String description() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -20,10 +20,12 @@ public class BossOne extends AI
 	@Override
 	public void action(double sec)
 	{
+		//Pauses an enemy after an attack and resets time for new attack
 		if(time==500)
 			time=0;
 		if(time<=300)
 		{
+			//Boss doesn't follow player, then it goes in either directions
 			if(this.isFollowPlayer())
 			{
 				if(this.isClockwise())
@@ -31,24 +33,32 @@ public class BossOne extends AI
 				else
 					this.getEnemy().setFaceAngle(this.getEnemy().getFaceAngle()-1);
 			}
+			//Chance changes direction of attacks
 			if(time%320==0)
-				this.getEnemy().getBrain().switchClockwise();
+			{
+				int num=(int)(Math.random()*2);
+				if(num==0)
+					this.getEnemy().getBrain().switchClockwise();
+			}
+			// Chance to randomly switches weapons
 			if(time%320==0)
 			{
 				int wepIdx=(int)(Math.random()*((Boss)(this.getEnemy())).getAllWep().size());
 				((Boss)(this.getEnemy())).switchWeapon(wepIdx);
+				
 				if(this.getEnemy().getWeapon() instanceof BossWepThree)
 				{
+					//Picks a random location for player to doge
 					int max=(int)(Math.random()*361);
 					int min=max-50;
 					((BossWepThree)this.getEnemy().getWeapon()).setRange(min,max);
 				}
 				if(this.getEnemy().getWeapon() instanceof BossWepFive)
 				{
+					//Shoots and teleports to a random direction
 					this.setFollowPlayer(false);
 					int direction=(int)(Math.random()*4);
-					move(direction);
-					
+					move(direction);				
 				}
 				else
 				{
@@ -75,7 +85,7 @@ public class BossOne extends AI
 			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
 			{
 				move(direction+1);
-				return false;
+				return true;
 			}
 			((BossWepFive)this.getEnemy().getWeapon()).setRange(70,120);
 		}
@@ -86,7 +96,7 @@ public class BossOne extends AI
 			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
 			{
 				move(direction+1);
-				return false;
+				return true;
 			}
 			((BossWepFive)this.getEnemy().getWeapon()).setRange(150,210);
 		}
@@ -97,7 +107,7 @@ public class BossOne extends AI
 			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
 			{
 				move(direction+1);
-				return false;
+				return true;
 			}
 			((BossWepFive)this.getEnemy().getWeapon()).setRange(240,300);
 		}
@@ -108,11 +118,11 @@ public class BossOne extends AI
 			if(this.getEnemy().getBoundsOfObject().contains(this.getPlayer().getBoundsOfObject()))
 			{
 				move(0);
-				return false;
+				return true;
 			}
 			((BossWepFive)this.getEnemy().getWeapon()).setRange(-30,30);
 		}
-		return true;
+		return false;
 	}
 	
 	public void wander(double sec)

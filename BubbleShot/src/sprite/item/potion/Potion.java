@@ -41,4 +41,12 @@ public class Potion extends Item implements Consumable
 		player.getEffectManager().addEffect(this.getEffect());
 		return true;
 	}
+	
+	@Override
+	public String description() 
+	{
+		return this.getSpriteName()+"\n"+"\n"
+				+ "Effect Time: " + potionEffect.getEffectTime() + "\n" 
+				+ "Effect Amount: " + potionEffect.getEffectAmount();
+	}
 }

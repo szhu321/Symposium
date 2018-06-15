@@ -32,4 +32,13 @@ public class Armor extends Item
 		return maxDamageBoost;
 	}
 
+	@Override
+	public String description() 
+	{
+		return this.getSpriteName()+"\n"+"\n"+
+			   "Health Boost: "+maxHealthBoost+ "\n"+
+			   "Damage Boost: "+maxDamageBoost+ "\n"+
+			   "Speed Boost: "+maxSpeedBoost;
+	}
+
 }

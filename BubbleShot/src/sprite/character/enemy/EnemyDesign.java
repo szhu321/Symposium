@@ -22,10 +22,6 @@ public class EnemyDesign
 			return EnemyDesign.getRegularDesignTwo(x, y, player);
 		if(type.equals(Enemy.SWORD))
 			return EnemyDesign.getSwordDesignOne(x, y, player);
-		if(type.equals(Enemy.TOWER))
-			return EnemyDesign.getTurrentDesignOne(x, y, player);
-		if(type.equals(Enemy.SPAWNER1))
-			return EnemyDesign.getBaseDesignOne(x, y, player);
 		return null;
 	}
 	
@@ -109,7 +105,7 @@ public class EnemyDesign
 		rifle.setDefaultCoolDownTime(.8);
 		String randomEnemy="";
 		int chooser=0;
-		chooser=(int)(Math.random()*6)+1;
+		chooser=(int)(Math.random()*4)+1;
 		if(chooser==1)
 			randomEnemy=Enemy.FOLLOWER;
 		if(chooser==2)
