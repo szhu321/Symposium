@@ -800,37 +800,37 @@ public class GameManager
 	
 	public void applyInputControlPressed(String input)
 	{
-		if(input.equals(controls.getUp()))
+		if(input.equals(controls.getUp().getCurrentControlStr()))
 			up = true;
-		else if(input.equals(controls.getDown()))
+		else if(input.equals(controls.getDown().getCurrentControlStr()))
 			down = true;
-		else if(input.equals(controls.getRight()))
+		else if(input.equals(controls.getRight().getCurrentControlStr()))
 			right = true;
-		else if(input.equals(controls.getLeft()))
+		else if(input.equals(controls.getLeft().getCurrentControlStr()))
 			left = true;
-		else if(input.equals(controls.getSprint()))
+		else if(input.equals(controls.getSprint().getCurrentControlStr()))
 			shift = true;
-		else if(input.equals(controls.getHotBar1()))
+		else if(input.equals(controls.getHotBar1().getCurrentControlStr()))
 			player.setCurrentItemIdx(0);
-		else if(input.equals(controls.getHotBar2()))
+		else if(input.equals(controls.getHotBar2().getCurrentControlStr()))
 			player.setCurrentItemIdx(1);
-		else if(input.equals(controls.getHotBar3()))
+		else if(input.equals(controls.getHotBar3().getCurrentControlStr()))
 			player.setCurrentItemIdx(2);
-		else if(input.equals(controls.getHotBar4()))
+		else if(input.equals(controls.getHotBar4().getCurrentControlStr()))
 			player.setCurrentItemIdx(3);
-		else if(input.equals(controls.getHotBar5()))
+		else if(input.equals(controls.getHotBar5().getCurrentControlStr()))
 			player.setCurrentItemIdx(4);
-		else if(input.equals(controls.getHotBar6()))
+		else if(input.equals(controls.getHotBar6().getCurrentControlStr()))
 			player.setCurrentItemIdx(5);
-		else if(input.equals(controls.getDropItem()))
+		else if(input.equals(controls.getDropItem().getCurrentControlStr()))
 			playerDropItem();
-		else if(input.equals(controls.getInventory()))
+		else if(input.equals(controls.getInventory().getCurrentControlStr()))
 			toggleDisInventory();
-		else if(input.equals(controls.getBuyItem()))
+		else if(input.equals(controls.getBuyItem().getCurrentControlStr()))
 			playerBuyItem();
-		else if(input.equals(controls.getPause()))
+		else if(input.equals(controls.getPause().getCurrentControlStr()))
 			togglePause();
-		else if(input.equals(controls.getFullScreen()))
+		else if(input.equals(controls.getFullScreen().getCurrentControlStr()))
 		{
 			window.setFullScreenExitHint("Press F11 to exit full-screen mode");
 			toggleFullScreen();
@@ -839,15 +839,15 @@ public class GameManager
 	
 	public void applyInputControlReleased(String input)
 	{
-		if(input.equals(controls.getUp()))
+		if(input.equals(controls.getUp().getCurrentControlStr()))
 			up = false;
-		else if(input.equals(controls.getDown()))
+		else if(input.equals(controls.getDown().getCurrentControlStr()))
 			down = false;
-		else if(input.equals(controls.getRight()))
+		else if(input.equals(controls.getRight().getCurrentControlStr()))
 			right = false;
-		else if(input.equals(controls.getLeft()))
+		else if(input.equals(controls.getLeft().getCurrentControlStr()))
 			left = false;
-		else if(input.equals(controls.getSprint()))
+		else if(input.equals(controls.getSprint().getCurrentControlStr()))
 			shift = false;
 	}
 	

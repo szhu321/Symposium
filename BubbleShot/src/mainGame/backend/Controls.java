@@ -1,243 +1,115 @@
 package mainGame.backend;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import myutilities.ControlItem;
 
 public class Controls
 {
 	//Movement Controls
-	private String up;
-	private String down;
-	private String left;
-	private String right;
-	private String sprint;
+	private ControlItem up;
+	private ControlItem down;
+	private ControlItem left;
+	private ControlItem right;
+	private ControlItem sprint;
 	
 	//Hotbar Controls
-	private String hotBar1;
-	private String hotBar2;
-	private String hotBar3;
-	private String hotBar4;
-	private String hotBar5;
-	private String hotBar6;
+	private ControlItem hotBar1;
+	private ControlItem hotBar2;
+	private ControlItem hotBar3;
+	private ControlItem hotBar4;
+	private ControlItem hotBar5;
+	private ControlItem hotBar6;
 	
 	//Action Controls
-	private String inventory;
-	private String buyItem;
-	private String dropItem;
-	private String shoot;
-	private String useItem;
+	private ControlItem inventory;
+	private ControlItem buyItem;
+	private ControlItem dropItem;
+	private ControlItem shoot;
+	private ControlItem useItem;
 	
 	//Other Controls
-	private String pause;
-	private String fullScreen;
+	private ControlItem pause;
+	private ControlItem fullScreen;
+	
+	//The list of controlItems
+	private List<ControlItem> controlItems;
 	
 	public Controls()
 	{
 		resetControls();
+		fillUpControlItemList();
 	}
 	
+	private void fillUpControlItemList()
+	{
+		controlItems = new ArrayList<ControlItem>();
+		controlItems.add(up);
+		controlItems.add(down);
+		controlItems.add(left);
+		controlItems.add(right);
+		controlItems.add(sprint);
+		controlItems.add(hotBar1);
+		controlItems.add(hotBar2);
+		controlItems.add(hotBar3);
+		controlItems.add(hotBar4);
+		controlItems.add(hotBar5);
+		controlItems.add(hotBar6);
+		controlItems.add(inventory);
+		controlItems.add(buyItem);
+		controlItems.add(dropItem);
+		controlItems.add(shoot);
+		controlItems.add(useItem);
+		controlItems.add(pause);
+		controlItems.add(fullScreen);
+	}
+
 	public void resetControls()
 	{
-		up = KeyCode.W.toString();
-		down = KeyCode.S.toString();
-		left = KeyCode.A.toString();
-		right = KeyCode.D.toString();
-		inventory = KeyCode.E.toString();
-		pause = KeyCode.P.toString();
-		buyItem = KeyCode.Q.toString();
-		dropItem = KeyCode.G.toString();
-		sprint = KeyCode.SHIFT.toString();
-		shoot = MouseButton.PRIMARY.toString();
-		useItem = MouseButton.SECONDARY.toString();
-		fullScreen = KeyCode.F11.toString();
-		hotBar1 = KeyCode.DIGIT1.toString();
-		hotBar2 = KeyCode.DIGIT2.toString();
-		hotBar3 = KeyCode.DIGIT3.toString();
-		hotBar4 = KeyCode.DIGIT4.toString();
-		hotBar5 = KeyCode.DIGIT5.toString();
-		hotBar6 = KeyCode.DIGIT6.toString();
+		up = new ControlItem("Move Up", KeyCode.W.toString());
+		down = new ControlItem("Move Down", KeyCode.S.toString());
+		left = new ControlItem("Move Left", KeyCode.A.toString());
+		right = new ControlItem("Move Right", KeyCode.D.toString());
+		inventory = new ControlItem("Open Inventory", KeyCode.E.toString());
+		pause = new ControlItem("Pause Game", KeyCode.P.toString());
+		buyItem = new ControlItem("Buy Item", KeyCode.Q.toString());
+		dropItem = new ControlItem("Drop Item", KeyCode.G.toString());
+		sprint = new ControlItem("Sprint", KeyCode.SHIFT.toString());
+		shoot = new ControlItem("Shoot", MouseButton.PRIMARY.toString());
+		useItem = new ControlItem("Use Item", MouseButton.SECONDARY.toString());
+		fullScreen = new ControlItem("Toggle Fullscreen", KeyCode.F11.toString());
+		hotBar1 = new ControlItem("Hot Key 1", KeyCode.DIGIT1.toString());
+		hotBar2 = new ControlItem("Hot Key 2", KeyCode.DIGIT2.toString());
+		hotBar3 = new ControlItem("Hot Key 3", KeyCode.DIGIT3.toString());
+		hotBar4 = new ControlItem("Hot Key 4", KeyCode.DIGIT4.toString());
+		hotBar5 = new ControlItem("Hot Key 5", KeyCode.DIGIT5.toString());
+		hotBar6 = new ControlItem("Hot Key 6", KeyCode.DIGIT6.toString());
 	}
 
-	public String getUp()
-	{
-		return up;
-	}
-
-	public String getDown()
-	{
-		return down;
-	}
-
-	public String getLeft()
-	{
-		return left;
-	}
-
-	public String getRight()
-	{
-		return right;
-	}
-
-	public String getInventory() 
-	{
-		return inventory;
-	}
-
-	public String getBuyItem() 
-	{
-		return buyItem;
-	}
-
-	public String getPause()
-	{
-		return pause;
-	}
-
-	public String getDropItem()
-	{
-		return dropItem;
-	}
-
-	public String getSprint()
-	{
-		return sprint;
-	}
-
-	public String getShoot() 
-	{
-		return shoot;
-	}
-
-	public String getUseItem() 
-	{
-		return useItem;
-	}
-
-	public void setUp(String up)
-	{
-		this.up = up;
-	}
-
-	public void setDown(String down) 
-	{
-		this.down = down;
-	}
-
-	public void setLeft(String left)
-	{
-		this.left = left;
-	}
-
-	public void setRight(String right)
-	{
-		this.right = right;
-	}
-
-	public void setInventory(String inventory) 
-	{
-		this.inventory = inventory;
-	}
-
-	public void setBuyItem(String buyItem) 
-	{
-		this.buyItem = buyItem;
-	}
-
-	public void setPause(String pause)
-	{
-		this.pause = pause;
-	}
-
-	public void setDropItem(String dropItem) 
-	{
-		this.dropItem = dropItem;
-	}
-
-	public void setSprint(String sprint)
-	{
-		this.sprint = sprint;
-	}
-
-	public void setShoot(String shoot)
-	{
-		this.shoot = shoot;
-	}
-
-	public void setUseItem(String useItem)
-	{
-		this.useItem = useItem;
-	}
-
-	public String getHotBar1() 
-	{
-		return hotBar1;
-	}
-
-	public String getHotBar2()
-	{
-		return hotBar2;
-	}
-
-	public String getHotBar3()
-	{
-		return hotBar3;
-	}
-
-	public String getHotBar4() 
-	{
-		return hotBar4;
-	}
-
-	public String getHotBar5() 
-	{
-		return hotBar5;
-	}
-
-	public String getHotBar6() 
-	{
-		return hotBar6;
-	}
-
-	public String getFullScreen()
-	{
-		return fullScreen;
-	}
-
-	public void setHotBar1(String hotBar1)
-	{
-		this.hotBar1 = hotBar1;
-	}
-
-	public void setHotBar2(String hotBar2) 
-	{
-		this.hotBar2 = hotBar2;
-	}
-
-	public void setHotBar3(String hotBar3)
-	{
-		this.hotBar3 = hotBar3;
-	}
-
-	public void setHotBar4(String hotBar4) 
-	{
-		this.hotBar4 = hotBar4;
-	}
-
-	public void setHotBar5(String hotBar5) 
-	{
-		this.hotBar5 = hotBar5;
-	}
-
-	public void setHotBar6(String hotBar6) 
-	{
-		this.hotBar6 = hotBar6;
-	}
-
-	public void setFullScreen(String fullScreen) 
-	{
-		this.fullScreen = fullScreen;
-	}
+	/* Getters*/
+	public ControlItem getUp(){return up;}
+	public ControlItem getDown(){return down;}
+	public ControlItem getLeft(){return left;}
+	public ControlItem getRight(){return right;}
+	public ControlItem getSprint() {return sprint;}
+	public ControlItem getHotBar1(){return hotBar1;}
+	public ControlItem getHotBar2(){return hotBar2;}
+	public ControlItem getHotBar3(){return hotBar3;}
+	public ControlItem getHotBar4(){return hotBar4;}
+	public ControlItem getHotBar5() {return hotBar5;}
+	public ControlItem getHotBar6() {return hotBar6;}
+	public ControlItem getInventory(){return inventory;}
+	public ControlItem getBuyItem(){return buyItem;}
+	public ControlItem getDropItem(){return dropItem;}
+	public ControlItem getShoot() {return shoot;}
+	public ControlItem getUseItem() {return useItem;}
+	public ControlItem getPause(){return pause;}
+	public ControlItem getFullScreen(){return fullScreen;}
+	public List<ControlItem> getControlItems(){return controlItems;}
 	
 	
-	
+
 }
