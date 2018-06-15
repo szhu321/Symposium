@@ -27,13 +27,13 @@ public class ControlsViewController implements Initializable
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
 		controls = GameRunner.getControls();
-		upField.setPromptText(controls.getUp().toString());
-		upField.setEditable(false);
-		downField.setPromptText(controls.getDown().toString());
-		leftField.setPromptText(controls.getLeft().toString());
-		rightField.setPromptText(controls.getRight().toString());
-		dropItemField.setPromptText(controls.getDropItem().toString());
-		inventoryField.setPromptText(controls.getInventory().toString());
+//		upField.setPromptText(controls.getUp().toString());
+//		upField.setEditable(false);
+//		downField.setPromptText(controls.getDown().toString());
+//		leftField.setPromptText(controls.getLeft().toString());
+//		rightField.setPromptText(controls.getRight().toString());
+//		dropItemField.setPromptText(controls.getDropItem().toString());
+//		inventoryField.setPromptText(controls.getInventory().toString());
 	}
 	
 	public void backBtnOnclick() throws Exception

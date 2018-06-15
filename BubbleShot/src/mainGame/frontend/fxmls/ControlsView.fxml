@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,71 +11,42 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="UP" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="528.0">
+            <ScrollPane prefHeight="389.0" prefWidth="600.0">
+               <content>
+                  <GridPane prefHeight="232.0" prefWidth="598.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <TextField fx:id="upField" />
+                        <Label text="Move Up" />
+                        <Label text="Move Down" GridPane.rowIndex="1" />
+                        <Label text="Move Left" GridPane.rowIndex="2" />
+                        <Label text="Move Right" GridPane.rowIndex="3" />
+                        <Label text="Sprint" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                      </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="DOWN" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="508.0">
-                     <children>
-                        <TextField fx:id="downField" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="LEFT" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="521.0">
-                     <children>
-                        <TextField fx:id="leftField" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="RIGHT" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="513.0">
-                     <children>
-                        <TextField fx:id="rightField" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="DROP ITEM" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="484.0">
-                     <children>
-                        <TextField fx:id="dropItemField" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="INVENTORY" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="483.0">
-                     <children>
-                        <TextField fx:id="inventoryField" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" />
-               </children>
-            </HBox>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" />
          </children>
       </VBox>
    </center>
