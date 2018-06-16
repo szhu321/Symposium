@@ -252,6 +252,29 @@ public class Room implements Serializable
 		}
 	}
 	
+	public void movePlayerWithObsChecker(Character character, double addX, double addY)
+	{
+		double angle = Math.toDegrees(Math.atan(addX / addY));
+		if(addY <= 0 && addX < 0)
+			angle += 180;
+		else if(addY > 0 && addX < 0)
+			angle = 90 + (90 - Math.abs(angle));
+		else if(addX > 0 && addY < 0)
+			angle += 360;
+		
+		//System.out.println(angle);
+		double distance = Math.sqrt(Math.pow(addX, 2) + Math.pow(addY, 2));
+		double decrement = 5;
+		while(distance > 0 && !spriteCollisionWithObstacle(character))
+		{
+			character.setXLocation(character.getXLocation() + Math.cos(Math.toRadians(angle)) * decrement);
+			character.setYLocation(character.getYLocation() + Math.sin(Math.toRadians(angle)) * decrement);
+			distance -= decrement;
+		}
+		character.setXLocation(character.getXLocation() - Math.cos(Math.toRadians(angle)) * decrement);
+		character.setYLocation(character.getYLocation() - Math.sin(Math.toRadians(angle)) * decrement);
+	}
+	
 	public List<Projectile> getProjectiles() {return projectiles;}
 	
 	public void removeProjectile(Projectile projectile)
@@ -417,26 +440,30 @@ public class Room implements Serializable
 							angle = 90 + (90 - Math.abs(angle));
 						else if(distanceX > 0 && distanceY < 0)
 							angle += 360;
-						System.out.println(angle);
+						//System.out.println(angle);
 						if(angle>=0&&angle<=90)
 						{
-							chara.addXLocation(50);
-							chara.addYLocation(50);
+							movePlayerWithObsChecker(chara, 50, 50);
+							//chara.addXLocation(50);
+							//chara.addYLocation(50);
 						}
 						else if(angle>=90&&angle<=180)
 						{
-							chara.addXLocation(-50);
-							chara.addYLocation(50);
+							movePlayerWithObsChecker(chara, -50, 50);
+							//chara.addXLocation(-50);
+							//chara.addYLocation(50);
 						}
 						else if(angle>=180&&angle<=270)
 						{
-							chara.addXLocation(-50);
-							chara.addYLocation(-50);							
+							movePlayerWithObsChecker(chara, -50, -50);
+							//chara.addXLocation(-50);
+							//chara.addYLocation(-50);							
 						}
 						else if(angle>=270&&angle<=360)
 						{
-							chara.addXLocation(50);
-							chara.addYLocation(-50);
+							movePlayerWithObsChecker(chara, 50, -50);
+							//chara.addXLocation(50);
+							//chara.addYLocation(-50);
 						}
 						
 						((Player)chara).setCurrentHealth(((Player)chara).getCurrentHealth()-1);
