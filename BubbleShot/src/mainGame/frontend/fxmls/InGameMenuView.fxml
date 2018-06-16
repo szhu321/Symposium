@@ -70,12 +70,12 @@
          </children></VBox>
       <VBox fx:id="mainView" alignment="CENTER" prefHeight="399.0" prefWidth="341.0" spacing="10.0">
          <children>
-            <Button minWidth="250.0" mnemonicParsing="false" text="Resume">
+            <Button minWidth="250.0" mnemonicParsing="false" onMouseClicked="#resumeBtnOnclick" text="Resume">
                <font>
                   <Font size="36.0" />
                </font>
             </Button>
-            <Button fx:id="settingsBtn" minWidth="250.0" mnemonicParsing="false" text="Settings">
+            <Button fx:id="settingsBtn" minWidth="250.0" mnemonicParsing="false" onMouseClicked="#settingsBtnOnclick" text="Settings">
                <font>
                   <Font size="36.0" />
                </font></Button>

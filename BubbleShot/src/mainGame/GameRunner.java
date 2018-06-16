@@ -121,6 +121,11 @@ public class GameRunner extends Application
 			System.out.println("Null Gamemanager");
 	}
 	
+	public static void destroyGameManager()
+	{
+		gameManager = null;
+	}
+	
 	/*Getters and Setters*/
 	public static Controls getControls()
 	{

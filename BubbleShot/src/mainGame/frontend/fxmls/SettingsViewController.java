@@ -34,7 +34,10 @@ public class SettingsViewController implements Initializable
 	
 	public void backBtnOnclick() throws Exception
 	{
-		GameRunner.getSceneTracker().switchToMainMenuView();
+		if(GameRunner.getGameManager() == null)
+			GameRunner.getSceneTracker().switchToMainMenuView();
+		else
+			GameRunner.setScene(GameRunner.getGameManager().getPlayingScene().getScene());
 	}
 	
 }

@@ -198,19 +198,10 @@ public class PlayingScene
 		Button igMenuBtn = new Button("Menu");
 		igMenuBtn.setOnMousePressed(event -> 
 		{
-			if(TimerManager.isPaused)
-			{
-				TimeTracker.resetTime();
-				TimerManager.resumeAll();
-				TimerManager.isPaused = false;
-				inGameMenu.setVisible(false);
-			}
-			else
-			{
-				TimerManager.pauseAll();
-				TimerManager.isPaused = true;
-				inGameMenu.setVisible(true);
-			}
+			if(GameRunner.getGameManager().displayInventory())
+				GameRunner.getGameManager().toggleDisInventory();
+			updateAllLocation();
+			toggleInGameMenu();
 		});
 		
 		VBox healthShieldContainer = new VBox(2);
@@ -229,6 +220,29 @@ public class PlayingScene
 		headUpDis.setBottom(getInventoryDisGUI());
 		BorderPane.setAlignment(headUpDis.getBottom(), Pos.CENTER);
 		updateHeadUpDis();
+	}
+	
+	public void toggleInGameMenu()
+	{
+		if(TimerManager.isPaused)
+		{
+			roomView.getCanvas().setMouseTransparent(false);
+			miniMap.setMouseTransparent(false);
+			inventoryDis.getInventoryDis().setMouseTransparent(false);
+			TimeTracker.resetTime();
+			TimerManager.resumeAll();
+			TimerManager.isPaused = false;
+			inGameMenu.setVisible(false);
+		}
+		else
+		{
+			roomView.getCanvas().setMouseTransparent(true);
+			miniMap.setMouseTransparent(true);
+			inventoryDis.getInventoryDis().setMouseTransparent(true);
+			TimerManager.pauseAll();
+			TimerManager.isPaused = true;
+			inGameMenu.setVisible(true);
+		}
 	}
 	
 	public void updateHeadUpDis()
