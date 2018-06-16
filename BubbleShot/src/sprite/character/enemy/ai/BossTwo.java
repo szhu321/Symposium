@@ -8,6 +8,7 @@ import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.item.weapon.BossWepFive;
+import sprite.item.weapon.BossWepSeven;
 import sprite.item.weapon.BossWepThree;
 
 public class BossTwo extends AI
@@ -36,17 +37,21 @@ public class BossTwo extends AI
 	{
 		if(time==900)
 			time=0;
-		if(time<800)
+		if(time%800==0)
 		{
 			//this.getEnemy().calculateEnemyAngleToPlayer();
 			//this.getEnemy().useCurrentItem(Item.WEAPON);
+			int wepIdx=(int)(Math.random()*((Boss)(this.getEnemy())).getAllWep().size());
+			((Boss)(this.getEnemy())).switchWeapon(wepIdx);
+		}
+		if(this.getEnemy().getWeapon() instanceof BossWepSeven)
+		{
 			if(currentMove>5)
 				currentMove=1;
-//			System.out.println(allMoves(sec,currentMove));
-//			System.out.println(currentMove);
 			if(!allMoves(sec,currentMove))
 				currentMove++;
 		}
+		this.getEnemy().useCurrentItem(Item.WEAPON);
 		time++;
 	}
 	
@@ -62,6 +67,9 @@ public class BossTwo extends AI
 			if(!moveThree(sec))
 				return false;
 		if(index==5)
+			if(!moveFour(sec))
+				return false;
+		if(index==6)
 			if(!moveFour(sec))
 				return false;
 		return true;
@@ -181,6 +189,33 @@ public class BossTwo extends AI
 		enemy.addXLocation(deltaX);
 		enemy.addYLocation(deltaY);
 		return true;
+	}
+	
+	public void moveSix(double sec)
+	{
+		double deltaX = 0;
+		double deltaY = 0;
+		Enemy enemy=this.getEnemy();
+		Player player=this.getPlayer();
+		double changeAmount = enemy.getSpeed() * sec;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		
+		if(enemy.getXLocation()>currentRoom.getRoomPixHeight()/2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
+			deltaX -= changeAmount;
+		if(enemy.getXLocation()<currentRoom.getRoomPixHeight()/2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+			deltaX += changeAmount;
+		if(enemy.getYLocation()>currentRoom.getRoomPixWidth()/2 && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
+			deltaY -= changeAmount;
+		if(enemy.getYLocation()<currentRoom.getRoomPixWidth()/2 && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+			deltaY += changeAmount;
+		
+		if(deltaX != 0 && deltaY != 0)
+		{
+			deltaX *= 1 / Math.sqrt(2);
+			deltaY *= 1 / Math.sqrt(2);
+		}		
+		enemy.addXLocation(deltaX);
+		enemy.addYLocation(deltaY);
 	}
 	
 	public void resetMax()

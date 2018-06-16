@@ -23,6 +23,7 @@ public class BossAttacks
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
 		atkList.add(BossAttacks.getBossAtkSix(x, y));
+		atkList.add(BossAttacks.getBossAtkSeven(x, y));
 		return atkList;
 	}
 	
@@ -103,6 +104,17 @@ public class BossAttacks
 		double attackRange = 1000;
 		Projectile projectile = ProjectileDesign.getESlashDesignOne(null, x, y, 0, 15);
 		BossWepSix sword = new BossWepSix("Sword", x, y, damage, attackRate, attackRange, projectile,5);
+		return sword;
+	}
+	
+	public static BossWepSeven getBossAtkSeven(double x, double y)
+	{
+		double damage = 20;
+		double attackRate = .06;
+		double attackRange = 1000;
+		int offsetAngle = 360;
+		Projectile projectile = ProjectileDesign.getESlashDesignOne(null, x, y, 0, 15);
+		BossWepSeven sword = new BossWepSeven("Sword",x, y, damage, attackRate, attackRange, projectile, offsetAngle,5);
 		return sword;
 	}
 }
