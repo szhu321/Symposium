@@ -27,6 +27,7 @@ public class RoomView
 	public static boolean displayItemShadow = true;
 	public static boolean displayObstacleShadow = true;
 	public static boolean displayItemRotating = true;
+	public static boolean displayCharacterEffects = true;
 	
 	private Canvas canvas;
 	private Room room;
@@ -187,7 +188,36 @@ public class RoomView
 			}
 			gc.restore();
 		}
-		
+		if(displayCharacterEffects)
+		{
+			gc.save();
+			for(Character character : room.getCharacters())
+			{
+				double dmgMulti = character.getEffectManager().getDamageMultiplier();
+				if(dmgMulti > 1)
+				{
+					gc.setFill(Color.RED);
+					gc.fillRect(character.getXLocation() - 6, character.getYLocation(), 6, 6);
+				}
+				if(dmgMulti < 1)
+				{
+					gc.setFill(Color.GRAY);
+					gc.fillRect(character.getXLocation() - 6, character.getYLocation(), 6, 6);
+				}
+				double speedMult = character.getEffectManager().getSpeedMultiplier();
+				if(speedMult > 1)
+				{
+					gc.setFill(Color.BLUE);
+					gc.fillRect(character.getXLocation() - 6, character.getYLocation() + 7, 6, 6);
+				}
+				if(speedMult < 1)
+				{
+					gc.setFill(Color.BROWN);
+					gc.fillRect(character.getXLocation() - 6, character.getYLocation() + 7, 6, 6);
+				}
+			}
+			gc.restore();
+		}
 	}
 	
 	private static void drawCharacterActiveEffects(GraphicsContext gc, Character character)
