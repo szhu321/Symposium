@@ -121,7 +121,7 @@ public abstract class Weapon extends Item
 		String output = "";
 		output += getSpriteName() + "\n"+"\n";
 		output += "Weapon Damage = " + weaponDmg + "\n";
-		output += "Weapon Attack Rate = " + getDefaultCoolDownTime() +""+ "\n";
+		output += "Weapon Attack Rate = " + String.format("%.2f", 1/getDefaultCoolDownTime()) +" SPS"+ "\n";
 		output += "Weapon Attack Range = " + weaponAttackRange + "\n";
 		return output;
 	}
