@@ -324,10 +324,20 @@ public class GameManager
 			{
 				if(characters.get(i) instanceof Player)
 				{
+					//If the Player get killed.
 					TimerManager.pauseAll();
+					try 
+					{
+						runPlayerDeathCode();
+					} 
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
 				}
 				else
 				{
+					//If a enemy Is Killed
 /////					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
@@ -359,6 +369,13 @@ public class GameManager
 					else
 						level.getCurrentRoom().getRoomTeleporterManager().deactivateTeleporter(tele);
 		}
+	}
+	
+	private void runPlayerDeathCode() throws Exception
+	{
+		GameRunner.destroyGameManager();
+		GameRunner.getSceneTracker().useMenuScene();
+		GameRunner.getSceneTracker().switchToGameOverView();
 	}
 	
 	private void readjustMousePosDueToCameraMovement()

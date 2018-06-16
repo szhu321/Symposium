@@ -107,6 +107,8 @@ public class PlayingScene
 //		updateItemLocation();
 //		updateProjectileLocation();
 //		updateObstacleLocation();
+		if(GameRunner.getGameManager() == null)
+			return;
 		updateHeadUpDis();
 		updateCameraLocation();
 		updateMiniMap();

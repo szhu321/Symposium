@@ -63,4 +63,9 @@ public class SceneTracker
 	{
 		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/GraphicsView.fxml")));
 	}
+	
+	public void switchToGameOverView() throws Exception
+	{
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/GameOverView.fxml")));
+	}
 }
