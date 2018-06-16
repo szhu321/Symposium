@@ -11,4 +11,16 @@ public class DamagePot extends Potion
 				itemType, color, effect,cost);
 	}
 
+	public String description()
+	{
+		Effect potionEffect = getEffect();
+		if(potionEffect.isInstantaneous())
+		{
+			return this.getSpriteName()+"\n"+"\n"
+					+ "Damage Multiplier: " + "X" +potionEffect.getEffectAmount() + " Damage";
+		}
+		return this.getSpriteName()+"\n"+"\n"
+				+ "Lasts " + potionEffect.getDefaultEffectTime() + " Secs" + "\n" 
+				+ "Damage Multiplier: " + "X" + potionEffect.getEffectAmount() + " Damage";
+	}
 }

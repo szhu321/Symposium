@@ -120,9 +120,9 @@ public abstract class Weapon extends Item
 	{
 		String output = "";
 		output += getSpriteName() + "\n"+"\n";
-		output += "Weapon Damage = " + weaponDmg + "\n";
-		output += "Weapon Attack Rate = " + String.format("%.2f", 1/getDefaultCoolDownTime()) +" SPS"+ "\n";
-		output += "Weapon Attack Range = " + weaponAttackRange + "\n";
+		output += "Damage Per Shot: " + weaponDmg + "\n";
+		output += "Shots Per Second: " + String.format("%.2f", 1/getDefaultCoolDownTime()) + "\n";
+		output += "Attack Range: " + String.format("%.2f", weaponAttackRange / 100) + " Tiles" + "\n";
 		return output;
 	}
 	

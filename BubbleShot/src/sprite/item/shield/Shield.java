@@ -74,8 +74,8 @@ public class Shield extends Item
 	public String description() {
 		return this.getSpriteName()+"\n"+"\n"
 				+ "Shield Amount: " + defaultShieldAmount + "\n" 
-				+ "Recharge Rate: " + rechargeRate+ "\n"
-				+ "Recharge Delay: " + defaultRechargeDelay;
+				+ "Recharges: " + rechargeRate+ " Per Sec"+ "\n"
+				+ "Recharge Delay: " + defaultRechargeDelay + " Secs";
 	}
 	
 }

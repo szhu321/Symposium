@@ -9,7 +9,7 @@ public class PlayerDesign
 	{
 		String fileName = "file:resources/player/player1.png";
 		//The health the player starts with.
-		double health = 500;
+		double health = 300;
 		//Players speed in pixels per second.
 		double speed = 170;
 		//The ammo the player starts with.
@@ -22,7 +22,7 @@ public class PlayerDesign
 	public static Player getSimpleStarterPlayer(String name, String fileName)
 	{
 		//The health the player starts with.
-		double health = 500;
+		double health = 300;
 		//Players speed in pixels per second.
 		double speed = 170;
 		//The ammo the player starts with.

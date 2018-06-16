@@ -11,4 +11,16 @@ public class HealthPot extends Potion
 				itemType, color, effect,cost);
 	}
 
+	public String description()
+	{
+		Effect potionEffect = getEffect();
+		if(potionEffect.isInstantaneous())
+		{
+			return this.getSpriteName()+"\n"+"\n"
+					+ "Heals: " + potionEffect.getEffectAmount() + " HP";
+		}
+		return this.getSpriteName()+"\n"+"\n"
+				+ "Lasts: " + potionEffect.getDefaultEffectTime() + " Secs" + "\n" 
+				+ "Heals: " + potionEffect.getEffectAmount() + " HP Per Second";
+	}
 }

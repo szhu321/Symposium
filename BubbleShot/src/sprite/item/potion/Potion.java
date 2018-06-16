@@ -5,7 +5,7 @@ import sprite.character.player.Player;
 import sprite.item.Consumable;
 import sprite.item.Item;
 
-public class Potion extends Item implements Consumable
+public abstract class Potion extends Item implements Consumable
 {
 	private String potionColor;
 	private Effect potionEffect;
@@ -43,10 +43,5 @@ public class Potion extends Item implements Consumable
 	}
 	
 	@Override
-	public String description() 
-	{
-		return this.getSpriteName()+"\n"+"\n"
-				+ "Effect Time: " + potionEffect.getEffectTime() + "\n" 
-				+ "Effect Amount: " + potionEffect.getEffectAmount();
-	}
+	public abstract String description();
 }

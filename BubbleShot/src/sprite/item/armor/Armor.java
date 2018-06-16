@@ -35,10 +35,23 @@ public class Armor extends Item
 	@Override
 	public String description() 
 	{
-		return this.getSpriteName()+"\n"+"\n"+
-			   "Health Boost: "+maxHealthBoost+ "\n"+
-			   "Damage Boost: "+maxDamageBoost+ "\n"+
-			   "Speed Boost: "+maxSpeedBoost;
+		String result = this.getSpriteName()+"\n"+"\n";
+		if(maxHealthBoost == 0)
+			result +=  "Health Increase: None \n";
+		else
+			result +=  "Health Increase: "+ "+" +maxHealthBoost+ "\n";
+		
+		if(maxDamageBoost == 1)
+			result +=  "Damage Multiplier: None \n";
+		else
+			result +=  "Damage Multiplier: "+ "X" +maxDamageBoost+ "\n";
+		
+		if(maxSpeedBoost == 1)
+			result +=  "Speed Multiplier: None \n";
+		else
+			result +=  "Speed Multiplier: "+ "X" +maxSpeedBoost+ "\n";
+		
+		return result;
 	}
 
 }
