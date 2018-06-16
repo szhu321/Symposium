@@ -2,6 +2,7 @@ package myutilities;
 
 public class ControlItem
 {
+	private int id;
 	private String controlName;
 	private String defaultControlStr;
 	private String currentControlStr;
@@ -25,6 +26,16 @@ public class ControlItem
 	public String toString()
 	{
 		return "Name: " + controlName + " ControlInput: " + currentControlStr;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	
+	public int getId()
+	{
+		return id;
 	}
 	
 	public String getControlName()
