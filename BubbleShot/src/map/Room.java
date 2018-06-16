@@ -20,6 +20,7 @@ import sprite.bounds.BoxCollider;
 import sprite.character.Character;
 import sprite.character.effect.NoEffect;
 import sprite.character.player.Player;
+import sprite.character.enemy.Boss;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.EnemyDesign;
 
@@ -351,17 +352,94 @@ public class Room implements Serializable
 		}
 		for(Obstacle obs : obstacles)
 		{
-			if(!(character.getSpriteName().equals("Ghost Brian")))
-			{
-				if(obs.getBoundsOfObject().intersect(characterBounds))
-					return false;
-			}
 			if(character instanceof Player)
 			{
 				for(Character chara : characters)
 				{
 					if(chara instanceof Enemy && chara.getBoundsOfObject().intersect(characterBounds))
 					{
+						return false;
+					}
+					
+				}
+				if(obs.getBoundsOfObject().contains(characterBounds))
+				{
+					double distanceX = character.getXCenter() - getRoomPixWidth()/2;
+					double distanceY = character.getYCenter() - getRoomPixHeight()/2;
+					double angle = Math.toDegrees(Math.atan(distanceY / distanceX));
+					if(distanceY <= 0 && distanceX < 0)
+						angle += 180;
+					else if(distanceY > 0 && distanceX < 0)
+						angle = 90 + (90 - Math.abs(angle));
+					else if(distanceX > 0 && distanceY < 0)
+						angle += 360;
+					System.out.println(angle);
+					if(angle>=0&&angle<=90)
+					{
+						character.addXLocation(100);
+						character.addYLocation(100);
+					}
+					else if(angle>=90&&angle<=180)
+					{
+						character.addXLocation(-100);
+						character.addYLocation(100);
+					}
+					else if(angle>=180&&angle<=270)
+					{
+						character.addXLocation(-100);
+						character.addYLocation(-100);							
+					}
+					else if(angle>=270&&angle<=360)
+					{
+						character.addXLocation(100);
+						character.addYLocation(-100);
+					}
+					return false;			
+				}
+			}
+			if(!(character.getSpriteName().equals("Ghost Brian")))
+			{
+				if(obs.getBoundsOfObject().intersect(characterBounds))
+					return false;
+			}
+			if(character instanceof Boss)
+			{
+				for(Character chara : characters)
+				{
+					if(chara instanceof Player && chara.getBoundsOfObject().intersect(characterBounds))
+					{
+						double distanceX = chara.getXCenter() - character.getXCenter();
+						double distanceY = chara.getYCenter() - character.getYCenter();
+						double angle = Math.toDegrees(Math.atan(distanceY / distanceX));
+						if(distanceY <= 0 && distanceX < 0)
+							angle += 180;
+						else if(distanceY > 0 && distanceX < 0)
+							angle = 90 + (90 - Math.abs(angle));
+						else if(distanceX > 0 && distanceY < 0)
+							angle += 360;
+						System.out.println(angle);
+						if(angle>=0&&angle<=90)
+						{
+							chara.addXLocation(50);
+							chara.addYLocation(50);
+						}
+						else if(angle>=90&&angle<=180)
+						{
+							chara.addXLocation(-50);
+							chara.addYLocation(50);
+						}
+						else if(angle>=180&&angle<=270)
+						{
+							chara.addXLocation(-50);
+							chara.addYLocation(-50);							
+						}
+						else if(angle>=270&&angle<=360)
+						{
+							chara.addXLocation(50);
+							chara.addYLocation(-50);
+						}
+						
+						((Player)chara).setCurrentHealth(((Player)chara).getCurrentHealth()-1);
 						return false;
 					}
 				}
@@ -372,6 +450,7 @@ public class Room implements Serializable
 				{
 					if(chara instanceof Player && chara.getBoundsOfObject().intersect(characterBounds))
 					{
+						
 						return false;
 					}
 				}

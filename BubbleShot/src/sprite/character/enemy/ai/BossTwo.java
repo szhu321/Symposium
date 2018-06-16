@@ -1,6 +1,8 @@
 package sprite.character.enemy.ai;
 
 import mainGame.GameRunner;
+import mainGame.backend.Constants;
+import map.Room;
 import sprite.character.enemy.Boss;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
@@ -12,32 +14,182 @@ public class BossTwo extends AI
 {
 	private int time;
 	private boolean move;
+	private boolean leftMax;
+	private boolean rightMax;
+	private boolean upMax;
+	private boolean downMax;
+	private int currentMove;
 	public BossTwo(Enemy enemy, Player player) {
 		super(enemy, player, "BossTwo");
 		// TODO Auto-generated constructor stub
-		time=400;
+		time=800;
 		move=false;
+		leftMax=false;
+		rightMax=false;
+		upMax=false;
+		downMax=false;
+		currentMove=1;
 	}
 
 	@Override
 	public void action(double sec)
 	{
-		if(time==500)
+		if(time==900)
 			time=0;
-		if(time<=300)
+		if(time<800)
 		{
-		//	moveOne(sec);
-			this.getEnemy().calculateEnemyAngleToPlayer();
-			this.getEnemy().useCurrentItem(Item.WEAPON);
+			//this.getEnemy().calculateEnemyAngleToPlayer();
+			//this.getEnemy().useCurrentItem(Item.WEAPON);
+			if(currentMove>5)
+				currentMove=1;
+//			System.out.println(allMoves(sec,currentMove));
+//			System.out.println(currentMove);
+			if(!allMoves(sec,currentMove))
+				currentMove++;
 		}
 		time++;
 	}
 	
-	public void moveOne(double secs)
+	public boolean allMoves(double sec, int index)
 	{
-		
+		if(index==1)
+			if(!moveOne(sec))
+				return false;
+		if(index==2||index==4)
+			if(!moveTwo(sec))
+				return false;
+		if(index==3)
+			if(!moveThree(sec))
+				return false;
+		if(index==5)
+			if(!moveFour(sec))
+				return false;
+		return true;
 	}
 	
+	public boolean moveOne(double sec)
+	{
+		double deltaX = 0;
+		double deltaY = 0;
+		Enemy enemy=this.getEnemy();
+		double changeAmount = 5;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		if(this.getEnemy().getXLocation()!=currentRoom.getRoomPixHeight()-200&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+			deltaX += changeAmount;
+		else
+			rightMax=true;
+		if(this.getEnemy().getYLocation()!=currentRoom.getRoomPixWidth()-200&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+			deltaY += changeAmount;
+		else
+			downMax=true;
+		if(deltaX != 0 && deltaY != 0)
+		{
+			deltaX *= 1 / Math.sqrt(2);
+			deltaY *= 1 / Math.sqrt(2);
+		}		
+		if(rightMax&&downMax)
+		{
+			resetMax();
+			return false;
+		}
+		enemy.addXLocation(deltaX);
+		enemy.addYLocation(deltaY);
+		return true;
+	}
+	
+	public boolean moveTwo(double sec)
+	{
+		double deltaX = 0;
+		double deltaY = 0;
+		Enemy enemy=this.getEnemy();
+		double changeAmount = 5;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		if(this.getEnemy().getXLocation()!=200&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
+			deltaX -= changeAmount;
+		else
+			leftMax=true;
+		if(deltaX != 0 && deltaY != 0)
+		{
+			deltaX *= 1 / Math.sqrt(2);
+			deltaY *= 1 / Math.sqrt(2);
+		}		
+		if(leftMax)
+		{
+			resetMax();
+			return false;
+		}
+		enemy.addXLocation(deltaX);
+		enemy.addYLocation(deltaY);
+		return true;
+	}
+	
+	public boolean moveThree(double sec)
+	{
+		double deltaX = 0;
+		double deltaY = 0;
+		Enemy enemy=this.getEnemy();
+		double changeAmount = 5;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		if(this.getEnemy().getXLocation()!=currentRoom.getRoomPixHeight()-200&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+			deltaX += changeAmount;
+		else
+			rightMax=true;
+		if(this.getEnemy().getYLocation()!=200&& currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
+			deltaY -= changeAmount;
+		else
+			upMax=true;
+		if(deltaX != 0 && deltaY != 0)
+		{
+			deltaX *= 1 / Math.sqrt(2);
+			deltaY *= 1 / Math.sqrt(2);
+		}		
+		if(rightMax&&upMax)
+		{
+			resetMax();
+			return false;
+		}
+		enemy.addXLocation(deltaX);
+		enemy.addYLocation(deltaY);
+		return true;
+	}
+	
+	public boolean moveFour(double sec)
+	{
+		double deltaX = 0;
+		double deltaY = 0;
+		Enemy enemy=this.getEnemy();
+		double changeAmount = 5;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		if(this.getEnemy().getXCenter()!=currentRoom.getRoomPixHeight()/2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+			deltaX += changeAmount;
+		else
+			rightMax=true;
+		if(this.getEnemy().getYCenter()!=currentRoom.getRoomPixWidth()/2&& currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+			deltaY += changeAmount;
+		else
+			downMax=true;
+		if(deltaX != 0 && deltaY != 0)
+		{
+			deltaX *= 1 / Math.sqrt(2);
+			deltaY *= 1 / Math.sqrt(2);
+		}		
+		if(rightMax&&downMax)
+		{
+			resetMax();
+			return false;
+		}
+		enemy.addXLocation(deltaX);
+		enemy.addYLocation(deltaY);
+		return true;
+	}
+	
+	public void resetMax()
+	{
+		leftMax=false;
+		rightMax=false;
+		upMax=false;
+		downMax=false;
+	}
 	public void wander(double sec)
 	{
 		//Doesn't Wander

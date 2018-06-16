@@ -99,7 +99,7 @@ public class BossAttacks
 	public static BossWepSix getBossAtkSix(double x, double y)
 	{
 		double damage = 20;
-		double attackRate = 1;
+		double attackRate = .1;
 		double attackRange = 1000;
 		Projectile projectile = ProjectileDesign.getESlashDesignOne(null, x, y, 0, 15);
 		BossWepSix sword = new BossWepSix("Sword", x, y, damage, attackRate, attackRange, projectile,5);
