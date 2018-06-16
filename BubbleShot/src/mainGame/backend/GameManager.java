@@ -164,6 +164,8 @@ public class GameManager
 		left=false;
 		right=false;
 		shift=false;
+		mouseDownLeft=false;
+		mouseDownRight=false;
 	}
 	
 	/**
