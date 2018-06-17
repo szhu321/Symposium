@@ -111,7 +111,7 @@ public class BossAttacks
 	public static BossWepSeven getBossAtkSeven(double x, double y)
 	{
 		double damage = 20;
-		double attackRate = .06;
+		double attackRate = .03;
 		double attackRange = 1000;
 		int offsetAngle = 360;
 		Projectile projectile = ProjectileDesign.getESlashDesignOne(null, x, y, 0, 15);
@@ -121,7 +121,7 @@ public class BossAttacks
 	
 	public static BossWepEight getBossAtkEight(double x, double y)
 	{
-		double damage = 5;
+		double damage = 20;
 		double attackRate = .001;
 		double attackRange = 1000;
 		Projectile projectile = ProjectileDesign.getESBulletDesignOne(null, x, y, 0, 5);
