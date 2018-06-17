@@ -9,7 +9,7 @@
 
 <BorderPane fx:id="container" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.PlayMenuController">
    <center>
-      <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="410.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="410.0" />
@@ -40,12 +40,12 @@
             </HBox>
             <Button mnemonicParsing="false" onMouseClicked="#startBtnOnclick" text="Start" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" GridPane.rowIndex="4" />
-            <ScrollPane prefHeight="89.0" prefWidth="244.0" GridPane.rowIndex="1">
+            <ScrollPane prefHeight="67.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <content>
-                  <HBox fx:id="playerPickerRow" alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="196.0" />
+                  <HBox fx:id="playerPickerRow" alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="197.0" />
                </content>
             </ScrollPane>
-            <Button mnemonicParsing="false" onMouseClicked="#createCharacterBtnOnclick" text="New Character" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onMouseClicked="#createCharacterBtnOnclick" text="New Character" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

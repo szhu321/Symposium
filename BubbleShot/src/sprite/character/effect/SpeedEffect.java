@@ -11,6 +11,8 @@ public class SpeedEffect extends Effect
 	
 	public static final SpeedEffect STONE_TILE_EFFECT = new SpeedEffect(.2, 1.5, false);
 	
+	public static final SpeedEffect FREEZE_EFFECT = new SpeedEffect(5, 0, false);
+	
 	public SpeedEffect(double effectTime, double effectAmount, boolean instantaneous)
 	{
 		super(effectTime, effectAmount, instantaneous);

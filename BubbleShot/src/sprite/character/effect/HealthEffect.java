@@ -5,9 +5,9 @@ import sprite.character.Character;
 public class HealthEffect extends Effect
 {
 	
-	public static final HealthEffect HEALTH_POTION_EFFECT = new HealthEffect(0, 200, true);
+	public static final HealthEffect HEALTH_POTION_EFFECT = new HealthEffect(0, 100, true);
 
-	public static final HealthEffect LAVA_TILE_EFFECT = new HealthEffect(1, -2, false);
+	public static final HealthEffect LAVA_TILE_EFFECT = new HealthEffect(1, -20, false);
 	
 	public static final HealthEffect POSION_SWAMP_EFFECT = new HealthEffect(2, -2, false);
 	

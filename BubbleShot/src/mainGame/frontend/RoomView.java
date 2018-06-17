@@ -57,11 +57,38 @@ public class RoomView
 	{
 		timePassed += (double)(System.nanoTime() - passTime) / 1000000.0;
 		passTime = System.nanoTime();
+		
+		//blindModeStart(gc, room);
+		
 		drawTiles(gc, room);
 		drawItems(gc, room);
 		drawCharacters(gc, room);
 		drawProjectiles(gc, room);
 		drawObstacles(gc, room);
+		
+		blindMode(gc, room);
+	}
+	
+	public static void blindMode(GraphicsContext gc, Room room)
+	{
+		gc.save();
+		//long timeNow = System.nanoTime();
+		double radius = 200;
+		double lineWidth = 2000;
+		double radiusRecalculated = lineWidth + radius * 2;
+		double opacity = 1;
+		int shadeCount = 20;
+		while(shadeCount > 0)
+		{
+			gc.setStroke(Color.rgb(0, 0, 0, opacity));
+			gc.setLineWidth(lineWidth);
+			gc.strokeOval(room.getPlayer().getXCenter() - (radiusRecalculated / 2), room.getPlayer().getYCenter() - (radiusRecalculated / 2), radiusRecalculated, radiusRecalculated);
+			radiusRecalculated -= 5;
+			opacity -= 0.05;
+			shadeCount--;
+		}
+		//System.out.println(System.nanoTime() - timeNow);
+		gc.restore();
 	}
 	
 	public static void drawTiles(GraphicsContext gc, Room room)
