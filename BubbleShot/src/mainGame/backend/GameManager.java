@@ -344,7 +344,7 @@ public class GameManager
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
 					Item droppedItem=((Enemy)characters.get(i)).dropItem();
-					if(droppedItem!=null)
+					if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
 						level.getCurrentRoom().addItem(droppedItem);
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
