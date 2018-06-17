@@ -68,7 +68,6 @@ public class BoxCollider
 			return true;
 		return false;
 	}
-
 	
 	public int getHeight() {return height;}
 	public int getWidth() {return width;}

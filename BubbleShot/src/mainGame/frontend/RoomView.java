@@ -1,5 +1,7 @@
 package mainGame.frontend;
 
+import java.util.List;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -13,6 +15,7 @@ import map.Tile.teleporter.Teleporter;
 import map.obstacle.Obstacle;
 import map.obstacle.Shop;
 import map.obstacle.StoneWall;
+import myutilities.MyMath;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
@@ -67,6 +70,32 @@ public class RoomView
 		drawObstacles(gc, room);
 		
 		//blindMode(gc, room);
+		//shadowMode(gc, room);
+	}
+	
+	public static void shadowMode(GraphicsContext gc, Room room)
+	{
+		Player player = room.getPlayer();
+		List<Obstacle> obstacles = room.getObstacles();
+		gc.save();
+		gc.setFill(Color.BLACK);
+		for(Obstacle obs: obstacles)
+		{
+			double[] point1 = obs.getPoint1();
+			double[] point2 = obs.getPoint2();
+			double[] point3 = obs.getPoint3();
+			double[] point4 = obs.getPoint4();
+			double point1Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1[0], point1[1]);
+			double point2Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point2[0], point2[1]);
+			double point3Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point3[0], point3[1]);
+			double point4Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point4[0], point4[1]);
+			double maxAngle = point1Angle;
+			double minAngle = point1Angle;
+			if(maxAngle < point2Angle)
+				maxAngle = point2Angle;
+			
+		}
+		gc.restore();
 	}
 	
 	public static void blindMode(GraphicsContext gc, Room room)

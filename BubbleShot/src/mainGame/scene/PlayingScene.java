@@ -133,7 +133,11 @@ public class PlayingScene
 		//System.out.println(GameRunner.getResolutionHeight());
 	}
 	
-	public Node getBackground()
+	/**
+	 * Creates a background node.
+	 * @return The background node that will be added to the game.
+	 */
+	private Node getBackground()
 	{
 		Rectangle rec = new Rectangle(-2000, -2000, currentRoom.getRoomPixWidth() + 4000, currentRoom.getRoomPixHeight() + 4000);
 		rec.setFill(Color.rgb(6, 54, 122));
@@ -141,6 +145,10 @@ public class PlayingScene
 		return rec;
 	}
 	
+	/**
+	 * Creates the in game menu. Sets its visibility to false and add it to the center
+	 * of the screen.
+	 */
 	public void loadInGameMenu()
 	{
 		inGameMenu = new Group();
@@ -159,12 +167,18 @@ public class PlayingScene
 		}
 	}
 	
+	/**
+	 * Creates a small minimap on the top right corner of the screen.
+	 */
 	public void loadMiniMap()
 	{
 		miniMap = new Canvas(150, 150);
 		//miniMap.setBlendMode(BlendMode.EXCLUSION);
 	}
 	
+	/**
+	 * Updates the minimap based on the players current position in the level.
+	 */
 	public void updateMiniMap()
 	{
 		MiniLevelMap.drawMiniMap(miniMap.getGraphicsContext2D(), GameRunner.getGameManager().getLevel());
@@ -172,6 +186,9 @@ public class PlayingScene
 		miniMap.setLayoutY(70);
 	}
 	
+	/**
+	 * Shifts the camera to follow the player.
+	 */
 	public void updateCameraLocation()
 	{
 		

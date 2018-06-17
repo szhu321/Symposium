@@ -3,7 +3,6 @@ package sprite;
 import java.io.Serializable;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import sprite.bounds.BoxCollider;
 import sprite.bounds.CircleCollider;
 import sprite.bounds.Collider;
@@ -17,7 +16,7 @@ public abstract class Sprite implements Collider, Serializable
 	private transient Image spriteImage;
 	//private ImageView spriteImageView;
 	
-	protected Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double faceAngle)
+	public Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double faceAngle)
 	{
 		this.spriteName=spriteName;
 		this.fileName = fileName;
@@ -30,7 +29,7 @@ public abstract class Sprite implements Collider, Serializable
 		this.faceAngle = faceAngle;
 	}
 	
-	protected Sprite(String spriteName, Image image, double xLocation, double yLocation, double width, double height, double faceAngle)
+	public Sprite(String spriteName, Image image, double xLocation, double yLocation, double width, double height, double faceAngle)
 	{
 		this.spriteName=spriteName;
 		this.fileName = "";
@@ -193,5 +192,62 @@ public abstract class Sprite implements Collider, Serializable
 		else
 			radius = height / 2;
 		return new CircleCollider(xCoord + (width / 2), yCoord + (height / 2), radius);
+	}
+	
+	
+	/**
+	 * Gets a corner point of this rectangular sprite.
+	 * @return the top left point of the rectangle, change of location based on faceAngle.
+	 * <br> double[0] = xValue
+	 * <br> double[1] = yValue
+	 */
+	public double[] getPoint1()
+	{
+		double[] coord = new double[2];
+		coord[0] = getXLocation();
+		coord[1] = getYLocation();
+		return coord;
+	}
+	
+	/**
+	 * Gets a corner point of this rectangular sprite.
+	 * @return the top right point of the rectangle, change of location based on faceAngle.
+	 * <br> double[0] = xValue
+	 * <br> double[1] = yValue
+	 */
+	public double[] getPoint2()
+	{
+		double[] coord = new double[2];
+		coord[0] = getXLocation() + getWidth();
+		coord[1] = getYLocation();
+		return coord;
+	}
+	
+	/**
+	 * Gets a corner point of this rectangular sprite.
+	 * @return the bottom right point of the rectangle, change of location based on faceAngle.
+	 * <br> double[0] = xValue
+	 * <br> double[1] = yValue
+	 */
+	public double[] getPoint3()
+	{
+		double[] coord = new double[2];
+		coord[0] = getXLocation() + getWidth();
+		coord[1] = getYLocation() + getHeight();
+		return coord;
+	}
+	
+	/**
+	 * Gets a corner point of this rectangular sprite.
+	 * @return the bottom left point of the rectangle, change of location based on faceAngle.
+	 * <br> double[0] = xValue
+	 * <br> double[1] = yValue
+	 */
+	public double[] getPoint4()
+	{
+		double[] coord = new double[2];
+		coord[0] = getXLocation();
+		coord[1] = getYLocation() + getHeight();
+		return coord;
 	}
 }

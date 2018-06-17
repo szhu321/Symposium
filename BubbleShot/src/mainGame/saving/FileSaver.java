@@ -46,14 +46,14 @@ public class FileSaver
 		if(!file.exists())
 		{
 			file.mkdirs();
-			System.out.println("saves directory was successfully created.");
+			//System.out.println("saves directory was successfully created.");
 		}
 		
 		File file2 = new File("saves/players");
 		if(!file2.exists())
 		{
 			file2.mkdirs();
-			System.out.println("saves/players directory was successfully created.");
+			//System.out.println("saves/players directory was successfully created.");
 		}
 	
 	}
