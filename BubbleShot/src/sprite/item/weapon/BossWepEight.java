@@ -50,8 +50,8 @@ public class BossWepEight extends Weapon
 				if(amount%13==0)
 				{
 					amount=1;
-					if(phase==2)
-						phase--;
+					if(phase==3)
+						phase=1;
 					else
 						phase++;
 				}
@@ -59,6 +59,8 @@ public class BossWepEight extends Weapon
 				int flip = (int)(amount * 30);
 				double faceAngle=0;
 				if(phase==2)
+					faceAngle=6;
+				if(phase==3)
 					faceAngle=12;
 				faceAngle+=flip;
 				//System.out.println(faceAngle);

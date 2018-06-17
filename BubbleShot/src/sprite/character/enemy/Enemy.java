@@ -20,7 +20,7 @@ public abstract class Enemy extends Character
 	private HealthBar healthbar;
 	private String enemyType;
 	private double circleRadius;
-	
+	private boolean canDropItem;
 	public static final String FOLLOWER="follower";
 	public static final String SMART="smart";
 	public static final String GHOST="ghost";
@@ -42,6 +42,7 @@ public abstract class Enemy extends Character
 		healthbar = new HealthBar(70, 5, getCurrentHealth());
 		this.enemyType=enemyType;
 		circleRadius=400;
+		canDropItem=true;
 	}
 	
 	public int getKillPoints(){return killPoints;}
@@ -109,5 +110,13 @@ public abstract class Enemy extends Character
 		else if(distanceX > 0 && distanceY < 0)
 			enemyAngle += 360;
 		this.setFaceAngle(enemyAngle);
+	}
+
+	public boolean isCanDropItem() {
+		return canDropItem;
+	}
+
+	public void setCanDropItem(boolean canDropItem) {
+		this.canDropItem = canDropItem;
 	}
 }
