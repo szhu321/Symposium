@@ -221,7 +221,7 @@ public class BossTwo extends AI
 		double deltaY = 0;
 		Enemy enemy=this.getEnemy();
 		Player player=this.getPlayer();
-		double changeAmount = enemy.getSpeed() * sec;
+		double changeAmount = 5;
 		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
 		
 		if(enemy.getXLocation()>currentRoom.getRoomPixHeight()/2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
