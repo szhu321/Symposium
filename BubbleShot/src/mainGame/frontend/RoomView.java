@@ -66,7 +66,7 @@ public class RoomView
 		drawProjectiles(gc, room);
 		drawObstacles(gc, room);
 		
-		blindMode(gc, room);
+		//blindMode(gc, room);
 	}
 	
 	public static void blindMode(GraphicsContext gc, Room room)

@@ -96,6 +96,7 @@ public class PlayingScene
 		loadRoom();
 		scene = new Scene(root, GameRunner.getResolutionWidth(), GameRunner.getResolutionHeight());
 		scene.setCursor(Cursor.CROSSHAIR);
+		
 		//root.setScaleX(.5);
 		//root.setScaleY(.5);
 	}
@@ -127,9 +128,17 @@ public class PlayingScene
 		loadMiniMap();
 		loadInventoryDis();
 		loadInGameMenu();
-		root.getChildren().addAll(roomView.getCanvas() ,headUpDis , miniMap, inventoryDis.getInventoryDis(), holdingItem);
+		root.getChildren().addAll(getBackground(), roomView.getCanvas() ,headUpDis , miniMap, inventoryDis.getInventoryDis(), holdingItem);
 		//System.out.println(headUpDis.getPrefHeight());
 		//System.out.println(GameRunner.getResolutionHeight());
+	}
+	
+	public Node getBackground()
+	{
+		Rectangle rec = new Rectangle(-2000, -2000, currentRoom.getRoomPixWidth() + 4000, currentRoom.getRoomPixHeight() + 4000);
+		rec.setFill(Color.rgb(6, 54, 122));
+		rec.setMouseTransparent(true);
+		return rec;
 	}
 	
 	public void loadInGameMenu()
