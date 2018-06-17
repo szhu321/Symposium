@@ -7,6 +7,7 @@ import sprite.character.enemy.Boss;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 import sprite.item.Item;
+import sprite.item.weapon.BossWepEight;
 import sprite.item.weapon.BossWepFive;
 import sprite.item.weapon.BossWepSeven;
 import sprite.item.weapon.BossWepThree;
@@ -23,7 +24,7 @@ public class BossTwo extends AI
 	public BossTwo(Enemy enemy, Player player) {
 		super(enemy, player, "BossTwo");
 		// TODO Auto-generated constructor stub
-		time=800;
+		time=400;
 		move=false;
 		leftMax=false;
 		rightMax=false;
@@ -35,24 +36,47 @@ public class BossTwo extends AI
 	@Override
 	public void action(double sec)
 	{
-		if(time==900)
+		//System.out.println(time);
+		if(time==500)
 			time=0;
-		if(time%800==0)
+		if(time>400)
+		{
+			if(!allMoves(sec,6))
+				time=0;
+			else
+				time=401;
+		}
+		if(time%400==0)
 		{
 			//this.getEnemy().calculateEnemyAngleToPlayer();
 			//this.getEnemy().useCurrentItem(Item.WEAPON);
 			int wepIdx=(int)(Math.random()*((Boss)(this.getEnemy())).getAllWep().size());
 			((Boss)(this.getEnemy())).switchWeapon(wepIdx);
 		}
-		if(this.getEnemy().getWeapon() instanceof BossWepSeven)
+		if(time<300)
 		{
-			if(currentMove>5)
-				currentMove=1;
-			if(!allMoves(sec,currentMove))
-				currentMove++;
+			if(this.getEnemy().getWeapon() instanceof BossWepEight)
+			{
+			//	time=0;
+				//moveMiddle(sec);
+				if(time%50==0)
+					this.getEnemy().useCurrentItem(Item.WEAPON);
+			}
+			else if(this.getEnemy().getWeapon() instanceof BossWepSeven)
+				{
+					if(currentMove>5)
+					{
+						time=401;
+						currentMove=1;			
+					}
+					if(!allMoves(sec,currentMove))
+						currentMove++;
+					this.getEnemy().useCurrentItem(Item.WEAPON);
+				}
+			else
+				this.getEnemy().useCurrentItem(Item.WEAPON);
 		}
-		this.getEnemy().useCurrentItem(Item.WEAPON);
-		time++;
+			time++;
 	}
 	
 	public boolean allMoves(double sec, int index)
@@ -70,7 +94,7 @@ public class BossTwo extends AI
 			if(!moveFour(sec))
 				return false;
 		if(index==6)
-			if(!moveFour(sec))
+			if(!moveFive(sec))
 				return false;
 		return true;
 	}
@@ -191,7 +215,49 @@ public class BossTwo extends AI
 		return true;
 	}
 	
-	public void moveSix(double sec)
+	public boolean moveFive(double sec)
+	{
+		double deltaX = 0;
+		double deltaY = 0;
+		Enemy enemy=this.getEnemy();
+		Player player=this.getPlayer();
+		double changeAmount = enemy.getSpeed() * sec;
+		Room currentRoom = GameRunner.getGameManager().getLevel().getCurrentRoom();
+		
+		if(enemy.getXLocation()>currentRoom.getRoomPixHeight()/2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_LEFT, changeAmount))
+			deltaX -= changeAmount;
+		else
+			rightMax=true;
+		if(enemy.getXLocation()<currentRoom.getRoomPixHeight()/2&&currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_RIGHT, changeAmount))
+			deltaX += changeAmount;
+		else
+			leftMax=true;
+		if(enemy.getYLocation()>currentRoom.getRoomPixWidth()/2 && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_UP, changeAmount))
+			deltaY -= changeAmount;
+		else
+			upMax=true;
+		if(enemy.getYLocation()<currentRoom.getRoomPixWidth()/2 && currentRoom.canCharacterMove(enemy, Constants.MOVE_DIR_DOWN, changeAmount))
+			deltaY += changeAmount;
+		else
+			downMax=true;
+		
+		if(deltaX != 0 && deltaY != 0)
+		{
+			deltaX *= 1 / Math.sqrt(2);
+			deltaY *= 1 / Math.sqrt(2);
+		}		
+		
+		if(rightMax&&leftMax&&upMax&&downMax)
+		{
+			resetMax();
+			return false;
+		}
+		enemy.addXLocation(deltaX);
+		enemy.addYLocation(deltaY);
+		return true;
+	}
+	
+	public boolean moveMiddle(double sec)
 	{
 		double deltaX = 0;
 		double deltaY = 0;
@@ -214,8 +280,10 @@ public class BossTwo extends AI
 			deltaX *= 1 / Math.sqrt(2);
 			deltaY *= 1 / Math.sqrt(2);
 		}		
+		
 		enemy.addXLocation(deltaX);
 		enemy.addYLocation(deltaY);
+		return true;
 	}
 	
 	public void resetMax()
