@@ -15,7 +15,7 @@ public class Graphics
 	private GraphicsItem displayItemRotating;
 	private GraphicsItem displayCharacterEffects;
 	private GraphicsItem displayShadowMode;
-	private GraphicsItem displayBlindMode;
+	//private GraphicsItem displayBlindMode;
 	
 	private List<GraphicsItem> graphicsItems;
 	
@@ -36,7 +36,7 @@ public class Graphics
 		graphicsItems.add(displayItemRotating);
 		graphicsItems.add(displayCharacterEffects);
 		graphicsItems.add(displayShadowMode);
-		graphicsItems.add(displayBlindMode);
+		//graphicsItems.add(displayBlindMode);
 		
 	}
 	
@@ -50,7 +50,7 @@ public class Graphics
 		displayItemRotating = new GraphicsItem("Display Item Roatating", true);
 		displayCharacterEffects = new GraphicsItem("Display Character Effects", true);
 		displayShadowMode = new GraphicsItem("Display Shadow Mode", false);
-		displayBlindMode = new GraphicsItem("Display Blind Mode", false);
+		//displayBlindMode = new GraphicsItem("Display Blind Mode", false);
 	}
 
 	/*Getters*/
@@ -62,7 +62,7 @@ public class Graphics
 	public GraphicsItem getDisplayItemRotating() {return displayItemRotating;}
 	public GraphicsItem getDisplayCharacterEffects() {return displayCharacterEffects;}
 	public GraphicsItem getDisplayShadowMode() {return displayShadowMode;}
-	public GraphicsItem getDisplayBlindMode() {return displayBlindMode;}
+	//public GraphicsItem getDisplayBlindMode() {return displayBlindMode;}
 	public List<GraphicsItem> getGraphicsItems() {return graphicsItems;}
 
 }

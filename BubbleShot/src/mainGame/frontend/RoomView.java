@@ -17,6 +17,7 @@ import map.obstacle.Obstacle;
 import map.obstacle.Shop;
 import map.obstacle.StoneWall;
 import myutilities.MyMath;
+import myutilities.Point;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
@@ -88,18 +89,18 @@ public class RoomView
 		{
 			if(obs instanceof Shop)
 				continue;
-			double[] point1 = obs.getPoint1();
-			double[] point2 = obs.getPoint2();
-			double[] point3 = obs.getPoint3();
-			double[] point4 = obs.getPoint4();
-			double point1Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1[0], point1[1]);
-			double point2Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point2[0], point2[1]);
-			double point3Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point3[0], point3[1]);
-			double point4Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point4[0], point4[1]);
+			Point point1 = obs.getPoint1();
+			Point point2 = obs.getPoint2();
+			Point point3 = obs.getPoint3();
+			Point point4 = obs.getPoint4();
+			double point1Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
+			double point2Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
+			double point3Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
+			double point4Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
 			double maxAngle = MyMath.findMaxValue(point1Angle, point2Angle, point3Angle, point4Angle);
 			double minAngle = MyMath.findMinValue(point1Angle, point2Angle, point3Angle, point4Angle);
-			double[] minPoint = null;
-			double[] maxPoint = null;
+			Point minPoint = null;
+			Point maxPoint = null;
 			
 			double superMaxAngle = Double.MIN_VALUE;
 			if(superMaxAngle < makeAcute(Math.abs(point1Angle - point2Angle)))
@@ -141,12 +142,12 @@ public class RoomView
 			
 			double[] maxPoint2 = new double[2];
 			double[] minPoint2 = new double[2];
-			maxPoint2[0] = (maxPoint[0] - player.getXCenter()) * 10000;
-			maxPoint2[1] = (maxPoint[1] - player.getYCenter()) * 10000;
-			minPoint2[0] = (minPoint[0] - player.getXCenter()) * 10000;
-			minPoint2[1] = (minPoint[1] - player.getYCenter()) * 10000;
-			double[] xValues = {maxPoint[0], maxPoint2[0], minPoint2[0], minPoint[0]};
-			double[] yValues = {maxPoint[1], maxPoint2[1], minPoint2[1], minPoint[1]};
+			maxPoint2[0] = (maxPoint.getX() - player.getXCenter()) * 10000;
+			maxPoint2[1] = (maxPoint.getY() - player.getYCenter()) * 10000;
+			minPoint2[0] = (minPoint.getX() - player.getXCenter()) * 10000;
+			minPoint2[1] = (minPoint.getY() - player.getYCenter()) * 10000;
+			double[] xValues = {maxPoint.getX(), maxPoint2[0], minPoint2[0], minPoint.getX()};
+			double[] yValues = {maxPoint.getY(), maxPoint2[1], minPoint2[1], minPoint.getY()};
 			
 			gc.fillPolygon(xValues, yValues, 4);
 		}
@@ -162,7 +163,9 @@ public class RoomView
 	
 	public static void blindMode(GraphicsContext gc, Room room)
 	{
-		if(!graphics.getDisplayBlindMode().getCurrentValue())
+//		if(!graphics.getDisplayBlindMode().getCurrentValue())
+//			return;
+		if(!room.getPlayer().getEffectManager().isBlindActive())
 			return;
 		gc.save();
 		//long timeNow = System.nanoTime();

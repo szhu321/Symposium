@@ -92,6 +92,16 @@ public class EffectManager
 		return result;
 	}
 	
+	public boolean isBlindActive()
+	{
+		for(Effect effect: effects)
+		{
+			if(effect instanceof BlindEffect && effect.isActive())
+				return true;
+		}
+		return false;
+	}
+	
 	public String toString()
 	{
 		String result = "EffectManager. Character: " + character.toString() + "\n";

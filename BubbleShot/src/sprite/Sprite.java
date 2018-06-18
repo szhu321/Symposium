@@ -3,6 +3,8 @@ package sprite;
 import java.io.Serializable;
 
 import javafx.scene.image.Image;
+import myutilities.MyMath;
+import myutilities.Point;
 import sprite.bounds.BoxCollider;
 import sprite.bounds.CircleCollider;
 import sprite.bounds.Collider;
@@ -201,12 +203,16 @@ public abstract class Sprite implements Collider, Serializable
 	 * <br> double[0] = xValue
 	 * <br> double[1] = yValue
 	 */
-	public double[] getPoint1()
+	public Point getPoint1()
 	{
-		double[] coord = new double[2];
-		coord[0] = getXLocation();
-		coord[1] = getYLocation();
-		return coord;
+		Point point = new Point(getXLocation(), getYLocation());
+		if(faceAngle != 0)
+		{
+			double[] newAngle = MyMath.rotatePointAboutPivot(point.getX(), point.getY(), getXCenter(), getYCenter(), faceAngle);
+			point.setX(newAngle[0]);
+			point.setY(newAngle[1]);
+		}
+		return point;
 	}
 	
 	/**
@@ -215,12 +221,16 @@ public abstract class Sprite implements Collider, Serializable
 	 * <br> double[0] = xValue
 	 * <br> double[1] = yValue
 	 */
-	public double[] getPoint2()
+	public Point getPoint2()
 	{
-		double[] coord = new double[2];
-		coord[0] = getXLocation() + getWidth();
-		coord[1] = getYLocation();
-		return coord;
+		Point point = new Point(getXLocation() + getWidth(), getYLocation());
+		if(faceAngle != 0)
+		{
+			double[] newAngle = MyMath.rotatePointAboutPivot(point.getX(), point.getY(), getXCenter(), getYCenter(), faceAngle);
+			point.setX(newAngle[0]);
+			point.setY(newAngle[1]);
+		}
+		return point;
 	}
 	
 	/**
@@ -229,12 +239,16 @@ public abstract class Sprite implements Collider, Serializable
 	 * <br> double[0] = xValue
 	 * <br> double[1] = yValue
 	 */
-	public double[] getPoint3()
+	public Point getPoint3()
 	{
-		double[] coord = new double[2];
-		coord[0] = getXLocation() + getWidth();
-		coord[1] = getYLocation() + getHeight();
-		return coord;
+		Point point = new Point(getXLocation() + getWidth(), getYLocation() + getHeight());
+		if(faceAngle != 0)
+		{
+			double[] newAngle = MyMath.rotatePointAboutPivot(point.getX(), point.getY(), getXCenter(), getYCenter(), faceAngle);
+			point.setX(newAngle[0]);
+			point.setY(newAngle[1]);
+		}
+		return point;
 	}
 	
 	/**
@@ -243,11 +257,15 @@ public abstract class Sprite implements Collider, Serializable
 	 * <br> double[0] = xValue
 	 * <br> double[1] = yValue
 	 */
-	public double[] getPoint4()
+	public Point getPoint4()
 	{
-		double[] coord = new double[2];
-		coord[0] = getXLocation();
-		coord[1] = getYLocation() + getHeight();
-		return coord;
+		Point point = new Point(getXLocation(), getYLocation() + getHeight());
+		if(faceAngle != 0)
+		{
+			double[] newAngle = MyMath.rotatePointAboutPivot(point.getX(), point.getY(), getXCenter(), getYCenter(), faceAngle);
+			point.setX(newAngle[0]);
+			point.setY(newAngle[1]);
+		}
+		return point;
 	}
 }
