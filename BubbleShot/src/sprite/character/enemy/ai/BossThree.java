@@ -34,7 +34,7 @@ public class BossThree extends AI
 		{
 			Room currentRoom=GameRunner.getGameManager().getLevel().getCurrentRoom();
 			Tile[][] allTiles=currentRoom.getTiles();
-			for(int i=0;i<allTiles.length;i++)
+			for(int i=onetime;i<allTiles.length;i++)
 			{
 				for(int s=0;s<allTiles[0].length;s++)
 				{

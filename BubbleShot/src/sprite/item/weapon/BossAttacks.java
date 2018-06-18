@@ -31,14 +31,26 @@ public class BossAttacks
 	public static List<Weapon> getBossThreeAtkPattern(double x, double y)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
-		atkList.add(BossAttacks.getBossAtkNine(x, y,5,-5));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,95,85));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,185,175));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,275,265));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,50,40));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,140,130));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,230,220));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,320,310));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,10,-10));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,100,8));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,190,17));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,280,26));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,55,25));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,145,125));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,235,215));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,325,305));
+		return atkList;
+	}
+	
+	public static List<Weapon> getBossThreeAtkPatternTwo(double x, double y)
+	{
+		List<Weapon> atkList=new ArrayList<Weapon>();
+		return atkList;
+	}
+	
+	public static List<Weapon> getBossThreeAtkPatternThree(double x, double y)
+	{
+		List<Weapon> atkList=new ArrayList<Weapon>();
 		return atkList;
 	}
 	

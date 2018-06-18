@@ -38,8 +38,8 @@ public class ProjectileDesign
 	public static Projectile getFBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
 	{
 		String fileName = "file:resources/projectilePictures/fireball.png";
-		double width = 18;
-		double height = 18;
+		double width = 70;
+		double height = 50;
 		double travelDistance = 400;
 		double speed = 500;
 		Projectile bullet = new LinearProjectile("Fire Ball", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);

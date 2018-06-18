@@ -144,7 +144,9 @@ public class EnemyDesign
 	{
 		String fileName = "file:resources/enemy/wizard.png";
 		List<Weapon> weps=BossAttacks.getBossThreeAtkPattern(x, y);
-		Boss boss=new WizardBoss("WIZARDBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
+		List<Weapon> weps2=BossAttacks.getBossThreeAtkPatternTwo(x, y);
+		List<Weapon> weps3=BossAttacks.getBossThreeAtkPatternThree(x, y);
+		Boss boss=new WizardBoss("WIZARDBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps,weps2,weps3);
 		for(Weapon w:weps)
 			w.setPossessor(boss);
 		boss.setGunVisibility(false);
