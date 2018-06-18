@@ -75,7 +75,12 @@ public class EffectManager
 		}
 		return result;
 	}
-	
+//	
+//	public double isTakingDamage()
+//	{
+//		
+//	}
+//	
 	public double getDamageMultiplier()
 	{
 		double result = 1;

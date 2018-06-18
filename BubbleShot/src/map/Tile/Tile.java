@@ -32,6 +32,12 @@ public class Tile extends Sprite
 		this.effect = effect;
 	}
 	
+	public Tile(String name, Image image, Effect effect, double xPos, double yPos, double width, double height, double faceAngle)
+	{
+		super(name, image, xPos, yPos, width, height, faceAngle);
+		this.effect = effect;
+	}
+	
 	/**
 	 * @param name - Name of the tile.
 	 * @param fileName - File path for the tile.
