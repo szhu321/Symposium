@@ -6,13 +6,9 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 import mainGame.backend.Controls;
 import mainGame.backend.GameManager;
-import mainGame.saving.FileReader;
+import mainGame.backend.Graphics;
 import map.Level;
-import map.LevelDesign;
-import myutilities.MyMath;
-import sound.BackgroundSound;
 import sprite.character.player.Player;
-import sprite.character.player.PlayerDesign;
 
 /**
  * Run this class to start the Program.
@@ -29,6 +25,7 @@ public class GameRunner extends Application
 	private static double resolutionWidth;
 	
 	private static Controls controls;
+	private static Graphics graphics;
 	
 	public static void main(String[] args)
 	{
@@ -54,13 +51,14 @@ public class GameRunner extends Application
 		window.setWidth(resolutionWidth);
 		window.setResizable(false);
 		loadControls();
+		loadGraphics();
 		loadFXMLs();
 		
 		
-		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
+//		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
 ////////	//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
-		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window, controls);
-		gameManager.startGame();
+//		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window, controls);
+//		gameManager.startGame();
 //		
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
@@ -81,11 +79,19 @@ public class GameRunner extends Application
 	}
 	
 	/**
-	 * Loads the controls for the game.
+	 * Loads the controls settings for the game
 	 */
 	private void loadControls()
 	{
 		controls = new Controls();
+	}
+	
+	/**
+	 * Loads the graphics settings for the game.
+	 */
+	private void loadGraphics()
+	{
+		graphics = new Graphics();
 	}
 	
 	/**
@@ -131,6 +137,11 @@ public class GameRunner extends Application
 	public static Controls getControls()
 	{
 		return controls;
+	}
+	
+	public static Graphics getGraphics()
+	{
+		return graphics;
 	}
 	
 	public static double getWindowHeight()
