@@ -31,6 +31,8 @@ public class RoomView
 	public static boolean displayObstacleShadow = true;
 	public static boolean displayItemRotating = true;
 	public static boolean displayCharacterEffects = true;
+	public static boolean displayShadowMode = true;
+	public static boolean displayBlindMode = false;
 	
 	private Canvas canvas;
 	private Room room;
@@ -61,24 +63,25 @@ public class RoomView
 		timePassed += (double)(System.nanoTime() - passTime) / 1000000.0;
 		passTime = System.nanoTime();
 		
-		//blindModeStart(gc, room);
 		
 		drawTiles(gc, room);
 		drawItems(gc, room);
 		drawCharacters(gc, room);
 		drawProjectiles(gc, room);
-		drawObstacles(gc, room);
 		
-		//blindMode(gc, room);
-		//shadowMode(gc, room);
+		shadowMode(gc, room);
+		drawObstacles(gc, room);
+		blindMode(gc, room);
 	}
 	
 	public static void shadowMode(GraphicsContext gc, Room room)
 	{
+		if(!displayShadowMode)
+			return;
 		Player player = room.getPlayer();
 		List<Obstacle> obstacles = room.getObstacles();
 		gc.save();
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.rgb(0, 0, 0, .99));
 		for(Obstacle obs: obstacles)
 		{
 			double[] point1 = obs.getPoint1();
@@ -89,17 +92,74 @@ public class RoomView
 			double point2Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point2[0], point2[1]);
 			double point3Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point3[0], point3[1]);
 			double point4Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point4[0], point4[1]);
-			double maxAngle = point1Angle;
-			double minAngle = point1Angle;
-			if(maxAngle < point2Angle)
-				maxAngle = point2Angle;
+			double maxAngle = MyMath.findMaxValue(point1Angle, point2Angle, point3Angle, point4Angle);
+			double minAngle = MyMath.findMinValue(point1Angle, point2Angle, point3Angle, point4Angle);
+			double[] minPoint = null;
+			double[] maxPoint = null;
 			
+			double superMaxAngle = Double.MIN_VALUE;
+			if(superMaxAngle < makeAcute(Math.abs(point1Angle - point2Angle)))
+			{
+				superMaxAngle = makeAcute(Math.abs(point1Angle - point2Angle));
+				minPoint = point1;
+				maxPoint = point2;
+			}
+			if(superMaxAngle < makeAcute(Math.abs(point2Angle - point3Angle)))
+			{
+				superMaxAngle = makeAcute(Math.abs(point2Angle - point3Angle));
+				minPoint = point2;
+				maxPoint = point3;
+			}
+			if(superMaxAngle < makeAcute(Math.abs(point3Angle - point4Angle)))
+			{
+				superMaxAngle = makeAcute(Math.abs(point3Angle - point4Angle));
+				minPoint = point3;
+				maxPoint = point4;
+			}
+			if(superMaxAngle < makeAcute(Math.abs(point4Angle - point1Angle)))
+			{
+				superMaxAngle = makeAcute(Math.abs(point4Angle - point1Angle));
+				minPoint = point4;
+				maxPoint = point1;
+			}
+			if(superMaxAngle < makeAcute(Math.abs(point1Angle - point3Angle)))
+			{
+				superMaxAngle = makeAcute(Math.abs(point1Angle - point3Angle));
+				minPoint = point1;
+				maxPoint = point3;
+			}
+			if(superMaxAngle < makeAcute(Math.abs(point2Angle - point4Angle)))
+			{
+				superMaxAngle = makeAcute(Math.abs(point2Angle - point4Angle));
+				minPoint = point2;
+				maxPoint = point4;
+			}
+			
+			double[] maxPoint2 = new double[2];
+			double[] minPoint2 = new double[2];
+			maxPoint2[0] = (maxPoint[0] - player.getXCenter()) * 10000;
+			maxPoint2[1] = (maxPoint[1] - player.getYCenter()) * 10000;
+			minPoint2[0] = (minPoint[0] - player.getXCenter()) * 10000;
+			minPoint2[1] = (minPoint[1] - player.getYCenter()) * 10000;
+			double[] xValues = {maxPoint[0], maxPoint2[0], minPoint2[0], minPoint[0]};
+			double[] yValues = {maxPoint[1], maxPoint2[1], minPoint2[1], minPoint[1]};
+			
+			gc.fillPolygon(xValues, yValues, 4);
 		}
 		gc.restore();
 	}
 	
+	private static double makeAcute(double angle)
+	{
+		if(angle > 180)
+			return 360 - angle;
+		return angle;
+	}
+	
 	public static void blindMode(GraphicsContext gc, Room room)
 	{
+		if(!displayBlindMode)
+			return;
 		gc.save();
 		//long timeNow = System.nanoTime();
 		double radius = 200;

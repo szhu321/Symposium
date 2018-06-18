@@ -98,4 +98,28 @@ public class MyMath
 		}
 		return min;
 	}
+	
+	/**
+	 * Finds a new point given a point rotated counterclockwise along a pivot.
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 * @param centerX The x pivot
+	 * @param centerY The y pivot
+	 * @param degrees The degree rotated counterclockwise
+	 * @return the new point after rotation.
+	 */
+	public static double[] rotatePointAboutPivot(double x, double y, double centerX, double centerY, double degrees)
+	{
+		double[] result = new double[2];
+		//x' = xcos() - ysin()
+		result[0] = (x * Math.cos(Math.toRadians(degrees))) - (y * Math.sin(Math.toDegrees(degrees)));
+		//y' = ycos() + xsin()
+		result[1] = (y * Math.cos(Math.toRadians(degrees))) + (x * Math.sin(Math.toRadians(degrees)));
+		//Translate based on povit.
+		result[0] = result[0] + centerX;
+		result[1] = result[1] + centerY;
+		return result;
+	}
+	
+	
 }

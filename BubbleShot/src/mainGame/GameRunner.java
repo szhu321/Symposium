@@ -9,6 +9,7 @@ import mainGame.backend.GameManager;
 import mainGame.saving.FileReader;
 import map.Level;
 import map.LevelDesign;
+import myutilities.MyMath;
 import sound.BackgroundSound;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
@@ -64,7 +65,7 @@ public class GameRunner extends Application
 //		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
 //		bs.playSound(.05);
 //		
-		
+
 		window.show();
 	}
 	
