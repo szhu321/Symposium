@@ -133,7 +133,18 @@ public class EnemyDesign
 	{
 		String fileName = "file:resources/enemy/knight.png";
 		List<Weapon> weps=BossAttacks.getBossTwoAtkPattern(x, y);
-		Boss boss=new KnightBoss("ROBOTBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
+		Boss boss=new KnightBoss("KNIGHTBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
+		for(Weapon w:weps)
+			w.setPossessor(boss);
+		boss.setGunVisibility(false);
+		return boss;
+	}
+	
+	public static Boss getBossDesignThree(double x, double y, Player player)
+	{
+		String fileName = "file:resources/enemy/wizard.png";
+		List<Weapon> weps=BossAttacks.getBossThreeAtkPattern(x, y);
+		Boss boss=new WizardBoss("WIZARDBOSS",fileName, x, y,1000, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
 		for(Weapon w:weps)
 			w.setPossessor(boss);
 		boss.setGunVisibility(false);

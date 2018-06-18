@@ -31,7 +31,7 @@ public class RoomView
 	public static boolean displayObstacleShadow = true;
 	public static boolean displayItemRotating = true;
 	public static boolean displayCharacterEffects = true;
-	public static boolean displayShadowMode = true;
+	public static boolean displayShadowMode = false;
 	public static boolean displayBlindMode = false;
 	
 	private Canvas canvas;
@@ -69,7 +69,7 @@ public class RoomView
 		drawCharacters(gc, room);
 		drawProjectiles(gc, room);
 		
-		shadowMode(gc, room);
+		//shadowMode(gc, room);
 		drawObstacles(gc, room);
 		blindMode(gc, room);
 	}

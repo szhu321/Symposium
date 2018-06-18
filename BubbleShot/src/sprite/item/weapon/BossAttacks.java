@@ -28,6 +28,20 @@ public class BossAttacks
 		return atkList;
 	}
 	
+	public static List<Weapon> getBossThreeAtkPattern(double x, double y)
+	{
+		List<Weapon> atkList=new ArrayList<Weapon>();
+		atkList.add(BossAttacks.getBossAtkNine(x, y,5,-5));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,95,85));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,185,175));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,275,265));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,50,40));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,140,130));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,230,220));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,320,310));
+		return atkList;
+	}
+	
 	public static BossWepOne getBossAtkOne(double x, double y)
 	{
 		double damage = 5;
@@ -129,6 +143,20 @@ public class BossAttacks
 		int ammoUsedPerShot = 0;
 		BossWepEight sword = new BossWepEight("Sword", x, y, damage, attackRate, attackRange, projectile, bulletPerShot, ammoUsedPerShot,5);
 		sword.setAutomatic(false);
+		return sword;
+	}
+	
+	public static BossWepNine getBossAtkNine(double x, double y,double left, double right)
+	{
+		double damage = .5;
+		int offsetAngle = 120;
+		double attackRate = .04;
+		double attackRange = 1000;
+		Projectile projectile = ProjectileDesign.getFBulletDesignOne(null, x, y, 0, 5);
+		int bulletPerShot = 2;
+		int ammoUsedPerShot = 0;
+		BossWepNine sword = new BossWepNine("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5,left,right);
+		sword.setAutomatic(true);
 		return sword;
 	}
 }

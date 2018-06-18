@@ -42,7 +42,7 @@ public class RoomDesign
 		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
 		room.addItem(WeaponDesign.getSniperDesignEPIC(400, 140));
 		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500));
-		room.addItem(BossAttacks.getBossAtkThree(300, 140));
+		room.addItem(BossAttacks.getBossAtkNine(300, 140,100,90));
 		room.addItem(WeaponDesign.getSwordDesignOne(500, 100));
 		room.addItem(WeaponDesign.getAssaultRifleDesignOne(600, 140));
 		
@@ -150,7 +150,7 @@ public class RoomDesign
 	
 	public static Room getBossRoomDesignOne()
 	{
-		Room room = new Room();
+		Room room = new Room(11,11);
 		room.setBossRoom(true);
 		//room.addObstacle(new StoneWall(50, 1000,00,0,0));
 		//room.addObstacle(new StoneWall(50, 1000,950,0,0));

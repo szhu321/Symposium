@@ -393,7 +393,7 @@ public class GameManager
 		{
 			Tile grabbedTile = level.getCurrentRoom().characterCollisionWithTile(character);
 			//System.out.println(grabbedTile);
-			if(grabbedTile != null)
+			if(grabbedTile != null && character instanceof Player)
 				character.getEffectManager().addEffect(grabbedTile.getEffects());
 		}
 	}

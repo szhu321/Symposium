@@ -18,6 +18,7 @@ import sprite.projectile.Projectile;
 import sprite.Sprite;
 import sprite.bounds.BoxCollider;
 import sprite.character.Character;
+import sprite.character.effect.HealthEffect;
 import sprite.character.effect.NoEffect;
 import sprite.character.player.Player;
 import sprite.character.enemy.Boss;
@@ -127,6 +128,14 @@ public class Room implements Serializable
 			roomTeleporterManager.getRoomPorters().add(tile);
 		}
 		else
+		{
+			tiles[row][col] = tile;
+		}
+	}
+	
+	public void setTileAt(int row, int col, Tile tile)
+	{
+		if(!(tiles[row][col] instanceof Teleporter))
 		{
 			tiles[row][col] = tile;
 		}
@@ -500,7 +509,9 @@ public class Room implements Serializable
 		{
 			//System.out.println("Collide With player");
 			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
-			//projectiles.remove(projectile);
+			if(projectile.getSpriteName().equals("Fire Ball"))
+				player.getEffectManager().addEffect(HealthEffect.LAVA_TILE_EFFECT);
+			projectiles.remove(projectile);
 		
 			return true;
 		}
@@ -674,7 +685,8 @@ public class Room implements Serializable
 			//Place boss in boss room
 			
 			//this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
-			this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
+			//this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer()));
+			this.addCharacter(EnemyDesign.getBossDesignThree(this.roomPixHeight/2-50,this.roomPixWidth/2-50,this.getPlayer()));
 		}
 		
 		/*debugger

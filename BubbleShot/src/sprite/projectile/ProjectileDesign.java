@@ -35,6 +35,39 @@ public class ProjectileDesign
 		return bullet;
 	}
 	
+	public static Projectile getFBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/projectilePictures/fireball.png";
+		double width = 18;
+		double height = 18;
+		double travelDistance = 400;
+		double speed = 500;
+		Projectile bullet = new LinearProjectile("Fire Ball", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		return bullet;
+	}
+	
+	public static Projectile getIBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/projectilePictures/iceball.png";
+		double width = 18;
+		double height = 18;
+		double travelDistance = 400;
+		double speed = 350;
+		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		return bullet;
+	}
+	
+	public static Projectile getDBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/projectilePictures/darkball.png";
+		double width = 18;
+		double height = 18;
+		double travelDistance = 400;
+		double speed = 350;
+		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
+		return bullet;
+	}
+	
 	public static Projectile getESlowBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
 	{
 		String fileName = "file:resources/projectilePictures/ebullet.png";
