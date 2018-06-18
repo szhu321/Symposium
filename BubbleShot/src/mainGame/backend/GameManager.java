@@ -364,12 +364,12 @@ public class GameManager
 			level.getCurrentRoom().setAllEnemyDead(true);
 			List<Teleporter> roomPorters = level.getCurrentRoom().getRoomTeleporterManager().getRoomPorters();
 			level.getCurrentRoom().getRoomTeleporterManager().activateAllTeleporters();
-			for(Teleporter tele : roomPorters)
-				if(tele.isBossTele())
-					if(level.allDead())
-						level.getCurrentRoom().getRoomTeleporterManager().activateTeleporter(tele);
-					else
-						level.getCurrentRoom().getRoomTeleporterManager().deactivateTeleporter(tele);
+//			for(Teleporter tele : roomPorters)
+//				if(tele.isBossTele())
+//					if(level.allDead())
+//						level.getCurrentRoom().getRoomTeleporterManager().activateTeleporter(tele);
+//					else
+//						level.getCurrentRoom().getRoomTeleporterManager().deactivateTeleporter(tele);
 		}
 	}
 	
@@ -543,12 +543,6 @@ public class GameManager
 						{	
 							if(((Teleporter)teleChecker[i][s]).isWasUsed()==false&&((Teleporter)teleChecker[i][s]).isPlayerOn()==false)
 							{
-								if(t.isBossTele()&&!level.allDead())
-								{				
-									continue;
-								}
-								else
-								{
 									if(t.getXLocation()/100==s && t.getYLocation()/100==i)
 									{
 										Teleporter currentTele=t;
@@ -584,9 +578,7 @@ public class GameManager
 											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
 											changeRoom();
 											break;
-										}
-									break;
-									}	
+										}	
 								}
 							}
 						}break;
