@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Rotate;
 import mainGame.GameRunner;
+import mainGame.backend.Graphics;
 import map.Room;
 import map.Tile.Tile;
 import map.Tile.teleporter.Teleporter;
@@ -24,15 +25,16 @@ import sprite.projectile.Projectile;
 
 public class RoomView
 {
-	public static boolean displayCharacterNames = false;
-	public static boolean displayItemNames = false;
-	public static boolean displayCharacterShadow = true;
-	public static boolean displayItemShadow = true;
-	public static boolean displayObstacleShadow = true;
-	public static boolean displayItemRotating = true;
-	public static boolean displayCharacterEffects = true;
-	public static boolean displayShadowMode = false;
-	public static boolean displayBlindMode = false;
+//	public static boolean displayCharacterNames = false;
+//	public static boolean displayItemNames = false;
+//	public static boolean displayCharacterShadow = true;
+//	public static boolean displayItemShadow = true;
+//	public static boolean displayObstacleShadow = true;
+//	public static boolean displayItemRotating = true;
+//	public static boolean displayCharacterEffects = true;
+//	public static boolean displayShadowMode = false;
+//	public static boolean displayBlindMode = false;
+	private static Graphics graphics = GameRunner.getGraphics();
 	
 	private Canvas canvas;
 	private Room room;
@@ -69,14 +71,14 @@ public class RoomView
 		drawCharacters(gc, room);
 		drawProjectiles(gc, room);
 		
-		//shadowMode(gc, room);
+		shadowMode(gc, room);
 		drawObstacles(gc, room);
 		blindMode(gc, room);
 	}
 	
 	public static void shadowMode(GraphicsContext gc, Room room)
 	{
-		if(!displayShadowMode)
+		if(!graphics.getDisplayShadowMode().getCurrentValue())
 			return;
 		Player player = room.getPlayer();
 		List<Obstacle> obstacles = room.getObstacles();
@@ -84,6 +86,8 @@ public class RoomView
 		gc.setFill(Color.rgb(0, 0, 0, .99));
 		for(Obstacle obs: obstacles)
 		{
+			if(obs instanceof Shop)
+				continue;
 			double[] point1 = obs.getPoint1();
 			double[] point2 = obs.getPoint2();
 			double[] point3 = obs.getPoint3();
@@ -158,7 +162,7 @@ public class RoomView
 	
 	public static void blindMode(GraphicsContext gc, Room room)
 	{
-		if(!displayBlindMode)
+		if(!graphics.getDisplayBlindMode().getCurrentValue())
 			return;
 		gc.save();
 		//long timeNow = System.nanoTime();
@@ -227,7 +231,7 @@ public class RoomView
 	
 	public static void drawObstacles(GraphicsContext gc, Room room)
 	{
-		if(displayObstacleShadow)
+		if(graphics.getDisplayObstacleShadow().getCurrentValue())
 		{
 			int shadowLength = 10;
 			gc.save();
@@ -267,7 +271,7 @@ public class RoomView
 	
 	public static void drawCharacters(GraphicsContext gc, Room room)
 	{
-		if(displayCharacterShadow)
+		if(graphics.getDisplayCharacterShadow().getCurrentValue())
 		{
 			gc.save();
 			gc.setFill(Color.rgb(0, 0, 0, .3));
@@ -293,7 +297,7 @@ public class RoomView
 				drawEnemyHealthBar(gc, (Enemy)character);
 			}
 		}	
-		if(displayCharacterNames)
+		if(graphics.getDisplayCharacterNames().getCurrentValue())
 		{
 			gc.save();
 			gc.setFont(new Font("arial", 16));
@@ -304,7 +308,7 @@ public class RoomView
 			}
 			gc.restore();
 		}
-		if(displayCharacterEffects)
+		if(graphics.getDisplayCharacterEffects().getCurrentValue())
 		{
 			gc.save();
 			for(Character character : room.getCharacters())
@@ -385,7 +389,7 @@ public class RoomView
 	
 	public static void drawItems(GraphicsContext gc, Room room)
 	{
-		if(displayItemShadow)
+		if(graphics.getDisplayItemShadow().getCurrentValue())
 		{
 			gc.save();
 			gc.setFill(Color.rgb(0, 0, 0, .3));
@@ -397,7 +401,7 @@ public class RoomView
 		}
 		for(Item item : room.getItems())
 		{
-			if(displayItemRotating)
+			if(graphics.getDisplayItemRotating().getCurrentValue())
 			{
 				gc.drawImage(item.getSpriteImage(), item.getXLocation() + (Math.sin((timePassed / 1000.0) + Math.PI) * item.getWidth() / 2) + (item.getWidth() / 2), item.getYLocation() + (Math.cos((timePassed / 1000.0)) * 10), Math.sin((timePassed / 1000.0)) * item.getSpriteImage().getWidth(), item.getHeight());
 			}
@@ -407,7 +411,7 @@ public class RoomView
 			}
 			
 		}
-		if(displayItemNames)
+		if(graphics.getDisplayItemNames().getCurrentValue())
 		{
 			gc.save();
 			gc.setFont(new Font("arial", 16));

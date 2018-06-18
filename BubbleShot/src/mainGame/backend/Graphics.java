@@ -7,17 +7,17 @@ import myutilities.GraphicsItem;
 
 public class Graphics
 {
-	public GraphicsItem displayCharacterNames;
-	public GraphicsItem displayItemNames;
-	public GraphicsItem displayCharacterShadow;
-	public GraphicsItem displayItemShadow;
-	public GraphicsItem displayObstacleShadow;
-	public GraphicsItem displayItemRotating;
-	public GraphicsItem displayCharacterEffects;
-	public GraphicsItem displayShadowMode;
-	public GraphicsItem displayBlindMode;
+	private GraphicsItem displayCharacterNames;
+	private GraphicsItem displayItemNames;
+	private GraphicsItem displayCharacterShadow;
+	private GraphicsItem displayItemShadow;
+	private GraphicsItem displayObstacleShadow;
+	private GraphicsItem displayItemRotating;
+	private GraphicsItem displayCharacterEffects;
+	private GraphicsItem displayShadowMode;
+	private GraphicsItem displayBlindMode;
 	
-	List<GraphicsItem> graphicsItems;
+	private List<GraphicsItem> graphicsItems;
 	
 	public Graphics()
 	{
@@ -49,7 +49,7 @@ public class Graphics
 		displayObstacleShadow = new GraphicsItem("Display Obstacle Shadow", true);
 		displayItemRotating = new GraphicsItem("Display Item Roatating", true);
 		displayCharacterEffects = new GraphicsItem("Display Character Effects", true);
-		displayShadowMode = new GraphicsItem("Display Shadow Mode", true);
+		displayShadowMode = new GraphicsItem("Display Shadow Mode", false);
 		displayBlindMode = new GraphicsItem("Display Blind Mode", false);
 	}
 
