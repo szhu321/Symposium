@@ -52,7 +52,7 @@ public class ProjectileDesign
 		double width = 18;
 		double height = 18;
 		double travelDistance = 400;
-		double speed = 350;
+		double speed = 250;
 		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
 		return bullet;
 	}

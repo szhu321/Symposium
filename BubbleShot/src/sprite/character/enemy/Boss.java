@@ -19,6 +19,7 @@ public abstract class Boss extends Enemy
 
 	public void switchWeapon(int wepNum)
 	{
+		allWep.get(wepNum).setPossessor(this);
 		this.setWeapon(allWep.get(wepNum));
 	}
 

@@ -604,7 +604,7 @@ public class GameManager
 	    	for(int i=0; i<enemies.size();i++)
 	    		if(enemies.get(i) instanceof Enemy)
 	    		{
-	    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("ROBOTBOSS"))
+	    			if(!((Enemy)enemies.get(i)).getSpriteName().equals("ROBOTBOSS")&&!((Enemy)enemies.get(i)).getSpriteName().equals("WIZARDBOSS"))
 	    			{
 		    				if(!((Enemy)enemies.get(i)).getSpriteName().equals("Base Brian"))
 		    				{
