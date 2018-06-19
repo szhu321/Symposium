@@ -24,7 +24,7 @@ public class Player extends Character
 	private int coins;
 	private int currentAmmo;
 	private int defaultAmmo;
-	private Level currentLevel;
+	private static int currentLevel;
 	private Fist fist = WeaponDesign.getFistDesignOne(this);
 	
 	
@@ -36,7 +36,7 @@ public class Player extends Character
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
 		coins = 0;
-		currentLevel=null;
+		currentLevel=1;
 	}
 	
 	public void reloadObject()
@@ -229,11 +229,11 @@ public class Player extends Character
 		return output;
 	}
 
-	public Level getCurrentLevel() {
+	public static int getCurrentLevel() {
 		return currentLevel;
 	}
 
-	public void setCurrentLevel(Level currentLevel) {
-		this.currentLevel = currentLevel;
+	public static void setCurrentLevel(int currentLevel) {
+		Player.currentLevel = currentLevel;
 	}
 }

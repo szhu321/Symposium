@@ -83,7 +83,6 @@ public class GameManager
 	{
 		this.level = level;
 		this.player = player;
-		this.player.setCurrentLevel(level);
 		this.level.getCurrentRoom().addCharacter(player);
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
@@ -147,6 +146,7 @@ public class GameManager
 		resetKeys();
 		this.level = level;
 		this.level.getCurrentRoom().addCharacter(player);
+		Player.setCurrentLevel(Player.getCurrentLevel() + 1);
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		if(window.isFullScreen())

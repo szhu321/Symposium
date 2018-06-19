@@ -15,6 +15,8 @@ import sprite.bounds.Collider;
  */
 public class Obstacle extends Sprite implements Collider
 {
+	private static final long serialVersionUID = -584532843083071509L;
+
 	/**
 	 * A new obstacle to be added to the map.
 	 * @param name - name of the obstacle

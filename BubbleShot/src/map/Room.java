@@ -44,7 +44,6 @@ public class Room implements Serializable
 	
 	private int currentRow;
 	private int currentCol;
-	private Level ownerLevel;
 	
 	private boolean isExplored = false;
 	private boolean allEnemyDead=false;
@@ -88,11 +87,10 @@ public class Room implements Serializable
 	 * @param column - number of columns of tiles.
 	 * @param row - number of rows of tiles.
 	 */
-	public Room(int row, int column,Level ownerLevel)
+	public Room(int row, int column)
 	{
 		roomPixWidth = column * 100;
 		roomPixHeight = row * 100;
-		this.ownerLevel=ownerLevel;
 		
 		tiles = new Tile[row][column];
 		for(int i = 0; i < tiles.length; i++)
@@ -107,9 +105,9 @@ public class Room implements Serializable
 	/**
 	 * Creates a clear Room with 10 rows and 10 columns.
 	 */
-	public Room(Level ownerLevel)
+	public Room()
 	{
-		this(DEFAULT_TILE_ROW, DEFUALT_TILE_COLUMN,ownerLevel);
+		this(DEFAULT_TILE_ROW, DEFUALT_TILE_COLUMN);
 	}
 	
 	/**
@@ -653,7 +651,7 @@ public class Room implements Serializable
 			//All tiles in the current room
 			int[][] spawnTile=new int[tiles.length][tiles[0].length];
 			//Random amount of enemies 
-			int amountEnemies=(int)((Math.random()*5)+1)+(ownerLevel.getLevelNum()-1)*3;
+			int amountEnemies=(int)((Math.random()*5)+1)+(Player.getCurrentLevel()-1)*3;
 			
 			//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
 			
@@ -707,7 +705,7 @@ public class Room implements Serializable
 				else
 				{
 					randomType=(int)(Math.random()*7)+1;
-					this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),randomType,ownerLevel.getLevelNum()));
+					this.addCharacter(EnemyDesign.getRandomDesign(tiles[randomY][randomX].getXCenter(),tiles[randomY][randomX].getYCenter(),this.getPlayer(),randomType, Player.getCurrentLevel()));
 					//spawnTile[randomY][randomX]=0;
 					randomX=(int)(Math.random()*spawnTile[0].length);
 					randomY=(int)(Math.random()*spawnTile.length);
@@ -721,11 +719,11 @@ public class Room implements Serializable
 			//Place boss in boss room
 			int randBoss=MyMath.getRandomInteger(1, 3);
 			if(randBoss==1)
-				this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer(),ownerLevel.getLevelNum()));
+				this.addCharacter(EnemyDesign.getBossDesignOne(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer(),Player.getCurrentLevel()));
 			if(randBoss==2)
-				this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer(),ownerLevel.getLevelNum()));
+				this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer(),Player.getCurrentLevel()));
 			if(randBoss==3)
-				this.addCharacter(EnemyDesign.getBossDesignThree(this.roomPixHeight/2-50,this.roomPixWidth/2-50,this.getPlayer(),ownerLevel.getLevelNum()));
+				this.addCharacter(EnemyDesign.getBossDesignThree(this.roomPixHeight/2-50,this.roomPixWidth/2-50,this.getPlayer(),Player.getCurrentLevel()));
 		}
 		
 		/*debugger

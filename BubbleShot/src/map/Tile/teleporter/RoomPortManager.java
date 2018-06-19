@@ -1,10 +1,12 @@
 package map.Tile.teleporter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomPortManager
+public class RoomPortManager implements Serializable
 {
+	private static final long serialVersionUID = 9135200892993809355L;
 	private List<Teleporter> roomPorters;
 	
 	public RoomPortManager()

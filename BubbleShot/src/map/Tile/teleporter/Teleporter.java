@@ -5,6 +5,7 @@ import map.Tile.Tile;
 
 public class Teleporter extends Tile
 {
+	private static final long serialVersionUID = -5565608647121111228L;
 	private Room connectedRoom;
 	private Teleporter connectedTeleporter;
 	private boolean activated;

@@ -15,6 +15,7 @@ import sprite.character.effect.NoEffect;
  */
 public class Tile extends Sprite
 {
+	private static final long serialVersionUID = 7979369565969508788L;
 	private Effect effect;
 	private int fScore;
 	private int hScore;

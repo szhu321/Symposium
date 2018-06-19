@@ -14,9 +14,9 @@ import sprite.item.weapon.WeaponDesign;
 
 public class RoomDesign
 {
-	public static Room getRoomDesignTest(Level ownerLevel)
+	public static Room getRoomDesignTest()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -29,38 +29,38 @@ public class RoomDesign
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(500, 500, player));
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 800, player));
 	//	room.addCharacter(EnemyDesign.getRegularDesignOne(810, 200, player));
-		room.addItem(PotionDesign.getHealthPotDesignOne(140, 120,ownerLevel.getLevelNum()));
-		room.addItem(PotionDesign.getHealthPotDesignOne(140, 200,ownerLevel.getLevelNum()));
-		room.addItem(PotionDesign.getHealthPotDesignOne(140, 280,ownerLevel.getLevelNum()));
-		room.addItem(PotionDesign.getSpeedPotDesignOne(140, 350,ownerLevel.getLevelNum()));
-		room.addItem(PotionDesign.getDamagePotDesignOne(140, 420,ownerLevel.getLevelNum()));
+		room.addItem(PotionDesign.getHealthPotDesignOne(140, 120,Player.getCurrentLevel()));
+		room.addItem(PotionDesign.getHealthPotDesignOne(140, 200,Player.getCurrentLevel()));
+		room.addItem(PotionDesign.getHealthPotDesignOne(140, 280,Player.getCurrentLevel()));
+		room.addItem(PotionDesign.getSpeedPotDesignOne(140, 350,Player.getCurrentLevel()));
+		room.addItem(PotionDesign.getDamagePotDesignOne(140, 420,Player.getCurrentLevel()));
 		room.addItem(AmmoDesign.getAmmoDesignOne(500, 160));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(900, 800));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(300, 500));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(500, 300));
 		//room.addItem(PotionDesign.getSpeedPotDesignOne(100, 700));
-		room.addItem(WeaponDesign.getSniperDesignOne(200, 500,ownerLevel.getLevelNum()));
-		room.addItem(WeaponDesign.getSniperDesignEPIC(400, 140,ownerLevel.getLevelNum()));
-		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500,ownerLevel.getLevelNum()));
-		room.addItem(BossAttacks.getBossAtkNine(300, 140,5,-5,ownerLevel.getLevelNum()));
-		room.addItem(WeaponDesign.getSwordDesignOne(500, 100,ownerLevel.getLevelNum()));
-		room.addItem(WeaponDesign.getAssaultRifleDesignOne(600, 140,ownerLevel.getLevelNum()));
+		room.addItem(WeaponDesign.getSniperDesignOne(200, 500,Player.getCurrentLevel()));
+		room.addItem(WeaponDesign.getSniperDesignEPIC(400, 140,Player.getCurrentLevel()));
+		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500,Player.getCurrentLevel()));
+		room.addItem(BossAttacks.getBossAtkNine(300, 140,5,-5,Player.getCurrentLevel()));
+		room.addItem(WeaponDesign.getSwordDesignOne(500, 100,Player.getCurrentLevel()));
+		room.addItem(WeaponDesign.getAssaultRifleDesignOne(600, 140,Player.getCurrentLevel()));
 		
 		room.addItem(CoinDesign.getCoinFive(700, 140));
-		room.addItem(ArmorDesign.getHelmetDesignOne(820, 130,ownerLevel.getLevelNum()));
-		room.addItem(ArmorDesign.getBreastPlateDesignOne(820, 230,ownerLevel.getLevelNum()));
-		room.addItem(ArmorDesign.getLeggingDesignOne(820, 330,ownerLevel.getLevelNum()));
-		room.addItem(ArmorDesign.getBootsDesignOne(820, 430,ownerLevel.getLevelNum()));
-		room.addItem(ShieldDesign.getShieldDesignOne(820, 530,ownerLevel.getLevelNum()));
+		room.addItem(ArmorDesign.getHelmetDesignOne(820, 130,Player.getCurrentLevel()));
+		room.addItem(ArmorDesign.getBreastPlateDesignOne(820, 230,Player.getCurrentLevel()));
+		room.addItem(ArmorDesign.getLeggingDesignOne(820, 330,Player.getCurrentLevel()));
+		room.addItem(ArmorDesign.getBootsDesignOne(820, 430,Player.getCurrentLevel()));
+		room.addItem(ShieldDesign.getShieldDesignOne(820, 530,Player.getCurrentLevel()));
 		room.setBossRoom(false);
 		room.setAllEnemyDead(true);
 		room.setEnemySpawned(true);
 		return room;
 	}
 	
-	public static Room getRoomDesignOne(Level ownerLevel)
+	public static Room getRoomDesignOne()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(200,200,200,200,0));
 		room.addObstacle(new StoneWall(200,200,200,600,0));
 		room.addObstacle(new StoneWall(200,200,600,600,0));
@@ -71,9 +71,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignTwo(Level ownerLevel)
+	public static Room getRoomDesignTwo()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -88,9 +88,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getShopRoomDesign(Level ownerLevel)
+	public static Room getShopRoomDesign()
 	{
-		Room room = new Room(10,11,ownerLevel);
+		Room room = new Room(10,11);
 		room.setShopRoom(true);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
@@ -101,21 +101,21 @@ public class RoomDesign
 		//room.addCharacter(EnemyDesign.getRegularDesignOne(800, 200, player));
 		//room.addCharacter(player);
 		//room.addCharacter(enemy);
-		room.addObstacle(new Shop(100,100,200,100,0,ownerLevel.getLevelNum()));
-		room.addObstacle(new Shop(100,100,400,100,0,ownerLevel.getLevelNum()));
-		room.addObstacle(new Shop(100,100,600,100,0,ownerLevel.getLevelNum()));
-		room.addObstacle(new Shop(100,100,800,100,0,ownerLevel.getLevelNum()));
-		room.addObstacle(new Shop(100,100,200,300,0,ownerLevel.getLevelNum()));
-		room.addObstacle(new Shop(100,100,800,300,0,ownerLevel.getLevelNum()));
+		room.addObstacle(new Shop(100,100,200,100,0,Player.getCurrentLevel()));
+		room.addObstacle(new Shop(100,100,400,100,0,Player.getCurrentLevel()));
+		room.addObstacle(new Shop(100,100,600,100,0,Player.getCurrentLevel()));
+		room.addObstacle(new Shop(100,100,800,100,0,Player.getCurrentLevel()));
+		room.addObstacle(new Shop(100,100,200,300,0,Player.getCurrentLevel()));
+		room.addObstacle(new Shop(100,100,800,300,0,Player.getCurrentLevel()));
 		room.setBossRoom(false);
 		room.setAllEnemyDead(true);
 		room.setEnemySpawned(true);
 		return room;
 	}
 	
-	public static Room getRoomDesignThree(Level ownerLevel)
+	public static Room getRoomDesignThree()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -128,9 +128,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFour(Level ownerLevel)
+	public static Room getRoomDesignFour()
 	{
-		Room room = new Room(10,11,ownerLevel);
+		Room room = new Room(10,11);
 //		room.addObstacle(new StoneWall(50, 1000,0,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -145,9 +145,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFive(Level ownerLevel)
+	public static Room getRoomDesignFive()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 //		room.addObstacle(new StoneWall(50, 1000,00,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -162,9 +162,9 @@ public class RoomDesign
 	}
 	
 	
-	public static Room getBossRoomDesignOne(Level ownerLevel)
+	public static Room getBossRoomDesignOne()
 	{
-		Room room = new Room(11,11,ownerLevel);
+		Room room = new Room(11,11);
 		room.setBossRoom(true);
 		//room.addObstacle(new StoneWall(50, 1000,00,0,0));
 		//room.addObstacle(new StoneWall(50, 1000,950,0,0));
@@ -179,9 +179,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignSix(Level ownerLevel)
+	public static Room getRoomDesignSix()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 //		room.addObstacle(new StoneWall(50, 1000,00,0,0));
 //		room.addObstacle(new StoneWall(50, 1000,950,0,0));
 //		room.addObstacle(new StoneWall(1000, 50,0,0,0));
@@ -195,9 +195,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignSeven(Level ownerLevel)
+	public static Room getRoomDesignSeven()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		
 		room.addObstacle(new StoneWall(50,50,700,200,0));
 		room.addObstacle(new StoneWall(50,50,300,200,0));
@@ -207,26 +207,26 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignEight(Level ownerLevel)
+	public static Room getRoomDesignEight()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		
 		room.addObstacle(new StoneWall(600,400,200,300,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignNine(Level ownerLevel)
+	public static Room getRoomDesignNine()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		
 		room.addObstacle(new StoneWall(600,100,200,300,0));
 		room.addObstacle(new StoneWall(100,300,400,400,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignTen(Level ownerLevel)
+	public static Room getRoomDesignTen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		
 		room.addObstacle(new StoneWall(300,100,100,700,0));
 		room.addObstacle(new StoneWall(100,500,600,100,0));
@@ -234,15 +234,15 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignEleven(Level ownerLevel)
+	public static Room getRoomDesignEleven()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		return room;
 	}
 	
-	public static Room getRoomDesignTwelve(Level ownerLevel)
+	public static Room getRoomDesignTwelve()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,300,300,100,0));
 		room.addObstacle(new StoneWall(100,300,300,600,0));
 		room.addObstacle(new StoneWall(100,300,700,100,0));
@@ -251,9 +251,9 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignThirteen(Level ownerLevel)
+	public static Room getRoomDesignThirteen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,300,400,100,0));
 		room.addObstacle(new StoneWall(100,400,400,500,0));
 		//room.addObstacle(new StoneWall(500,100,400,400,0));
@@ -261,26 +261,26 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFourteen(Level ownerLevel)
+	public static Room getRoomDesignFourteen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,100,500,300,0));
 		room.addObstacle(new StoneWall(300,300,300,600,0));
 		room.addObstacle(new StoneWall(200,100,700,600,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignFifteen(Level ownerLevel)
+	public static Room getRoomDesignFifteen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,200,400,300,0));
 		room.addObstacle(new StoneWall(100,200,400,600,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignSixteen(Level ownerLevel)
+	public static Room getRoomDesignSixteen()
 	{
-		Room room = new Room(12,12,ownerLevel);
+		Room room = new Room(12,12);
 		room.addObstacle(new StoneWall(100,100,200,500,0));
 		room.addObstacle(new StoneWall(100,100,500,300,0));
 		room.addObstacle(new StoneWall(100,100,500,500,0));
@@ -289,25 +289,25 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignSeventeen(Level ownerLevel)
+	public static Room getRoomDesignSeventeen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,700,600,100,0));
 		room.addObstacle(new StoneWall(100,100,700,500,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignEighteen(Level ownerLevel)
+	public static Room getRoomDesignEighteen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(300,500,400,200,0));
 		room.addObstacle(new StoneWall(200,100,200,500,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignNineteen(Level ownerLevel)
+	public static Room getRoomDesignNineteen()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(300,100,100,400,0));
 		room.addObstacle(new StoneWall(300,100,100,700,0));
 		room.addObstacle(new StoneWall(300,100,600,400,0));
@@ -315,33 +315,33 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignTwenty(Level ownerLevel)
+	public static Room getRoomDesignTwenty()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,500,300,200,0));
 		room.addObstacle(new StoneWall(100,100,500,500,0));
 		room.addObstacle(new StoneWall(100,500,700,200,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignTwentyone(Level ownerLevel)
+	public static Room getRoomDesignTwentyone()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(600,600,200,200,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignTwentytwo(Level ownerLevel)
+	public static Room getRoomDesignTwentytwo()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(200,600,400,200,0));
 		room.addObstacle(new StoneWall(600,200,200,400,0));
 		return room;
 	}
 	
-	public static Room getRoomDesignTwentythree(Level ownerLevel)
+	public static Room getRoomDesignTwentythree()
 	{
-		Room room = new Room(10,11,ownerLevel);
+		Room room = new Room(10,11);
 		room.addObstacle(new StoneWall(200,100,200,300,0));
 		room.addObstacle(new StoneWall(200,100,700,300,0));
 		room.addObstacle(new StoneWall(100,400,200,400,0));
@@ -351,58 +351,58 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignTwentyfour(Level ownerLevel)
+	public static Room getRoomDesignTwentyfour()
 	{
-		Room room = new Room(ownerLevel);
+		Room room = new Room();
 		room.addObstacle(new StoneWall(100,100,500,500,0));
 		return room;
 	}
-	public static Room getRandomRoom(int num,Level ownerLevel)
+	public static Room getRandomRoom(int num)
 	{	
 		if(num==0)
-			return RoomDesign.getRoomDesignOne(ownerLevel);
+			return RoomDesign.getRoomDesignOne();
 		if(num==1)
-			return RoomDesign.getRoomDesignTwo(ownerLevel);
+			return RoomDesign.getRoomDesignTwo();
 		if(num==2)
-			return RoomDesign.getRoomDesignThree(ownerLevel);
+			return RoomDesign.getRoomDesignThree();
 		if(num==3)
-			return RoomDesign.getRoomDesignFour(ownerLevel);
+			return RoomDesign.getRoomDesignFour();
 		if(num==4)
-			return RoomDesign.getRoomDesignFive(ownerLevel);
+			return RoomDesign.getRoomDesignFive();
 		if(num==5)
-			return RoomDesign.getRoomDesignSeven(ownerLevel);
+			return RoomDesign.getRoomDesignSeven();
 		if(num==6)
-			return RoomDesign.getRoomDesignEight(ownerLevel);
+			return RoomDesign.getRoomDesignEight();
 		if(num==7)
-			return RoomDesign.getRoomDesignNine(ownerLevel);
+			return RoomDesign.getRoomDesignNine();
 		if(num==8)
-			return RoomDesign.getRoomDesignTen(ownerLevel);
+			return RoomDesign.getRoomDesignTen();
 		if(num==9)
-			return RoomDesign.getRoomDesignTwelve(ownerLevel);
+			return RoomDesign.getRoomDesignTwelve();
 		if(num==10)
-			return RoomDesign.getRoomDesignThirteen(ownerLevel);
+			return RoomDesign.getRoomDesignThirteen();
 		if(num==11)
-			return RoomDesign.getRoomDesignFourteen(ownerLevel);
+			return RoomDesign.getRoomDesignFourteen();
 		if(num==12)
-			return RoomDesign.getRoomDesignSixteen(ownerLevel);
+			return RoomDesign.getRoomDesignSixteen();
 		if(num==13)
-			return RoomDesign.getRoomDesignSeventeen(ownerLevel);
+			return RoomDesign.getRoomDesignSeventeen();
 		if(num==14)
-			return RoomDesign.getRoomDesignEighteen(ownerLevel);
+			return RoomDesign.getRoomDesignEighteen();
 		if(num==15)
-			return RoomDesign.getRoomDesignNineteen(ownerLevel);
+			return RoomDesign.getRoomDesignNineteen();
 		if(num==16)
-			return RoomDesign.getRoomDesignTwenty(ownerLevel);
+			return RoomDesign.getRoomDesignTwenty();
 		if(num==17)
-			return RoomDesign.getRoomDesignTwentyone(ownerLevel);
+			return RoomDesign.getRoomDesignTwentyone();
 		if(num==18)
-			return RoomDesign.getRoomDesignTwentytwo(ownerLevel);
+			return RoomDesign.getRoomDesignTwentytwo();
 		if(num==19)
-			return RoomDesign.getRoomDesignTwentythree(ownerLevel);
+			return RoomDesign.getRoomDesignTwentythree();
 		if(num==20)
-			return RoomDesign.getShopRoomDesign(ownerLevel);	
+			return RoomDesign.getShopRoomDesign();	
 		if(num==21)
-			return RoomDesign.getBossRoomDesignOne(ownerLevel);	
+			return RoomDesign.getBossRoomDesignOne();	
 		return null;
 	}
 }
