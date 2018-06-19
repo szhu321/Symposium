@@ -52,6 +52,7 @@ public class BossAttacks
 	public static List<Weapon> getBossThreeAtkPatternThree(double x, double y)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
+		atkList.add(BossAttacks.getBossAtkEleven(x, y));
 		return atkList;
 	}
 	
@@ -182,6 +183,20 @@ public class BossAttacks
 		int bulletPerShot = 10;
 		int ammoUsedPerShot = 0;
 		BossWepTen sword = new BossWepTen("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
+		sword.setAutomatic(true);
+		return sword;
+	}
+	
+	public static BossWepEleven getBossAtkEleven(double x, double y)
+	{
+		double damage = 3;
+		int offsetAngle = 120;
+		double attackRate = .7;
+		double attackRange = 1000;
+		Projectile projectile = ProjectileDesign.getDBulletDesignOne(null, x, y, 0, 5);
+		int bulletPerShot = 5;
+		int ammoUsedPerShot = 0;
+		BossWepEleven sword = new BossWepEleven("Shotgun", x, y, damage, attackRate, attackRange, projectile, bulletPerShot, ammoUsedPerShot,5);
 		sword.setAutomatic(true);
 		return sword;
 	}

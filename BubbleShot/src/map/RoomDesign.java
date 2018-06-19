@@ -42,7 +42,7 @@ public class RoomDesign
 		room.addItem(WeaponDesign.getSniperDesignOne(200, 500));
 		room.addItem(WeaponDesign.getSniperDesignEPIC(400, 140));
 		room.addItem(WeaponDesign.getShotgunDesignOne(100, 500));
-		room.addItem(BossAttacks.getBossAtkNine(300, 140,100,90));
+		room.addItem(BossAttacks.getBossAtkEleven(300, 140));
 		room.addItem(WeaponDesign.getSwordDesignOne(500, 100));
 		room.addItem(WeaponDesign.getAssaultRifleDesignOne(600, 140));
 		

@@ -19,6 +19,7 @@ import sprite.projectile.Projectile;
 import sprite.Sprite;
 import sprite.bounds.BoxCollider;
 import sprite.character.Character;
+import sprite.character.effect.BlindEffect;
 import sprite.character.effect.HealthEffect;
 import sprite.character.effect.NoEffect;
 import sprite.character.player.Player;
@@ -518,6 +519,8 @@ public class Room implements Serializable
 			player.setCurrentHealth(player.getCurrentHealth() - projectile.getDamage());
 			if(projectile.getSpriteName().equals("Fire Ball"))
 				player.getEffectManager().addEffect(HealthEffect.LAVA_TILE_EFFECT);
+			if(projectile.getSpriteName().equals("Dark Ball"))
+				player.getEffectManager().addEffect(BlindEffect.BLINDNESS_EFFECT);
 			projectiles.remove(projectile);
 		
 			return true;
@@ -533,9 +536,7 @@ public class Room implements Serializable
 					character.setCurrentHealth(character.getCurrentHealth() - projectile.getDamage());
 					((Enemy)character).addCircleRadius(50);
 					if(projectile instanceof PenetrationBullet && !((PenetrationBullet)projectile).isDown(character))
-					{
 						return false;
-					}
 					//projectiles.remove(projectile);
 					return true;
 				}
@@ -649,7 +650,7 @@ public class Room implements Serializable
 			//All tiles in the current room
 			int[][] spawnTile=new int[tiles.length][tiles[0].length];
 			//Random amount of enemies 
-			int amountEnemies=(int)((Math.random()*10)+1);
+			int amountEnemies=(int)((Math.random()*5)+1);
 			
 			//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
 			

@@ -57,17 +57,6 @@ public class ProjectileDesign
 		return bullet;
 	}
 	
-	public static Projectile getDBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
-	{
-		String fileName = "file:resources/projectilePictures/darkball.png";
-		double width = 18;
-		double height = 18;
-		double travelDistance = 400;
-		double speed = 350;
-		Projectile bullet = new LinearProjectile("Simple Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance);
-		return bullet;
-	}
-	
 	public static Projectile getESlowBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
 	{
 		String fileName = "file:resources/projectilePictures/ebullet.png";
@@ -137,7 +126,7 @@ public class ProjectileDesign
 	
 	public static BouncingProjectile getBouncingProjectileOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
 	{
-		String fileName = "file:resources/projectilePictures/darkball.png";
+		String fileName = "file:resources/projectilePictures/bullet.png";
 		double width = 30;
 		double height = 30;
 		double travelDistance = 5000;
@@ -145,6 +134,19 @@ public class ProjectileDesign
 		int bounceCount = 8;
 		double offsetAngle = 2;
 		BouncingProjectile bullet = new BouncingProjectile("Bounce Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, bounceCount, offsetAngle);
+		return bullet;
+	}
+	
+	public static BouncingProjectile getDBulletDesignOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/projectilePictures/darkball.png";
+		double width = 30;
+		double height = 30;
+		double travelDistance = 1;
+		double speed = 150;
+		int bounceCount = 2;
+		double offsetAngle = 2;
+		BouncingProjectile bullet = new BouncingProjectile("Dark Ball", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, bounceCount, offsetAngle);
 		return bullet;
 	}
 }

@@ -353,6 +353,14 @@ public class GameManager
 					if(characters.get(i) instanceof Boss)
 					{
 						Room currentRoom=level.getCurrentRoom();
+						Tile[][] allTiles=currentRoom.getTiles();
+						for(int q=0;q<allTiles.length;q++)
+						{
+							for(int r=0;r<allTiles[0].length;r++)
+							{			
+								currentRoom.setTileAt(r, q, TileDesign.getStoneTileDesignOne(q*100, r*100, 100, 100, 0));
+							}
+						}				
 						level.getCurrentRoom().setTileAt((int)((currentRoom.getRoomPixHeight()/2)/100), (int)((currentRoom.getRoomPixWidth()/2)/100), TeleporterDesign.getLevelTeleporter((currentRoom.getRoomPixHeight()/2)-50, (currentRoom.getRoomPixWidth()/2)-50,0));
 					}
 					level.getCurrentRoom().removeCharacter(characters.get(i));

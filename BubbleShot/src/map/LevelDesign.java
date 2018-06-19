@@ -87,7 +87,7 @@ public class LevelDesign
 		Room[][] map = newLevel.getMap();
 		List<Coord> tilesCoords=new ArrayList<Coord>();
 		//Sets the current room to the middle of the level
-		map[rows/2][cols/2]=RoomDesign.getRoomDesignTest();
+		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
 		map[rows/2][cols/2].setLevelRow(rows/2);
 		map[rows/2][cols/2].setLevelCol(cols/2);
 		newLevel.setCurrentRoom(rows/2,cols/2);
@@ -104,7 +104,7 @@ public class LevelDesign
 //					testmap[i][s]=0;
 //			}
 //		}
-		int roomCounter=MyMath.getRandomInteger(1, rows*cols-1);
+		int roomCounter=MyMath.getRandomInteger(5, rows*cols-1);
 		int bossRoom=1;
 		int shopRoom=roomCounter/10;
 		while(roomCounter>0)
@@ -196,7 +196,7 @@ public class LevelDesign
 				shopRoom--;
 				roomType=20;
 			}
-			newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),currentCord.getY(),currentCord.getX());
+			newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),currentCord.getX(),currentCord.getY());
 		}
 		newLevel.placeTeleportersInLevel();
 //	newLevel=LevelDesign.getLevelDesignOne();

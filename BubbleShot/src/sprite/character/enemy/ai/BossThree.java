@@ -68,16 +68,8 @@ public class BossThree extends AI
 		}
 		if(time%300==0)
 		{
-			wepArrNum=(int)(Math.random()*2);
+			wepArrNum=(int)(Math.random()*3);
 			((WizardBoss)(this.getEnemy())).switchElement(wepArrNum);
-		}
-		if(this.getEnemy().getWeapon() instanceof BossWepNine)
-		{
-			
-		}
-		if(this.getEnemy().getWeapon() instanceof BossWepTen)
-		{
-
 		}
 		this.getEnemy().useCurrentItem(Item.WEAPON);		
 		//this.getEnemy().useCurrentItem(Item.WEAPON);
