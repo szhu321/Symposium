@@ -81,9 +81,9 @@ public abstract class Enemy extends Character
 		((Weapon)weapon).coolDownItem(sec);
 	}
 	
-	public Item dropItem()
+	public Item dropItem(int levelNum)
 	{
-		return LootGen.randomEnemyItem(this);
+		return LootGen.randomEnemyItem(this,levelNum);
 	}
 
 	public double getCircleRadius() {

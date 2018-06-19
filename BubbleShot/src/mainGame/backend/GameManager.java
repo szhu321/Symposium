@@ -83,6 +83,7 @@ public class GameManager
 	{
 		this.level = level;
 		this.player = player;
+		this.player.setCurrentLevel(level);
 		this.level.getCurrentRoom().addCharacter(player);
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
@@ -347,7 +348,7 @@ public class GameManager
 /////					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
-					Item droppedItem=((Enemy)characters.get(i)).dropItem();
+					Item droppedItem=((Enemy)characters.get(i)).dropItem(level.getLevelNum());
 					if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
 						level.getCurrentRoom().addItem(droppedItem);
 					if(characters.get(i) instanceof Boss)
@@ -575,7 +576,7 @@ public class GameManager
 										}
 										if(t instanceof LevelTele)
 										{
-											changeLevel(((LevelTele)t).nextLevel());
+											changeLevel(((LevelTele)t).nextLevel(level.getLevelNum()+1));
 											break;
 										}
 										//System.out.println(currentTele.getConnectedTeleporter().getId());

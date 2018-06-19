@@ -8,9 +8,9 @@ import sprite.item.LootGen;
 public class Shop extends Obstacle
 {
 	private Item onSale;
-	public Shop(double width, double height, double xPos, double yPos, double faceAngle) {
+	public Shop(double width, double height, double xPos, double yPos, double faceAngle,int levelNum) {
 		super("Shop", "file:resources/obstacle/table.png", width, height, xPos, yPos, faceAngle);
-		onSale=LootGen.randomShopItem(this);
+		onSale=LootGen.randomShopItem(this,levelNum);
 	}
 	
 	public Item buyItem(Player player)

@@ -15,7 +15,7 @@ public class PlayerDesign
 		//The ammo the player starts with.
 		int ammoCount = 400;
 		Player player = new Player(name, fileName, 100, 100, 50, 50, health, speed, ammoCount);
-		player.addItem(WeaponDesign.getPistolDesignOne(100, 100));
+		player.addItem(WeaponDesign.getPistolDesignOne(100, 100,1));
 		return player;
 	}
 	
@@ -28,7 +28,7 @@ public class PlayerDesign
 		//The ammo the player starts with.
 		int ammoCount = 400;
 		Player player = new Player(name, fileName, 100, 100, 50, 50, health, speed, ammoCount);
-		player.addItem(WeaponDesign.getPistolDesignOne(100, 100));
+		player.addItem(WeaponDesign.getPistolDesignOne(100, 100,1));
 		return player;
 	}
 }

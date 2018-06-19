@@ -3,62 +3,64 @@ package sprite.item.weapon;
 import java.util.ArrayList;
 import java.util.List;
 
+import mainGame.GameRunner;
 import sprite.projectile.Projectile;
 import sprite.projectile.ProjectileDesign;
 
 public class BossAttacks 
 {
-	public static List<Weapon> getBossOneAtkPattern(double x, double y)
+	public static List<Weapon> getBossOneAtkPattern(double x, double y,int levelNum)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
-		atkList.add(BossAttacks.getBossAtkOne(x,y));
-		atkList.add(BossAttacks.getBossAtkTwo(x,y));
-		atkList.add(BossAttacks.getBossAtkThree(x,y));
-		atkList.add(BossAttacks.getBossAtkFour(x,y));
-		atkList.add(BossAttacks.getBossAtkFive(x,y));
+		atkList.add(BossAttacks.getBossAtkOne(x,y,levelNum));
+		atkList.add(BossAttacks.getBossAtkTwo(x,y,levelNum));
+		atkList.add(BossAttacks.getBossAtkThree(x,y,levelNum));
+		atkList.add(BossAttacks.getBossAtkFour(x,y,levelNum));
+		atkList.add(BossAttacks.getBossAtkFive(x,y,levelNum));
 		return atkList;
 	}
 	
-	public static List<Weapon> getBossTwoAtkPattern(double x, double y)
+	public static List<Weapon> getBossTwoAtkPattern(double x, double y,int levelNum)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
-		atkList.add(BossAttacks.getBossAtkSix(x, y));
-		atkList.add(BossAttacks.getBossAtkSeven(x, y));
-		atkList.add(BossAttacks.getBossAtkEight(x, y));
+		atkList.add(BossAttacks.getBossAtkSix(x, y,levelNum));
+		atkList.add(BossAttacks.getBossAtkSeven(x, y,levelNum));
+		atkList.add(BossAttacks.getBossAtkEight(x, y,levelNum));
 		return atkList;
 	}
 	
-	public static List<Weapon> getBossThreeAtkPattern(double x, double y)
+	public static List<Weapon> getBossThreeAtkPattern(double x, double y,int levelNum)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
-		atkList.add(BossAttacks.getBossAtkNine(x, y,10,-10));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,100,8));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,190,17));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,280,26));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,55,25));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,145,125));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,235,215));
-		atkList.add(BossAttacks.getBossAtkNine(x, y,325,305));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,10,-10,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,100,8,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,190,17,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,280,26,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,55,25,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,145,125,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,235,215,levelNum));
+		atkList.add(BossAttacks.getBossAtkNine(x, y,325,305,levelNum));
 		return atkList;
 	}
 	
-	public static List<Weapon> getBossThreeAtkPatternTwo(double x, double y)
+	public static List<Weapon> getBossThreeAtkPatternTwo(double x, double y,int levelNum)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
-		atkList.add(BossAttacks.getBossAtkTen(x, y));
+		atkList.add(BossAttacks.getBossAtkTen(x, y,levelNum));
 		return atkList;
 	}
 	
-	public static List<Weapon> getBossThreeAtkPatternThree(double x, double y)
+	public static List<Weapon> getBossThreeAtkPatternThree(double x, double y,int levelNum)
 	{
 		List<Weapon> atkList=new ArrayList<Weapon>();
-		atkList.add(BossAttacks.getBossAtkEleven(x, y));
+		atkList.add(BossAttacks.getBossAtkEleven(x, y,levelNum));
 		return atkList;
 	}
 	
-	public static BossWepOne getBossAtkOne(double x, double y)
+	public static BossWepOne getBossAtkOne(double x, double y,int levelNum)
 	{
-		double damage = 5;
+		int currentLevel=levelNum;
+		double damage = 5+(levelNum-1)*5;
 		double attackRate = .05;
 		double attackRange = 800;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
@@ -70,9 +72,10 @@ public class BossAttacks
 		return shotgun;
 	}
 	
-	public static BossWepTwo getBossAtkTwo(double x, double y)
+	public static BossWepTwo getBossAtkTwo(double x, double y,int levelNum)
 	{
-		double damage = 5;
+		int currentLevel=levelNum;
+		double damage = 5+(levelNum-1)*5;
 		double attackRate = .001;
 		double attackRange = 800;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
@@ -84,9 +87,10 @@ public class BossAttacks
 		return shotgun;
 	}
 	
-	public static BossWepThree getBossAtkThree(double x, double y)
+	public static BossWepThree getBossAtkThree(double x, double y,int levelNum)
 	{
-		double damage = .3;
+		int currentLevel=levelNum;
+		double damage = .3+(levelNum-1)*.7;
 		double attackRate = .1;
 		double attackRange = 800;
 		int offsetAngle = 180;
@@ -98,9 +102,10 @@ public class BossAttacks
 		return shotgun;
 	}
 	
-	public static BossWepFour getBossAtkFour(double x, double y)
+	public static BossWepFour getBossAtkFour(double x, double y,int levelNum)
 	{
-		double damage = 1;
+		int currentLevel=levelNum;
+		double damage = 1+(levelNum-1)*3;
 		double attackRate = .40;
 		double attackRange = 100;
 		int offsetAngle = 160;
@@ -112,9 +117,10 @@ public class BossAttacks
 		return shotgun;
 	}
 	
-	public static BossWepFive getBossAtkFive(double x, double y)
+	public static BossWepFive getBossAtkFive(double x, double y,int levelNum)
 	{
-		double damage = 2.5;
+		int currentLevel=levelNum;
+		double damage = 2.5+(levelNum-1)*3;
 		double attackRate = .1;
 		double attackRange = 800;
 		int offsetAngle = 180;
@@ -126,9 +132,10 @@ public class BossAttacks
 		return shotgun;
 	}
 	
-	public static BossWepSix getBossAtkSix(double x, double y)
+	public static BossWepSix getBossAtkSix(double x, double y,int levelNum)
 	{
-		double damage = 20;
+		int currentLevel=levelNum;
+		double damage = 20+(levelNum-1)*10;
 		double attackRate = .1;
 		double attackRange = 1000;
 		Projectile projectile = ProjectileDesign.getESlashDesignOne(null, x, y, 0, 15);
@@ -136,9 +143,10 @@ public class BossAttacks
 		return sword;
 	}
 	
-	public static BossWepSeven getBossAtkSeven(double x, double y)
+	public static BossWepSeven getBossAtkSeven(double x, double y,int levelNum)
 	{
-		double damage = 20;
+		int currentLevel=levelNum;
+		double damage = 20+(levelNum-1)*10;
 		double attackRate = .03;
 		double attackRange = 1000;
 		int offsetAngle = 360;
@@ -147,9 +155,10 @@ public class BossAttacks
 		return sword;
 	}
 	
-	public static BossWepEight getBossAtkEight(double x, double y)
+	public static BossWepEight getBossAtkEight(double x, double y,int levelNum)
 	{
-		double damage = 20;
+		int currentLevel=levelNum;
+		double damage = 20+(levelNum-1)*10;
 		double attackRate = .001;
 		double attackRange = 1000;
 		Projectile projectile = ProjectileDesign.getESBulletDesignOne(null, x, y, 0, 5);
@@ -160,9 +169,10 @@ public class BossAttacks
 		return sword;
 	}
 	
-	public static BossWepNine getBossAtkNine(double x, double y,double left, double right)
+	public static BossWepNine getBossAtkNine(double x, double y,double left, double right,int levelNum)
 	{
-		double damage = .5;
+		int currentLevel=levelNum;
+		double damage = .5+(levelNum-1)*.8;
 		int offsetAngle = 120;
 		double attackRate = .04;
 		double attackRange = 1000;
@@ -173,9 +183,10 @@ public class BossAttacks
 		sword.setAutomatic(true);
 		return sword;
 	}
-	public static BossWepTen getBossAtkTen(double x, double y)
+	public static BossWepTen getBossAtkTen(double x, double y,int levelNum)
 	{
-		double damage = 3;
+		int currentLevel=levelNum;
+		double damage = 3+(levelNum-1)*2;
 		int offsetAngle = 120;
 		double attackRate = .7;
 		double attackRange = 1000;
@@ -187,9 +198,10 @@ public class BossAttacks
 		return sword;
 	}
 	
-	public static BossWepEleven getBossAtkEleven(double x, double y)
+	public static BossWepEleven getBossAtkEleven(double x, double y,int levelNum)
 	{
-		double damage = 3;
+		int currentLevel=levelNum;
+		double damage = 3+(levelNum-1)*2;
 		int offsetAngle = 120;
 		double attackRate = .7;
 		double attackRange = 1000;

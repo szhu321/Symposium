@@ -11,8 +11,8 @@ public class LevelTele extends Teleporter
 		// TODO Auto-generated constructor stub
 	}
 
-	public Level nextLevel()
+	public Level nextLevel(int num)
 	{
-		return LevelDesign.getRandomLevelDesign(5, 5);
+		return LevelDesign.getRandomLevelDesign(5, 5,num);
 	}
 }
