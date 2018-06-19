@@ -13,6 +13,7 @@ public class LinearParaEquation implements Serializable
 	private double time;
 	private double initialX;
 	private double initialY;
+	private double distanceTraveled;
 	
 	public LinearParaEquation(double initialX, double initialY, double deltaX, double deltaY)
 	{
@@ -20,6 +21,7 @@ public class LinearParaEquation implements Serializable
 		this.initialY = initialY;
 		this.deltaX = deltaX;
 		this.deltaY = deltaY;
+		distanceTraveled = 0;
 	}
 	
 	public double getXPos()
@@ -39,7 +41,12 @@ public class LinearParaEquation implements Serializable
 	
 	public double getDistanceTraveled()
 	{
-		return Math.sqrt(Math.pow((Math.abs(deltaX) * time),2) + Math.pow((Math.abs(deltaY) * time),2));
+		return Math.sqrt(Math.pow((Math.abs(deltaX) * time),2) + Math.pow((Math.abs(deltaY) * time),2)) + distanceTraveled;
+	}
+	
+	public void addDistanceTraveled(double disTrav)
+	{
+		distanceTraveled += disTrav;
 	}
 	
 	public double getYPosAtTime(double time)
