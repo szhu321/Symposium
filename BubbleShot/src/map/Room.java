@@ -651,7 +651,7 @@ public class Room implements Serializable
 			//All tiles in the current room
 			int[][] spawnTile=new int[tiles.length][tiles[0].length];
 			//Random amount of enemies 
-			int amountEnemies=(int)((Math.random()*5)+1)+(Player.getCurrentLevel()-1)*3;
+			int amountEnemies= MyMath.getRandomInteger((Player.getCurrentLevel() - 1)*2 + 1, (Player.getCurrentLevel() - 1)*2 + 2);
 			
 			//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
 			
@@ -694,7 +694,7 @@ public class Room implements Serializable
 			spawnTile[playerTileY+1][playerTileX+1]=0;
 			
 			//Place the enemies
-			while(amountEnemies>0)
+			while(amountEnemies > 0)
 			{
 				//If the location is unavailable find a new location
 				if(spawnTile[randomY][randomX]==0||spawnTile[randomY][randomX]==2)
@@ -724,6 +724,7 @@ public class Room implements Serializable
 				this.addCharacter(EnemyDesign.getBossDesignTwo(this.roomPixHeight/2,this.roomPixWidth/2,this.getPlayer(),Player.getCurrentLevel()));
 			if(randBoss==3)
 				this.addCharacter(EnemyDesign.getBossDesignThree(this.roomPixHeight/2-50,this.roomPixWidth/2-50,this.getPlayer(),Player.getCurrentLevel()));
+			//System.out.println(Player.getCurrentLevel());
 		}
 		
 		/*debugger

@@ -146,7 +146,8 @@ public class GameManager
 		resetKeys();
 		this.level = level;
 		this.level.getCurrentRoom().addCharacter(player);
-		Player.setCurrentLevel(Player.getCurrentLevel() + 1);
+		//Player.setCurrentLevel(Player.getCurrentLevel() + 1);
+		level.getCurrentRoom().getPlayer().setLocalLevel(level.getCurrentRoom().getPlayer().getLocalLevel() + 1);
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		if(window.isFullScreen())

@@ -83,6 +83,7 @@ public class PlayMenuController implements Initializable
 		if(selectedPlayer == null)
 			return;
 		GameRunner.createGameManager(LevelDesign.getRandomLevelDesign(4, 4, 1), selectedPlayer);
+		Player.setCurrentLevel(selectedPlayer.getLocalLevel());
 		GameRunner.startGameManager();
 	}
 

@@ -46,7 +46,7 @@ public class EnemyDesign
 	
 	public static Enemy getRegularDesignOne(double x, double y, Player player,int levelNum)
 	{
-		int health=50+(levelNum-1)*50;
+		int health=15+(levelNum-1)*6;
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y,levelNum);
 		pistol.setDefaultCoolDownTime(.3);
@@ -56,7 +56,7 @@ public class EnemyDesign
 	
 	public static Enemy getRegularDesignTwo(double x, double y, Player player,int levelNum)
 	{
-		int health=50+(levelNum-1)*50;
+		int health=10+(levelNum-1)*6;
 		String fileName = "file:resources/enemy/ghost.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y,levelNum);
 		pistol.setDefaultCoolDownTime(.3);
@@ -66,7 +66,7 @@ public class EnemyDesign
 	
 	public static Enemy getSmartDesignOne(double x, double y, Player player,int levelNum)
 	{
-		int health=50+(levelNum-1)*50;
+		int health=17+(levelNum-1)*6;
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon pistol=WeaponDesign.getEPistolDesignOne(x, y,levelNum);
 		pistol.setDefaultCoolDownTime(.3);
@@ -76,7 +76,7 @@ public class EnemyDesign
 	
 	public static Enemy getSwordDesignOne(double x, double y, Player player,int levelNum)
 	{
-		int health=100+(levelNum-1)*50;
+		int health=30+(levelNum-1)*7;
 		String fileName = "file:resources/enemy/enemy.png";
 		Weapon sword=WeaponDesign.getSwordDesignOne(x, y,levelNum);
 		sword.setDefaultCoolDownTime(.8);
@@ -86,7 +86,7 @@ public class EnemyDesign
 	
 	public static Enemy getTurrentDesignOne(double x, double y, Player player,int levelNum)
 	{
-		int health=200+(levelNum-1)*50;
+		int health=50+(levelNum-1)*10;
 		String fileName = "file:resources/enemy/turret.png";
 		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y,levelNum);
 		rifle.setDefaultCoolDownTime(.8);
@@ -96,7 +96,7 @@ public class EnemyDesign
 	
 	public static Enemy getBaseDesignOne(double x, double y, Player player,int levelNum)
 	{
-		int health=100+(levelNum-1)*50;
+		int health=50+(levelNum-1)*10;
 		String fileName = "file:resources/enemy/enemy3.png";
 		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y,levelNum);
 		rifle.setDefaultCoolDownTime(.8);
@@ -106,7 +106,7 @@ public class EnemyDesign
 	
 	public static Enemy getBaseDesignTwo(double x, double y, Player player,int levelNum)
 	{
-		int health=100+(levelNum-1)*50;
+		int health=50+(levelNum-1)*10;
 		String fileName = "file:resources/enemy/enemy3.png";
 		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y,levelNum);
 		rifle.setDefaultCoolDownTime(.8);
@@ -127,7 +127,7 @@ public class EnemyDesign
 	
 	public static Boss getBossDesignOne(double x, double y, Player player,int levelNum)
 	{
-		int health=1000+(levelNum-1)*1000;
+		int health=400+(levelNum-1)*300;
 		String fileName = "file:resources/enemy/robo.png";
 		List<Weapon> weps=BossAttacks.getBossOneAtkPattern(x, y,levelNum);
 		Boss boss=new RobotBoss("ROBOTBOSS",fileName, x, y,health, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
@@ -139,7 +139,7 @@ public class EnemyDesign
 	
 	public static Boss getBossDesignTwo(double x, double y, Player player,int levelNum)
 	{
-		int health=1000+(levelNum-1)*1000;
+		int health=400+(levelNum-1)*300;
 		String fileName = "file:resources/enemy/knight.png";
 		List<Weapon> weps=BossAttacks.getBossTwoAtkPattern(x, y,levelNum);
 		Boss boss=new KnightBoss("KNIGHTBOSS",fileName, x, y,health, 100, 100, 100, weps.get(0),player,Enemy.ROBOTBOSS,weps);
@@ -152,7 +152,7 @@ public class EnemyDesign
 	public static Boss getBossDesignThree(double x, double y, Player player,int levelNum)
 	{
 		String fileName = "file:resources/enemy/wizard.png";
-		int health=1000+(levelNum-1)*1000;
+		int health=400+(levelNum-1)*300;
 		List<Weapon> weps=BossAttacks.getBossThreeAtkPattern(x, y,levelNum);
 		List<Weapon> weps2=BossAttacks.getBossThreeAtkPatternTwo(x, y,levelNum);
 		List<Weapon> weps3=BossAttacks.getBossThreeAtkPatternThree(x, y,levelNum);
