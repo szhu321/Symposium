@@ -131,7 +131,20 @@ public class ProjectileDesign
 		double travelDistance = 1500;
 		double speed = 1500;
 		int peneCount = 2;
-		PenetrationBullet bullet = new PenetrationBullet("Fist", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, peneCount);
+		PenetrationBullet bullet = new PenetrationBullet("Penetration Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, peneCount);
+		return bullet;
+	}
+	
+	public static BouncingProjectile getBouncingProjectileOne(String bulletOwner, double xLocation, double yLocation, double faceAngle, double damage)
+	{
+		String fileName = "file:resources/projectilePictures/darkball.png";
+		double width = 30;
+		double height = 30;
+		double travelDistance = 5000;
+		double speed = 600;
+		int bounceCount = 8;
+		double offsetAngle = 2;
+		BouncingProjectile bullet = new BouncingProjectile("Bounce Bullet", fileName, bulletOwner, xLocation, yLocation, width, height, speed, faceAngle, damage, travelDistance, bounceCount, offsetAngle);
 		return bullet;
 	}
 }

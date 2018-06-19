@@ -12,6 +12,7 @@ import map.obstacle.Obstacle;
 import map.obstacle.StoneWall;
 import myutilities.MyMath;
 import sprite.item.Item;
+import sprite.projectile.BouncingProjectile;
 import sprite.projectile.CollisionDetection;
 import sprite.projectile.PenetrationBullet;
 import sprite.projectile.Projectile;
@@ -500,6 +501,12 @@ public class Room implements Serializable
 		if(spriteCollisionWithObstacle(projectile))
 		{
 			//System.out.println("Collide With Obstacle");
+			if(projectile instanceof BouncingProjectile)
+			{
+				if(((BouncingProjectile) projectile).isDown())
+					return true;
+				return false;
+			}
 			return true; 
 		}
 		//if projectileHitPlayer
@@ -569,9 +576,34 @@ public class Room implements Serializable
 		for(Obstacle obstacle: obstacles)
 		{
 			if(obstacle.getBoundsOfObject().intersect(sprite.getBoundsOfObject()))
+			{
+				if(sprite instanceof BouncingProjectile)
+					checkEdgeBounceProjectileCollision(obstacle, (BouncingProjectile)sprite);
 				return true;
+			}
 		}
 		return false;
+	}
+	
+	private void checkEdgeBounceProjectileCollision(Obstacle obs, BouncingProjectile bp)
+	{
+		if(bp.getBoundsOfObject().intersect(new BoxCollider(obs.getXLocation(), obs.getYLocation(), 1, obs.getHeight(), 0)))
+		{
+			bp.setHitSide(BouncingProjectile.HIT_LEFT_EDGE);
+		}
+		if(bp.getBoundsOfObject().intersect(new BoxCollider(obs.getXLocation() + 1, obs.getYLocation(), obs.getWidth() - 1, 1, 0)))
+		{
+			bp.setHitSide(BouncingProjectile.HIT_TOP_EDGE);
+		}
+		if(bp.getBoundsOfObject().intersect(new BoxCollider(obs.getXLocation() + obs.getWidth(), obs.getYLocation(), 1, obs.getHeight(), 0)))
+		{
+			bp.setHitSide(BouncingProjectile.HIT_RIGHT_EDGE);
+		}
+		if(bp.getBoundsOfObject().intersect(new BoxCollider(obs.getXLocation() + 1, obs.getYLocation() + obs.getHeight(), obs.getWidth() - 1, 1, 0)))
+		{
+			bp.setHitSide(BouncingProjectile.HIT_BOTTOM_EDGE);
+		}
+		//System.out.println(bp.getHitSide());
 	}
 	
 	public Item characterCollisionWithItem(Character character)

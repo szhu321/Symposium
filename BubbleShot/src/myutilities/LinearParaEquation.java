@@ -61,4 +61,24 @@ public class LinearParaEquation implements Serializable
 	{
 		time += timeIncrement;
 	}
+
+	public double getDeltaX()
+	{
+		return deltaX;
+	}
+
+	public double getDeltaY() 
+	{
+		return deltaY;
+	}
+
+	public double getInitialX() 
+	{
+		return initialX;
+	}
+
+	public double getInitialY()
+	{
+		return initialY;
+	}
 }

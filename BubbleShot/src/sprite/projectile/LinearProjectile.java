@@ -45,6 +45,11 @@ public class LinearProjectile extends Projectile
 		return travelPath;
 	}
 	
+	public void setTravelPath(LinearParaEquation travelPath)
+	{
+		this.travelPath = travelPath;
+	}
+
 	private void updateXPos()
 	{
 		setXLocation(travelPath.getXPos());
