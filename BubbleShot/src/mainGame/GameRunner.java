@@ -10,6 +10,7 @@ import mainGame.backend.Graphics;
 import map.Level;
 import map.LevelDesign;
 import sound.BackgroundSound;
+import sound.SoundEffects;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
@@ -55,6 +56,7 @@ public class GameRunner extends Application
 		window.setResizable(false);
 		loadControls();
 		loadGraphics();
+		loadSounds();
 		loadFXMLs();
 		
 		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
@@ -94,6 +96,15 @@ public class GameRunner extends Application
 	private void loadGraphics()
 	{
 		graphics = new Graphics();
+	}
+	
+	/**
+	 * Loads the sound for the game.
+	 */
+	private void loadSounds()
+	{
+		SoundEffects.GUN_SHOT_SOUND.load();
+		SoundEffects.PEW_PEW_SOUND.load();
 	}
 	
 	/**

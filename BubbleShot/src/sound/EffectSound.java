@@ -58,5 +58,8 @@ public class EffectSound implements Sound, Runnable
 		mediaPlayer.stop();
 	}
 
-	
+	public void load()
+	{
+		
+	}
 }
