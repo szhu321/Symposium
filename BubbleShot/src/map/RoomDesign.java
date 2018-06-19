@@ -261,14 +261,14 @@ public class RoomDesign
 		return room;
 	}
 	
-	public static Room getRoomDesignFourteen()
-	{
-		Room room = new Room();
-		room.addObstacle(new StoneWall(100,100,500,300,0));
-		room.addObstacle(new StoneWall(300,300,300,600,0));
-		room.addObstacle(new StoneWall(200,100,700,600,0));
-		return room;
-	}
+//	public static Room getRoomDesignFourteen()
+//	{
+//		Room room = new Room();
+//		room.addObstacle(new StoneWall(100,100,500,300,0));
+//		room.addObstacle(new StoneWall(300,300,300,600,0));
+//		room.addObstacle(new StoneWall(200,100,700,600,0));
+//		return room;
+//	}
 	
 	public static Room getRoomDesignFifteen()
 	{
@@ -382,7 +382,7 @@ public class RoomDesign
 		if(num==10)
 			return RoomDesign.getRoomDesignThirteen();
 		if(num==11)
-			return RoomDesign.getRoomDesignFourteen();
+			return RoomDesign.getRoomDesignThree();
 		if(num==12)
 			return RoomDesign.getRoomDesignSixteen();
 		if(num==13)

@@ -80,12 +80,13 @@ public class WeaponDesign
 	{
 		int cost=20+(levelNum-1)*10;
 		double damage = 5+(levelNum-1)*5;
+		//System.out.println(levelNum);
 		double attackRate = .6;
 		double attackRange = 500;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0,5);
 		int offsetAngle = 10;
 		int bulletPerShot = 5;
-		int ammoUsedPerShot = 5;
+		int ammoUsedPerShot = 3;
 		Shotgun shotgun = new Shotgun("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,cost);
 		return shotgun;
 	}

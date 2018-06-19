@@ -50,7 +50,7 @@ public class LevelDesign
 	{
 		Level level3 = new Level(4,4,1);
 		level3.addRoomTo(RoomDesign.getRoomDesignThirteen(), 0, 0);
-		level3.addRoomTo(RoomDesign.getRoomDesignFourteen(), 0, 1);
+		level3.addRoomTo(RoomDesign.getRoomDesignThree(), 0, 1);
 		level3.addRoomTo(RoomDesign.getRoomDesignFifteen(), 0, 3);
 		level3.addRoomTo(RoomDesign.getRoomDesignSixteen(), 1, 1);
 		level3.addRoomTo(RoomDesign.getRoomDesignSeventeen(), 1, 2);
@@ -106,7 +106,7 @@ public class LevelDesign
 //		}
 		int roomCounter=MyMath.getRandomInteger(5, rows*cols-1);
 		int bossRoom=1;
-		int shopRoom=roomCounter/10;
+		int shopRoom=roomCounter/7;
 		while(roomCounter>0)
 		{
 			//System.out.println(roomCounter);
