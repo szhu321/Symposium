@@ -15,4 +15,10 @@ public class TeleporterDesign
 		Teleporter result = new Teleporter(x,y,id,"file:resources/tile/bossteleporttile.png");
 		return result;
 	}
+	
+	public static LevelTele getLevelTeleporter(double x, double y, int id)
+	{
+		LevelTele result = new LevelTele(x,y,id,"file:resources/tile/levelteleporttile.png");
+		return result;
+	}
 }

@@ -53,8 +53,6 @@ public class Level implements Serializable
 	 */
 	public boolean addRoomTo(Room room, int row, int col)
 	{
-		if(map[row][col] != null)
-			return false;
 		map[row][col] = room;
 		room.setLevelCol(col);
 		room.setLevelRow(row);

@@ -17,8 +17,11 @@ import mainGame.scene.PlayingScene;
 import map.Level;
 import map.Room;
 import map.Tile.Tile;
+import map.Tile.TileDesign;
+import map.Tile.teleporter.LevelTele;
 import map.Tile.teleporter.RoomPortManager;
 import map.Tile.teleporter.Teleporter;
+import map.Tile.teleporter.TeleporterDesign;
 import map.Tile.teleporter.TeleporterPair;
 import map.obstacle.Obstacle;
 import map.obstacle.Shop;
@@ -33,6 +36,7 @@ import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
 import sprite.item.weapon.Weapon;
 import sprite.character.Character;
+import sprite.character.enemy.Boss;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.Spawner;
 import sprite.character.enemy.ai.AI;
@@ -346,6 +350,11 @@ public class GameManager
 					Item droppedItem=((Enemy)characters.get(i)).dropItem();
 					if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
 						level.getCurrentRoom().addItem(droppedItem);
+					if(characters.get(i) instanceof Boss)
+					{
+						Room currentRoom=level.getCurrentRoom();
+						level.getCurrentRoom().setTileAt((int)((currentRoom.getRoomPixHeight()/2)/100), (int)((currentRoom.getRoomPixWidth()/2)/100), TeleporterDesign.getLevelTeleporter((currentRoom.getRoomPixHeight()/2)-50, (currentRoom.getRoomPixWidth()/2)-50,0));
+					}
 					level.getCurrentRoom().removeCharacter(characters.get(i));
 				}
 			}
@@ -555,6 +564,11 @@ public class GameManager
 										if(currentTele.isActivated() && !currentTele.runTimer(sec))
 										{
 											return;
+										}
+										if(t instanceof LevelTele)
+										{
+											changeLevel(((LevelTele)t).nextLevel());
+											break;
 										}
 										//System.out.println(currentTele.getConnectedTeleporter().getId());
 										//System.out.println(currentTele.getId());

@@ -34,4 +34,11 @@ public class TileDesign
 		Tile result = new Tile("LavaTile", StaticImage.LAVA_TILE_IMAGE, effect, x, y, width, height, faceAngle);
 		return result;
 	}
+	
+	public static Tile getLevelTeleTileDesignOne(double x, double y, double width, double height, double faceAngle)
+	{
+		Effect effect = NoEffect.NO_EFFECT;
+		Tile result = new Tile("LeveTile", "file:resources/tile/bossteleporttile.png", effect, x, y, width, height, faceAngle);
+		return result;
+	}
 }
