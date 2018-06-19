@@ -505,6 +505,7 @@ public class Room implements Serializable
 			{
 				if(((BouncingProjectile) projectile).isDown())
 					return true;
+				((BouncingProjectile) projectile).getTravelPath().addDistanceTraveled(((BouncingProjectile) projectile).getTravelPath().getDistanceTraveled());
 				return false;
 			}
 			return true; 
