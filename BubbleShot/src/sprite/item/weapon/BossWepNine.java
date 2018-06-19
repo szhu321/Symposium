@@ -43,7 +43,7 @@ public class BossWepNine extends Weapon
 			{
 				numOfBullets--;
 				bulletCount++;
-				if(bulletCount%20==0)
+				if(bulletCount%75==0)
 				{
 					if(phase==1)
 						phase=2;
@@ -62,13 +62,13 @@ public class BossWepNine extends Weapon
 				{
 					if(bulletCount%2==1)
 					{
-						left-=.5;
+						left-=.3;
 						faceAngle=left;
 					}
 					 
 					if(bulletCount%2==0)
 					{
-						right+=.5;
+						right+=.3;
 						faceAngle=right;
 					}
 				}
@@ -76,13 +76,13 @@ public class BossWepNine extends Weapon
 				{
 					if(bulletCount%2==1)
 					{
-						left+=.5;
+						left+=.3;
 						faceAngle=left;
 					}
 					 
 					if(bulletCount%2==0)
 					{
-						right-=.5;
+						right-=.3;
 						faceAngle=right;
 					}
 				}

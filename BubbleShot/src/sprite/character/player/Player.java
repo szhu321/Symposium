@@ -1,6 +1,7 @@
 package sprite.character.player;
 
 import mainGame.GameRunner;
+import map.Level;
 import sprite.character.Character;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
@@ -23,6 +24,7 @@ public class Player extends Character
 	private int coins;
 	private int currentAmmo;
 	private int defaultAmmo;
+	private Level currentLevel;
 	private Fist fist = WeaponDesign.getFistDesignOne(this);
 	
 	
@@ -34,6 +36,7 @@ public class Player extends Character
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
 		coins = 0;
+		currentLevel=null;
 	}
 	
 	public void reloadObject()
@@ -224,5 +227,13 @@ public class Player extends Character
 			       +"Speed = " + getSpeed() + "\n"
 			       +"Selected Item Index = " + currentItemIdx + "\n";
 		return output;
+	}
+
+	public Level getCurrentLevel() {
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(Level currentLevel) {
+		this.currentLevel = currentLevel;
 	}
 }

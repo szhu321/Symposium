@@ -1,5 +1,6 @@
 package sprite.item.weapon;
 
+import mainGame.GameRunner;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
@@ -28,21 +29,22 @@ public class WeaponDesign
 		return fist;
 	}
 	
-	public static Pistol getPistolDesignOne(double x, double y)
+	public static Pistol getPistolDesignOne(double x, double y,int levelNum)
 	{
+		int cost=10+(levelNum-1)*5;
 		int ammoUsedPerShot = 1;
-		double damage = 5;
+		double damage = 5+(levelNum-1);
 		double shootingSpeed = .2;
 		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		Pistol pistol = new Pistol(x, y, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot,5);
+		Pistol pistol = new Pistol(x, y, damage, shootingSpeed, bulletTravelRange, projectile, ammoUsedPerShot,cost);
 		return pistol;
 	}
 	
-	public static Pistol getEPistolDesignOne(double x, double y)
+	public static Pistol getEPistolDesignOne(double x, double y,int levelNum)
 	{
 		int ammoUsedPerShot = 1;
-		double damage = 5;
+		double damage = 5+(levelNum-1)*5;
 		double shootingSpeed = .2;
 		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
@@ -50,20 +52,21 @@ public class WeaponDesign
 		return pistol;
 	}
 	
-	public static Sniper getSniperDesignOne(double x, double y)
+	public static Sniper getSniperDesignOne(double x, double y,int levelNum)
 	{
-		double damage = 15;
+		int cost=25+(levelNum-1)*10;
+		double damage = 15+(levelNum-1)*10;
 		double attackRate = .5;
 		double attackRange = 1500;
 		int ammoUsedPerShot = 3;
 		Projectile projectile = ProjectileDesign.getSniperBulletDesignOne(null, x, y, 0, damage);
-		Sniper sniper = new Sniper("Sniper", x, y, damage, attackRate, attackRange, projectile, ammoUsedPerShot,5);
+		Sniper sniper = new Sniper("Sniper", x, y, damage, attackRate, attackRange, projectile, ammoUsedPerShot,cost);
 		return sniper;
 	}
 	
-	public static Sniper getSniperDesignEPIC(double x, double y)
+	public static Sniper getSniperDesignEPIC(double x, double y,int levelNum)
 	{
-		double damage = 5.5;
+		double damage = 5.5+(levelNum-1)*5;
 		double attackRate = .01;
 		double attackRange = 5000;
 		int ammoUsedPerShot = 0;
@@ -73,22 +76,23 @@ public class WeaponDesign
 		return sniper;
 	}
 	
-	public static Shotgun getShotgunDesignOne(double x, double y)
+	public static Shotgun getShotgunDesignOne(double x, double y,int levelNum)
 	{
-		double damage = 5;
+		int cost=20+(levelNum-1)*10;
+		double damage = 5+(levelNum-1)*5;
 		double attackRate = .6;
 		double attackRange = 500;
-		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
+		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0,5);
 		int offsetAngle = 10;
 		int bulletPerShot = 5;
 		int ammoUsedPerShot = 5;
-		Shotgun shotgun = new Shotgun("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,5);
+		Shotgun shotgun = new Shotgun("Shotgun", x, y, damage, attackRate, attackRange, projectile, offsetAngle, bulletPerShot, ammoUsedPerShot,cost);
 		return shotgun;
 	}
 	
-	public static Shotgun getShotgunDesignEPIC(double x, double y)
-	{
-		double damage = .05;
+	public static Shotgun getShotgunDesignEPIC(double x, double y,int levelNum)
+	{	
+		double damage = .05+(levelNum-1)*.5;
 		double attackRate = .10;
 		double attackRange = 400;
 		double offsetAngle = 360;
@@ -99,22 +103,23 @@ public class WeaponDesign
 		return shotgun;
 	}
 	
-	public static AssaultRifle getAssaultRifleDesignOne(double x, double y)
+	public static AssaultRifle getAssaultRifleDesignOne(double x, double y,int levelNum)
 	{
-		double damage = 5;
+		int cost=30+(levelNum-1)*15;
+		double damage = 5+(levelNum-1)*5;
 		double attackRate = .1;
 		double attackRange = 500;
 		int offsetAngle = 7;
 		int ammoUsedPerShot = 1;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);
-		AssaultRifle rifle = new AssaultRifle("Assault Rifle", x, y, damage, attackRate, attackRange, projectile, offsetAngle, ammoUsedPerShot,5);
+		AssaultRifle rifle = new AssaultRifle("Assault Rifle", x, y, damage, attackRate, attackRange, projectile, offsetAngle, ammoUsedPerShot,cost);
 		rifle.setAutomatic(true);
 		return rifle;
 	}
 	
-	public static AssaultRifle getEAssaultRifleDesignOne(double x, double y)
-	{
-		double damage = 5;
+	public static AssaultRifle getEAssaultRifleDesignOne(double x, double y,int levelNum)
+	{	
+		double damage = 5+(levelNum-1)*5;
 		double attackRate = .1;
 		double attackRange = 500;
 		int offsetAngle = 7;
@@ -125,13 +130,14 @@ public class WeaponDesign
 		return rifle;
 	}
 	
-	public static Sword getSwordDesignOne(double x, double y)
+	public static Sword getSwordDesignOne(double x, double y,int levelNum)
 	{
-		double damage = 20;
+		int cost=15+(levelNum-1)*5;
+		double damage = 20+(levelNum-1)*10;
 		double attackRate = .2;
 		double attackRange = .2;
 		Projectile projectile = ProjectileDesign.getSlashDesignOne(null, x, y, 0, 15);
-		Sword sword = new Sword("Sword", x, y, damage, attackRate, attackRange, projectile,5);
+		Sword sword = new Sword("Sword", x, y, damage, attackRate, attackRange, projectile,cost);
 		return sword;
 	}
 	

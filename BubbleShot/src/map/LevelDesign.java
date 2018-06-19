@@ -11,19 +11,19 @@ public class LevelDesign
 {
 	public static Level getLevelDesignOne() 
 	{
-		Level level1 = new Level(20,20);
-		level1.addRoomTo(RoomDesign.getRoomDesignTest(), 0, 0);
+		Level level1 = new Level(20,20,1);
+		level1.addRoomTo(RoomDesign.getRoomDesignTest(level1), 0, 0);
 		//level1.addRoomTo(RoomDesign.getRoomDesignThree(player,0,1), 0, 1);
 		//level1.addRoomTo(RoomDesign.getBossRoomDesignOne(), 0, 1);
 		//level1.addRoomTo(null, 0, 2);
 		//level1.addRoomTo(null, 1, 0);
 		//level1.addRoomTo(null, 1, 1);
 		//level1.addRoomTo(null, 1, 2);
-		level1.addRoomTo(RoomDesign.getRoomDesignTwo(), 0, 1);
-		level1.addRoomTo(RoomDesign.getRoomDesignThree(), 0, 2);
-		level1.addRoomTo(RoomDesign.getShopRoomDesign(), 1, 0);
-		level1.addRoomTo(RoomDesign.getRoomDesignFive(), 1, 1);
-		level1.addRoomTo(RoomDesign.getBossRoomDesignOne(), 1, 2);
+		level1.addRoomTo(RoomDesign.getRoomDesignTwo(level1), 0, 1);
+		level1.addRoomTo(RoomDesign.getRoomDesignThree(level1), 0, 2);
+		level1.addRoomTo(RoomDesign.getShopRoomDesign(level1), 1, 0);
+		level1.addRoomTo(RoomDesign.getRoomDesignFive(level1), 1, 1);
+		level1.addRoomTo(RoomDesign.getBossRoomDesignOne(level1), 1, 2);
 		level1.setCurrentRoom(0, 0);
 		
 		level1.getCurrentRoom().setEnemySpawned(true);
@@ -34,42 +34,42 @@ public class LevelDesign
 	
 	public static Level getLevelDesignTwo()
 	{
-		Level level2 = new Level(3,3);
-		level2.addRoomTo(RoomDesign.getRoomDesignSix(), 0, 0);	
-		level2.addRoomTo(RoomDesign.getRoomDesignSeven(), 0, 2);	
-		level2.addRoomTo(RoomDesign.getRoomDesignEight(), 1, 0);
-		level2.addRoomTo(RoomDesign.getRoomDesignNine(), 1, 1);
-		level2.addRoomTo(RoomDesign.getRoomDesignTen(), 1, 2);
-		level2.addRoomTo(RoomDesign.getRoomDesignEleven(), 2, 0);
-		level2.addRoomTo(RoomDesign.getRoomDesignTwelve(), 2, 2);
+		Level level2 = new Level(3,3,1);
+		level2.addRoomTo(RoomDesign.getRoomDesignSix(level2), 0, 0);	
+		level2.addRoomTo(RoomDesign.getRoomDesignSeven(level2), 0, 2);	
+		level2.addRoomTo(RoomDesign.getRoomDesignEight(level2), 1, 0);
+		level2.addRoomTo(RoomDesign.getRoomDesignNine(level2), 1, 1);
+		level2.addRoomTo(RoomDesign.getRoomDesignTen(level2), 1, 2);
+		level2.addRoomTo(RoomDesign.getRoomDesignEleven(level2), 2, 0);
+		level2.addRoomTo(RoomDesign.getRoomDesignTwelve(level2), 2, 2);
 		level2.setCurrentRoom(2, 2);
 		return level2;
 	}
 	
 	public static Level getLevelDesignThree()
 	{
-		Level level3 = new Level(4,4);
-		level3.addRoomTo(RoomDesign.getRoomDesignThirteen(), 0, 0);
-		level3.addRoomTo(RoomDesign.getRoomDesignFourteen(), 0, 1);
-		level3.addRoomTo(RoomDesign.getRoomDesignFifteen(), 0, 3);
-		level3.addRoomTo(RoomDesign.getRoomDesignSixteen(), 1, 1);
-		level3.addRoomTo(RoomDesign.getRoomDesignSeventeen(), 1, 2);
-		level3.addRoomTo(RoomDesign.getRoomDesignEighteen(), 1, 3);
-		level3.addRoomTo(RoomDesign.getRoomDesignNineteen(), 2, 0);
-		level3.addRoomTo(RoomDesign.getRoomDesignTwenty(), 2, 1);
-		level3.addRoomTo(RoomDesign.getRoomDesignTwentyone(), 2, 3);
-		level3.addRoomTo(RoomDesign.getRoomDesignTwentytwo(), 3, 0);
-		level3.addRoomTo(RoomDesign.getRoomDesignTwentythree(), 3, 2);
-		level3.addRoomTo(RoomDesign.getRoomDesignTwentyfour(), 3, 3);
+		Level level3 = new Level(4,4,1);
+		level3.addRoomTo(RoomDesign.getRoomDesignThirteen(level3), 0, 0);
+		level3.addRoomTo(RoomDesign.getRoomDesignFourteen(level3), 0, 1);
+		level3.addRoomTo(RoomDesign.getRoomDesignFifteen(level3), 0, 3);
+		level3.addRoomTo(RoomDesign.getRoomDesignSixteen(level3), 1, 1);
+		level3.addRoomTo(RoomDesign.getRoomDesignSeventeen(level3), 1, 2);
+		level3.addRoomTo(RoomDesign.getRoomDesignEighteen(level3), 1, 3);
+		level3.addRoomTo(RoomDesign.getRoomDesignNineteen(level3), 2, 0);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwenty(level3), 2, 1);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentyone(level3), 2, 3);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentytwo(level3), 3, 0);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentythree(level3), 3, 2);
+		level3.addRoomTo(RoomDesign.getRoomDesignTwentyfour(level3), 3, 3);
 		level3.setCurrentRoom(3,3);
 		return level3;
 	}
 	
 	public static Level getLevelTestBoss()
 	{
-		Level level2 = new Level(1,2);
-		level2.addRoomTo(RoomDesign.getRoomDesignTest(), 0, 0);	
-		level2.addRoomTo(RoomDesign.getBossRoomDesignOne(), 1, 0);	
+		Level level2 = new Level(1,2,1);
+		level2.addRoomTo(RoomDesign.getRoomDesignTest(level2), 0, 0);	
+		level2.addRoomTo(RoomDesign.getBossRoomDesignOne(level2), 1, 0);	
 		level2.placeTeleportersInLevel();
 		level2.setCurrentRoom(0, 0);
 		return level2;
@@ -81,18 +81,18 @@ public class LevelDesign
 	 * @param cols amount of cols in the level
 	 * @return randomly generated Level
 	 */
-	public static Level getRandomLevelDesign(int rows, int cols)
+	public static Level getRandomLevelDesign(int rows, int cols,int num)
 	{
-		Level newLevel = new Level(rows,cols);
+		Level newLevel = new Level(rows,cols,num);
 		Room[][] map = newLevel.getMap();
 		List<Coord> tilesCoords=new ArrayList<Coord>();
 		//Sets the current room to the middle of the level
-		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
+		map[rows/2][cols/2]=RoomDesign.getRoomDesignTest(newLevel);
 		map[rows/2][cols/2].setLevelRow(rows/2);
 		map[rows/2][cols/2].setLevelCol(cols/2);
 		newLevel.setCurrentRoom(rows/2,cols/2);
 		newLevel.getCurrentRoom().setEnemySpawned(true);
-		newLevel.getCurrentRoom().setAllEnemyDead(true);;
+		newLevel.getCurrentRoom().setAllEnemyDead(true);
 		//Amount of rooms to be generated
 //		int[][] testmap= new int[rows][cols];
 //		map[rows/2][cols/2]=1;
@@ -138,21 +138,21 @@ public class LevelDesign
 						int roomType=(int)(Math.random()*20);
 						if(roomdirection==0&&up&&map[i-1][s]==null)
 						{
-							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),i-1,s);
+							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType,newLevel),i-1,s);
 							tilesCoords.add(new Coord(i-1,s));
 //							testmap[i-1][s]=1;
 							roomCounter--;
 						}
 						if(roomdirection==1&&right&&map[i][s+1]==null)
 						{
-							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),i,s+1);
+							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType,newLevel),i,s+1);
 							tilesCoords.add(new Coord(i,s+1));
 //							testmap[i][s+1]=1;
 							roomCounter--;
 						}
 						if(roomdirection==2&&down&&map[i+1][s]==null)
 						{
-							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),i+1,s);
+							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType,newLevel),i+1,s);
 							tilesCoords.add(new Coord(i+1,s));
 //							testmap[i+1][s]=1;
 							roomCounter--;
@@ -160,7 +160,7 @@ public class LevelDesign
 						if(roomdirection==3&&left&&map[i][s-1]==null)
 						{
 							//testmap[i][s-1]=1;
-							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),i,s-1);
+							newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType,newLevel),i,s-1);
 							tilesCoords.add(new Coord(i,s-1));
 							roomCounter--;
 						}						
@@ -196,7 +196,7 @@ public class LevelDesign
 				shopRoom--;
 				roomType=20;
 			}
-			newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType),currentCord.getX(),currentCord.getY());
+			newLevel.addRoomTo(RoomDesign.getRandomRoom(roomType,newLevel),currentCord.getX(),currentCord.getY());
 		}
 		newLevel.placeTeleportersInLevel();
 //	newLevel=LevelDesign.getLevelDesignOne();
