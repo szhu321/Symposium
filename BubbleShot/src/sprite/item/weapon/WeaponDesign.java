@@ -71,7 +71,7 @@ public class WeaponDesign
 		double attackRange = 5000;
 		int ammoUsedPerShot = 0;
 		Projectile projectile = ProjectileDesign.getBouncingProjectileOne(null, x, y, 0, damage);
-		Sniper sniper = new Sniper("Legendary Sniper", x, y, damage, attackRate, attackRange, projectile, ammoUsedPerShot,99999);
+		Sniper sniper = new Sniper("Legendary Sniper", x, y, damage, attackRate, attackRange, projectile, ammoUsedPerShot,999);
 		sniper.setAutomatic(true);
 		return sniper;
 	}

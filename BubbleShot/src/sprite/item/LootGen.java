@@ -14,7 +14,7 @@ public class LootGen
 	public static Item randomEnemyItem(Enemy enemy,int levelNum) 
 	{
 		int percent=(int)(Math.random()*100)+1;
-		if(percent <=40)
+		if(percent <=20)
 			return null;
 		else if(percent <=60)
 			return CoinDesign.getCoinOne(enemy.getXLocation(),enemy.getYLocation());
@@ -31,9 +31,14 @@ public class LootGen
 		return null;
 	}
 	
+	public static Item randomBossMoney(Enemy enemy,int levelNum) 
+	{
+		return CoinDesign.getCoinOne(enemy.getXLocation(),enemy.getYLocation());
+	}
+	
 	public static Item randomShopItem(Obstacle table,int levelNum)
 	{
-		int percent=(int)(Math.random()*13)+1;
+		int percent=(int)(Math.random()*14)+1;
 		if(percent==1)
 			return PotionDesign.getHealthPotDesignOne(table.getXLocation(), table.getYLocation(),levelNum);
 		if(percent==2)
@@ -60,6 +65,8 @@ public class LootGen
 			return ArmorDesign.getLeggingDesignOne(table.getXLocation(), table.getYLocation(),levelNum);
 		if(percent==13)
 			return ShieldDesign.getShieldDesignOne(table.getXLocation(), table.getYLocation(),levelNum);
+		if(percent==14)
+			return WeaponDesign.getSniperDesignEPIC(table.getXLocation(), table.getYLocation(),levelNum);
 		return null;
 	}
 }

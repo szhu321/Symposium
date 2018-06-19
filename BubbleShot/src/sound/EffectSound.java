@@ -37,6 +37,7 @@ public class EffectSound implements Sound, Runnable
 		//mediaPlayer.setAutoPlay(true);
 		//stopSound();
 		mediaPlayer = new MediaPlayer(effectSound);
+		mediaPlayer.setVolume(.01);
 		players.add(mediaPlayer);
 		mediaPlayer.setStopTime(Duration.seconds(duration));
 		mediaPlayer.setOnEndOfMedia(this);

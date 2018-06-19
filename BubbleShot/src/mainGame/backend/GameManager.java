@@ -32,6 +32,7 @@ import myutilities.TimerManager;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
+import sprite.item.collectable.CoinDesign;
 import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
 import sprite.item.weapon.Weapon;
@@ -351,7 +352,12 @@ public class GameManager
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
 					Item droppedItem=((Enemy)characters.get(i)).dropItem(level.getLevelNum());
 					if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
-						level.getCurrentRoom().addItem(droppedItem);
+					{
+						if(characters.get(i) instanceof Boss)
+							level.getCurrentRoom().scatterItems(CoinDesign.getCoinStack(30), characters.get(i).getXCenter(), characters.get(i).getYCenter());
+						else
+							level.getCurrentRoom().addItem(droppedItem);
+					}
 					if(characters.get(i) instanceof Boss)
 					{
 						Room currentRoom=level.getCurrentRoom();
@@ -601,7 +607,8 @@ public class GameManager
 											player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
 											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
 											changeRoom();
-											break;
+											return;
+											//break;
 										}	
 								}
 							}

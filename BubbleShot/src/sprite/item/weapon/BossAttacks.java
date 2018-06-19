@@ -60,7 +60,7 @@ public class BossAttacks
 	public static BossWepOne getBossAtkOne(double x, double y,int levelNum)
 	{
 		int currentLevel=levelNum;
-		double damage = 5+(levelNum-1)*5;
+		double damage = 3+(levelNum-1)*5;
 		double attackRate = .05;
 		double attackRange = 800;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
@@ -75,7 +75,7 @@ public class BossAttacks
 	public static BossWepTwo getBossAtkTwo(double x, double y,int levelNum)
 	{
 		int currentLevel=levelNum;
-		double damage = 5+(levelNum-1)*5;
+		double damage = 3+(levelNum-1)*5;
 		double attackRate = .001;
 		double attackRange = 800;
 		Projectile projectile = ProjectileDesign.getEBulletDesignOne(null, x, y, 0, 5);
@@ -108,7 +108,7 @@ public class BossAttacks
 		double damage = 1+(levelNum-1)*3;
 		double attackRate = .40;
 		double attackRange = 100;
-		int offsetAngle = 160;
+		int offsetAngle = 180 ;
 		Projectile projectile =ProjectileDesign.getESlowBulletDesignOne(null, x, y, 0, 5);
 		int bulletPerShot = 180;
 		int ammoUsedPerShot = 0;
