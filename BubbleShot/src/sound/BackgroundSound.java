@@ -19,10 +19,10 @@ public class BackgroundSound implements Sound
 	}
 
 	@Override
-	public void playSound(double volume)
+	public void playSound()
 	{
 		mediaPlayer = new MediaPlayer(bkgrdSound);
-		mediaPlayer.setVolume(volume);
+		//mediaPlayer.setVolume(volume);
 		mediaPlayer.setStartTime(Duration.seconds(0));
 		mediaPlayer.setStopTime(Duration.seconds(effectSoundLength)); //replace 5 with actual length of audio
 		mediaPlayer.setAutoPlay(true);

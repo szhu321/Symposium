@@ -9,6 +9,7 @@ import mainGame.backend.GameManager;
 import mainGame.backend.Graphics;
 import map.Level;
 import map.LevelDesign;
+import sound.BackgroundSound;
 import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
@@ -61,7 +62,7 @@ public class GameRunner extends Application
 		gameManager = new GameManager(LevelDesign.getRandomLevelDesign(5, 5), player, window, controls);
 		gameManager.startGame();
 //		
-//		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
+//		BackgroundSound bs = new BackgroundSound("resources/music/gunShot.wav", 232);
 //		bs.playSound(.05);
 //		
 

@@ -241,6 +241,7 @@ public class PlayingScene
 		
 		topBox.getChildren().addAll(healthShieldContainer, /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, igMenuBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
+		topBox.setAlignment(Pos.CENTER);
 		headUpDis.setTop(topBox);
 		topBox.setOnMousePressed(event -> event.consume());
 		headUpDis.setPrefHeight(GameRunner.getResolutionHeight() - 40);

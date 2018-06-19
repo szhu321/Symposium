@@ -25,13 +25,15 @@ public class SoundTest extends Application
 		window = primaryStage;
 		window.setTitle("music");
 		
-		BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
-		bs.playSound(1);
+		//BackgroundSound bs = new BackgroundSound("resources/music/AlanWForce.mp3", 232);
+		//bs.playSound();
 		
-		mediaView = new MediaView(bs.getMediaPlayer());
+		SoundEffects.GUN_SHOT_SOUND.playSound();
+		
+		//mediaView = new MediaView(bs.getMediaPlayer());
 		
 		root = new Group();
-		root.getChildren().add(mediaView);
+		//root.getChildren().add(mediaView);
 		
 		scene = new Scene(root);
 		window.setScene(scene);

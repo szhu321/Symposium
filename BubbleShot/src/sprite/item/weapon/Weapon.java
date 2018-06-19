@@ -1,6 +1,7 @@
 package sprite.item.weapon;
 
 import mainGame.GameRunner;
+import sound.SoundEffects;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
 import sprite.item.Item;
@@ -151,6 +152,7 @@ public abstract class Weapon extends Item
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCooledDown(false);
+			SoundEffects.GUN_SHOT_SOUND.playSound();
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;
 		}

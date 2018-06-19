@@ -11,22 +11,22 @@ public class EffectSound implements Sound
 	private Media effectSound;
 	private MediaPlayer mediaPlayer;
 	//in seconds
-	private double effectSoundLength;
+	//private double effectSoundLength;
 	
-	public EffectSound(String soundFile, double eSLength)
+	public EffectSound(String soundFile)
 	{
 		effectSound = new Media(new File(soundFile).toURI().toString());
-		effectSoundLength = eSLength;
+		//effectSoundLength = eSLength;
 	}
 
 	@Override
-	public void playSound(double volume) 
+	public void playSound() 
 	{
 		mediaPlayer = new MediaPlayer(effectSound);
-		mediaPlayer.setVolume(volume);
-		mediaPlayer.setStartTime(Duration.seconds(0));
-		mediaPlayer.setStopTime(Duration.seconds(effectSoundLength));
-		mediaPlayer.setAutoPlay(true);
+		//mediaPlayer.setVolume(volume);
+		//mediaPlayer.setStartTime(Duration.seconds(0));
+		//mediaPlayer.setStopTime(Duration.seconds(effectSoundLength));
+		//mediaPlayer.setAutoPlay(true);
 		mediaPlayer.play();
 	}
 
