@@ -103,8 +103,7 @@ public class GameRunner extends Application
 	 */
 	private void loadSounds()
 	{
-		SoundEffects.GUN_SHOT_SOUND.load();
-		SoundEffects.PEW_PEW_SOUND.load();
+		
 	}
 	
 	/**

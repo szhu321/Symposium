@@ -152,7 +152,7 @@ public abstract class Weapon extends Item
 			//Adding the newly created projectile.
 			GameRunner.getGameManager().addProjectile(projectile);
 			setCooledDown(false);
-			SoundEffects.GUN_SHOT_SOUND.playSound();
+			SoundEffects.PEW_PEW_SOUND.playSound();
 			//System.out.println("Use Weapon Passed Time : " + (System.nanoTime() - pasttime));
 			return true;
 		}

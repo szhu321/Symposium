@@ -8,20 +8,12 @@ public class Sounds
 {
 	private double backgroundMusicVolume;
 	private double soundEffectVolume;
-	private HashMap<String, EffectSound> soundEffect;
 	
 	public Sounds()
 	{
 		resetSoundSettings();
-		loadSounds();
 	}
 	
-	private void loadSounds()
-	{
-		soundEffect.put("pewpew", new EffectSound("resources/soundEffects/pew_pew.mp3", .5));
-		soundEffect.put("gunshot", new EffectSound("resources/soundEffects/gunShot.wav", .5));
-	}
-
 	public void resetSoundSettings()
 	{
 		backgroundMusicVolume = 0.5;
