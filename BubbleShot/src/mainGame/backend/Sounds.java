@@ -2,12 +2,14 @@ package mainGame.backend;
 
 import java.util.HashMap;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import sound.EffectSound;
 
 public class Sounds
 {
-	private double backgroundMusicVolume;
-	private double soundEffectVolume;
+	private DoubleProperty backgroundMusicVolumeProperty;
+	private DoubleProperty soundEffectVolumeProperty;
 	
 	public Sounds()
 	{
@@ -16,27 +18,17 @@ public class Sounds
 	
 	public void resetSoundSettings()
 	{
-		backgroundMusicVolume = 0.5;
-		soundEffectVolume = 0.3;
+		backgroundMusicVolumeProperty = new SimpleDoubleProperty(0.5);
+		soundEffectVolumeProperty = new SimpleDoubleProperty(0.3);
 	}
 
-	public double getBackgroundMusicVolume() 
+	public DoubleProperty getBackgroundMusicVolumeProperty()
 	{
-		return backgroundMusicVolume;
+		return backgroundMusicVolumeProperty;
 	}
 
-	public double getSoundEffectVolume()
+	public DoubleProperty getSoundEffectVolumeProperty()
 	{
-		return soundEffectVolume;
-	}
-
-	public void setBackgroundMusicVolume(double backgroundMusicVolume)
-	{
-		this.backgroundMusicVolume = backgroundMusicVolume;
-	}
-
-	public void setSoundEffectVolume(double soundEffectVolume) 
-	{
-		this.soundEffectVolume = soundEffectVolume;
+		return soundEffectVolumeProperty;
 	}
 }

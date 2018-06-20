@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import mainGame.GameRunner;
 
 public class BackgroundSound implements Sound
 {
@@ -22,7 +23,7 @@ public class BackgroundSound implements Sound
 	public void playSound()
 	{
 		mediaPlayer = new MediaPlayer(bkgrdSound);
-		//mediaPlayer.setVolume(volume);
+		mediaPlayer.volumeProperty().bind(GameRunner.getSounds().getBackgroundMusicVolumeProperty());
 		mediaPlayer.setStartTime(Duration.seconds(0));
 		mediaPlayer.setStopTime(Duration.seconds(effectSoundLength)); //replace 5 with actual length of audio
 		mediaPlayer.setAutoPlay(true);

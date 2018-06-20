@@ -22,6 +22,11 @@ public class SettingsViewController implements Initializable
 		container.setPrefWidth(GameRunner.getResolutionWidth());
 	}
 	
+	public void soundBtnOnclick() throws Exception
+	{
+		GameRunner.getSceneTracker().swtichToSoundView();
+	}
+	
 	public void controlBtnOnclick() throws Exception
 	{
 		GameRunner.getSceneTracker().switchToControlsView();

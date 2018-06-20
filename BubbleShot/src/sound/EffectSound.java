@@ -8,6 +8,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import mainGame.GameRunner;
 
 public class EffectSound implements Sound
 {
@@ -18,7 +19,7 @@ public class EffectSound implements Sound
 	{
 		this.soundFile = soundFile;
 		audioClip = new AudioClip("file:" + soundFile);
-		audioClip.setVolume(0.1);
+		audioClip.volumeProperty().bind(GameRunner.getSounds().getSoundEffectVolumeProperty());
 	}
 
 	@Override

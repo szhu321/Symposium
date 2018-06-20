@@ -7,6 +7,7 @@ import javafx.stage.Screen;
 import mainGame.backend.Controls;
 import mainGame.backend.GameManager;
 import mainGame.backend.Graphics;
+import mainGame.backend.Sounds;
 import map.Level;
 import map.LevelDesign;
 import sound.BackgroundSound;
@@ -30,6 +31,7 @@ public class GameRunner extends Application
 	
 	private static Controls controls;
 	private static Graphics graphics;
+	private static Sounds sounds;
 	
 	public static void main(String[] args)
 	{
@@ -103,7 +105,7 @@ public class GameRunner extends Application
 	 */
 	private void loadSounds()
 	{
-		
+		sounds = new Sounds();
 	}
 	
 	/**
@@ -154,6 +156,11 @@ public class GameRunner extends Application
 	public static Graphics getGraphics()
 	{
 		return graphics;
+	}
+	
+	public static Sounds getSounds()
+	{
+		return sounds;
 	}
 	
 	public static double getWindowHeight()

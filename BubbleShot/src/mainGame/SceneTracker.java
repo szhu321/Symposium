@@ -68,4 +68,9 @@ public class SceneTracker
 	{
 		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/GameOverView.fxml")));
 	}
+	
+	public void swtichToSoundView() throws Exception
+	{
+		root.getChildren().setAll((BorderPane)FXMLLoader.load(getClass().getResource("/mainGame/frontend/fxmls/SoundView.fxml")));
+	}
 }
