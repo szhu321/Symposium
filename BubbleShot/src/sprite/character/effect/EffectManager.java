@@ -38,7 +38,6 @@ public class EffectManager implements Serializable
 	{
 		if(effects.contains(effect))
 		{
-			
 			effect.setEffectTime(effect.getDefaultEffectTime());
 			effect.setActive(true);
 			//System.out.println(effect);
@@ -46,6 +45,7 @@ public class EffectManager implements Serializable
 		}	
 		//System.out.println(effect);	
 		effect.setManager(this);
+		effect.setActive(true);
 		effects.add(effect);
 		return true;
 	}
@@ -78,12 +78,18 @@ public class EffectManager implements Serializable
 		}
 		return result;
 	}
-//	
-//	public double isTakingDamage()
-//	{
-//		
-//	}
-//	
+	
+	public boolean isTakingDamage()
+	{
+		for(Effect effect: effects)
+		{
+			//System.out.println(effect);
+			if(effect instanceof HealthEffect && effect.isActive() && effect.getEffectAmount() < 0)
+				return true;
+		}
+		return false;
+	}
+	
 	public double getDamageMultiplier()
 	{
 		double result = 1;

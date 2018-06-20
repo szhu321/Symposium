@@ -282,6 +282,23 @@ public class Inventory implements Serializable
 		return result;
 	}
 	
+	public double getDamageReducer()
+	{
+		double armorPoints = 0;
+		if(helmet != null)
+			armorPoints += helmet.getArmorPoints();
+		if(legging != null)
+			armorPoints += legging.getArmorPoints();
+		if(breastPlate != null)
+			armorPoints += breastPlate.getArmorPoints();
+		if(boots != null)
+			armorPoints += boots.getArmorPoints();
+		
+		double reducer = (50 / (armorPoints + 50));
+		
+		return reducer;
+	}
+	
 	public Helmet getHelmet() 
 	{
 		return helmet;

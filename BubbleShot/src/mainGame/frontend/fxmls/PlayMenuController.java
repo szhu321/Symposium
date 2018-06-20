@@ -50,7 +50,8 @@ public class PlayMenuController implements Initializable
 				characterImages[i].setFitWidth(100);
 				characterImages[i].setFitHeight(100);
 				characterImages[i].setStyle("-fx-opacity:.5");
-				characterImages[i].setOnMouseClicked(event -> 
+				characterSaveSlots[i] = new HBox(20);
+				characterSaveSlots[i].setOnMouseClicked(event -> 
 				{
 					for(int j = 0; j < characterImages.length; j++)
 					{
@@ -66,7 +67,6 @@ public class PlayMenuController implements Initializable
 				VBox txtContainer = new VBox();
 				txtContainer.setStyle("-fx-font-size:24pt");
 				txtContainer.getChildren().addAll(playerStatTxt, dateTxt);
-				characterSaveSlots[i] = new HBox(20);
 				characterSaveSlots[i].getChildren().addAll(characterImages[i], txtContainer);
 			}
 			for(int i = 0; i < characterSaveSlots.length; i++)

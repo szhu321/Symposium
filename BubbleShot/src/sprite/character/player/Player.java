@@ -84,6 +84,14 @@ public class Player extends Character
 	
 	public void setCurrentHealth(double health)
 	{
+		//adjusted Health loss because of armor points
+		//System.out.println(health + "old");
+		if(getCurrentHealth() > health)
+		{
+			health = getCurrentHealth() - ((getCurrentHealth() - health) * inventory.getDamageReducer());
+		}
+		//System.out.println(health + "new");
+		
 		//If the player has no shield or if the player gained health.
 		if(inventory.getShield() == null || getCurrentHealth() < health)
 		{

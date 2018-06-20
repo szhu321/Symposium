@@ -340,6 +340,11 @@ public class RoomView
 					gc.setFill(Color.BROWN);
 					gc.fillRect(character.getXLocation() - 6, character.getYLocation() + 7, 6, 6);
 				}
+				if(character.getEffectManager().isTakingDamage())
+				{
+					gc.setFill(Color.ORANGE);
+					gc.fillRect(character.getXLocation() - 6, character.getYLocation() + 14, 6, 6);
+				}
 			}
 			gc.restore();
 		}

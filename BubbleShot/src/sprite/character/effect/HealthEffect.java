@@ -27,6 +27,7 @@ public class HealthEffect extends Effect
 			//if the effect is instantaneous
 			if(isInstantaneous())
 			{
+				//System.out.println("Applied effect");
 				character.setCurrentHealth(character.getCurrentHealth() + getEffectAmount());
 				setActive(false);
 			}
@@ -38,6 +39,7 @@ public class HealthEffect extends Effect
 			}
 			return true;
 		}
+		//System.out.println("not Active");
 		return false;
 	}
 	
