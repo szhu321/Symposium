@@ -288,6 +288,10 @@ public class PlayingScene
 			shieldBar.getCanvas().setVisible(true);
 			shieldBar.updateCanvas(player.getInventory().getShield().getCurrentShieldAmount(), player.getInventory().getShield().getDefaultShieldAmount());
 		}
+		else
+		{
+			shieldBar.updateCanvas(0,0);
+		}
 		
 		
 		
