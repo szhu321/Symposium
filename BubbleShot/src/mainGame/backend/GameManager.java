@@ -30,6 +30,7 @@ import myutilities.Camera;
 import myutilities.MyMath;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
+import sound.SoundEffects;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
@@ -100,6 +101,7 @@ public class GameManager
 	{
 		TimeTracker.resetTime();
 		setScene(playingScene.getScene());
+		SoundEffects.FUNKY_GAME_MUSIC.playSound();
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(1.0/framesPerSec), event -> 
 		{
 			//Runs in 60FPS
@@ -624,6 +626,9 @@ public class GameManager
 											this.level.getCurrentRoom().removeCharacter(player);
 											this.level.setCurrentRoom(row, col);
 											this.level.getCurrentRoom().addCharacter(player);
+											
+											if(level.getCurrentRoom().isBossRoom())
+												SoundEffects.OLD_GAME_MUSIC.playSound();
 											
 											player.setXLocation(currentTele.getConnectedTeleporter().getXLocation() + 10);
 											player.setYLocation(currentTele.getConnectedTeleporter().getYLocation() + 10);
