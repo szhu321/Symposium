@@ -606,8 +606,8 @@ public class GameManager
 										}
 										if(t instanceof LevelTele)
 										{
-											changeLevel(((LevelTele)t).nextLevel(level.getLevelNum()+1));
-											break;
+											changeLevel(((LevelTele)t).nextLevel(Player.getCurrentLevel()+1));
+											return;
 										}
 										//System.out.println(currentTele.getConnectedTeleporter().getId());
 										//System.out.println(currentTele.getId());

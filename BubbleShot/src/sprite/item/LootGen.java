@@ -2,6 +2,7 @@ package sprite.item;
 
 import map.obstacle.Obstacle;
 import sprite.character.enemy.Enemy;
+import sprite.character.player.Player;
 import sprite.item.ammo.AmmoDesign;
 import sprite.item.armor.ArmorDesign;
 import sprite.item.collectable.CoinDesign;
@@ -13,6 +14,8 @@ public class LootGen
 {
 	public static Item randomEnemyItem(Enemy enemy,int levelNum) 
 	{
+		//System.out.println("Enemy Item Level " + levelNum);
+		//System.out.println("Current Level " + Player.getCurrentLevel() + "\n");
 		int percent=(int)(Math.random()*100)+1;
 		if(percent <=20)
 			return null;
@@ -38,6 +41,8 @@ public class LootGen
 	
 	public static Item randomShopItem(Obstacle table,int levelNum)
 	{
+		//System.out.println("Shop Item Level " + levelNum);
+		//System.out.println("CurrentLevel " + Player.getCurrentLevel() + "\n");
 		int percent=(int)(Math.random()*14)+1;
 		if(percent==1)
 			return PotionDesign.getHealthPotDesignOne(table.getXLocation(), table.getYLocation(),levelNum);

@@ -1,9 +1,13 @@
 package sprite.item.armor;
 
+import sprite.character.player.Player;
+
 public class ArmorDesign 
 {
 	public static Helmet getHelmetDesignOne(double x, double y,int levelNum)
 	{
+		//System.out.println(levelNum);
+		//System.out.println("Player Level: " + Player.getCurrentLevel());
 		int cost=20+(levelNum-1)*10;
 		double width = 55;
 		double height = 38;
@@ -16,6 +20,8 @@ public class ArmorDesign
 	
 	public static BreastPlate getBreastPlateDesignOne(double x, double y,int levelNum)
 	{
+		//System.out.println(levelNum);
+		//System.out.println("Player Level: " + Player.getCurrentLevel());
 		int cost=30+(levelNum-1)*10;
 		double width = 35;
 		double height = 55;
@@ -28,6 +34,8 @@ public class ArmorDesign
 	
 	public static Legging getLeggingDesignOne(double x, double y,int levelNum)
 	{
+		//System.out.println(levelNum);
+		//System.out.println("Player Level: " + Player.getCurrentLevel());
 		int cost=25+(levelNum-1)*15;
 		double width = 35;
 		double height = 60;
@@ -40,6 +48,8 @@ public class ArmorDesign
 	
 	public static Boots getBootsDesignOne(double x, double y,int levelNum)
 	{
+		//System.out.println(levelNum);
+		//System.out.println("Player Level: " + Player.getCurrentLevel());
 		int cost=20+(levelNum-1)*10;
 		double width = 60;
 		double height = 37;

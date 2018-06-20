@@ -33,7 +33,7 @@ public class WeaponDesign
 	{
 		int cost = 10+(levelNum-1)*5;
 		int ammoUsedPerShot = 1;
-		double damage = 5 + (levelNum-1);
+		double damage = 5 + (levelNum-1) * 5;
 		double shootingSpeed = .2;
 		double bulletTravelRange = 400;
 		Projectile projectile = ProjectileDesign.getBulletDesignOne(null, x, y, 0, 5);

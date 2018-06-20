@@ -49,6 +49,7 @@ public class Player extends Character
 		super.reloadObject();
 		fist.reloadObject();
 		inventory.reloadObject();
+		currentLevel = localLevel;
 	}
 	
 	public void addItem(Item newItem)
