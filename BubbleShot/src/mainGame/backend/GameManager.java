@@ -375,7 +375,7 @@ public class GameManager
 					}
 					else
 					{
-						Item droppedItem=((Enemy)characters.get(i)).dropItem(level.getLevelNum());
+						Item droppedItem=((Enemy)characters.get(i)).dropItem(Player.getCurrentLevel());
 						if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
 						{
 							level.getCurrentRoom().addItem(droppedItem);

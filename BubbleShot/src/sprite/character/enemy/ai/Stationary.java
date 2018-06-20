@@ -34,14 +34,14 @@ public class Stationary extends AI
 		if(specificEnemy.equals("random"))
 		{
 			int randomEnemy=(int) ((Math.random()*4)+1);
-			Enemy generatedEnemy=EnemyDesign.getRandomDesign(this.getEnemy().getXLocation(), this.getEnemy().getYLocation(), this.getPlayer(),randomEnemy,GameRunner.getGameManager().getLevel().getLevelNum());
+			Enemy generatedEnemy=EnemyDesign.getRandomDesign(this.getEnemy().getXLocation(), this.getEnemy().getYLocation(), this.getPlayer(),randomEnemy,Player.getCurrentLevel());
 			if(enemycount==5)
 				generatedEnemy.setCanDropItem(false);
 			GameRunner.getGameManager().getLevel().getCurrentRoom().addCharacter(generatedEnemy);
 		}
 		else
 		{
-			Enemy generatedEnemy=EnemyDesign.getRandomDesign(this.getEnemy().getXLocation(), this.getEnemy().getYLocation(), this.getPlayer(),specificEnemy,GameRunner.getGameManager().getLevel().getLevelNum());
+			Enemy generatedEnemy=EnemyDesign.getRandomDesign(this.getEnemy().getXLocation(), this.getEnemy().getYLocation(), this.getPlayer(),specificEnemy,Player.getCurrentLevel());
 			if(enemycount==5)
 				generatedEnemy.setCanDropItem(false);
 			GameRunner.getGameManager().getLevel().getCurrentRoom().addCharacter(generatedEnemy);

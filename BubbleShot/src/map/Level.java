@@ -15,7 +15,6 @@ public class Level implements Serializable
 	
 	private Room[][] map;
 	private Room currentRoom;
-	private int levelNum;
 	
 	private LevelPortManager allTeleporters = new LevelPortManager();
 	/**
@@ -26,7 +25,6 @@ public class Level implements Serializable
 	public Level(int width, int height,int num)
 	{
 		map = new Room[height][width];
-		levelNum=num;
 	}
 	
 	/**
@@ -267,13 +265,5 @@ public class Level implements Serializable
 		if(counter==0)
 			return true;
 		return false;
-	}
-
-	public int getLevelNum() {
-		return levelNum;
-	}
-
-	public void setLevelNum(int levelNum) {
-		this.levelNum = levelNum;
 	}
 }
