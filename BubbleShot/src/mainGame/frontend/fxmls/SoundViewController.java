@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import mainGame.GameRunner;
 import mainGame.backend.Sounds;
+import sound.SoundEffects;
 
 public class SoundViewController implements Initializable
 {
@@ -36,6 +37,7 @@ public class SoundViewController implements Initializable
 	
 	public void backBtnOnClick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToSettingsView();
 	}
 	

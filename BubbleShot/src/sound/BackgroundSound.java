@@ -14,7 +14,6 @@ public class BackgroundSound implements Sound
 	private Media bkgrdSound;
 	private MediaPlayer mediaPlayer;
 	private static List<MediaPlayer> players = new ArrayList<MediaPlayer>();
-	private double effectSoundLength;
 	
 	public BackgroundSound(String soundFile)
 	{
@@ -22,7 +21,7 @@ public class BackgroundSound implements Sound
 		mediaPlayer = new MediaPlayer(bkgrdSound);
 		players.add(mediaPlayer);
 		mediaPlayer.volumeProperty().bind(GameRunner.getSounds().getBackgroundMusicVolumeProperty());
-		mediaPlayer.setAutoPlay(true);
+		//mediaPlayer.setAutoPlay(true);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		//effectSoundLength = length;
 	}

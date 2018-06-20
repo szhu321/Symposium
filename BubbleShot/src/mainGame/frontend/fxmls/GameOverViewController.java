@@ -26,7 +26,7 @@ public class GameOverViewController implements Initializable
 	public void mainManuBtnOnClick() throws Exception
 	{
 		GameRunner.destroyGameManager();
-		SoundEffects.MOUSE_CLICK_SOUND.playSound();
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().useMenuScene();
 		GameRunner.getSceneTracker().switchToMainMenuView();
 	}

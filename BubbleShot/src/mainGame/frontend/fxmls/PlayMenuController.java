@@ -16,6 +16,7 @@ import mainGame.GameRunner;
 import mainGame.SceneTracker;
 import mainGame.saving.FileReader;
 import map.LevelDesign;
+import sound.SoundEffects;
 import sprite.character.player.Player;
 
 public class PlayMenuController implements Initializable
@@ -83,16 +84,19 @@ public class PlayMenuController implements Initializable
 	
 	public void backBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToMainMenuView();
 	}
 	
 	public void createCharacterBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToCharacterCreationView();
 	}
 	
 	public void chooseLevelBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToLevelPickerView();
 	}
 	
@@ -100,6 +104,7 @@ public class PlayMenuController implements Initializable
 	{
 		if(selectedPlayer == null)
 			return;
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		Player.setCurrentLevel(selectedPlayer.getLocalLevel());
 		GameRunner.createGameManager(LevelDesign.getRandomLevelDesign(4, 4, selectedPlayer.getLocalLevel()), selectedPlayer);
 		//System.out.println("Start Btn Level: " + selectedPlayer.getLocalLevel());

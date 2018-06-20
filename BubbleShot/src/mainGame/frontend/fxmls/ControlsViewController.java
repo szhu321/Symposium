@@ -63,6 +63,7 @@ public class ControlsViewController implements Initializable
 	
 	public void backBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToSettingsView();
 	}
 	

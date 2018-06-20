@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import mainGame.GameRunner;
 import mainGame.SceneTracker;
+import sound.SoundEffects;
 
 public class SettingsViewController implements Initializable
 {
@@ -24,21 +25,25 @@ public class SettingsViewController implements Initializable
 	
 	public void soundBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().swtichToSoundView();
 	}
 	
 	public void controlBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToControlsView();
 	}
 	
 	public void graphicsBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToGraphicsView();
 	}
 	
 	public void backBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		if(GameRunner.getGameManager() == null)
 			GameRunner.getSceneTracker().switchToMainMenuView();
 		else

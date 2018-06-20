@@ -84,7 +84,7 @@ public class Inventory implements Serializable
 	
 	public void changeSelectedItem(int idx)
 	{
-		if(inventory[idx]!=null)
+		if(idx >=0 && inventory[idx] != null)
 			SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		if(idx < 0)
 		{

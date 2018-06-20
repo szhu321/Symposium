@@ -50,6 +50,7 @@ public class CharacterCreationController implements Initializable
 	
 	public void nextIconBtnOnclick()
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		imgIdx++;
 		imgIdx %= files.length;
 		displayImage();
@@ -57,6 +58,7 @@ public class CharacterCreationController implements Initializable
 	
 	public void previousIconBtnOnclick()
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		imgIdx--;
 		if(imgIdx < 0)
 			imgIdx = files.length - 1;
@@ -65,11 +67,13 @@ public class CharacterCreationController implements Initializable
 	
 	public void backBtnOnclick() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		GameRunner.getSceneTracker().switchToPlayMenuView();
 	}
 	
 	public void createCharacterBtn() throws Exception
 	{
+		SoundEffects.MENU_SELECT_SOUND.playSound();
 		String str = playerNameField.getText();
 		if(str != null && !str.equals(""))
 		{
