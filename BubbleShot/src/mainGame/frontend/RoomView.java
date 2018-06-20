@@ -94,11 +94,11 @@ public class RoomView
 			Point point3 = obs.getPoint3();
 			Point point4 = obs.getPoint4();
 			double point1Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
-			double point2Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
-			double point3Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
-			double point4Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point1.getX(), point1.getY());
-			double maxAngle = MyMath.findMaxValue(point1Angle, point2Angle, point3Angle, point4Angle);
-			double minAngle = MyMath.findMinValue(point1Angle, point2Angle, point3Angle, point4Angle);
+			double point2Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point2.getX(), point2.getY());
+			double point3Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point3.getX(), point3.getY());
+			double point4Angle = MyMath.findAngleBetween(player.getXCenter(), player.getYCenter(), point4.getX(), point4.getY());
+			//double maxAngle = MyMath.findMaxValue(point1Angle, point2Angle, point3Angle, point4Angle);
+			//double minAngle = MyMath.findMinValue(point1Angle, point2Angle, point3Angle, point4Angle);
 			Point minPoint = null;
 			Point maxPoint = null;
 			
@@ -142,6 +142,8 @@ public class RoomView
 			
 			double[] maxPoint2 = new double[2];
 			double[] minPoint2 = new double[2];
+			//System.out.println(point1.getX());
+			//System.out.println(player.getXCenter());
 			maxPoint2[0] = (maxPoint.getX() - player.getXCenter()) * 10000;
 			maxPoint2[1] = (maxPoint.getY() - player.getYCenter()) * 10000;
 			minPoint2[0] = (minPoint.getX() - player.getXCenter()) * 10000;
