@@ -13,6 +13,8 @@ public class FileSaver
 		ObjectOutputStream objstream = null;
 		try 
 		{
+			player.setEffectManager(null);
+			player.setMovement(null);
 			objstream = new ObjectOutputStream(new FileOutputStream(new File("saves/players/" + player.getSpriteName() + ".dat")));
 			objstream.writeObject(player);
 			//System.out.println("success");

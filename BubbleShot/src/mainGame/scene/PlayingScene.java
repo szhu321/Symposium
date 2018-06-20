@@ -79,6 +79,7 @@ public class PlayingScene
 	//private ImageView[] playerInventoryDis;
 	private Canvas[] playerHotbarDisCanvas;
 	
+	private Text playerLevelTxt;
 	
 	private InventoryView inventoryDis;
 	
@@ -239,7 +240,10 @@ public class PlayingScene
 		ammobar = new AmmoBar(350, 50, currentRoom.getPlayer().getDefaultAmmo());
 		healthShieldContainer.getChildren().addAll(healthbar.getCanvas(), shieldBar.getCanvas());
 		
-		topBox.getChildren().addAll(healthShieldContainer, /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, igMenuBtn);
+		playerLevelTxt = new Text("Level " + Player.getCurrentLevel());
+		playerLevelTxt.setFont(new Font(30));
+		
+		topBox.getChildren().addAll(playerLevelTxt, healthShieldContainer, /*healthBoxContainer*/ammobar.getCanvas(), playerCoinDis, igMenuBtn);
 		topBox.setStyle("-fx-font-size: 15pt; -fx-background-color: #2257B4;");
 		topBox.setAlignment(Pos.CENTER);
 		headUpDis.setTop(topBox);
@@ -289,6 +293,8 @@ public class PlayingScene
 		
 		ammobar.updateCanvas(player.getCurrentAmmo());
 		//topHealthBox.setPrefWidth(200 - ((20 - player.getCurrentHealth()) * 10));
+		playerLevelTxt.setText("Level " + Player.getCurrentLevel());
+		
 		playerAmmoDis.setText("Ammo: " + player.getCurrentAmmo());
 		playerCoinDis.setText("Coins: " + player.getCoins());
 		for(int i = 0; i < player.getHotBar().length; i++)

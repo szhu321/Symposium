@@ -2,6 +2,7 @@ package mainGame.frontend.fxmls;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 import mainGame.GameRunner;
 import mainGame.saving.FileSaver;
 import myutilities.FileUtil;
+import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
 public class CharacterCreationController implements Initializable
@@ -69,7 +71,12 @@ public class CharacterCreationController implements Initializable
 	{
 		String str = playerNameField.getText();
 		if(str != null && !str.equals(""))
-			FileSaver.savePlayer(PlayerDesign.getSimpleStarterPlayer(str, "file:" + files[imgIdx]));
+		{
+			Player player = PlayerDesign.getSimpleStarterPlayer(str, "file:" + files[imgIdx]);
+			player.setDate(new Date());
+			FileSaver.savePlayer(player);
+		}
+			
 		GameRunner.getSceneTracker().switchToPlayMenuView();
 	}
 }

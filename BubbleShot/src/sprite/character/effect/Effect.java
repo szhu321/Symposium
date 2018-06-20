@@ -1,8 +1,12 @@
 package sprite.character.effect;
 
+import java.io.Serializable;
+
 import sprite.character.Character;
-public abstract class Effect
+public abstract class Effect implements Serializable
 {
+	private static final long serialVersionUID = -2002040933882600222L;
+	
 	private EffectManager thisManager;
 	private double defaultEffectTime;
 	private double effectTime;

@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import mainGame.GameRunner;
+import mainGame.saving.FileSaver;
 import mainGame.scene.PlayingScene;
 import map.Level;
 import map.Room;
@@ -32,11 +33,14 @@ import myutilities.TimerManager;
 import sprite.character.player.Player;
 import sprite.item.Item;
 import sprite.item.ammo.Ammo;
+import sprite.item.ammo.AmmoDesign;
 import sprite.item.collectable.CoinDesign;
 import sprite.item.collectable.InstantCollect;
 import sprite.item.potion.Potion;
+import sprite.item.potion.PotionDesign;
 import sprite.item.weapon.Weapon;
 import sprite.character.Character;
+import sprite.character.effect.EffectManager;
 import sprite.character.enemy.Boss;
 import sprite.character.enemy.Enemy;
 import sprite.character.enemy.Spawner;
@@ -149,6 +153,12 @@ public class GameManager
 		this.level.getCurrentRoom().addCharacter(player);
 		//Player.setCurrentLevel(Player.getCurrentLevel() + 1);
 		level.getCurrentRoom().getPlayer().setLocalLevel(level.getCurrentRoom().getPlayer().getLocalLevel() + 1);
+		
+		//Save current player
+		
+		FileSaver.savePlayer(player);
+		player.setEffectManager(new EffectManager(player));
+		
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		if(window.isFullScreen())
@@ -350,13 +360,24 @@ public class GameManager
 /////					playingScene.removeChildFromMoveArea(characters.get(i).getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getWeapon().getSpriteImageView());
 /////					playingScene.removeChildFromMoveArea(((Enemy)characters.get(i)).getHealthbar().getCanvas());
-					Item droppedItem=((Enemy)characters.get(i)).dropItem(level.getLevelNum());
-					if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
+					if(characters.get(i) instanceof Boss)
 					{
-						if(characters.get(i) instanceof Boss)
-							level.getCurrentRoom().scatterItems(CoinDesign.getCoinStack(30), characters.get(i).getXCenter(), characters.get(i).getYCenter());
-						else
+						List<Item> bossDropLoot = CoinDesign.getCoinStack(25 + Player.getCurrentLevel() * 3);
+						bossDropLoot.add(AmmoDesign.getAmmoDesignOne(0, 0));
+						bossDropLoot.add(AmmoDesign.getAmmoDesignOne(0, 0));
+						bossDropLoot.add(AmmoDesign.getAmmoDesignOne(0, 0));
+						bossDropLoot.add(AmmoDesign.getAmmoDesignOne(0, 0));
+						bossDropLoot.add(AmmoDesign.getAmmoDesignOne(0, 0));
+						bossDropLoot.add(PotionDesign.getHealthPotDesignOne(0, 0, Player.getCurrentLevel()));
+						level.getCurrentRoom().scatterItems(bossDropLoot , characters.get(i).getXCenter(), characters.get(i).getYCenter());
+					}
+					else
+					{
+						Item droppedItem=((Enemy)characters.get(i)).dropItem(level.getLevelNum());
+						if(droppedItem!=null&&((Enemy)characters.get(i)).isCanDropItem())
+						{
 							level.getCurrentRoom().addItem(droppedItem);
+						}
 					}
 					if(characters.get(i) instanceof Boss)
 					{

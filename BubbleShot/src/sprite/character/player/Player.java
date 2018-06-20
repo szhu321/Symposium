@@ -1,5 +1,7 @@
 package sprite.character.player;
 
+import java.util.Date;
+
 import mainGame.GameRunner;
 import map.Level;
 import sprite.character.Character;
@@ -27,6 +29,7 @@ public class Player extends Character
 	private static int currentLevel;
 	private int localLevel;
 	private Fist fist = WeaponDesign.getFistDesignOne(this);
+	private Date date;
 	
 	
 	public Player(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double health, double speed, int ammoCount) 
@@ -251,6 +254,14 @@ public class Player extends Character
 		this.localLevel = localLevel;
 		Player.setCurrentLevel(localLevel);
 	}
-	
-	
+
+	public Date getDate()
+	{
+		return date;
+	}
+
+	public void setDate(Date date)
+	{
+		this.date = date;
+	}
 }

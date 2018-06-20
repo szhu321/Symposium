@@ -1,5 +1,6 @@
 package sprite.character.effect;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,10 @@ import javafx.util.Duration;
 import sprite.character.Character;
 import myutilities.TimerManager;
 
-public class EffectManager
+public class EffectManager implements Serializable
 {
+	private static final long serialVersionUID = -1622860748433164140L;
+	
 	public static final double TIMES_RUN_PER_SEC = 60.0;
 	private Character character;
 	private List<Effect> effects;
