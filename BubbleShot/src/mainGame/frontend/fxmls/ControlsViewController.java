@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import mainGame.GameRunner;
 import mainGame.backend.Controls;
 import myutilities.ControlItem;
+import sound.SoundEffects;
 
 public class ControlsViewController implements Initializable
 {

@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import mainGame.GameRunner;
+import sound.SoundEffects;
 
 public class GameOverViewController implements Initializable
 {
@@ -25,6 +26,7 @@ public class GameOverViewController implements Initializable
 	public void mainManuBtnOnClick() throws Exception
 	{
 		GameRunner.destroyGameManager();
+		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		GameRunner.getSceneTracker().useMenuScene();
 		GameRunner.getSceneTracker().switchToMainMenuView();
 	}

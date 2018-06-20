@@ -2,6 +2,7 @@ package sprite.character.player;
 
 import java.io.Serializable;
 
+import sound.SoundEffects;
 import sprite.item.Item;
 import sprite.item.armor.Armor;
 import sprite.item.armor.Boots;
@@ -83,6 +84,8 @@ public class Inventory implements Serializable
 	
 	public void changeSelectedItem(int idx)
 	{
+		if(inventory[idx]!=null)
+			SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		if(idx < 0)
 		{
 			changeSelectedArmor(idx);

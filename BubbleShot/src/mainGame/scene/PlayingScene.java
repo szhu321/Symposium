@@ -45,6 +45,7 @@ import map.obstacle.Obstacle;
 import myutilities.Camera;
 import myutilities.TimeTracker;
 import myutilities.TimerManager;
+import sound.SoundEffects;
 import sprite.item.Item;
 import sprite.projectile.Projectile;
 import sprite.character.Character;
@@ -227,6 +228,7 @@ public class PlayingScene
 		Button igMenuBtn = new Button("Menu");
 		igMenuBtn.setOnMousePressed(event -> 
 		{
+			SoundEffects.MOUSE_CLICK_SOUND.playSound();
 			if(GameRunner.getGameManager().displayInventory())
 				GameRunner.getGameManager().toggleDisInventory();
 			updateAllLocation();
@@ -257,6 +259,7 @@ public class PlayingScene
 	
 	public void toggleInGameMenu()
 	{
+
 		if(TimerManager.isPaused)
 		{
 			roomView.getCanvas().setMouseTransparent(false);
@@ -365,7 +368,6 @@ public class PlayingScene
 		playerHotbarDisCanvas[3].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(3);});
 		playerHotbarDisCanvas[4].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(4);});
 		playerHotbarDisCanvas[5].setOnMousePressed(event -> {currentRoom.getPlayer().getInventory().changeSelectedItem(5);});
-		
 		bottomBox.setStyle("-fx-background-color: #2257B4; -fx-background-radius: 20px;");
 		bottomBox.setOnMousePressed(event -> event.consume());
 		return bottomBox;

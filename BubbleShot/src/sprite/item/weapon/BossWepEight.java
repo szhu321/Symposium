@@ -1,6 +1,7 @@
 package sprite.item.weapon;
 
 import mainGame.GameRunner;
+import sound.SoundEffects;
 import sprite.character.Character;
 import sprite.character.enemy.Enemy;
 import sprite.character.player.Player;
@@ -77,7 +78,7 @@ public class BossWepEight extends Weapon
 				projectile.setXLocation(projectileStartX);
 				projectile.setYLocation(projectileStartY);
 				projectile.setDamage(getDamage());
-				
+				SoundEffects.SWORD_SWING_SOUND.playSound();
 				//Adding the newly created projectile.
 				GameRunner.getGameManager().addProjectile(projectile);
 			}

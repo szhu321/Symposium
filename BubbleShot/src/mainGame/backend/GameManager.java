@@ -724,6 +724,7 @@ public class GameManager
 		if(item != null && ((item.isItemPickable() && !player.isInventoryFull()) || item instanceof InstantCollect))
 		{
 			level.getCurrentRoom().removeItem(item);
+			SoundEffects.PICK_UP_ITEM_SOUND.playSound();
 /////			playingScene.removeChildFromMoveArea(item.getSpriteImageView());
 			player.addItem(item);
 		}
@@ -809,6 +810,7 @@ public class GameManager
 		Item boughtItem=checkShopCollision();
 		if(boughtItem!=null)
 		{
+			SoundEffects.PICK_UP_ITEM_2_SOUND.playSound();
 			player.addItem(boughtItem);
 		}
 	}

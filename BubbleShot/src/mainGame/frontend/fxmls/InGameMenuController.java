@@ -6,6 +6,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import mainGame.GameRunner;
 import mainGame.backend.GameManager;
+import sound.BackgroundSound;
+import sound.SoundEffects;
 
 public class InGameMenuController 
 {
@@ -22,18 +24,22 @@ public class InGameMenuController
 	
 	public void resumeBtnOnclick()
 	{
+		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		GameRunner.getGameManager().getPlayingScene().toggleInGameMenu();
 	}
 	
 	public void quitBtnOnclick() throws Exception
 	{
 		GameRunner.destroyGameManager();
+		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		GameRunner.getSceneTracker().useMenuScene();
 		GameRunner.getSceneTracker().switchToMainMenuView();
+		BackgroundSound.stopAllBackgroundMusic();
 	}
 	
 	public void settingsBtnOnclick() throws Exception
 	{
+		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		GameRunner.getSceneTracker().useMenuScene();
 		GameRunner.getSceneTracker().switchToSettingsView();
 	}

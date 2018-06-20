@@ -35,44 +35,47 @@ public class BossThree extends AI
 		//Pauses an enemy after an attack and resets time for new attack
 		if(time==300)
 			time=0;
-		if(wepArrNum==0)
+		if(time<200)
 		{
-				Room currentRoom=GameRunner.getGameManager().getLevel().getCurrentRoom();
-				Tile[][] allTiles=currentRoom.getTiles();
-				for(int i=onetime;i<allTiles.length;i++)
-				{
-					for(int s=0;s<allTiles[0].length;s++)
-					{
-						if(i!=3&&s!=allTiles[0].length-4&&s!=3&&i!=allTiles.length-4)
-							currentRoom.setTileAt(s, i, TileDesign.getLavaTileDesignOne(i*100, s*100, 100, 100, 0));
-					}
-				}
-		}
-		else
-		{
+			if(wepArrNum==0)
+			{
 					Room currentRoom=GameRunner.getGameManager().getLevel().getCurrentRoom();
 					Tile[][] allTiles=currentRoom.getTiles();
 					for(int i=onetime;i<allTiles.length;i++)
 					{
 						for(int s=0;s<allTiles[0].length;s++)
-						{			
-							currentRoom.setTileAt(s, i, TileDesign.getStoneTileDesignOne(i*100, s*100, 100, 100, 0));
+						{
+							if(i!=3&&s!=allTiles[0].length-4&&s!=3&&i!=allTiles.length-4)
+								currentRoom.setTileAt(s, i, TileDesign.getLavaTileDesignOne(i*100, s*100, 100, 100, 0));
 						}
 					}
-				
+			}
+			else
+			{
+						Room currentRoom=GameRunner.getGameManager().getLevel().getCurrentRoom();
+						Tile[][] allTiles=currentRoom.getTiles();
+						for(int i=onetime;i<allTiles.length;i++)
+						{
+							for(int s=0;s<allTiles[0].length;s++)
+							{			
+								currentRoom.setTileAt(s, i, TileDesign.getStoneTileDesignOne(i*100, s*100, 100, 100, 0));
+							}
+						}
+					
+			}
+			if(time%10==0)
+			{
+				int wepIdx=(int)(Math.random()*((Boss)(this.getEnemy())).getAllWep().size());
+				((Boss)(this.getEnemy())).switchWeapon(wepIdx);
+			}
+			if(time%300==0)
+			{
+				wepArrNum=(int)(Math.random()*3);
+				((WizardBoss)(this.getEnemy())).switchElement(wepArrNum);
+			}
+			this.getEnemy().useCurrentItem(Item.WEAPON);		
+			//this.getEnemy().useCurrentItem(Item.WEAPON);
 		}
-		if(time%10==0)
-		{
-			int wepIdx=(int)(Math.random()*((Boss)(this.getEnemy())).getAllWep().size());
-			((Boss)(this.getEnemy())).switchWeapon(wepIdx);
-		}
-		if(time%300==0)
-		{
-			wepArrNum=(int)(Math.random()*3);
-			((WizardBoss)(this.getEnemy())).switchElement(wepArrNum);
-		}
-		this.getEnemy().useCurrentItem(Item.WEAPON);		
-		//this.getEnemy().useCurrentItem(Item.WEAPON);
 		time++;
 	}
 	

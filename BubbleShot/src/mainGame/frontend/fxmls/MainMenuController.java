@@ -12,6 +12,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import mainGame.GameRunner;
 import mainGame.SceneTracker;
+import sound.SoundEffects;
 
 public class MainMenuController implements Initializable
 {
@@ -41,6 +42,7 @@ public class MainMenuController implements Initializable
 	public void playBtnOnclick() throws Exception
 	{
 		GameRunner.getSceneTracker().switchToPlayMenuView();
+	//	SoundEffects.MENU_SELECT_SOUND.playSound();
 	}
 	
 //	public void mapEditorBtnOnclick()
@@ -51,11 +53,13 @@ public class MainMenuController implements Initializable
 	public void settingsBtnOnclick() throws Exception
 	{
 		GameRunner.getSceneTracker().switchToSettingsView();
+	//	SoundEffects.MENU_SELECT_SOUND.playSound();
 	}
 	
 	public void quitBtnOnclick()
 	{
 		GameRunner.getWindow().close();
+	//	SoundEffects.MENU_SELECT_SOUND.playSound();
 	}
 
 	
