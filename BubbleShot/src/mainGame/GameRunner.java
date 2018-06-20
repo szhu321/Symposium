@@ -60,7 +60,7 @@ public class GameRunner extends Application
 		loadGraphics();
 		loadSounds();
 		loadFXMLs();
-		
+		SoundEffects.NICE_GAME_MUSIC.playSound();
 //		Player player = PlayerDesign.getSimpleStarterPlayer("Joy");
 //////	//Enemy[] enemyList= {EnesmyDesign.getRegularDesignOne(500, 500,player),EnemyDesign.getRegularDesignOne(500, 600,player)};
 //		gameManager = new GameManager(LevelDesign.getLevelTestBoss(), player, window, controls);
