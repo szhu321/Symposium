@@ -97,7 +97,7 @@ public class EnemyDesign
 	public static Enemy getBaseDesignOne(double x, double y, Player player,int levelNum)
 	{
 		int health=50+(levelNum-1)*10;
-		String fileName = "file:resources/enemy/enemy3.png";
+		String fileName = "file:resources/enemy/hut.png";
 		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y,levelNum);
 		rifle.setDefaultCoolDownTime(.8);
 		Enemy enemy=new Spawner("Spawner1 Brian",fileName, x, y,health, 130, 50, 50, rifle,player,Enemy.SPAWNER1);
@@ -107,7 +107,7 @@ public class EnemyDesign
 	public static Enemy getBaseDesignTwo(double x, double y, Player player,int levelNum)
 	{
 		int health=50+(levelNum-1)*10;
-		String fileName = "file:resources/enemy/enemy3.png";
+		String fileName = "file:resources/enemy/hut.png";
 		Weapon rifle=WeaponDesign.getEAssaultRifleDesignOne(x, y,levelNum);
 		rifle.setDefaultCoolDownTime(.8);
 		String randomEnemy="";

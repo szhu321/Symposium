@@ -51,9 +51,7 @@ public class Stationary extends AI
 	}
 	
 	public void action(double sec)
-	{
-		this.getEnemy().calculateEnemyAngleToPlayer();
-		
+	{	
 		//Only spawners can spawn enemies
 		if(this.getEnemy().getEnemyType().equals(Enemy.SPAWNER1)||this.getEnemy().getEnemyType().equals(Enemy.SPAWNER2))
 		{
@@ -63,8 +61,11 @@ public class Stationary extends AI
 			}
 			time++;
 		}
-		else
-			this.getEnemy().useCurrentItem(Item.WEAPON);
+		else	
+		{
+			this.getEnemy().calculateEnemyAngleToPlayer();
+			this.getEnemy().useCurrentItem(Item.WEAPON);		
+		}
 	}
 	public void move(double sec)
 	{
