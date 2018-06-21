@@ -151,16 +151,15 @@ public class GameManager
 	{
 		TimerManager.pauseAll();
 		resetKeys();
-		this.level = level;
-		this.level.getCurrentRoom().addCharacter(player);
-		//Player.setCurrentLevel(Player.getCurrentLevel() + 1);
-		level.getCurrentRoom().getPlayer().setLocalLevel(level.getCurrentRoom().getPlayer().getLocalLevel() + 1);
+		//Player.setCurrentLevel(Player.getCurrentLevel() + 1);	
 		
 		//Save current player
-		
+		player.setLocalLevel(player.getLocalLevel() + 1);
 		FileSaver.savePlayer(player);
-		player.setEffectManager(new EffectManager(player));
 		
+		this.level = level;
+		this.level.getCurrentRoom().addCharacter(player);
+		player.setEffectManager(new EffectManager(player));
 		playingScene = new PlayingScene(this.level.getCurrentRoom());
 		setSceneControls(playingScene.getScene());
 		if(window.isFullScreen())

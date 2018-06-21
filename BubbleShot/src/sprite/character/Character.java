@@ -18,7 +18,7 @@ public abstract class Character extends Sprite
 	private transient MovementDrive movement;
 	
 	private transient EffectManager effectManager;
-	private	Room currentRoom;
+	private	transient Room currentRoom;
 	
 	public Character(String spriteName, String fileName, double xLocation, double yLocation, double health, double speed, double width, double height) 
 	{

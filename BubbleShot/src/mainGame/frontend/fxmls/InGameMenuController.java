@@ -34,7 +34,7 @@ public class InGameMenuController
 		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		GameRunner.getSceneTracker().useMenuScene();
 		GameRunner.getSceneTracker().switchToMainMenuView();
-		BackgroundSound.stopAllBackgroundMusic();
+		SoundEffects.NICE_GAME_MUSIC.playSound();
 	}
 	
 	public void settingsBtnOnclick() throws Exception

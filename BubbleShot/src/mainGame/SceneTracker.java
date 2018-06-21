@@ -21,6 +21,7 @@ public class SceneTracker
 		root = new Group();
 		scene = new Scene(root);
 		scene.getStylesheets().add("mainGame/frontend/fxmls/button.css");
+		scene.getStylesheets().add("mainGame/frontend/fxmls/background.css");
 		this.window.setScene(scene);
 	}
 	
