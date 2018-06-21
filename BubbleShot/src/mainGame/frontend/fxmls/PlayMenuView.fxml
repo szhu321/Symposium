@@ -33,7 +33,10 @@
    <center>
       <ScrollPane fx:id="scrollPaneContainer" prefHeight="${container.height}" prefWidth="200" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="playerPickerRow" spacing="30.0" />
+            <VBox fx:id="playerPickerRow" spacing="30.0">
+               <padding>
+                  <Insets left="60.0" top="30.0" />
+               </padding></VBox>
          </content>
       </ScrollPane>
    </center>
