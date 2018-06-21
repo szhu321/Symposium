@@ -11,19 +11,20 @@
    <center>
       <HBox prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fx:id="scrollPaneContainer" prefHeight="500" prefWidth="200">
-               <content>
-                  <VBox fx:id="playerPickerRow" spacing="30.0">
-                     <children>
-                        <Label text="Pick Character">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
+            <VBox>
+               <children>
+                  <Label text="Pick Character">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="scrollPaneContainer"  prefHeight="${container.height}" prefWidth="200">
+                     <content>
+                        <VBox fx:id="playerPickerRow" spacing="30.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
             <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="410.0" />

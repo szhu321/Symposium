@@ -21,6 +21,7 @@ public class SettingsViewController implements Initializable
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
+		container.setId("borderPaneContainer");
 	}
 	
 	public void soundBtnOnclick() throws Exception

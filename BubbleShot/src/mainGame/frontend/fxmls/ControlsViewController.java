@@ -36,6 +36,7 @@ public class ControlsViewController implements Initializable
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
+		container.setId("borderPaneContainer");
 		controlItemGrid.setPrefWidth(GameRunner.getResolutionWidth() - 50);
 		controlContainer.setPrefHeight(GameRunner.getResolutionHeight() - 100);
 		controls = GameRunner.getControls();

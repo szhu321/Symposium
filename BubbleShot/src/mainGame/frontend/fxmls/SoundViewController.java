@@ -24,6 +24,7 @@ public class SoundViewController implements Initializable
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
+		container.setId("borderPaneContainer");
 		backgroundMusicSlider.setMin(0);
 		backgroundMusicSlider.setMax(1);
 		soundEffectsSlider.setMin(0);
