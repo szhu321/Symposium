@@ -651,8 +651,9 @@ public class Room implements Serializable
 			//All tiles in the current room
 			int[][] spawnTile=new int[tiles.length][tiles[0].length];
 			//Random amount of enemies 
-			int amountEnemies= MyMath.getRandomInteger((Player.getCurrentLevel() - 1)*2 + 1, (Player.getCurrentLevel() - 1)*2 + 2);
-			
+			int amountEnemies= MyMath.getRandomInteger((Player.getCurrentLevel() - 1)*1 + 1, (Player.getCurrentLevel() - 1)*1 + 2);
+			if(amountEnemies > 20)
+				amountEnemies = 20;
 			//System.out.println("AMOUNT ENEMIES: "+amountEnemies);
 			
 			//Get Current X and Y tile of player

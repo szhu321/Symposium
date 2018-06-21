@@ -23,6 +23,7 @@
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Button mnemonicParsing="false" onMouseClicked="#deleteBtnOnClick" text="Delete" />
             <Button mnemonicParsing="false" onMouseClicked="#startBtnOnclick" text="Start" />
+            <Label fx:id="messageLabel" />
          </children>
          <padding>
             <Insets bottom="10.0" left="50.0" top="10.0" />

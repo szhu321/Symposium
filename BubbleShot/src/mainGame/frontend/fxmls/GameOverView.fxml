@@ -7,7 +7,7 @@
 
 <BorderPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.GameOverViewController">
    <center>
-      <GridPane fx:id="innerCenterContainer" BorderPane.alignment="CENTER">
+      <GridPane fx:id="innerCenterContainer" alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -19,8 +19,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Game Over" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" onMouseClicked="#mainManuBtnOnClick" text="Return to Main Menu" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" text="GAME OVER!" GridPane.columnIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#mainManuBtnOnClick" text="Return to Main Menu" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

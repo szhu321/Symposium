@@ -72,7 +72,7 @@ public class CharacterCreationController implements Initializable
 	
 	public void nextIconBtnOnclick()
 	{
-		SoundEffects.MENU_SELECT_SOUND.playSound();
+		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		imgIdx++;
 		imgIdx %= files.length;
 		displayImage();
@@ -80,7 +80,7 @@ public class CharacterCreationController implements Initializable
 	
 	public void previousIconBtnOnclick()
 	{
-		SoundEffects.MENU_SELECT_SOUND.playSound();
+		SoundEffects.MOUSE_CLICK_SOUND.playSound();
 		imgIdx--;
 		if(imgIdx < 0)
 			imgIdx = files.length - 1;

@@ -151,10 +151,8 @@ public class GameManager
 	{
 		TimerManager.pauseAll();
 		resetKeys();
-		//Player.setCurrentLevel(Player.getCurrentLevel() + 1);	
-		
 		//Save current player
-		player.setLocalLevel(player.getLocalLevel() + 1);
+		
 		FileSaver.savePlayer(player);
 		player.setEffectManager(new EffectManager(player));
 		this.level = level;
@@ -172,6 +170,7 @@ public class GameManager
 		{
 			GameRunner.setScene(playingScene.getScene());
 		}
+		SoundEffects.FUNKY_GAME_MUSIC.playSound();
 		TimerManager.resumeAll();
 	}
 	
@@ -605,7 +604,8 @@ public class GameManager
 										}
 										if(t instanceof LevelTele)
 										{
-											changeLevel(((LevelTele)t).nextLevel(Player.getCurrentLevel()+1));
+											player.setLocalLevel(player.getLocalLevel() + 1);
+											changeLevel(((LevelTele)t).nextLevel(Player.getCurrentLevel()));
 											return;
 										}
 										//System.out.println(currentTele.getConnectedTeleporter().getId());
