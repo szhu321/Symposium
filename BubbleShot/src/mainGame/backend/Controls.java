@@ -87,6 +87,7 @@ public class Controls
 		hotBar4 = new ControlItem("Hot Key 4", KeyCode.DIGIT4.toString());
 		hotBar5 = new ControlItem("Hot Key 5", KeyCode.DIGIT5.toString());
 		hotBar6 = new ControlItem("Hot Key 6", KeyCode.DIGIT6.toString());
+		fillUpControlItemList();
 	}
 
 	/* Getters*/

@@ -9,6 +9,7 @@
 
 #selectPlayerContainer
 {
+	-fx-background-color: rgb(26, 74, 142);
 	-fx-border-insets: 5px;
 	-fx-padding: 5px;
 	-fx-border-style: solid;

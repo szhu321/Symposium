@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import mainGame.GameRunner;
 import mainGame.backend.Graphics;
 import myutilities.ControlItem;
@@ -23,7 +25,7 @@ public class GraphicsViewController implements Initializable
 	public BorderPane container;
 	
 	public ScrollPane graphicsContainer;
-	public GridPane graphicsItemGrid;
+	public GridPane graphicsItemBox;
 	
 	private Graphics graphics;
 	private List<CheckBox> boxHolder;
@@ -34,7 +36,7 @@ public class GraphicsViewController implements Initializable
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
 		container.setId("borderPaneContainer");
-		graphicsItemGrid.setPrefWidth(GameRunner.getResolutionWidth() - 300);
+		graphicsItemBox.setPrefWidth(GameRunner.getResolutionWidth() - 300);
 		graphicsContainer.setPrefHeight(GameRunner.getResolutionHeight() - 100);
 		graphics = GameRunner.getGraphics();
 		loadGraphicsItemGrid();
@@ -55,8 +57,10 @@ public class GraphicsViewController implements Initializable
 			inputBox.setOnAction(event -> changeValue(inputBox, currentItem.getId()));
 			
 			boxHolder.add(inputBox);
-			graphicsItemGrid.add(text, 1, i);
-			graphicsItemGrid.add(inputBox, 2, i);
+			//HBox hb = new HBox(30);
+			//hb.getChildren().addAll(text, inputBox);
+			graphicsItemBox.add(text, 1, i);
+			graphicsItemBox.add(inputBox, 2, i);
 		}
 	}
 	
@@ -68,7 +72,17 @@ public class GraphicsViewController implements Initializable
 	
 	public void resetBtnOnclick()
 	{
-		
+		graphics.resetGraphics();
+		updateCheckBoxxes();
+	}
+	
+	public void updateCheckBoxxes()
+	{
+		List<GraphicsItem> items = graphics.getGraphicsItems();
+		for(int i = 0; i < items.size(); i++)
+		{
+			boxHolder.get(i).setSelected(items.get(i).getCurrentValue());
+		}
 	}
 	
 	public void backBtnOnclick() throws Exception

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -18,9 +19,14 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#startBtnOnclick" text="Start" />
             <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <Button mnemonicParsing="false" onMouseClicked="#deleteBtnOnClick" text="Delete" />
+            <Button mnemonicParsing="false" onMouseClicked="#startBtnOnclick" text="Start" />
          </children>
+         <padding>
+            <Insets bottom="10.0" left="50.0" top="10.0" />
+         </padding>
       </HBox>
    </bottom>
    <center>

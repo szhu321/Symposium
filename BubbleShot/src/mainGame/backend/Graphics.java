@@ -51,6 +51,7 @@ public class Graphics
 		displayCharacterEffects = new GraphicsItem("Display Character Effects", true);
 		displayShadowMode = new GraphicsItem("Display Shadow Mode", false);
 		//displayBlindMode = new GraphicsItem("Display Blind Mode", false);
+		fillUpGraphicsItemList();
 	}
 
 	/*Getters*/

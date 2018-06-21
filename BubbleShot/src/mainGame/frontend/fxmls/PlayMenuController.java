@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import mainGame.GameRunner;
 import mainGame.SceneTracker;
+import mainGame.saving.FileDeleter;
 import mainGame.saving.FileReader;
 import map.LevelDesign;
 import sound.SoundEffects;
@@ -117,5 +118,13 @@ public class PlayMenuController implements Initializable
 		GameRunner.startGameManager();
 	}
 
+	public void deleteBtnOnClick() throws Exception
+	{
+		if(selectedPlayer == null)
+			return;
+		SoundEffects.MENU_SELECT_SOUND.playSound();
+		FileDeleter.deletePlayer(selectedPlayer);
+		GameRunner.getSceneTracker().switchToPlayMenuView();
+	}
 	
 }

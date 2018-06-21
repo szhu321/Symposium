@@ -109,13 +109,10 @@ public class ControlsViewController implements Initializable
 		removeEventHandlers();
 	}
 	
-	public void applyBtnOnclick()
+	public void resetBtnOnclick() throws Exception
 	{
-		
-	}
-	
-	public void resetBtnOnclick()
-	{
-		
+		SoundEffects.MENU_SELECT_SOUND.playSound();
+		controls.resetControls();
+		GameRunner.getSceneTracker().switchToControlsView();
 	}
 }
