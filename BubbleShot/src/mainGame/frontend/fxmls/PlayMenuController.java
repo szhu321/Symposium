@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Skin;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -35,6 +37,7 @@ public class PlayMenuController implements Initializable
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
+		container.setId("borderPaneContainer");
 		scrollPaneContainer.prefWidthProperty().bind(container.prefWidthProperty().divide(2));
 		
 		players = FileReader.loadPlayer();
@@ -50,25 +53,27 @@ public class PlayMenuController implements Initializable
 				characterImages[i] = new ImageView(players[i].getSpriteImage());
 				characterImages[i].setFitWidth(100);
 				characterImages[i].setFitHeight(100);
-				characterImages[i].setStyle("-fx-opacity:.5");
+				//characterImages[i].setStyle("-fx-opacity:.5");
 				characterSaveSlots[i] = new HBox(20);
-				characterSaveSlots[i].setOnMouseClicked(event -> 
-				{
-					for(int j = 0; j < characterImages.length; j++)
-					{
-						characterImages[j].setStyle("-fx-opacity:.5");
-						if(characterImages[j].equals(event.getTarget()))
-						{
-							selectedPlayer = players[j];
-							characterImages[j].setStyle("-fx-opacity:1");
-						}
-					}
-					//displaySelectedPlayer();
-				});
+				characterSaveSlots[i].setId("selectPlayerContainer");
 				VBox txtContainer = new VBox();
 				txtContainer.setStyle("-fx-font-size:24pt");
 				txtContainer.getChildren().addAll(playerStatTxt, dateTxt);
 				characterSaveSlots[i].getChildren().addAll(characterImages[i], txtContainer);
+				characterSaveSlots[i].setOnMouseClicked(event -> 
+				{
+					for(int j = 0; j < characterImages.length; j++)
+					{
+						characterSaveSlots[j].setStyle("-fx-border-width:5px");
+						if(characterSaveSlots[j].equals(event.getTarget()))
+						{
+							selectedPlayer = players[j];
+							characterSaveSlots[j].setStyle("-fx-border-width:10px");
+						}
+					}
+					//displaySelectedPlayer();
+				});
+				
 			}
 			for(int i = 0; i < characterSaveSlots.length; i++)
 			{

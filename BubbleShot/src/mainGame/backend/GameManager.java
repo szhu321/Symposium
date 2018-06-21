@@ -156,7 +156,7 @@ public class GameManager
 		//Save current player
 		player.setLocalLevel(player.getLocalLevel() + 1);
 		FileSaver.savePlayer(player);
-		
+		player.setEffectManager(new EffectManager(player));
 		this.level = level;
 		this.level.getCurrentRoom().addCharacter(player);
 		player.setEffectManager(new EffectManager(player));

@@ -1,14 +1,14 @@
 .button
 {
-	-fx-background-radius: 20px;
+	-fx-background-radius: 23px;
 	-fx-background-color: black;
 	-fx-text-fill: white; 
 	-fx-font-size: 24px;
 	-fx-min-width: 300px;
 	-fx-border-color: black;
 	-fx-border-style: solid;
-	-fx-border-width: 2px;
-	-fx-border-radius: 20px;
+	-fx-border-width: 3px;
+	-fx-border-radius: 18px;
 	-fx-cursor: hand;
 }
 
@@ -24,3 +24,10 @@
 	-fx-background-color: white;
 	-fx-text-fill: black;
 }
+
+.iconBtn
+{
+	-fx-min-width: 40px;
+	-fx-min-height:80px;
+}
+

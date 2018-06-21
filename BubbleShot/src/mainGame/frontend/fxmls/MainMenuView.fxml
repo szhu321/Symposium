@@ -15,7 +15,8 @@
             <MediaView fx:id="backgroundVid" fitHeight="${container.height}" fitWidth="${container.width}" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" stylesheets="mainGame/frontend/fxmls/button.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="playBtn" mnemonicParsing="false" onMouseClicked="#playBtnOnclick" text="Play">
+                  <Button mnemonicParsing="false" onMouseClicked="#newGameBtnOnclick" text="New Game" />
+                  <Button fx:id="playBtn" mnemonicParsing="false" onMouseClicked="#loadGameBtnOnclick" text="Load Game">
             </Button>
                   <Button fx:id="settingsBtn" mnemonicParsing="false" onMouseClicked="#settingsBtnOnclick" text="Settings">
             </Button>

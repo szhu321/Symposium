@@ -34,21 +34,20 @@ public class MainMenuController implements Initializable
 		MediaPlayer mp = new MediaPlayer(new Media(new File("resources/background/MainMenuBackgroundVid.mp4").toURI().toString()));
 		mp.setAutoPlay(true);
 		mp.setCycleCount(Integer.MAX_VALUE);
-	//	backgroundVid.setFitHeight(GameRunner.getResolutionHeight());
-		//backgroundVid.setFitWidth(GameRunner.getResolutionHeight());
 		backgroundVid.setMediaPlayer(mp);
 	}
 	
-	public void playBtnOnclick() throws Exception
+	public void loadGameBtnOnclick() throws Exception
 	{
 		GameRunner.getSceneTracker().switchToPlayMenuView();
 		SoundEffects.MENU_SELECT_SOUND.playSound();
 	}
 	
-//	public void mapEditorBtnOnclick()
-//	{
-//		
-//	}
+	public void newGameBtnOnclick() throws Exception
+	{
+		GameRunner.getSceneTracker().switchToCharacterCreationView();
+		SoundEffects.MENU_SELECT_SOUND.playSound();
+	}
 	
 	public void settingsBtnOnclick() throws Exception
 	{

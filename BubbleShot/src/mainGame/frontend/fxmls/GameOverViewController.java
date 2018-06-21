@@ -19,6 +19,7 @@ public class GameOverViewController implements Initializable
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
+		container.setId("borderPaneContainer");
 		innerCenterContainer.setPrefHeight(GameRunner.getResolutionHeight());
 		innerCenterContainer.setPrefWidth(GameRunner.getResolutionWidth());
 	}

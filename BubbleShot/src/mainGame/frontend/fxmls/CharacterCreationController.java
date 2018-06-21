@@ -5,15 +5,21 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import mainGame.GameRunner;
+import mainGame.saving.FileReader;
 import mainGame.saving.FileSaver;
+import map.LevelDesign;
 import myutilities.FileUtil;
 import sound.SoundEffects;
 import sprite.character.player.Player;
@@ -25,6 +31,10 @@ public class CharacterCreationController implements Initializable
 	
 	public Canvas playIconView;
 	public TextField playerNameField;
+	public Label messageLabel;
+	
+	private Timeline timeline;
+	private KeyFrame kf;
 	private int imgIdx;
 	private File[] files;
 	
@@ -33,8 +43,20 @@ public class CharacterCreationController implements Initializable
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
+		container.setId("borderPaneContainer");
 		grabImages();
 		displayImage();
+		generateClearMessageLabelTimer();
+	}
+	
+	private void generateClearMessageLabelTimer()
+	{
+		timeline = new Timeline();
+		kf = new KeyFrame(Duration.seconds(2), event -> 
+		{
+			messageLabel.setText("");
+		});
+		timeline.getKeyFrames().add(kf);
 	}
 	
 	private void grabImages()
@@ -68,20 +90,49 @@ public class CharacterCreationController implements Initializable
 	public void backBtnOnclick() throws Exception
 	{
 		SoundEffects.MENU_SELECT_SOUND.playSound();
-		GameRunner.getSceneTracker().switchToPlayMenuView();
+		GameRunner.getSceneTracker().switchToMainMenuView();
 	}
 	
-	public void createCharacterBtn() throws Exception
+	public void startGameBtn() throws Exception
 	{
 		SoundEffects.MENU_SELECT_SOUND.playSound();
 		String str = playerNameField.getText();
-		if(str != null && !str.equals(""))
+		if(str == null || str.equals(""))
 		{
+			messageLabel.setText("Enter A Name");
+			runMessageClearer();
+		}
+		else
+		{
+			Player[] players = FileReader.loadPlayer();
+			for(Player p : players)
+			{
+				if(p.getSpriteName().equals(str))
+				{
+					messageLabel.setText("Name Already Taken");
+					runMessageClearer();
+					return;
+				}
+			}
 			Player player = PlayerDesign.getSimpleStarterPlayer(str, "file:" + files[imgIdx]);
 			player.setDate(new Date());
 			FileSaver.savePlayer(player);
-		}
-			
-		GameRunner.getSceneTracker().switchToPlayMenuView();
+			player.reloadObject();
+			startGame(player);
+		}		
+		//GameRunner.getSceneTracker().switchToPlayMenuView();
+	}
+	
+	private void startGame(Player player)
+	{
+		Player.setCurrentLevel(player.getLocalLevel());
+		GameRunner.createGameManager(LevelDesign.getRandomLevelDesign(4, 4, player.getLocalLevel()), player);
+		GameRunner.startGameManager();
+	}
+	
+	private void runMessageClearer()
+	{
+		
+		timeline.playFromStart();
 	}
 }

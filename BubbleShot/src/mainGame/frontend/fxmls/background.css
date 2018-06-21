@@ -1,4 +1,45 @@
-.root
+#borderPaneContainer
 {
-	-fx-background-color: blue;
+	-fx-background-color: rgb(6, 54, 122);
+	-fx-border-style: solid ;
+	-fx-border-width: 5px;
+	-fx-border-radius: 20px;
+	-fx-border-insets: 50px, 50px, 100px, 50px;
 }
+
+#selectPlayerContainer
+{
+	-fx-border-insets: 5px;
+	-fx-padding: 5px;
+	-fx-border-style: solid;
+	-fx-border-width: 5px;
+	-fx-pref-width: 100%;
+}
+
+.scroll-pane
+{
+	-fx-background-color:black;
+	-fx-border-radius: 20px;
+}
+
+.scroll-pane > .viewport
+{
+	-fx-background-color: rgb(6, 54, 122);
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track
+{
+	-fx-background-color:transparent;
+	-fx-border-color:transparent;
+	-fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb
+{
+	-fx-border-width: 20px;
+	-fx-border-style:dotted ;
+	-fx-background-radius: 5em;
+}
+

@@ -39,6 +39,10 @@ public class BouncingProjectile extends LinearProjectile
 			return true;
 		LinearParaEquation currentEq = getTravelPath();
 		double angle = 0;
+		if(hitSide == null)
+		{
+			return true;
+		}
 		if(hitSide.equals(HIT_BOTTOM_EDGE) || hitSide.equals(HIT_TOP_EDGE))
 		{
 			angle = MyMath.findAngleBetween(currentEq.getDeltaX(), currentEq.getDeltaY(), currentEq.getDeltaX() * 5, -currentEq.getDeltaY() * 5);
