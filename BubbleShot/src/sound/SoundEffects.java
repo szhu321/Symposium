@@ -16,7 +16,7 @@ public class SoundEffects
 	/*Sound Effects*/
 	public static final EffectSound GUN_SHOT_SOUND = new EffectSound("resources/soundEffects/gunShot.wav");
 	public static final EffectSound MENU_SELECT_SOUND = new EffectSound("resources/soundEffects/MenuSelectSound.mp3");
-	public static final EffectSound PEW_PEW_SOUND = new EffectSound("resources/soundEffects/pew_pew.wav");
+	public static final EffectSound PEW_PEW_SOUND = new EffectSound("resources/soundEffects/pew_pew.mp3");
 	public static final EffectSound MOUSE_CLICK_SOUND = new EffectSound("resources/soundEffects/MouseClick.mp3");
 	public static final EffectSound PICK_UP_ITEM_SOUND = new EffectSound("resources/soundEffects/PickUpItemSound.mp3");
 	public static final EffectSound PICK_UP_ITEM_2_SOUND = new EffectSound("resources/soundEffects/PickUpItem2Sound.mp3");

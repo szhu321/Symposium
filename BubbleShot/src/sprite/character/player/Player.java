@@ -39,7 +39,7 @@ public class Player extends Character
 		currentItemIdx = 0;
 		currentAmmo = ammoCount;
 		defaultAmmo = ammoCount;
-		coins = 2000;
+		coins = 0;
 		localLevel = 1;
 		currentLevel = localLevel;
 	}

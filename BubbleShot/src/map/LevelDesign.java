@@ -87,7 +87,7 @@ public class LevelDesign
 		Room[][] map = newLevel.getMap();
 		List<Coord> tilesCoords=new ArrayList<Coord>();
 		//Sets the current room to the middle of the level
-		map[rows/2][cols/2]=RoomDesign.getRoomDesignTest();
+		map[rows/2][cols/2]=RoomDesign.getRoomDesignOne();
 		map[rows/2][cols/2].setLevelRow(rows/2);
 		map[rows/2][cols/2].setLevelCol(cols/2);
 		newLevel.setCurrentRoom(rows/2,cols/2);

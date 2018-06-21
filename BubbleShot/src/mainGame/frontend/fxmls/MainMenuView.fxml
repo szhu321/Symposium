@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
@@ -13,7 +14,7 @@
       <StackPane>
          <children>
             <MediaView fx:id="backgroundVid" fitHeight="${container.height}" fitWidth="${container.width}" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" stylesheets="mainGame/frontend/fxmls/button.css" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" stylesheets="mainGame/frontend/fxmls/button.css" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#newGameBtnOnclick" text="New Game" />
                   <Button fx:id="playBtn" mnemonicParsing="false" onMouseClicked="#loadGameBtnOnclick" text="Load Game">
@@ -23,6 +24,9 @@
                   <Button fx:id="quitBtn" mnemonicParsing="false" onMouseClicked="#quitBtnOnclick" text="Quit">
             </Button>
                </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
             </VBox>
          </children>
       </StackPane>
