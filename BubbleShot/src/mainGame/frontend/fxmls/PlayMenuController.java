@@ -38,7 +38,7 @@ public class PlayMenuController implements Initializable
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
 		container.setId("borderPaneContainer");
-		scrollPaneContainer.prefWidthProperty().bind(container.prefWidthProperty().divide(2));
+		scrollPaneContainer.prefWidthProperty().bind(container.prefWidthProperty());
 		
 		players = FileReader.loadPlayer();
 		if(players != null)
@@ -65,7 +65,7 @@ public class PlayMenuController implements Initializable
 					for(int j = 0; j < characterImages.length; j++)
 					{
 						characterSaveSlots[j].setStyle("-fx-border-width:5px");
-						if(characterSaveSlots[j].equals(event.getTarget()))
+						if(characterSaveSlots[j].equals(event.getSource()))
 						{
 							selectedPlayer = players[j];
 							characterSaveSlots[j].setStyle("-fx-border-width:10px");

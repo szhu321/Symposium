@@ -34,7 +34,7 @@ public class GraphicsViewController implements Initializable
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
 		container.setId("borderPaneContainer");
-		graphicsItemGrid.setPrefWidth(GameRunner.getResolutionWidth() - 50);
+		graphicsItemGrid.setPrefWidth(GameRunner.getResolutionWidth() - 300);
 		graphicsContainer.setPrefHeight(GameRunner.getResolutionHeight() - 100);
 		graphics = GameRunner.getGraphics();
 		loadGraphicsItemGrid();

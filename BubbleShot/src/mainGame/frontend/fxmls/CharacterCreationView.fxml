@@ -12,7 +12,7 @@
 
 <BorderPane fx:id="container" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.CharacterCreationController">
    <center>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
@@ -24,6 +24,7 @@
                   <Insets top="20.0" />
                </padding>
             </HBox>
+            <Label fx:id="messageLabel" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Name: ">
@@ -38,7 +39,6 @@
                   </TextField>
                </children>
             </HBox>
-            <Label fx:id="messageLabel" />
             <Button mnemonicParsing="false" onMouseClicked="#startGameBtn" text="Start Game">
                <font>
                   <Font size="24.0" />

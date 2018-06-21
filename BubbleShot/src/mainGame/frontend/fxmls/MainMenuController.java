@@ -17,21 +17,20 @@ import sound.SoundEffects;
 public class MainMenuController implements Initializable
 {
 	public BorderPane container;
-	
 	public MediaView backgroundVid;
-	
 	public Button playBtn;
 	public Button mapEditorBtn;
 	public Button settingsBtn;
 	public Button quitBtn;
+	
+	private MediaPlayer mp;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
 		container.setPrefHeight(GameRunner.getResolutionHeight());
 		container.setPrefWidth(GameRunner.getResolutionWidth());
-		
-		MediaPlayer mp = new MediaPlayer(new Media(new File("resources/background/MainMenuBackgroundVid.mp4").toURI().toString()));
+		mp = SoundEffects.MENU_BACKGROUND_VID;
 		mp.setAutoPlay(true);
 		mp.setCycleCount(Integer.MAX_VALUE);
 		backgroundVid.setMediaPlayer(mp);
