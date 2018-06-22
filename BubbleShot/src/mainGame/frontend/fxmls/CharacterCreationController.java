@@ -105,13 +105,16 @@ public class CharacterCreationController implements Initializable
 		else
 		{
 			Player[] players = FileReader.loadPlayer();
-			for(Player p : players)
+			if(players != null)
 			{
-				if(p.getSpriteName().equals(str))
+				for(Player p : players)
 				{
-					messageLabel.setText("Name Already Taken");
-					runMessageClearer();
-					return;
+					if(p.getSpriteName().equals(str))
+					{
+						messageLabel.setText("Name Already Taken");
+						runMessageClearer();
+						return;
+					}
 				}
 			}
 			Player player = PlayerDesign.getSimpleStarterPlayer(str, "file:" + files[imgIdx]);
