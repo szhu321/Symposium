@@ -112,7 +112,7 @@ public class MyMath
 	{
 		double[] result = new double[2];
 		//x' = xcos() - ysin()
-		result[0] = (x * Math.cos(Math.toRadians(degrees))) - (y * Math.sin(Math.toDegrees(degrees)));
+		result[0] = (x * Math.cos(Math.toRadians(degrees))) - (y * Math.sin(Math.toRadians(degrees)));
 		//y' = ycos() + xsin()
 		result[1] = (y * Math.cos(Math.toRadians(degrees))) + (x * Math.sin(Math.toRadians(degrees)));
 		//Translate based on povit.
