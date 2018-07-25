@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGame.frontend.fxmls.SettingsViewController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#soundBtnOnclick" text="Sound" />
+            <Button fx:id="controlBtn" mnemonicParsing="false" onMouseClicked="#controlBtnOnclick" text="Controls" />
+            <Button fx:id="graphicsBtn" mnemonicParsing="false" onMouseClicked="#graphicsBtnOnclick" text="Graphics" />
+            <Button mnemonicParsing="false" onMouseClicked="#backBtnOnclick" text="Back" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
