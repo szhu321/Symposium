@@ -13,14 +13,14 @@ public abstract class Sprite implements Collider, Serializable
 {
 	private static final long serialVersionUID = 8948031829820320618L;
 	
-	private String spriteName,fileName;
-	private double xCoord,yCoord,width,height,faceAngle;
+	private String spriteName, fileName;
+	private double xCoord, yCoord, width, height, faceAngle;
 	private transient Image spriteImage;
 	//private ImageView spriteImageView;
 	
 	public Sprite(String spriteName, String fileName, double xLocation, double yLocation, double width, double height, double faceAngle)
 	{
-		this.spriteName=spriteName;
+		this.spriteName = spriteName;
 		this.fileName = fileName;
 		xCoord = xLocation;
 		yCoord = yLocation;

@@ -16,9 +16,7 @@ import sprite.character.player.Player;
 import sprite.character.player.PlayerDesign;
 
 /**
- * Run this class to start the Program.
- * @author Sheng 	
- *
+ *	Program execution class.
  */
 public class GameRunner extends Application
 {	
@@ -29,9 +27,9 @@ public class GameRunner extends Application
 	private static double resolutionHeight;
 	private static double resolutionWidth;
 	
-	private static Controls controls;
-	private static Graphics graphics;
-	private static Sounds sounds;
+	private static Controls controls; //controls for the game.
+	private static Graphics graphics; //graphics settings for the game.
+	private static Sounds sounds; //audio for the game.
 	
 	public static void main(String[] args)
 	{
@@ -69,7 +67,6 @@ public class GameRunner extends Application
 //		BackgroundSound bs = new BackgroundSound("resources/music/gunShot.wav", 232);
 //		bs.playSound(.05);
 //		
-
 		window.show();
 	}
 	
@@ -197,5 +194,4 @@ public class GameRunner extends Application
 	{
 		return gameManager;
 	}
-	
 }

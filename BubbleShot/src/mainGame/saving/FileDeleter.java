@@ -14,7 +14,7 @@ public class FileDeleter
 	
 	public static void deletePlayer(Player player)
 	{
-		File[] files = FileUtil.getAllDatFilesFromDir("saves/players");
+		File[] files = FileUtil.getFilesFromDir("saves/players", "dat");
 		if(files != null)
 		{
 			for(int i = 0; i < files.length; i++)

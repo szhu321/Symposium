@@ -61,7 +61,7 @@ public class CharacterCreationController implements Initializable
 	
 	private void grabImages()
 	{
-		files = FileUtil.getAllPngFilesFromDir("resources/player");
+		files = FileUtil.getFilesFromDir("resources/player", "png");
 	}
 	
 	private void displayImage()
