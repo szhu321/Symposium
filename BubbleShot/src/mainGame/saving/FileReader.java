@@ -1,7 +1,9 @@
 package mainGame.saving;
 
 import java.io.*;
+import java.util.Map;
 
+import javafx.scene.image.Image;
 import myutilities.FileUtil;
 import sprite.character.player.Player;
 
@@ -10,7 +12,7 @@ public class FileReader
 	public static Player[] loadPlayer()
 	{
 		ObjectInputStream objstream = null;
-		File[] files = FileUtil.getAllDatFilesFromDir("saves/players");
+		File[] files = FileUtil.getFilesFromDir("saves/players", "dat");
 		
 		//System.out.println(files.length);
 		//return null;
@@ -57,5 +59,11 @@ public class FileReader
 			}
 		}
 		return players;
+	}
+	
+	public static Map<String, Image> loadPlayerImages()
+	{
+		FileUtil.getFilesFromDir("resources/player", "png");
+		return null;
 	}
 }
