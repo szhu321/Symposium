@@ -18,12 +18,15 @@ public class BackgroundSound implements Sound
 	public BackgroundSound(String soundFile)
 	{
 		bkgrdSound = new Media(new File(soundFile).toURI().toString());
+		//make sure you have a sound output otherwise this will crash.
 		mediaPlayer = new MediaPlayer(bkgrdSound);
+		
 		players.add(mediaPlayer);
 		mediaPlayer.volumeProperty().bind(GameRunner.getSounds().getBackgroundMusicVolumeProperty());
 		//mediaPlayer.setAutoPlay(true);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 		//effectSoundLength = length;
+	
 	}
 
 	@Override
